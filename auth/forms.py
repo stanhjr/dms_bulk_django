@@ -1,10 +1,11 @@
-from django.contrib.auth.models import User
 from django import forms
+
+from account.models import CustomUser
 
 
 class SignUpForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'email', 'password']
 
         widgets = {
