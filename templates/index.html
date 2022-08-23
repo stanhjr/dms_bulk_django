@@ -15,7 +15,7 @@
     <meta name="msapplication-TileColor" content="#666F86"/>
     <meta name="msapplication-config" content="./img/favicon/browserconfig.xml"/>
     <meta name="theme-color" content="#666F86"/>
-    <link rel="stylesheet" href="{% static 'css/style.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.min.css' %}"/>
   </head>
   <body>
     <div class="page-container is-home">
@@ -738,10 +738,12 @@
     <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
       <div class="grid">
         <div class="popup-form-wrap">
-          <form action="#">
+          <form method="post" action="">
             <h3 class="center">Hello, Friend!</h3>
-            <div class="input-wrap mb">
-              <input class="has-ic" type="text" placeholder="Name" required="required"/>
+            {% csrf_token %}
+            
+            <div class="input-wrap mb">            
+              {{ sign_up_form.username }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
                   <use xlink:href="./img/sprite.svg#ic-user"></use>
@@ -749,7 +751,7 @@
               </div>
             </div>
             <div class="input-wrap mb">
-              <input class="has-ic" type="email" placeholder="Email" required="required"/>
+              {{ sign_up_form.email }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
                   <use xlink:href="./img/sprite.svg#ic-email"></use>
@@ -757,13 +759,13 @@
               </div>
             </div>
             <div class="input-wrap">
-              <input class="has-ic" type="password" placeholder="Password" required="required"/>
+              {{ sign_up_form.password }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
                   <use xlink:href="./img/sprite.svg#ic-password"></use>
                 </svg>
               </div>
-              <button class="password-hidden js-toggle-password" type="button">
+              <button class="password-hidden js-toggle-password" type="submit">
                 <svg viewBox="0 0 20 20" width="20px">
                   <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
                 </svg>
