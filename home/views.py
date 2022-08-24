@@ -22,4 +22,4 @@ class MainPageView(TemplateView):
         if sign_up_form.is_valid():
             sign_up_form.save()
             return render(request, 'index.html')
-        return HttpResponse('Hello fool')
+        return HttpResponse('The Woooorudo!')

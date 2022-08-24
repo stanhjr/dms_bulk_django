@@ -6,85 +6,85 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png"/>
-    <link rel="manifest" href="./img/favicon/site.webmanifest"/>
-    <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#666F86"/>
-    <link rel="shortcut icon" href="./img/favicon/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/favicon/apple-touch-icon.png' %}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/img/favicon/favicon-32x32.png' %}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicon/favicon-16x16.png' %}"/>
+    <link rel="manifest" href="{% static '/img/favicon/site.webmanifest' %}"/>
+    <link rel="mask-icon" href="{% static '/img/favicon/safari-pinned-tab.svg' %}" color="#666F86"/>
+    <link rel="shortcut icon" href="{% static '/img/favicon/favicon.ico' %}"/>
     <meta name="msapplication-TileColor" content="#666F86"/>
-    <meta name="msapplication-config" content="./img/favicon/browserconfig.xml"/>
+    <meta name="msapplication-config" content="{% static '/img/favicon/browserconfig.xml' %}"/>
     <meta name="theme-color" content="#666F86"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.min.css' %}"/>
   </head>
   <body>
     <div class="page-container is-home">
       <header class="header-main">
         <div class="container">
           <div class="grid default">
-            <div class="logo-wrap"><a href="./"><img src="./img/logo.svg" alt=""></a></div>
+            <div class="logo-wrap"><a href="./"><img src="{% static '/img/logo.svg' %}" alt=""></a></div>
             <div class="btns-wrap"><a class="btn btn--tg-channel" href="#" target="_blank">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-tg"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
                 </svg>News Channel</a><a class="btn btn--tg-chat" href="#" target="_blank">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-tg"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
                 </svg>Support</a><a class="btn btn--inst" href="#" target="_blank">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-inst"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-inst' %}"></use>
                 </svg>Instagram</a></div>
             <div class="login-wrap"><a class="a-link js-popup" href="#popup-sign-up">Sign Up</a><a class="btn btn--accent js-popup" href="#popup-login">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-login"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-login' %}"></use>
                 </svg>Login</a></div>
             <div class="menu-wrap">
               <ul class="block-nav-items">
                 <li><a class="active" href="./">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-home"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-home' %}"></use>
                     </svg>Home</a></li>
                 <li><a href="./#benefits" data-scroll-from="benefits">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-benefits"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-benefits' %}"></use>
                     </svg>Benefits</a></li>
                 <li><a href="./#pricing" data-scroll-from="pricing">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-pricing"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-pricing' %}"></use>
                     </svg>Pricing</a></li>
                 <li><a href="./#orders" data-scroll-from="orders">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-orders"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-orders' %}"></use>
                     </svg>Live orders</a></li>
                 <li><a href="./faq.html">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-faq"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-faq' %}"></use>
                     </svg>FAQ</a></li>
                 <li><a href="./contacts.html">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-contacts"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-contacts' %}"></use>
                     </svg>Contacts</a></li>
                 <li><a href="./loyalty-program.html">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-loyalty"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-loyalty' %}"></use>
                     </svg>Loyalty Program</a></li>
                 <li><a href="#">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-api"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-api' %}"></use>
                     </svg>API</a></li>
                 <li><a href="./blog.html">
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-blog"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-blog' %}"></use>
                     </svg>Blog</a></li>
               </ul>
               <div class="btns-wrapper"><a class="btn btn--tg-channel" href="#" target="_blank">
                   <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="./img/sprite.svg#ic-tg"></use>
+                    <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
                   </svg>News Channel</a><a class="btn btn--tg-chat" href="#" target="_blank">
                   <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="./img/sprite.svg#ic-tg"></use>
+                    <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
                   </svg>Support</a><a class="btn btn--inst" href="#" target="_blank">
                   <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="./img/sprite.svg#ic-inst"></use>
+                    <use xlink:href="{% static '/img/sprite.svg#ic-inst' %}"></use>
                   </svg>Instagram</a></div>
             </div>
             <button class="menu-btn js-toggle-menu"><span></span><span></span><span></span></button>
@@ -98,59 +98,59 @@
               <nav class="nav-wrap">
                 <button class="js-toggle-nav">
                   <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="./img/sprite.svg#ic-arrow-right"></use>
+                    <use xlink:href="{% static '/img/sprite.svg#ic-arrow-right' %}"></use>
                   </svg>
                   <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="./img/sprite.svg#ic-close"></use>
+                    <use xlink:href="{% static '/img/sprite.svg#ic-close' %}"></use>
                   </svg>
                 </button>
                 <ul class="block-nav-items">
                   <li><a class="active" href="./">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-home"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-home' %}"></use>
                       </svg>Home</a></li>
                   <li><a href="./#benefits" data-scroll-from="benefits">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-benefits"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-benefits' %}"></use>
                       </svg>Benefits</a></li>
                   <li><a href="./#pricing" data-scroll-from="pricing">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-pricing"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-pricing' %}"></use>
                       </svg>Pricing</a></li>
                   <li><a href="./#orders" data-scroll-from="orders">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-orders"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-orders' %}"></use>
                       </svg>Live orders</a></li>
                   <li><a href="./faq.html">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-faq"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-faq' %}"></use>
                       </svg>FAQ</a></li>
                   <li><a href="./contacts.html">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-contacts"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-contacts' %}"></use>
                       </svg>Contacts</a></li>
                   <li><a href="./loyalty-program.html">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-loyalty"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-loyalty' %}"></use>
                       </svg>Loyalty Program</a></li>
                   <li><a href="#">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-api"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-api' %}"></use>
                       </svg>API</a></li>
                   <li><a href="./blog.html">
                       <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-blog"></use>
+                        <use xlink:href="{% static '/img/sprite.svg#ic-blog' %}"></use>
                       </svg>Blog</a></li>
                 </ul>
               </nav>
             </div>
             <div class="content-wrapper">
               <section class="home-start">
-                <div class="img-wrap"><img src="./img/home-social.svg" alt=""></div>
-                <h1>Increase Sales, Leads, Activity, Engagement <br>most popular Social Media using <br> <img src="./img/logo.svg"> service </h1>
+                <div class="img-wrap"><img src="{% static '/img/home-social.svg' %}" alt=""></div>
+                <h1>Increase Sales, Leads, Activity, Engagement <br>most popular Social Media using <br> <img src="{% static '/img/logo.svg' %}"> service </h1>
                 <div class="btn-wrap"><a class="btn btn--accent btn--small no-gap js-popup" href="#popup-sign-up">Start now
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="./img/sprite.svg#ic-arrow-right"></use>
+                      <use xlink:href="{% static '/img/sprite.svg#ic-arrow-right' %}"></use>
                     </svg></a></div>
                 <div class="separetor"><span class="long"></span><span></span><span></span></div>
               </section>
@@ -158,27 +158,27 @@
                 <h2 class="center">Benefits</h2>
                 <div class="subtitle line">We strive for our clients every day. Below you will see our benefits.</div>
                 <div class="items">
-                  <div class="item"><img src="./img/benefits-1.png" alt="">
+                  <div class="item"><img src="{% static '/img/benefits-1.png' %}" alt="">
                     <h3>Convenience</h3>
                     <p>Handy dashboard for ordering and monitoring process</p>
                   </div>
-                  <div class="item"><img src="./img/benefits-2.png" alt="">
+                  <div class="item"><img src="{% static '/img/benefits-2.png' %}" alt="">
                     <h3>Speed</h3>
                     <p>Orders completes <br>24-72h </p>
                   </div>
-                  <div class="item"><img src="./img/benefits-3.png" alt="">
+                  <div class="item"><img src="{% static '/img/benefits-3.png' %}" alt="">
                     <h3>Support</h3>
                     <p>Online 24/7</p>
                   </div>
-                  <div class="item"><img src="./img/benefits-4.png" alt="">
+                  <div class="item"><img src="{% static '/img/benefits-4.png' %}" alt="">
                     <h3>Bulk</h3>
                     <p>Easy mass ordering <br>with discounts</p>
                   </div>
-                  <div class="item"><img src="./img/benefits-5.png" alt="">
+                  <div class="item"><img src="{% static '/img/benefits-5.png' %}" alt="">
                     <h3>DMS Token</h3>
                     <p>Loyality Program with our internal DMS token</p>
                   </div>
-                  <div class="item"><img src="./img/benefits-6.png" alt="">
+                  <div class="item"><img src="{% static '/img/benefits-6.png' %}" alt="">
                     <h3>Reputation</h3>
                     <p>Best rates in market</p>
                   </div>
@@ -198,27 +198,27 @@
                     <div class="social-wrap">
                       <button class="button-social-circle js-swiper-to" data-index="0">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="./img/sprite.svg#ic-inst"></use>
+                          <use xlink:href="{% static '/img/sprite.svg#ic-inst' %}"></use>
                         </svg>
                       </button>
                       <button class="button-social-circle js-swiper-to" data-index="1">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="./img/sprite.svg#ic-tw"></use>
+                          <use xlink:href="{% static '/img/sprite.svg#ic-tw' %}"></use>
                         </svg>
                       </button>
                       <button class="button-social-circle js-swiper-to" data-index="2">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="./img/sprite.svg#ic-d"></use>
+                          <use xlink:href="{% static '/img/sprite.svg#ic-d' %}"></use>
                         </svg>
                       </button>
                       <button class="button-social-circle js-swiper-to" data-index="3">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="./img/sprite.svg#ic-tg"></use>
+                          <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
                         </svg>
                       </button>
                     </div>
                     <div class="bottom-wrap">
-                      <p>Depending on the ordered message volume in Discord, Telegram Instagram or Twitter, you will receive our DM's internal Tokens that you can then use to pay for new orders, read more information about the Loyalty Program <a class="link" href="./loyalty-program.html">here</a></p><img src="./img/dms-coin.png" alt="">
+                      <p>Depending on the ordered message volume in Discord, Telegram Instagram or Twitter, you will receive our DM's internal Tokens that you can then use to pay for new orders, read more information about the Loyalty Program <a class="link" href="./loyalty-program.html">here</a></p><img src="{% static '/img/dms-coin.png' %}" alt="">
                     </div>
                   </div>
                   <div class="right">
@@ -228,10 +228,10 @@
                           <div class="swiper-slide">
                             <div class="block-social-calculator block-white is-swiper">
                               <div class="header-wrap">
-                                <div class="ic"><img src="./img/ic-inst-grad.svg" alt=""/></div><b>Instagram</b>
+                                <div class="ic"><img src="{% static '/img/ic-inst-grad.svg' %}" alt=""/></div><b>Instagram</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="./img/sprite.svg#ic-info"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -266,12 +266,12 @@
                               <div class="header-wrap">
                                 <div class="ic twitter">
                                   <svg viewBox="0 0 30 30" width="30px">
-                                    <use xlink:href="./img/sprite.svg#ic-tw"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-tw' %}"></use>
                                   </svg>
                                 </div><b>Twitter</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="./img/sprite.svg#ic-info"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -306,12 +306,12 @@
                               <div class="header-wrap">
                                 <div class="ic discord">
                                   <svg viewBox="0 0 30 30" width="30px">
-                                    <use xlink:href="./img/sprite.svg#ic-d"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-d' %}"></use>
                                   </svg>
                                 </div><b>Discord</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="./img/sprite.svg#ic-info"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -346,12 +346,12 @@
                               <div class="header-wrap">
                                 <div class="ic telegram">
                                   <svg viewBox="0 0 30 30" width="30px">
-                                    <use xlink:href="./img/sprite.svg#ic-tg"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
                                   </svg>
                                 </div><b>Telegram</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="./img/sprite.svg#ic-info"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -385,12 +385,12 @@
                       </div>
                       <div class="swiper-arrow prev js-swiper-prev">
                         <svg viewBox="0 0 40 40" width="40px">
-                          <use xlink:href="./img/sprite.svg#ic-prev"></use>
+                          <use xlink:href="{% static '/img/sprite.svg#ic-prev' %}"></use>
                         </svg>
                       </div>
                       <div class="swiper-arrow next js-swiper-next">
                         <svg viewBox="0 0 40 40" width="40px">
-                          <use xlink:href="./img/sprite.svg#ic-next"></use>
+                          <use xlink:href="{% static '/img/sprite.svg#ic-next' %}"></use>
                         </svg>
                       </div>
                     </div>
@@ -410,27 +410,27 @@
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Scrape</span>
                           </li>
                           <li>
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Filtering</span>
                           </li>
                           <li>
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Sending</span>
                           </li>
                         </ul>
                       </div>
-                      <div class="coins-wrap block-white"><img src="./img/dms-coin.png" alt=""><b>100 DMS Tokens</b></div>
+                      <div class="coins-wrap block-white"><img src="{% static '/img/dms-coin.png' %}" alt=""><b>100 DMS Tokens</b></div>
                       <div class="sended-wrap block-white"><b>900k/5m sended</b>
                         <div class="block-line">
                           <div class="line instagram" style="width: 45%"></div>
@@ -443,27 +443,27 @@
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Scrape</span>
                           </li>
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Filtering</span>
                           </li>
                           <li>
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Sending</span>
                           </li>
                         </ul>
                       </div>
-                      <div class="coins-wrap block-white"><img src="./img/dms-coin.png" alt=""><b>200 DMS Tokens</b></div>
+                      <div class="coins-wrap block-white"><img src="{% static '/img/dms-coin.png' %}" alt=""><b>200 DMS Tokens</b></div>
                       <div class="sended-wrap block-white"><b>4m/5m sended</b>
                         <div class="block-line">
                           <div class="line instagram" style="width: 80%"></div>
@@ -476,27 +476,27 @@
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Scrape</span>
                           </li>
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Filtering</span>
                           </li>
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="./img/sprite.svg#ic-check"></use>
+                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                               </svg>
                             </div><span>Sending</span>
                           </li>
                         </ul>
                       </div>
-                      <div class="coins-wrap block-white"><img src="./img/dms-coin.png" alt=""><b>500 DMS Tokens</b></div>
+                      <div class="coins-wrap block-white"><img src="{% static '/img/dms-coin.png' %}" alt=""><b>500 DMS Tokens</b></div>
                       <div class="sended-wrap block-white"><b>5m/5m sended</b>
                         <div class="block-line">
                           <div class="line instagram" style="width: 100%"></div>
@@ -505,19 +505,19 @@
                     </div>
                   </div>
                   <div class="imgs-wrap">
-                    <div class="img"><img src="./img/chart-user-1.png" alt=""></div>
-                    <div class="img"><img src="./img/chart-user-2.png" alt=""></div>
-                    <div class="img"><img src="./img/chart-user-3.png" alt=""></div>
-                    <div class="img"><img src="./img/chart-user-4.png" alt=""></div>
-                    <div class="img"><img src="./img/chart-user-5.png" alt=""></div>
+                    <div class="img"><img src="{% static '/img/chart-user-1.png' %}" alt=""></div>
+                    <div class="img"><img src="{% static '/img/chart-user-2.png' %}" alt=""></div>
+                    <div class="img"><img src="{% static '/img/chart-user-3.png' %}" alt=""></div>
+                    <div class="img"><img src="{% static '/img/chart-user-4.png' %}" alt=""></div>
+                    <div class="img"><img src="{% static '/img/chart-user-5.png' %}" alt=""></div>
                   </div>
-                </div>
-              </section>
+                </div{% static '
+              <' %}/section>
               <section class="home-orders" id="orders" data-scroll-to="orders">
                 <h2 class="center">Live orders</h2>
                 <div class="items">
                   <div class="item">
-                    <div class="ava-wrap"><img class="img" src="./img/avatar.png" alt=""><img class="live" src="./img/ic-live.svg" alt=""></div>
+                    <div class="ava-wrap"><img class="img" src="{% static '/img/avatar.png' %}" alt=""><img class="live" src="{% static '/img/ic-live.svg' %}" alt=""></div>
                     <div class="text-wrap">
                       <h3>Benny Adrin</h3>
                       <ul>
@@ -531,7 +531,7 @@
                     </div>
                   </div>
                   <div class="item">
-                    <div class="ava-wrap"><img class="img" src="./img/avatar.png" alt=""><img class="live" src="./img/ic-live.svg" alt=""></div>
+                    <div class="ava-wrap"><img class="img" src="{% static '/img/avatar.png' %}" alt=""><img class="live" src="{% static '/img/ic-live.svg' %}" alt=""></div>
                     <div class="text-wrap">
                       <h3>Andrey Morsi</h3>
                       <ul>
@@ -545,7 +545,7 @@
                     </div>
                   </div>
                   <div class="item">
-                    <div class="ava-wrap"><img class="img" src="./img/avatar.png" alt=""><img class="live" src="./img/ic-live.svg" alt=""></div>
+                    <div class="ava-wrap"><img class="img" src="{% static '/img/avatar.png' %}" alt=""><img class="live" src="{% static '/img/ic-live.svg' %}" alt=""></div>
                     <div class="text-wrap">
                       <h3>Peter Beck</h3>
                       <ul>
@@ -559,7 +559,7 @@
                     </div>
                   </div>
                   <div class="item">
-                    <div class="ava-wrap"><img class="img" src="./img/avatar.png" alt=""><img class="live" src="./img/ic-live.svg" alt=""></div>
+                    <div class="ava-wrap"><img class="img" src="{% static '/img/avatar.png' %}" alt=""><img class="live" src="{% static '/img/ic-live.svg' %}" alt=""></div>
                     <div class="text-wrap">
                       <h3>Andrey Morsi</h3>
                       <ul>
@@ -577,13 +577,13 @@
               <section class="home-projects">
                 <h2 class="center">Our other Projects</h2>
                 <div class="items">
-                  <div class="item"><img src="./img/project-1.png" alt="">
+                  <div class="item"><img src="{% static '/img/project-1.png' %}" alt="">
                     <p>Instagram scrape and filtering cloud tool</p>
                   </div>
-                  <div class="item"><img src="./img/project-2.png" alt="">
+                  <div class="item"><img src="{% static '/img/project-2.png' %}" alt="">
                     <p>Social Media Accounts Store</p>
                   </div>
-                  <div class="item"><img src="./img/project-3.png" alt="">
+                  <div class="item"><img src="{% static '/img/project-3.png' %}" alt="">
                     <p>SMM Panel</p>
                   </div>
                 </div>
@@ -606,7 +606,7 @@
                 <div class="top-wrap">
                   <div class="grid">
                     <div class="col">
-                      <div class="logo-wrap"><a href="./"><img src="./img/logo.svg" alt=""></a></div>
+                      <div class="logo-wrap"><a href="./"><img src="{% static '/img/logo.svg' %}" alt=""></a></div>
                       <p class="copy">We are responsible for all information provided on the site. All rights reserved by the copyright holder. When using our service for personal purposes, you must indicate us as the source.</p>
                       <div class="btn-wrap"><a class="btn btn--accent btn--small js-popup" href="#popup-sign-up">Start with us</a></div>
                     </div>
@@ -636,7 +636,7 @@
                         <li class="small">Telegram: <a href="https://t.me/dmsbulk" target="_blank">t.me/dmsbulk</a></li>
                         <li class="small">Email: <a href="mailto:dmsbulkteam@gmail.com" target="_blank">dmsbulkteam@gmail.com</a></li>
                         <li class="small">Instagram: <a href="https://instagram.com/dmsbulk" target="_blank">instagram.com/dmsbulk</a></li>
-                      </ul><img class="pay" src="./img/pay.png" alt="">
+                      </ul><img class="pay" src="{% static '/img/pay.png' %}" alt="">
                     </div>
                   </div>
                 </div>
@@ -663,9 +663,9 @@
       <p>As we provide high quality service, before mass DM we use auditory filtration – means that we maximally filter out inactive and bot accounts, using filtration by avatar, followers amount, amount of posts, latest activity of account and by language used in bio or name. </p><br/>
       <p>You do not need to use your account, all messages are sended using our HQ blank accounts.</p><br/>
       <p>All messages goes with Notifications in general requests:</p><br/>
-      <div class="img-wrap"><img src="./img/popup-inst-1.jpg" alt=""/></div><br/>
+      <div class="img-wrap"><img src="{% static '/img/popup-inst-1.jpg' %}" alt=""/></div><br/>
       <p>Possibility to attach profile link, post or direct link to site:</p><br/>
-      <div class="img-wrap col-2"><img src="./img/popup-inst-2.jpg" alt=""/><img src="./img/popup-inst-3.jpg" alt=""/><img src="./img/popup-inst-4.jpg" alt=""/></div>
+      <div class="img-wrap col-2"><img src="{% static '/img/popup-inst-2.jpg' %}" alt=""/><img src="{% static '/img/popup-inst-3.jpg' %}" alt=""/><img src="{% static '/img/popup-inst-4.jpg' %}" alt=""/></div>
     </div>
     <div class="mfp-hide popup popup--social" id="popup-discord">
       <h2>Discord</h2>
@@ -673,21 +673,21 @@
       <p>We can provide mass dms to only active and online users from other servers. I want to note that in Discord there is no filtering,  but in another case there are 1000x less bots than in other social media.</p><br/>
       <p>All our accounts will have avatars, in a message we will attach your server or if you also want an image or gif.</p><br/>
       <p>You can use your targets/servers chosen for scrape</p><br/>
-      <div class="img-wrap"><img src="./img/popup-d-1.jpg" alt=""/></div>
+      <div class="img-wrap"><img src="{% static '/img/popup-d-1.jpg' %}" alt=""/></div>
     </div>
     <div class="mfp-hide popup popup--social" id="popup-telegram">
       <h2>Telegram</h2>
       <p>Organic Telegram Growth, Driving Targeted Traffic to your groups, channels or directly to site using mass DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.</p><br/>
       <p>Provide telegram mass messaging, scrape. Scrape works from any groups - public. We can send traffic to a group, channel or direct site.</p><br/>
       <p>Each message goes with notifications & using our limits and HQ accounts, messages will be seen all time while the user does not block messages. </p><br/>
-      <div class="img-wrap"><img src="./img/popup-tg-1.jpg" alt=""/></div>
+      <div class="img-wrap"><img src="{% static '/img/popup-tg-1.jpg' %}" alt=""/></div>
     </div>
     <div class="mfp-hide popup popup--social" id="popup-twitter">
       <h2>Twitter </h2>
       <p>Organic Twitter Growth, Driving Targeted Traffic to your Twitter Profile or directly to site using mass DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.</p><br/>
       <p>Messages go to general requests with or without notification depending on receiver notification settings. Scrape works using your competitors their last followers. </p><br/>
       <p>Our messages come with avatars on profiles and attached link or profile.</p><br/>
-      <div class="img-wrap"><img src="./img/popup-tw-1.jpg" alt=""/></div>
+      <div class="img-wrap"><img src="{% static '/img/popup-tw-1.jpg' %}" alt=""/></div>
     </div>
     <div class="mfp-hide popup popup--login" id="popup-login">
       <div class="popup-form-wrap">
@@ -697,7 +697,7 @@
             <input class="has-ic" type="email" placeholder="Email" required="required"/>
             <div class="ic">
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-email"></use>
+                <use xlink:href="{% static '/img/sprite.svg#ic-email' %}"></use>
               </svg>
             </div>
           </div>
@@ -705,15 +705,15 @@
             <input class="has-ic" type="password" placeholder="Password" required="required"/>
             <div class="ic">
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-password"></use>
+                <use xlink:href="{% static '/img/sprite.svg#ic-password' %}"></use>
               </svg>
             </div>
             <button class="password-hidden js-toggle-password" type="button">
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
+                <use xlink:href="{% static '/img/sprite.svg#ic-eye-open' %}"></use>
               </svg>
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-eye-close"></use>
+                <use xlink:href="{% static '/img/sprite.svg#ic-eye-close' %}"></use>
               </svg>
             </button>
           </div>
@@ -722,7 +722,7 @@
               <input type="checkbox" required="required"/>
               <div class="checkbox">
                 <svg viewBox="0 0 12 12" width="12px">
-                  <use xlink:href="./img/sprite.svg#ic-check"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                 </svg>
               </div>
               <p>Remember me</p>
@@ -746,7 +746,7 @@
               {{ sign_up_form.username }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-user"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-user' %}"></use>
                 </svg>
               </div>
             </div>
@@ -754,7 +754,7 @@
               {{ sign_up_form.email }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-email"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-email' %}"></use>
                 </svg>
               </div>
             </div>
@@ -762,15 +762,15 @@
               {{ sign_up_form.password }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-password"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-password' %}"></use>
                 </svg>
               </div>
               <button class="password-hidden js-toggle-password" type="submit">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-eye-open' %}"></use>
                 </svg>
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="./img/sprite.svg#ic-eye-close"></use>
+                  <use xlink:href="{% static '/img/sprite.svg#ic-eye-close' %}"></use>
                 </svg>
               </button>
             </div>
@@ -779,7 +779,7 @@
                 <input type="checkbox" required="required"/>
                 <div class="checkbox">
                   <svg viewBox="0 0 12 12" width="12px">
-                    <use xlink:href="./img/sprite.svg#ic-check"></use>
+                    <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
                   </svg>
                 </div>
                 <p>I’have read and agree to terms and condition </p>
@@ -794,14 +794,14 @@
         <div class="glad-wrap">
           <div class="title">Glad to see You!</div>
           <p>You are in right place for social media <br>BULK DMS service</p>
-          <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
+          <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
         </div>
       </div>
     </div>
     <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
       <div class="header-wrap">
         <div class="left">
-          <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
+          <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
           <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
         </div>
         <div class="right">
@@ -846,7 +846,7 @@
     <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
       <div class="header-wrap">
         <div class="left">
-          <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
+          <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
           <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
         </div>
         <div class="right">
@@ -888,6 +888,6 @@
       </div>
       <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
     </div>
-    <script src="./js/scripts.min.js?2"></script>
+    <script src="{% static '/js/scripts.min.js' %}"></script>
   </body>
 </html>
