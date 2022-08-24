@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'account',
     'account_auth',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

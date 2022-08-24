@@ -1,22 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/favicon/apple-touch-icon.png' %}"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/img/favicon/favicon-32x32.png' %}"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicon/favicon-16x16.png' %}"/>
-    <link rel="manifest" href="{% static '/img/favicon/site.webmanifest' %}"/>
-    <link rel="mask-icon" href="{% static '/img/favicon/safari-pinned-tab.svg' %}" color="#666F86"/>
-    <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}"/>
-    <meta name="msapplication-TileColor" content="#666F86"/>
-    <meta name="msapplication-config" content="{% static '/img/favicon/browserconfig.xml' %}"/>
-    <meta name="theme-color" content="#666F86"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/style.min.css' %}"/>
-  </head>
+  {% include 'head.html' %}
   <body>
     <div class="page-container is-home">
       {% include 'header.html' %}
@@ -393,8 +378,8 @@
                     <div class="img"><img src="{% static '/img/chart-user-4.png' %}" alt=""></div>
                     <div class="img"><img src="{% static '/img/chart-user-5.png' %}" alt=""></div>
                   </div>
-                </div{% static '
-              <' %}/section>
+                </div>
+              </section>
               <section class="home-orders" id="orders" data-scroll-to="orders">
                 <h2 class="center">Live orders</h2>
                 <div class="items">
@@ -532,7 +517,7 @@
     </div>
     <div class="mfp-hide popup popup--login" id="popup-login">
       <div class="popup-form-wrap">
-        <form action="#">
+        <form action="">
           <h3 class="center">Login</h3>
           <div class="input-wrap mb">
             <input class="has-ic" type="email" placeholder="Email" required="required"/>
