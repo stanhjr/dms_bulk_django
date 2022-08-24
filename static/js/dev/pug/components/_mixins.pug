@@ -1,0 +1,457 @@
+mixin head()
+	title #{pageTitle}
+	meta(charset="UTF-8")
+	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+
+	link(rel="apple-touch-icon", sizes="180x180", href="./img/favicon/apple-touch-icon.png")
+	link(rel="icon", type="image/png", sizes="32x32", href="./img/favicon/favicon-32x32.png")
+	link(rel="icon", type="image/png", sizes="16x16", href="./img/favicon/favicon-16x16.png")
+	link(rel="manifest", href="./img/favicon/site.webmanifest")
+	link(rel="mask-icon", href="./img/favicon/safari-pinned-tab.svg", color="#666F86")
+	link(rel="shortcut icon", href="./img/favicon/favicon.ico")
+	meta(name="msapplication-TileColor", content="#666F86")
+	meta(name="msapplication-config", content="./img/favicon/browserconfig.xml")
+	meta(name="theme-color", content="#666F86")
+
+	link(rel="stylesheet", href="./css/style.min.css?2")
+
+mixin scripts()
+	script(src="./js/scripts.min.js?2")
+
+mixin menuItem(href, title, isActive)
+	li: a(class=isActive ? 'active' : '', href=href) #{title}
+
+mixin menuItemScroll(scroll, title)
+	li: a(href="#" data-scroll-from=scroll) #{title}
+
+mixin svg(w, h, img)
+	svg(viewBox=`0 0 ${w} ${h}`, width=`${w}px`)
+		use(xlink:href=`./img/sprite.svg#${img}`)
+
+
+
+
+
+mixin homeNavUl()
+	ul.block-nav-items
+		li: a(class=(page == 'home') ? 'active' : '', href="./")
+			+svg(20, 20, 'ic-home')
+			| Home
+		li: a(href="./#benefits" data-scroll-from="benefits")
+			+svg(20, 20, 'ic-benefits')
+			| Benefits
+		li: a(href="./#pricing" data-scroll-from="pricing")
+			+svg(20, 20, 'ic-pricing')
+			| Pricing
+		li: a(href="./#orders" data-scroll-from="orders")
+			+svg(20, 20, 'ic-orders')
+			| Live orders
+		li: a(class=(page == 'faq') ? 'active' : '', href="./faq.html")
+			+svg(20, 20, 'ic-faq')
+			| FAQ
+		li: a(class=(page == 'contacts') ? 'active' : '', href="./contacts.html")
+			+svg(20, 20, 'ic-contacts')
+			| Contacts
+		li: a(class=(page == 'loyalty-program') ? 'active' : '', href="./loyalty-program.html")
+			+svg(20, 20, 'ic-loyalty')
+			| Loyalty Program
+		li: a(class=(page == 'api') ? 'active' : '', href="#")
+			+svg(20, 20, 'ic-api')
+			| API
+		li: a(class=(page == 'blog') ? 'active' : '', href="./blog.html")
+			+svg(20, 20, 'ic-blog')
+			| Blog
+
+
+mixin homeNav()
+	nav.nav-wrap
+		button.js-toggle-nav
+			+svg(20, 20, 'ic-arrow-right')
+			+svg(20, 20, 'ic-close')
+		+homeNavUl()
+
+
+mixin cabinetNavUl()
+	ul.block-nav-items
+		li: a(class=(page == 'dashboard') ? 'active' : '', href="./dashboard.html")
+			+svg(20, 20, 'ic-dashboard')
+			| Dashboard
+		li
+			button.js-toggle-inner(class=(page2 == 'order') ? 'active' : '')
+				+svg(20, 20, 'ic-message')
+				| Order DM’s
+				.arrow: +svg(20, 20, 'ic-arrow-right')
+			ul.inner
+				li: a(class=(page == 'order-dms') ? 'active' : '', href="./order-dms.html") Order
+				li: a(class=(page == 'order-active') ? 'active' : '', href="./order-active.html") Active Orders
+				li: a(class=(page == 'order-history') ? 'active' : '', href="./order-history.html") History
+		li: a(class=(page == 'add-funds') ? 'active' : '', href="./add-funds.html")
+			+svg(20, 20, 'ic-pricing')
+			| Add funds
+		li: a(class=(page == 'loyalty-program') ? 'active' : '', href="./loyalty-program.html")
+			+svg(20, 20, 'ic-loyalty')
+			| Loyalty Program
+		li: a(class=(page == 'faq') ? 'active' : '', href="./faq.html")
+			+svg(20, 20, 'ic-faq')
+			| FAQ
+		li: a(class=(page == 'settings') ? 'active' : '', href="./settings.html")
+			+svg(20, 20, 'ic-settings')
+			| Settings
+
+
+mixin cabinetNav()
+	nav.nav-wrap
+		+cabinetNavUl()
+		.social-wrap
+			a.btn.btn--inst.btn--small.w100(href="#" target="_blank")
+				+svg(20, 20, 'ic-inst')
+				| Instagram
+			a.btn.btn--tg-channel.btn--small.w100(href="#" target="_blank")
+				+svg(20, 20, 'ic-tg')
+				| Support Team
+			a.btn.btn--tg-chat.btn--small.w100(href="#" target="_blank")
+				+svg(20, 20, 'ic-tg')
+				| News Channel
+			
+
+
+mixin popups()
+	.mfp-hide.popup.popup--social#popup-instagram
+		h2 Instagram
+		p Organic Instagram Growth, Driving Targeted Traffic to your page or specific post in the DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.
+		br
+		p As we provide high quality service, before mass DM we use auditory filtration – means that we maximally filter out inactive and bot accounts, using filtration by avatar, followers amount, amount of posts, latest activity of account and by language used in bio or name. 
+		br
+		p You do not need to use your account, all messages are sended using our HQ blank accounts.
+		br
+		p All messages goes with Notifications in general requests:
+
+		br
+		.img-wrap: img(src="./img/popup-inst-1.jpg", alt="")
+
+		br
+		p Possibility to attach profile link, post or direct link to site:
+		br
+
+		.img-wrap.col-2
+			img(src="./img/popup-inst-2.jpg", alt="")
+			img(src="./img/popup-inst-3.jpg", alt="")
+			img(src="./img/popup-inst-4.jpg", alt="")
+
+
+	.mfp-hide.popup.popup--social#popup-discord
+			h2 Discord
+			p Discord mass spam is the perfect way to grow servers and communities with only organic and healthy traffic. There are a lot of users who are interested in NFT/Metawerse products and we can easily attract them to your product. 
+			br
+			p We can provide mass dms to only active and online users from other servers. I want to note that in Discord there is no filtering,  but in another case there are 1000x less bots than in other social media.
+			br
+			p All our accounts will have avatars, in a message we will attach your server or if you also want an image or gif.
+			br
+
+			p You can use your targets/servers chosen for scrape
+
+			br
+			.img-wrap: img(src="./img/popup-d-1.jpg", alt="")
+
+	.mfp-hide.popup.popup--social#popup-telegram
+			h2 Telegram
+			p Organic Telegram Growth, Driving Targeted Traffic to your groups, channels or directly to site using mass DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.
+			br
+			p Provide telegram mass messaging, scrape. Scrape works from any groups - public. We can send traffic to a group, channel or direct site.
+			br
+			p Each message goes with notifications & using our limits and HQ accounts, messages will be seen all time while the user does not block messages. 
+			br
+			.img-wrap: img(src="./img/popup-tg-1.jpg", alt="")
+
+	.mfp-hide.popup.popup--social#popup-twitter
+			h2 Twitter 
+			p Organic Twitter Growth, Driving Targeted Traffic to your Twitter Profile or directly to site using mass DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.
+			br
+			p Messages go to general requests with or without notification depending on receiver notification settings. Scrape works using your competitors their last followers. 
+			br
+			p Our messages come with avatars on profiles and attached link or profile.
+			br
+
+			.img-wrap: img(src="./img/popup-tw-1.jpg", alt="")
+
+
+	.mfp-hide.popup.popup--login#popup-login
+		.popup-form-wrap
+			form(action="#")
+				h3.center Login
+				.input-wrap.mb
+					input.has-ic(type="email" placeholder="Email" required)
+					.ic: +svg(20, 20, 'ic-email')
+				.input-wrap
+					input.has-ic(type="password" placeholder="Password" required)
+					.ic: +svg(20, 20, 'ic-password')
+					button.password-hidden.js-toggle-password(type="button")
+						+svg(20, 20, 'ic-eye-open')
+						+svg(20, 20, 'ic-eye-close')
+				.checkbox-wrapper
+					label.block-checkbox
+						input(type="checkbox" required)
+						.checkbox: +svg(12, 12, 'ic-check')
+						p Remember me
+					.link-wrap: a(href="#") Forgot password?
+				.btn-wrap: button.btn.btn--accent Sign In
+
+
+	.mfp-hide.popup.popup--login.sign-up#popup-sign-up: .grid
+		.popup-form-wrap
+			form(action="#")
+				h3.center Hello, Friend!
+				.input-wrap.mb
+					input.has-ic(type="text" placeholder="Name" required)
+					.ic: +svg(20, 20, 'ic-user')
+				.input-wrap.mb
+					input.has-ic(type="email" placeholder="Email" required)
+					.ic: +svg(20, 20, 'ic-email')
+				.input-wrap
+					input.has-ic(type="password" placeholder="Password" required)
+					.ic: +svg(20, 20, 'ic-password')
+					button.password-hidden.js-toggle-password(type="button")
+						+svg(20, 20, 'ic-eye-open')
+						+svg(20, 20, 'ic-eye-close')
+				.checkbox-wrapper
+					label.block-checkbox
+						input(type="checkbox" required)
+						.checkbox: +svg(12, 12, 'ic-check')
+						p I’have read and agree to terms and condition 
+				.btn-wrap: button.btn.btn--accent Create account
+				.have-account
+					span Already have account? 
+					a.js-popup(href="#popup-login") Login
+
+		.glad-wrap
+			.title Glad to see You!
+			p You are in right place for social media <br>BULK DMS service
+			.logo-wrap: img(src="./img/logo.svg", alt="")
+
+
+
+	.mfp-hide.popup.popup--invoice#popup-invoice-awaiting
+		.header-wrap
+			.left
+				.logo-wrap: img(src="./img/logo.svg", alt="")
+				p Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com
+			.right
+				.title INVOICE
+				p ID (#DM-11111)
+		
+		.info-wrap
+			.item
+				b Invoice to:
+				p Client Email adress and Name
+			.item
+				b Invoice data:
+				p 06.08.2022
+		
+		.table-info
+			.tr
+				.td: b Invoice ID
+				.td: b Payment Method
+				.td: b Description
+				.td: b Status
+			.tr
+				.td DM-11111
+				.td Paypal
+				.td Social Media Marketing program
+				.td: span.status.c-orange AWAITING PAYMENT
+		
+		.table-total
+			.tr
+				.td: b Sub Total
+				.td 2000$
+			.tr
+				.td: b Total
+				.td 2000$
+		
+		.btn-wrap: a.btn(href="#") DEPOSIT
+
+
+	.mfp-hide.popup.popup--invoice#popup-invoice-paid
+		.header-wrap
+			.left
+				.logo-wrap: img(src="./img/logo.svg", alt="")
+				p Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com
+			.right
+				.title INVOICE
+				p ID (#DM-11111)
+		
+		.info-wrap
+			.item
+				b Invoice to:
+				p Client Email adress and Name
+			.item
+				b Invoice data:
+				p 06.08.2022
+		
+		.table-info
+			.tr
+				.td: b Invoice ID
+				.td: b Payment Method
+				.td: b Description
+				.td: b Status
+			.tr
+				.td DM-11111
+				.td Paypal
+				.td Social Media Marketing program
+				.td: span.status.c-green PAID
+		
+		.table-total
+			.tr
+				.td: b Sub Total
+				.td 2000$
+			.tr
+				.td: b Total
+				.td 2000$
+		
+		.btn-wrap: a.btn(href="#") Download
+
+
+mixin cabinetNavInner()
+	section.cabinet-nav
+		ul
+			li: a(class=(page == 'order-dms' ? 'active' : '') href="./order-dms.html") Order DMS
+			li: a(class=(page == 'order-active' ? 'active' : '') href="./order-active.html") Active Order
+			li: a(class=(page == 'order-history' ? 'active' : '') href="./order-history.html") History
+
+
+
+mixin calcInstagram(isSwiper)
+	.block-social-calculator.block-white(class=isSwiper ? 'is-swiper' : '')
+		.header-wrap
+			.ic: img(src="./img/ic-inst-grad.svg", alt="")
+			b Instagram
+			.ic-info.js-tooltip(title="You can write the exact amount of messages you need, sample: 15000"): +svg(22, 22, 'ic-info')
+		
+		.content-wrap
+			.top-wrap
+				p Quantity
+				.label.js-price-per-1k &nbsp;
+			.range-wrap.instagram
+				input.js-range-instagram(type="text")
+			
+			.result-wrap.instagram
+				.item
+					p Amount
+					.val.js-amount &nbsp;
+				.item
+					p Discount
+					.val.js-percent &nbsp;
+				.item
+					p Total
+					.val.js-price-per-amount &nbsp;
+			.link-wrap: a.link.js-popup(href="#popup-instagram") Learn more about process
+
+
+
+mixin calcTwitter(isSwiper)
+	.block-social-calculator.block-white(class=isSwiper ? 'is-swiper' : '')
+		.header-wrap
+			.ic.twitter: +svg(30, 30, 'ic-tw')
+			b Twitter
+			.ic-info.js-tooltip(title="You can write the exact amount of messages you need, sample: 15000"): +svg(22, 22, 'ic-info')
+		
+		.content-wrap
+			.top-wrap
+				p Quantity
+				.label.js-price-per-1k &nbsp;
+			.range-wrap.twitter
+				input.js-range-twitter(type="text")
+			
+			.result-wrap.twitter
+				.item
+					p Amount
+					.val.js-amount &nbsp;
+				.item
+					p Discount
+					.val.js-percent &nbsp;
+				.item
+					p Total
+					.val.js-price-per-amount &nbsp;
+			.link-wrap: a.link.js-popup(href="#popup-twitter") Learn more about process
+
+mixin calcDiscord(isSwiper)
+	.block-social-calculator.block-white(class=isSwiper ? 'is-swiper' : '')
+		.header-wrap
+			.ic.discord: +svg(30, 30, 'ic-d')
+			b Discord
+			.ic-info.js-tooltip(title="You can write the exact amount of messages you need, sample: 15000"): +svg(22, 22, 'ic-info')
+		
+		.content-wrap
+			.top-wrap
+				p Quantity
+				.label.js-price-per-1k &nbsp;
+			.range-wrap.discord
+				input.js-range-discord(type="text")
+			
+			.result-wrap.discord
+				.item
+					p Amount
+					.val.js-amount &nbsp;
+				.item
+					p Discount
+					.val.js-percent &nbsp;
+				.item
+					p Total
+					.val.js-price-per-amount &nbsp;
+			.link-wrap: a.link.js-popup(href="#popup-discord") Learn more about process
+
+
+mixin calcTelegram(isSwiper)
+	.block-social-calculator.block-white(class=isSwiper ? 'is-swiper' : '')
+		.header-wrap
+			.ic.telegram: +svg(30, 30, 'ic-tg')
+			b Telegram
+			.ic-info.js-tooltip(title="You can write the exact amount of messages you need, sample: 15000"): +svg(22, 22, 'ic-info')
+		
+		.content-wrap
+			.top-wrap
+				p Quantity
+				.label.js-price-per-1k &nbsp;
+			.range-wrap.telegram
+				input.js-range-telegram(type="text")
+			
+			.result-wrap.telegram
+				.item
+					p Amount
+					.val.js-amount &nbsp;
+				.item
+					p Discount
+					.val.js-percent &nbsp;
+				.item
+					p Total
+					.val.js-price-per-amount &nbsp;
+			.link-wrap: a.link.js-popup(href="#popup-telegram") Learn more about process
+
+
+
+
+mixin mobMenuDefault()
+	.menu-wrap
+		+homeNavUl
+
+		.btns-wrapper
+			a.btn.btn--tg-channel(href="#" target="_blank")
+				+svg(20, 20, 'ic-tg')
+				| News Channel
+			a.btn.btn--tg-chat(href="#" target="_blank")
+				+svg(20, 20, 'ic-tg')
+				| Support
+			a.btn.btn--inst(href="#" target="_blank")
+				+svg(20, 20, 'ic-inst')
+				| Instagram
+
+
+
+
+
+
+
+
+
+
+

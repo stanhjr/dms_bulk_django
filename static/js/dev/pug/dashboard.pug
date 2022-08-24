@@ -1,0 +1,51 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Dashboard'
+	- const pageClass = ''
+	- const page = 'dashboard'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	section.dashboard-info
+		.social-btns
+			button.inst
+				img(src="./img/ic-inst-grad.svg", alt="")
+				| Instargam
+			button.tw
+				+svg(30, 30, 'ic-tw')
+				| Twitter
+			button.d
+				+svg(30, 30, 'ic-d')
+				| Discord
+			button.tg
+				+svg(30, 30, 'ic-tg')
+				| Telegram
+		
+		.stats-wrap
+			.chart-wrap.block-white
+				h2.fz25.center DM’s Statistic
+				.chart-container: .js-chart
+			.balance-wrap.block-white
+				.title DM’s Tokens
+				.balance
+					.img-wrap: img(src="./img/dms-coin.png", alt="")
+					p 250
+		
+		.table-wrapper.block-white
+			h2.fz25.center Recent Orders
+			.table-wrap
+				.tr
+					.td Instagram
+					.td 100k DMS
+					.td 14.07.22
+				.tr
+					.td Discord
+					.td 250k DMS
+					.td 11.07.22
+				.tr
+					.td Telegram
+					.td 50k DMS
+					.td 02.07.22

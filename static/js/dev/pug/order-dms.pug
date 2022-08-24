@@ -1,0 +1,48 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Order DMS'
+	- const pageClass = ''
+	- const page = 'order-dms'
+	- const page2 = 'order'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	+cabinetNavInner()
+
+	section.order-dms-main
+		h1.fz25.center Pricing Calculator
+
+		.grid
+			.social-btns
+				button.button-social-circle.active.js-tab-btn(data-tab="instagram"): +svg(24, 24, 'ic-inst')
+				button.button-social-circle.js-tab-btn(data-tab="twitter"): +svg(24, 24, 'ic-tw')
+				button.button-social-circle.js-tab-btn(data-tab="discord"): +svg(24, 24, 'ic-d')
+				button.button-social-circle.js-tab-btn(data-tab="telegram"): +svg(24, 24, 'ic-tg')
+			
+			.tab-content.active(data-tab="instagram")
+				+calcInstagram
+			
+			.tab-content(data-tab="twitter")
+				+calcTwitter
+
+			.tab-content(data-tab="discord")
+				+calcDiscord
+
+			.tab-content(data-tab="telegram")
+				+calcTelegram
+
+			.info-wrap
+				.blue-wrap
+					.title Reminder!
+					p After you have chosen the required amount of DMS, do not forget to replenish your balance in the <b>ADD FUNDS</b> section, after which you can continue to place an order. 
+					br
+					p You can replenish right now in two clicks by clicking the button below or go to the desired section <b>ADD FUNDS</b> yourself.
+				.btn-wrap: a.btn.w100(href="./add-funds.html")
+					span Add Funds: 
+						span.js-price-amount &nbsp;
+
+		.continue-wrap: a.btn.btn--continue.w100(href="./order-dms-step-2.html") Continue
+

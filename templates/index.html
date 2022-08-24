@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicon/favicon-16x16.png' %}"/>
     <link rel="manifest" href="{% static '/img/favicon/site.webmanifest' %}"/>
     <link rel="mask-icon" href="{% static '/img/favicon/safari-pinned-tab.svg' %}" color="#666F86"/>
-    <link rel="shortcut icon" href="{% static '/img/favicon/favicon.ico' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}"/>
     <meta name="msapplication-TileColor" content="#666F86"/>
     <meta name="msapplication-config" content="{% static '/img/favicon/browserconfig.xml' %}"/>
     <meta name="theme-color" content="#666F86"/>
@@ -19,130 +19,12 @@
   </head>
   <body>
     <div class="page-container is-home">
-      <header class="header-main">
-        <div class="container">
-          <div class="grid default">
-            <div class="logo-wrap"><a href="./"><img src="{% static '/img/logo.svg' %}" alt=""></a></div>
-            <div class="btns-wrap"><a class="btn btn--tg-channel" href="#" target="_blank">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
-                </svg>News Channel</a><a class="btn btn--tg-chat" href="#" target="_blank">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
-                </svg>Support</a><a class="btn btn--inst" href="#" target="_blank">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-inst' %}"></use>
-                </svg>Instagram</a></div>
-            <div class="login-wrap"><a class="a-link js-popup" href="#popup-sign-up">Sign Up</a><a class="btn btn--accent js-popup" href="#popup-login">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-login' %}"></use>
-                </svg>Login</a></div>
-            <div class="menu-wrap">
-              <ul class="block-nav-items">
-                <li><a class="active" href="./">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-home' %}"></use>
-                    </svg>Home</a></li>
-                <li><a href="./#benefits" data-scroll-from="benefits">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-benefits' %}"></use>
-                    </svg>Benefits</a></li>
-                <li><a href="./#pricing" data-scroll-from="pricing">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-pricing' %}"></use>
-                    </svg>Pricing</a></li>
-                <li><a href="./#orders" data-scroll-from="orders">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-orders' %}"></use>
-                    </svg>Live orders</a></li>
-                <li><a href="./faq.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-faq' %}"></use>
-                    </svg>FAQ</a></li>
-                <li><a href="./contacts.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-contacts' %}"></use>
-                    </svg>Contacts</a></li>
-                <li><a href="./loyalty-program.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-loyalty' %}"></use>
-                    </svg>Loyalty Program</a></li>
-                <li><a href="#">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-api' %}"></use>
-                    </svg>API</a></li>
-                <li><a href="./blog.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-blog' %}"></use>
-                    </svg>Blog</a></li>
-              </ul>
-              <div class="btns-wrapper"><a class="btn btn--tg-channel" href="#" target="_blank">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
-                  </svg>News Channel</a><a class="btn btn--tg-chat" href="#" target="_blank">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
-                  </svg>Support</a><a class="btn btn--inst" href="#" target="_blank">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg#ic-inst' %}"></use>
-                  </svg>Instagram</a></div>
-            </div>
-            <button class="menu-btn js-toggle-menu"><span></span><span></span><span></span></button>
-          </div>
-        </div>
-      </header>
+      {% include 'header.html' %}
       <main class="default">
         <div class="container">
           <div class="grid-wrap">
             <div class="aside-wrapper">
-              <nav class="nav-wrap">
-                <button class="js-toggle-nav">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg#ic-arrow-right' %}"></use>
-                  </svg>
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg#ic-close' %}"></use>
-                  </svg>
-                </button>
-                <ul class="block-nav-items">
-                  <li><a class="active" href="./">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-home' %}"></use>
-                      </svg>Home</a></li>
-                  <li><a href="./#benefits" data-scroll-from="benefits">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-benefits' %}"></use>
-                      </svg>Benefits</a></li>
-                  <li><a href="./#pricing" data-scroll-from="pricing">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-pricing' %}"></use>
-                      </svg>Pricing</a></li>
-                  <li><a href="./#orders" data-scroll-from="orders">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-orders' %}"></use>
-                      </svg>Live orders</a></li>
-                  <li><a href="./faq.html">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-faq' %}"></use>
-                      </svg>FAQ</a></li>
-                  <li><a href="./contacts.html">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-contacts' %}"></use>
-                      </svg>Contacts</a></li>
-                  <li><a href="./loyalty-program.html">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-loyalty' %}"></use>
-                      </svg>Loyalty Program</a></li>
-                  <li><a href="#">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-api' %}"></use>
-                      </svg>API</a></li>
-                  <li><a href="./blog.html">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-blog' %}"></use>
-                      </svg>Blog</a></li>
-                </ul>
-              </nav>
+              {% include 'nav.html' %}
             </div>
             <div class="content-wrapper">
               <section class="home-start">
@@ -150,7 +32,7 @@
                 <h1>Increase Sales, Leads, Activity, Engagement <br>most popular Social Media using <br> <img src="{% static '/img/logo.svg' %}"> service </h1>
                 <div class="btn-wrap"><a class="btn btn--accent btn--small no-gap js-popup" href="#popup-sign-up">Start now
                     <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg#ic-arrow-right' %}"></use>
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
                     </svg></a></div>
                 <div class="separetor"><span class="long"></span><span></span><span></span></div>
               </section>
@@ -198,22 +80,22 @@
                     <div class="social-wrap">
                       <button class="button-social-circle js-swiper-to" data-index="0">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="{% static '/img/sprite.svg#ic-inst' %}"></use>
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-inst"></use>
                         </svg>
                       </button>
                       <button class="button-social-circle js-swiper-to" data-index="1">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="{% static '/img/sprite.svg#ic-tw' %}"></use>
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-tw"></use>
                         </svg>
                       </button>
                       <button class="button-social-circle js-swiper-to" data-index="2">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="{% static '/img/sprite.svg#ic-d' %}"></use>
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-d"></use>
                         </svg>
                       </button>
                       <button class="button-social-circle js-swiper-to" data-index="3">
                         <svg viewBox="0 0 24 24" width="24px">
-                          <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
                         </svg>
                       </button>
                     </div>
@@ -231,7 +113,7 @@
                                 <div class="ic"><img src="{% static '/img/ic-inst-grad.svg' %}" alt=""/></div><b>Instagram</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-info"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -266,12 +148,12 @@
                               <div class="header-wrap">
                                 <div class="ic twitter">
                                   <svg viewBox="0 0 30 30" width="30px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-tw' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tw"></use>
                                   </svg>
                                 </div><b>Twitter</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-info"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -306,12 +188,12 @@
                               <div class="header-wrap">
                                 <div class="ic discord">
                                   <svg viewBox="0 0 30 30" width="30px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-d' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-d"></use>
                                   </svg>
                                 </div><b>Discord</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-info"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -346,12 +228,12 @@
                               <div class="header-wrap">
                                 <div class="ic telegram">
                                   <svg viewBox="0 0 30 30" width="30px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-tg' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
                                   </svg>
                                 </div><b>Telegram</b>
                                 <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
                                   <svg viewBox="0 0 22 22" width="22px">
-                                    <use xlink:href="{% static '/img/sprite.svg#ic-info' %}"></use>
+                                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-info"></use>
                                   </svg>
                                 </div>
                               </div>
@@ -385,12 +267,12 @@
                       </div>
                       <div class="swiper-arrow prev js-swiper-prev">
                         <svg viewBox="0 0 40 40" width="40px">
-                          <use xlink:href="{% static '/img/sprite.svg#ic-prev' %}"></use>
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-prev"></use>
                         </svg>
                       </div>
                       <div class="swiper-arrow next js-swiper-next">
                         <svg viewBox="0 0 40 40" width="40px">
-                          <use xlink:href="{% static '/img/sprite.svg#ic-next' %}"></use>
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-next"></use>
                         </svg>
                       </div>
                     </div>
@@ -410,21 +292,21 @@
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Scrape</span>
                           </li>
                           <li>
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Filtering</span>
                           </li>
                           <li>
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Sending</span>
                           </li>
@@ -443,21 +325,21 @@
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Scrape</span>
                           </li>
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Filtering</span>
                           </li>
                           <li>
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Sending</span>
                           </li>
@@ -476,21 +358,21 @@
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Scrape</span>
                           </li>
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Filtering</span>
                           </li>
                           <li class="done">
                             <div class="ic">
                               <svg viewBox="0 0 13 13" width="13px">
-                                <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                               </svg>
                             </div><span>Sending</span>
                           </li>
@@ -602,48 +484,7 @@
                   </div>
                 </div>
               </section>
-              <footer class="footer-main">
-                <div class="top-wrap">
-                  <div class="grid">
-                    <div class="col">
-                      <div class="logo-wrap"><a href="./"><img src="{% static '/img/logo.svg' %}" alt=""></a></div>
-                      <p class="copy">We are responsible for all information provided on the site. All rights reserved by the copyright holder. When using our service for personal purposes, you must indicate us as the source.</p>
-                      <div class="btn-wrap"><a class="btn btn--accent btn--small js-popup" href="#popup-sign-up">Start with us</a></div>
-                    </div>
-                    <div class="col">
-                      <h3>Quick Links</h3>
-                      <ul>
-                        <li><a href="./">Home</a></li>
-                        <li><a href="#">Benefits</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Live pricing</a></li>
-                        <li><a href="./faq.html">FAQ</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
-                      </ul>
-                    </div>
-                    <div class="col">
-                      <h3>Important Info</h3>
-                      <ul>
-                        <li><a href="./rules.html">Rules</a></li>
-                        <li><a href="./cookies-policy.html">Cookies Policy</a></li>
-                        <li><a href="./privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="#">For EU Citizens</a></li>
-                      </ul>
-                    </div>
-                    <div class="col">
-                      <h3>Contact</h3>
-                      <ul>
-                        <li class="small">Telegram: <a href="https://t.me/dmsbulk" target="_blank">t.me/dmsbulk</a></li>
-                        <li class="small">Email: <a href="mailto:dmsbulkteam@gmail.com" target="_blank">dmsbulkteam@gmail.com</a></li>
-                        <li class="small">Instagram: <a href="https://instagram.com/dmsbulk" target="_blank">instagram.com/dmsbulk</a></li>
-                      </ul><img class="pay" src="{% static '/img/pay.png' %}" alt="">
-                    </div>
-                  </div>
-                </div>
-                <div class="bottom-wrap">
-                  <p>© 2022 DMSBulk. All rights reserved. </p>
-                </div>
-              </footer>
+              {% include 'footer.html' %}
               <div class="popup-cookies">
                 <div class="grid">
                   <p>By using website, you agree with our use of cookies to improve performance and enhance your experience. More information on our <a href="./cookies-policy.html">cookies policy page.</a></p>
@@ -697,7 +538,7 @@
             <input class="has-ic" type="email" placeholder="Email" required="required"/>
             <div class="ic">
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg#ic-email' %}"></use>
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
               </svg>
             </div>
           </div>
@@ -705,15 +546,15 @@
             <input class="has-ic" type="password" placeholder="Password" required="required"/>
             <div class="ic">
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg#ic-password' %}"></use>
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
               </svg>
             </div>
             <button class="password-hidden js-toggle-password" type="button">
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg#ic-eye-open' %}"></use>
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
               </svg>
               <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg#ic-eye-close' %}"></use>
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
               </svg>
             </button>
           </div>
@@ -722,7 +563,7 @@
               <input type="checkbox" required="required"/>
               <div class="checkbox">
                 <svg viewBox="0 0 12 12" width="12px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                 </svg>
               </div>
               <p>Remember me</p>
@@ -746,7 +587,7 @@
               {{ sign_up_form.username }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-user' %}"></use>
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-user"></use>
                 </svg>
               </div>
             </div>
@@ -754,7 +595,7 @@
               {{ sign_up_form.email }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-email' %}"></use>
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
                 </svg>
               </div>
             </div>
@@ -762,15 +603,15 @@
               {{ sign_up_form.password }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-password' %}"></use>
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
                 </svg>
               </div>
               <button class="password-hidden js-toggle-password" type="submit">
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-eye-open' %}"></use>
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
                 </svg>
                 <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg#ic-eye-close' %}"></use>
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
                 </svg>
               </button>
             </div>
@@ -779,7 +620,7 @@
                 <input type="checkbox" required="required"/>
                 <div class="checkbox">
                   <svg viewBox="0 0 12 12" width="12px">
-                    <use xlink:href="{% static '/img/sprite.svg#ic-check' %}"></use>
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
                   </svg>
                 </div>
                 <p>I’have read and agree to terms and condition </p>

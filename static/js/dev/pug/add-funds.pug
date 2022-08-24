@@ -1,0 +1,65 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Add Funds'
+	- const pageClass = ''
+	- const page = 'add-funds'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	section.add-funsd-main
+		.wrapper.block-white
+			h1.fz25.center Deposit
+			.btns-wrap
+				button.js-toggle-deposit: img.invert(src="./img/btn-paypal.png", alt="")
+				button.js-toggle-deposit: img(src="./img/btn-card.png", alt="")
+				button.js-toggle-deposit: img.invert(src="./img/btn-coinbase.png", alt="")
+			
+			.block-fund-input: input.js-input-numeric(type="text" value="2000$")
+
+			.btn-wrap: a.btn.js-popup(href="#popup-invoice-awaiting") Add Funds: 2000$
+
+			.bottom-text
+				| Check price calculator 
+				a.link(href="./order-dms.html") here
+			
+			.table
+				.tr
+					.td: b Invoive ID
+					.td: b Payment Method
+					.td: b Description
+					.td: b Cost
+					.td: b Status
+					.td: b Created
+					.td: b Action
+				.tr
+					.td DM-11111
+					.td Paypal
+					.td Social Media Marketing
+					.td 2000$
+					.td: span.c-orange Awaiting Payment
+					.td 07.08.2022
+					.td: a.js-popup(href="#popup-invoice-awaiting") View
+				.tr
+					.td DM-22222
+					.td CreditCard
+					.td Social Media Marketing
+					.td 1200$
+					.td: span.c-green Paid
+					.td 06.08.2022
+					.td: a.js-popup(href="#popup-invoice-paid") View
+				.tr
+					.td DM-33333
+					.td Coinbase
+					.td Social Media Marketing
+					.td 200$
+					.td: span.c-green Paid
+					.td 05.08.2022
+					.td: a.js-popup(href="#popup-invoice-paid") View
+
+			.pagination-wrap: ul
+				li: a(href="#"): +svg(16, 16, 'ic-arrow-left')
+				li: span 1
+				li: a(href="#"): +svg(16, 16, 'ic-arrow-right')

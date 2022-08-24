@@ -1,0 +1,1287 @@
+@import 'libs/normalize'
+@import 'libs/magnific-popup'
+@import 'libs/swiper-bundle.min'
+@import 'libs/ion.rangeSlider.min'
+@import 'libs/jBox.min'
+@import 'components/_mixins'
+@import 'components/_base'
+@import 'components/_vars'
+
+.home-start
+	background-color: $bgLight
+	border-radius: 30px 30px 0 0
+	border: 1px solid $border
+	border-bottom: none
+	padding: 70px 65px 120px
+	position: relative
+	+mq(992)
+		padding: 50px 30px 100px
+	+mq(992)
+		padding: 30px 15px 120px
+	.img-wrap
+		img
+			display: block
+			width: 100%
+	h1
+		max-width: 870px
+		position: relative
+		margin-top: 35px
+		padding-top: 20px
+		+mq(768)
+			br
+				display: none
+		&::before
+			+pseudo
+			width: 58px
+			height: 4px
+			border-radius: 50px
+			background-color: $blue
+			left: 0
+			top: 0
+		img
+			display: inline-block
+			width: 163px
+			+mq(1310)
+				width: 140px
+			+mq(992)
+				width: 100px
+	.btn-wrap
+		margin-top: 35px
+	.separetor
+		// bottom: 80px
+
+.home-benefits
+	margin-top: -30px
+	padding: 50px 50px 140px
+	background-color: #fff
+	border-radius: 30px 30px 0 0
+	border: 1px solid $border
+	border-bottom: none
+	position: relative
+	+mq(992)
+		padding: 50px 30px 140px
+	+mq(768)
+		padding: 30px 15px 130px
+	.items
+		margin-top: 50px
+		display: grid
+		grid-template-columns: repeat(3, 228px)
+		grid-gap: 40px 30px
+		justify-content: space-between
+		+mq(1310)
+			grid-template-columns: repeat(3, 1fr)
+			grid-gap: 30px
+		+mq(992)
+			grid-gap: 20px
+		+mq(768)
+			grid-template-columns: repeat(2, 1fr)
+		+mq(480)
+			grid-template-columns: 1fr
+		.item
+			background-color: $bgLight
+			border-radius: 18px
+			padding: 40px 20px
+			text-align: center
+			img
+				display: block
+				width: 55px
+				margin: 0 auto
+			h3
+				margin: 15px 0 10px
+			p
+				color: $gray
+				font-size: 13px
+				font-weight: 500
+				line-height: 1.4
+
+.home-calculator
+	border-radius: 30px 30px 0 0
+	background-color: $bgLight
+	padding: 55px 65px 150px
+	position: relative
+	margin-top: -30px
+	border-left: 1px solid $border
+	border-right: 1px solid $border
+	+mq(992)
+		padding: 50px 30px 150px
+	+mq(768)
+		padding: 30px 15px 150px
+		overflow: hidden
+	.grid
+		margin-top: 40px
+		grid-template-columns: 328px calc(100% - 328px)
+		// grid-gap: 170px
+		+mq(1310)
+			grid-template-columns: 100%
+	.left
+		.choose-wrap
+			background-color: $blue
+			color: #fff
+			background-image: url('../img/coose-bg.svg')
+			background-repeat: no-repeat
+			background-position: 100% 0
+			padding: 24px 22px
+			border-radius: 8px
+			h3
+				color: #fff
+				max-width: 230px
+			p
+				font-size: 13px
+				color: #eef6ff
+				opacity: 0.8
+				margin-top: 15px
+		p.text
+			color: $gray
+			font-size: 13px
+			margin-top: 10px
+		.social-wrap
+			display: grid
+			grid-auto-flow: column
+			justify-content: space-between
+			margin-top: 15px
+		.bottom-wrap
+			margin-top: 25px
+			display: grid
+			grid-template-columns: 1fr auto
+			align-items: center
+			grid-gap: 20px
+			p
+				color: $gray
+				font-size: 12px
+			img
+				width: 104px
+				display: block
+	.right
+		padding-left: 170px
+		+mq(1310)
+			padding-top: 30px
+			padding-left: 150px
+		+mq(768)
+			padding-left: 0
+		.wrapper
+			position: relative
+			+mq(768)
+				// max-width: 420px
+				// margin: 0 auto
+				// left: 20px
+				position: relative
+				
+			.swiper
+				// max-width: 380px
+				+mq(560)
+					padding-bottom: 20px
+				.swiper-wrapper
+					.swiper-slide
+						&:not(.swiper-slide-active)
+							pointer-events: none
+							position: relative
+							&::after
+								+pseudo
+								+box
+								background-color: rgba(238, 246, 255, 0.6)
+								backdrop-filter: blur(2px)
+								z-index: 10
+			.swiper-arrow
+				position: absolute
+				z-index: 11
+				top: calc(50% - 30px / 2)
+				cursor: pointer
+				+mq(560)
+					top: 100%
+				&:hover svg
+					fill: $blue
+				svg
+					display: block
+					fill: $gray
+					transition: 0.25s
+					+mq(560)
+						width: 30px
+				&.prev
+					left: -55px
+					+mq(560)
+						left: calc(50% - 50px)
+				&.next
+					left: calc(380px + 15px)
+					+mq(560)
+						left: auto
+						right: calc(50% - 50px)
+				&.swiper-button-disabled
+					opacity: 0.2
+					pointer-events: none
+	.separetor
+		// bottom: 100px
+
+
+.home-chart
+	padding: 130px 15px 300px
+	background-color: $bgLight
+	border-left: 1px solid $border
+	border-right: 1px solid $border
+	+mq(992)
+		padding: 100px 30px 150px
+	+mq(768)
+		padding: 30px 15px 150px
+	.wrapper
+		position: relative
+		max-width: 550px
+		margin: 0 auto
+		.chart-container
+			padding: 50px 20px 20px
+			background-color: #fff
+			box-shadow: 17px 14px 66px rgba(0, 0, 0, 0.12)
+			border-radius: 8px
+			+mq(768)
+				padding: 15px 10px 10px
+			> div
+				margin: 0 -30px
+		.popups-wrap
+			position: absolute
+			+box
+			.popup-item
+				position: absolute
+				+box
+				color: $black
+				transition: 0.5s
+				&:not(.active)
+					opacity: 0
+					pointer-events: none
+				.block-white
+					border-radius: 8px
+				.order-wrap
+					position: absolute
+					top: -55px
+					left: -60px
+					padding: 12px 15px 25px
+					width: 213px
+					+mq(1310)
+						top: -40px
+						left: -40px
+					+mq(768)
+						left: 15px
+						+scale(.7)
+						transform-origin: 0	0
+					b
+						display: block
+						border-bottom: 1px solid $border
+						margin-bottom: 5px
+						padding-bottom: 5px
+				.coins-wrap
+					position: absolute
+					top: -20px
+					right: -75px
+					padding: 20px
+					display: grid
+					grid-template-columns: auto 1fr
+					align-items: center
+					grid-gap: 12px
+					+mq(1310)
+					+mq(768)
+						right: 15px
+						+scale(.7)
+						transform-origin: 100% 0
+					img
+						width: 30px
+				.sended-wrap
+					position: absolute
+					left: -170px
+					bottom: 80px
+					padding: 25px
+					width: 100%
+					max-width: 280px
+					+mq(1310)
+						left: -120px
+						bottom: 60px
+					+mq(992)
+						left: -85px
+					+mq(768)
+						left: 15px
+						+scale(.7)
+						transform-origin: 0	0
+					b
+						display: block
+						margin-bottom: 10px
+		.imgs-wrap
+			position: absolute
+			will-change: transform
+			+box
+			+mq(1310)
+				+scale(.8)
+			+mq(992)
+				+scale(.7)
+			.img
+				display: block
+				position: absolute
+				+size(86px)
+				will-change: transform
+				transition: 1s
+				&:nth-child(1)
+					top: 10%
+					left: -33%
+					img
+						+scale(.8)
+					&.anim-1 img
+						+scale(.3)
+					&.anim-2
+						+move(-10px, -25px)
+						img
+							+scale(.55)
+				&:nth-child(2)
+					top: 114%
+					left: -2%
+					&.anim-1 img
+						+scale(.55)
+					&.anim-2
+						+move(-80px, -50px)
+						img
+							+scale(.4)
+				&:nth-child(3)
+					top: -40%
+					left: 36%
+					img
+						+scale(.8)
+					&.anim-1 img
+						+scale(.3)
+					&.anim-2
+						+move(52px, -4px)
+						img
+							+scale(.65)
+				&:nth-child(4)
+					top: 104%
+					left: 85%
+					img
+						+scale(.5)
+					&.anim-1 img
+						+scale(.2)
+					&.anim-2
+						+move(-52px, 3px)
+						img
+							+scale(.5)
+				&:nth-child(5)
+					top: 29%
+					left: 105%
+					img
+						+scale(.7)
+					&.anim-1 img
+						+scale(.25)
+					&.anim-2
+						+move(-3px, 56px)
+						img
+							+scale(.7)
+				img
+					display: block
+					width: 100%
+					will-change: transform
+					transition: 1s
+
+.home-orders
+	border: 1px solid $border
+	border-bottom: none
+	padding-top: 50px
+	margin-top: -30px
+	border-radius: 30px 30px 0 0
+	position: relative
+	background-color: #fff
+	+mq(768)
+	h2
+	.items
+		display: grid
+		grid-auto-flow: column
+		grid-gap: 60px
+		overflow: hidden
+		width: 100%
+		padding: 55px 0 50px 65px
+		+mq(992)
+			grid-gap: 30px
+		+mq(768)
+			grid-gap: 15px
+			padding: 50px 15px
+		.item
+			display: grid
+			grid-template-columns: auto 1fr
+			grid-gap: 25px
+			background-color: #fff
+			box-shadow: 12px 10px 26px rgba(0, 0, 0, 0.08)
+			border-radius: 8px
+			width: 387px
+			padding: 15px 30px
+			animation: fadeIn 1s
+			+mq(992)
+				width: 340px
+				grid-gap: 15px
+				padding: 15px
+			+mq(768)
+				width: 280px
+			+mq(480)
+				width: 220px
+				grid-template-columns: 1fr
+			.ava-wrap
+				img
+					display: block
+					margin: 0 auto
+					&.img
+						+size(64px)
+						border-radius: 50%
+						object-fit: cover
+						+mq(768)
+							+size(40px)
+					&.live
+						width: 32px
+						margin-top: 3px
+						animation: live 1s infinite
+						+mq(768)
+							width: 28px
+			.text-wrap
+				padding-top: 20px
+				+mq(992)
+					padding-top: 0
+				ul
+					display: grid
+					grid-auto-flow: column
+					justify-content: space-between
+					grid-gap: 15px
+					margin-top: 13px
+					p
+						font-size: 13px
+						line-height: 1
+						+mq(768)
+					b
+						display: block
+						font-weight: bold
+						margin-top: 3px
+						+mq(768)
+							font-size: 14px
+
+.home-projects
+	padding: 40px 25px 25px
+	border-left: 1px solid $border
+	border-right: 1px solid $border
+	background-color: #fff
+	.items
+		display: grid
+		grid-template-columns: auto auto auto
+		grid-gap: 30px
+		justify-content: space-between
+		max-width: 992px
+		margin: 35px auto 0
+		+mq(992)
+			grid-template-columns: 1fr
+		.item
+			img
+				display: block
+				width: 100%
+				max-height: 67px
+				transition: 0.25s
+				object-fit: contain
+				+mq(480)
+					height: 40px
+				&:not(:hover)
+					filter: grayscale(100%)
+					opacity: 0.8
+			p
+				margin-top: 20px
+				color: $gray
+				font-size: 13px
+				text-align: center
+.home-about
+	padding: 25px 25px 80px
+	border-left: 1px solid $border
+	border-right: 1px solid $border
+	.items
+		display: grid
+		grid-template-columns: auto auto auto
+		grid-gap: 30px
+		justify-content: space-between
+		max-width: 992px
+		margin: 35px auto 0
+		+mq(992)
+			grid-template-columns: 1fr
+		+mq(768)
+			grid-gap: 20px
+		.item
+			text-align: center
+			color: $blue
+			p
+				font-size: 20px
+				font-weight: 500
+				+mq(768)
+					font-size: 16px
+			b
+				display: block
+				font-size: 38px
+				line-height: 1
+				+mq(768)
+					font-size: 30px
+
+
+.faq-text
+	border: 1px solid $border
+	padding: 50px 50px 80px
+	border-radius: 30px 30px 0 0
+	+mq(1310)
+		padding: 50px 30px 80px
+	+mq(768)
+		padding: 30px 15px 50px
+	h1
+		margin-bottom: 30px
+		+mq(992)
+			margin-bottom: 15px
+	p
+		color: $gray
+		font-weight: 500
+
+
+.faq-list
+	padding: 50px 50px 150px
+	background-color: $bgLight
+	border-radius: 30px 30px 0 0
+	margin-top: -30px
+	border: 1px solid $border
+	border-bottom: none
+	+mq(1310)
+		padding: 50px 30px 150px
+	+mq(768)
+		padding: 30px 15px 100px
+	.subtitle
+		max-width: 630px
+	.items
+		margin-top: 50px
+		.item
+			background-color: #fff
+			border-radius: 18px
+			box-shadow: 3px 8px 28px rgba(0, 0, 0, 0.08)
+			&:not(:last-child)
+				margin-bottom: 24px
+			&.active
+				.title
+					svg
+						transform: rotate(90deg)
+				.text-wrap
+					display: block
+			.title
+				position: relative
+				cursor: pointer
+				transition: .25s
+				padding: 20px 45px 20px 20px
+				&:hover
+				svg
+					position: absolute
+					top: calc(50% - 20px / 2)
+					right: 20px
+					fill: $black
+					transition: 0.25s
+			.text-wrap
+				display: none
+				padding: 0 20px 20px
+				p
+					font-size: 13px
+					color: $gray
+
+
+.contacts-links
+	padding: 100px 15px 210px
+	background-color: #fff
+	border: 1px solid $border
+	border-bottom: none
+	border-radius: 30px 30px 0 0
+	+mq(992)
+		padding: 50px 15px 100px
+	+mq(768)
+		padding: 30px 15px 80px
+	.items
+		display: grid
+		grid-template-columns: repeat(3, auto)
+		justify-content: space-between
+		grid-gap: 15px
+		max-width: 940px
+		margin: 50px auto 0
+		+mq(992)
+			grid-template-columns: 1fr
+			margin: 30px 0 0
+		a.item
+			display: grid
+			grid-template-columns: auto 1fr
+			align-items: center
+			grid-gap: 20px
+			background-color: $bgLight
+			border-radius: 18px
+			padding: 20px 30px
+			+mq(374)
+				padding: 15px 15px
+			&:hover
+				.ic-wrap svg
+					fill: $blue
+				.text-wrap
+					h3, p
+						color: $blue
+			.ic-wrap
+				svg
+					fill: $black
+					display: block
+					transition: 0.25s
+					+mq(374)
+						width: 25px
+			.text-wrap
+				h3
+					transition: 0.25s
+				p
+					font-size: 13px
+					font-weight: 500
+					color: $gray
+					transition: 0.25s
+
+
+
+.loyalty-program-info
+	padding: 60px 70px 90px
+	background-color: #fff
+	border: 1px solid $border
+	border-bottom: none
+	border-radius: 30px 30px 0 0
+	+mq(1310)
+		padding: 50px 30px 80px
+	+mq(768)
+		padding: 30px 15px 80px
+	.grid
+		grid-template-columns: 1fr 284px
+		grid-gap: 50px
+		margin-top: 30px
+		+mq(992)
+			grid-template-columns: 1fr 200px
+			grid-gap: 30px
+		+mq(768)
+			grid-template-columns: 1fr
+			margin-top: 15px
+	.text-wrap
+		color: $gray
+		font-weight: 500
+	.img-wrap
+		img
+			display: block
+			width: 100%
+			+mq(768)
+				max-width: 284px
+				margin: 0 auto
+
+.blog-list
+	padding-bottom: 100px
+	h1
+	.items
+		display: grid
+		grid-template-columns: repeat(3, 1fr)
+		margin-top: 30px
+		grid-gap: 25px 40px
+		+mq(1310)
+			grid-gap: 30px 15px
+		+mq(992)
+			grid-template-columns: repeat(2, 1fr)
+		+mq(576)
+			grid-template-columns: 1fr
+		.item
+			border: 1px solid $border
+			border-radius: 30px 30px 0 0
+			overflow: hidden
+			background-color: #fff
+			box-shadow: 3px 3px 5px rgba(19, 15, 38, 0.03)
+			.img-wrap
+				overflow: hidden
+				img
+					display: block
+					width: 100%
+			.text-wrap
+				padding: 24px 20px 30px
+				.date
+					font-size: 12px
+					color: $gray
+				h3
+					margin: 2px 0 10px
+				p
+					color: $gray
+					font-weight: 500
+				.link-wrap
+					margin-top: 25px
+					a
+						display: grid
+						grid-auto-flow: column
+						align-items: center
+						justify-content: flex-start
+						font-size: 12px
+						color: $blue
+						text-decoration: underline
+						transition: 0.25s
+						&:hover
+							color: $blueH
+						svg
+							fill: currentColor
+
+
+
+.blog-page-text
+	background-color: #fff
+	border-radius: 30px 30px 0 0
+	border: 1px solid $border
+	padding: 40px 100px 100px
+	+mq(1310)
+		padding: 30px 30px 100px
+	+mq(768)
+		padding: 30px 15px 100px
+	.grid
+		grid-template-columns: 1fr 317px
+		grid-gap: 60px
+		+mq(992)
+			grid-template-columns: 1fr
+			grid-gap: 30px
+	.text-wrap
+		h1
+			margin-bottom: 30px
+			+mq(768)
+				margin-bottom: 15px
+		p
+			color: $gray
+	.img-wrap
+		padding-top: 50px
+		+mq(992)
+			padding-top: 0
+		img
+			display: block
+			width: 100%
+			border-radius: 18px
+
+
+.section-text
+	background-color: #fff
+	border-radius: 30px 30px 0 0
+	padding: 50px 50px 130px
+	border: 1px solid $border
+	border-bottom: none
+	color: $gray
+	+mq(1310)
+		padding: 50px 30px 100px
+	+mq(768)
+		padding: 30px 15px 100px
+	h1
+		margin-bottom: 30px
+		+mq(768)
+			margin-bottom: 15px
+	ul, ol
+		padding-left: 20px
+	ul
+		li
+			list-style-type: disc
+	ol li
+		list-style-type: numeric
+
+
+
+
+.dashboard-info
+	.social-btns
+		display: grid
+		grid-template-columns: repeat(4, 1fr)
+		grid-gap: 80px
+		+mq(1310)
+			grid-gap: 15px
+		+mq(768)
+			grid-template-columns: repeat(2, 1fr)
+			grid-gap: 10px
+		+mq(374)
+			grid-template-columns: 1fr
+			grid-gap: 5px
+		button
+			display: grid
+			grid-auto-flow: column
+			justify-content: center
+			grid-gap: 8px
+			align-items: center
+			font-weight: bold
+			font-size: 20px
+			background-color: #fff
+			border-radius: 18px
+			border: 1px solid $border
+			height: 68px
+			padding: 0 15px
+			transition: 0.25s
+			box-shadow: 3px 3px 33px rgba(19, 15, 38, 0.07)
+			+mq(992)
+				height: 52px
+			+mq(374)
+				height: 48px
+				font-size: 16px
+			&.inst
+				position: relative
+				z-index: 1
+				&::before
+					+pseudo
+					+box
+					z-index: -1
+					background: linear-gradient(90deg, #C3018F 0%, #E5132C 34.64%, #FDB81E 100%)
+					opacity: 0
+					border-radius: inherit
+					transition: 0.25s
+				&:hover
+					&::before
+						opacity: 1
+					img
+						filter: brightness(0) invert(100%)
+				img
+					transition: 0.25s
+			&.tw
+				&:hover
+					background-color: #1D9BF0
+				svg
+					fill: #1D9BF0
+			&.d
+				&:hover
+					background-color: #5662F6
+				svg
+					fill: #5662F6
+			&.tg
+				&:hover
+					background-color: #3491E2
+				svg
+					fill: #3491E2
+			svg
+				display: block
+				transition: 0.25s
+				+mq(992)
+					width: 20px
+			img
+				+mq(992)
+					width: 20px
+			&:hover
+				color: #fff
+				svg
+					fill: #fff
+
+	.stats-wrap
+		margin-top: 30px
+		display: grid
+		grid-template-columns: 1fr 400px
+		grid-gap: 30px
+		+mq(1310)
+			grid-template-columns: 1fr
+		+mq(992)
+			margin-top: 15px
+			grid-gap: 15px
+		.chart-wrap
+			padding: 20px 15px 0px
+			.title
+				// font-weight: bold
+				// font-size: 25px
+				// text-align: center
+			.chart-container
+				> div
+					margin: 0 -30px
+		.balance-wrap
+			padding: 24px 15px 40px
+			.title
+				font-weight: bold
+				text-align: center
+				font-size: 34px
+				+mq(768)
+					font-size: 26px
+			.balance
+				margin-top: 35px
+				display: grid
+				grid-template-columns: minmax(25px, 148px) auto
+				justify-content: center
+				grid-gap: 15px
+				align-items: center
+				overflow: hidden
+				+mq(768)
+					grid-template-columns: minmax(25px, 80px) auto
+				.img-wrap img
+					width: 100%
+					display: block
+				p
+					font-weight: bold
+					font-size: 75px
+					line-height: .8
+					+mq(768)
+						font-size: 40px
+
+	.table-wrapper
+		margin-top: 30px
+		padding: 20px 70px 30px
+		+mq(992)
+			margin-top: 15px
+			padding: 20px 15px
+		.title
+			// font-weight: bold
+			// text-align: center
+			// font-size: 25px
+		.table-wrap
+			margin-top: 15px
+			.tr
+				display: grid
+				grid-template-columns: repeat(3, 1fr)
+				&:not(:last-child)
+					border-bottom: 1px solid $gray
+				.td
+					font-size: 20px
+					color: $gray
+					font-weight: 600
+					padding: 10px 5px
+					+mq(768)
+						font-size: 16px
+					+mq(374)
+						font-size: 14px
+					&:nth-child(2)
+						text-align: center
+					&:nth-child(3)
+						text-align: right
+
+
+.settings-main
+	.items
+		margin-top: 15px
+		display: grid
+		grid-template-columns: repeat(3, 1fr)
+		grid-gap: 15px 25px
+		+mq(1310)
+			grid-template-columns: 1fr
+		.item
+			padding: 20px 20px
+			display: flex
+			flex-direction: column
+			justify-content: center
+			overflow: hidden
+			&.w100
+				+mqm(1310)
+					grid-column-end: span 3
+			&.btn-wrap
+				text-align: center
+				padding: 0
+				margin-top: 20px
+				.btn
+					width: 100%
+					max-width: 293px
+					font-size: 16px
+			p.p
+				color: $gray
+				font-weight: 500
+				margin-bottom: 8px
+				line-height: 1
+			b
+				display: block
+				font-size: 20px
+				line-height: 1
+				overflow: hidden
+				text-overflow: ellipsis
+			label.block-checkbox
+				&:not(:last-child)
+					margin-bottom: 8px
+			
+			.inputs-wrap
+				display: grid
+				grid-template-columns: repeat(3, 1fr)
+				grid-gap: 65px
+				margin-top: 10px
+				+mq(1310)
+					grid-gap: 30px
+				+mq(768)
+					grid-template-columns: 1fr
+					grid-gap: 15px
+				.col
+					p
+						font-size: 13px
+						margin-bottom: 10px
+						font-weight: 500
+	
+
+.order-history-main
+	h1
+		margin-bottom: 20px
+	.table-cabinet
+	
+
+.order-active-main
+	.table-cabinet
+
+
+
+.add-funsd-main
+	.wrapper
+		padding: 20px
+		+mq(768)
+			padding: 20px 15px
+	.btns-wrap
+		max-width: 722px
+		margin: 30px auto 0
+		display: grid
+		grid-template-columns: repeat(3, 1fr)
+		grid-gap: 52px
+		+mq(768)
+			grid-gap: 15px
+		button
+			padding: 8px 10px
+			background-color: #fff
+			border: 1px solid $border
+			border-radius: 18px
+			transition: 0.25s
+			+mq(768)
+				border-radius: 14px
+			&:hover, &.active
+				background-color: $blue
+				img.invert
+					filter: brightness(0) invert(100%)
+			img
+				display: block
+				width: 100%
+				max-width: 166px
+				margin: 0 auto
+				transition: 0.25s
+				+mq(768)
+					max-width: 100px
+
+	
+	.btn-wrap
+		text-align: center
+		.btn
+			font-size: 16px
+			width: 100%
+			max-width: 325px
+	.bottom-text
+		text-align: center
+		font-size: 11px
+		color: $gray
+		margin-top: 20px
+
+	.table
+		margin-top: 50px
+		border-radius: 8px
+		box-shadow: 6px 8px 33px rgba(19, 15, 38, 0.07)
+		padding: 0 15px
+		+mq(768)
+			overflow: auto
+			width: calc(100vw - 60px)
+		.tr
+			display: grid
+			grid-template-columns: 1fr 1.3fr 1.3fr 1fr 1fr 1fr 1fr
+			grid-gap: 10px
+			+mq(768)
+				width: 900px
+			&:not(:last-child)
+				border-bottom: 1px solid $border
+			.td
+				padding: 15px 0
+				font-size: 12px
+				font-weight: 600
+				&:not(:first-child)
+					text-align: center
+				b
+					font-size: 14px
+				a
+					color: $gray
+					transition: 0.25s
+					&:hover
+						color: $blue
+
+	.pagination-wrap
+		padding-right: 40px
+		ul
+			padding-top: 20px
+			display: grid
+			grid-auto-flow: column
+			justify-content: flex-end
+			align-items: center
+			grid-gap: 5px
+			li
+				font-weight: bold
+			a
+				&:hover
+					svg
+						fill: $black
+				svg
+					display: block
+					fill: $gray
+
+.order-dms-main
+	.grid
+		margin-top: 20px
+		grid-gap: 20px
+		grid-template-columns: auto 1fr 327px
+		+mq(768)
+			grid-template-columns: 1fr
+			grid-gap: 15px
+		.social-btns
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+			padding: 12px 0
+			+mq(768)
+				display: grid
+				grid-auto-flow: column
+				justify-content: space-between
+				padding: 0
+		.tab-content
+			+mq(1310)
+				grid-column-end: span 2
+			+mq(768)
+				grid-column-end: unset
+			&:not(.active)
+				display: none
+		.info-wrap
+			display: grid
+			grid-template-rows: 1fr auto
+			+mq(1310)
+				grid-column-end: span 3
+			+mq(768)
+				grid-column-end: unset
+			.blue-wrap
+				background-color: $blue
+				color: #fff
+				border-radius: 18px
+				padding: 25px 20px
+				.title
+					font-size: 24px
+					font-weight: bold
+					margin-bottom: 15px
+					+mq(768)
+						font-size: 20px
+				p
+					font-size: 13px
+					color: rgba(#EEF6FF, .8)
+			.btn-wrap
+				margin-top: 10px
+				.btn
+					font-size: 16px
+
+	.continue-wrap
+		margin-top: 25px
+		+mq(1310)
+			margin-top: 15px
+
+
+	.check-wrap
+		padding: 28px 35px
+		font-size: 20px
+		+mq(768)
+			padding: 30px 15px
+			font-size: 16px
+		.title
+			font-weight: bold
+			font-size: 25px
+			color: $black
+		.text-logo-wrap
+			margin-top: 70px
+			display: grid
+			grid-template-columns: 220px 1fr
+			grid-gap: 30px
+			+mq(768)
+				margin-top: 30px
+				grid-template-columns: 1fr
+				grid-gap: 15px
+			.text-wrap
+				width: 100%
+				+mq(768)
+					max-width: 170px
+				.item
+					&:not(:last-child)
+						margin-bottom: 20px
+					b
+						display: block
+						font-weight: 600
+					p
+						opacity: 0.9
+						&.tbl
+							display: grid
+							grid-auto-flow: column
+							justify-content: space-between
+						span
+							&.ic
+								display: inline-grid
+								grid-auto-flow: column
+								align-items: center
+								grid-gap: 2px
+								img
+									width: 24px
+
+			.logo-wrap
+				display: flex
+				width: 100%
+				align-items: flex-end
+				justify-content: flex-end
+				img
+					display: block
+					width: 206px
+					+mq(768)
+						width: 100px
+
+	.info-wrapper
+		margin-top: 30px
+		padding: 50px 35px
+		+mq(768)
+			padding: 30px 15px
+		form
+			margin-top: 30px
+			.item
+				&:not(:last-child)
+					margin-bottom: 30px
+					+mq(768)
+						margin-bottom: 50px
+				.grid-wrap
+					display: grid
+					grid-template-columns: 1fr 225px
+					grid-gap: 30px
+					margin-top: 20px
+					+mq(768)
+						grid-template-columns: 1fr
+						grid-gap: 15px
+					&.col-2
+						grid-template-columns: 1fr 490px
+						+mq(1310)
+							grid-template-columns: 1fr 300px
+						+mq(768)
+							grid-template-columns: 1fr
+					.btn-checkbox-wrap
+						label
+							&:not(:last-child)
+								margin-bottom: 15px
+					.input-wrap
+						.textarea-counter-wrap
+							height: 100%
+							textarea
+								height: 100%
+						input
+							font-size: 16px
+							color: #7C8195
+							font-weight: 500
+					.text-wrap
+						p
+							font-size: 13px
+							margin-top: 10px
+				.btn-wrap
+					text-align: center
+					margin-top: 60px
+					.btn
+						font-size: 16px
+						width: 100%
+						max-width: 330px
+
+
+	.payment-wrap
+		padding: 20px 15px 30px
+		.wrapper
+			max-width: 294px
+			margin: 0 auto
+			.block-fund-input
+				margin: 20px 0 15px
+				input
+					max-width: 100%
+					width: 100%
+			.coupon-wrap
+				display: grid
+				grid-template-columns: 144px 1fr
+				align-items: center
+				grid-gap: 20px
+				.input-wrap
+					input
+						font-size: 10px
+			.btn-wrap
+				margin: 10px 0
+				.btn
+					font-size: 16px
+			.checkbox-wrapper-bottom
+				display: flex
+				justify-content: center
+

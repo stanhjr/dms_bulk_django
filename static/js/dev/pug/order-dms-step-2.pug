@@ -1,0 +1,101 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Order DMS'
+	- const pageClass = ''
+	- const page = 'order-dms'
+	- const page2 = 'order'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	+cabinetNavInner()
+
+	section.order-dms-main
+		.check-wrap.block-white
+			h2.fz25 Check
+			.text-logo-wrap
+				.text-wrap
+					.item
+						b You choosed: 
+						p Instagram 500k DMs
+					.item
+						b Total price: 
+						p.tbl
+							span 2000$
+							span.ic
+								| 200
+								img(src="./img/ic-coin-dm.png", alt="")
+				.logo-wrap: img(src="./img/logo.svg", alt="")
+
+		.info-wrapper.block-white
+			h2.fz25.center Provide Campaign Information
+
+			form(action="#")
+				.item
+					h3.fz20 1. Targets/Competitors Submited
+					.grid-wrap
+						.input-wrap: textarea(placeholder="Type here..." maxlength="2000" required)
+						.text-wrap
+							h3.fz20 Hint
+							p Please provide targets/competitors with auditory we should send Mass DMs. You can write links to profiles, logins or hashtags, necessarily ONLY 1 per line!
+				.item
+					h3.fz20 2. Filtering
+					.grid-wrap.col-2
+						.btn-checkbox-wrap
+							label.block-checkbox-btn
+								input(type="checkbox")
+								.button Use our default filtering
+							label.block-checkbox-btn
+								input(type="checkbox")
+								.button Not use any filtering
+						.text-wrap
+							h3.fz20 Hint
+							p We will use default filtering to avoid inactive auditory depends on Social Media posibilities. If your targets have not much auditory then choose Not use filtering, because remember that after filtering we can avoid over 30% of auditory and you will need to provide new targets. 
+				.item
+					h3.fz20 3. Message
+					.grid-wrap
+						.input-wrap
+							.textarea-counter-wrap
+								textarea.js-textarea-max(maxlength="1000" placeholder="Type here..." required)
+								.counter
+									span.current 0
+									span.max / 1000
+						.text-wrap
+							h3.fz20 Hint
+							p Provide please message that we will use for sending, remember to check if you have max 1000 characters in Instagram, 140 characters in Twitter, 4096 characters in Telegram, 2000 characters in Discord otherwise message will be not able to send. You can use any emoji, also include links or logins depends on your needs. Recheck message before submit to be sure all writen correctly.
+				.item
+					h3.fz20 4. Attach in Message
+					.grid-wrap
+						.input-wrap
+							.textarea-counter-wrap
+								textarea.js-textarea-max(maxlength="600" placeholder="Type here..." required)
+								.counter
+									span.current 0
+									span.max / 600
+						.text-wrap
+							h3.fz20 Hint
+							p Please provide link to your profile if you want to attach profile, link to post (if its Instagram, that we could send in message post attached), link to website, if you want to attach exactly website. In Discord and Telegram you can provide gifs or photos (only with links). 
+				.item
+					h3.fz20 5. Additional Information 
+					.grid-wrap
+						.input-wrap
+							.textarea-counter-wrap
+								textarea.js-textarea-max(maxlength="600" placeholder="Type here..." required)
+								.counter
+									span.current 0
+									span.max / 600
+						.text-wrap
+							h3.fz20 Hint
+							p If you need to forward us any other additional information, for example time when start campaign (we will try to do that in time) or any other information which was not included before in form, please write it here!
+				.item
+					h3.fz20 6. Your Contact details 
+					.grid-wrap.col-2
+						.input-wrap
+							input(type="text" placeholder="Type here..." required)
+						.text-wrap
+							h3.fz20 Hint
+							p Please provide your contact details to Telegram, Skype or Discord that we could contact you if there will be any additional questions about your campaign.
+
+				.item: .btn-wrap: button.btn Submit & Continue

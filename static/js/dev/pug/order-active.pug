@@ -1,0 +1,97 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Order Active'
+	- const pageClass = ''
+	- const page = 'order-active'
+	- const page2 = 'order'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	+cabinetNavInner()
+
+	section.order-active-main
+		.table-cabinet.block-white
+			.tr
+				.td: b Social Media
+				.td: b DMs Send
+				.td: b Date
+				.td: b Proof
+			.tr
+				.td 1. Instagram
+				.td: .line-wrapper
+					.block-line: .line.instagram(style="width: 100%")
+					p 5m/5m sended
+				.td: ul.block-check-list
+					li.done
+						.ic: +svg(13, 13, 'ic-check')
+						span Scraping
+					li.done
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Filtering
+					li.done
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Sending
+				.td
+					a.disabled(href="#") Download
+					br
+					span.small.c-gray (After done)
+			.tr
+				.td 2. Telegram
+				.td: .line-wrapper
+					.block-line: .line.telegram(style="width: 0%")
+					p Scraping process
+				.td: ul.block-check-list
+					li
+						.ic: +svg(13, 13, 'ic-check')
+						span Scraping
+					li
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Filtering
+					li
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Sending
+				.td
+					a.disabled(href="#") Download
+					br
+					span.small.c-gray (After done)
+			.tr
+				.td 3. Twitter
+				.td: .line-wrapper
+					.block-line: .line.twitter(style="width: 0%")
+					p Filtering process
+				.td: ul.block-check-list
+					li.done
+						.ic: +svg(13, 13, 'ic-check')
+						span Scraping
+					li
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Filtering
+					li
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Sending
+				.td
+					a.disabled(href="#") Download
+					br
+					span.small.c-gray (After done)
+			.tr
+				.td 4. Discord
+				.td: .line-wrapper
+					.block-line: .line.discord(style="width: 20%")
+					p 300k/1m sended
+				.td: ul.block-check-list
+					li.done
+						.ic: +svg(13, 13, 'ic-check')
+						span Scraping
+					li.done
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Filtering
+					li
+						.ic.active: +svg(13, 13, 'ic-check')
+						span Sending
+				.td
+					a.disabled(href="#") Download
+					br
+					span.small.c-gray (After done)

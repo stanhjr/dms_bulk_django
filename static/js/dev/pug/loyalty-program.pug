@@ -1,0 +1,24 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Loyalty Program'
+	- const pageClass = ''
+	- const page = 'loyalty-program'
+	- const lang = 'en'
+	- const layout = 'default'
+	- const header = 'default' // default logged cabinet
+
+block content_block
+	section.loyalty-program-info
+		h1.inner.center Loyalty Program
+
+		.grid
+			.text-wrap
+				p We want to offer something new and innovative in Mass Direct message service, its loyalty program for active clients. Depending on social media (Instagram, Twitter, Discord or Telegram) and the ordered DM’s amount you will be automatically rewarded with our internal Direct Message tokens (DM’s tokens) which you can use for part of the payment in orders. Except for the discount of bulk orders and coupons you can also use DM’s tokens, isn't that cool? 
+				p We want to offer the best quality service and best conditions for our clients.
+				p How Loyalty program are calculated:
+				p 2% of spended money in orders
+				br
+				p If you order a campaign in the value of 1000$ you will get cashback 20 DM’s tokens. One DM’s token is equivalent of 1$. For resellers it’s notably profitable to gain from each client orders cashback in 2%. Its new generation mass direct message service, which you haven't seen before, so be part of us and let's make great traffic!
+				p Also if you are searching for more discounts, check out our Telegram news channel where we dropping frequently coupons with discounts!  
+			.img-wrap: img(src="./img/dms-coin.png", alt="")

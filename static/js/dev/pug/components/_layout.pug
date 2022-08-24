@@ -1,0 +1,28 @@
+include ./_mixins
+
+block vars
+
+doctype
+html(lang=lang)
+	head
+		+head()
+	body
+		.page-container(class=pageClass)
+			include ./parts/header.pug
+			main(class=layout): .container: .grid-wrap
+				.aside-wrapper
+					if (layout == 'default')
+						+homeNav
+					if (layout == 'cabinet')
+						+cabinetNav
+				.content-wrapper
+					block content_block
+
+					if (layout == 'default')
+						include ./parts/footer.pug
+			.container
+				if (layout == 'cabinet')
+					include ./parts/footer.pug
+
+		+popups()
+		+scripts()

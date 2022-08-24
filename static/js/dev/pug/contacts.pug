@@ -1,0 +1,29 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Contacts'
+	- const pageClass = ''
+	- const page = 'contacts'
+	- const lang = 'en'
+	- const layout = 'default'
+	- const header = 'default' // default logged cabinet
+
+block content_block
+	section.contacts-links
+		h1.inner.center Contacts
+		.items
+			a.item(href="mailto:dmsbulkteam@gmail.com" target="_blank")
+				.ic-wrap: +svg(46, 46, 'ic-gmail')
+				.text-wrap
+					h3 Gmail
+					p dmsbulkteam@gmail.com
+			a.item(href="https://instagram.com/dmsbulk" target="_blank")
+				.ic-wrap: +svg(46, 46, 'ic-inst')
+				.text-wrap
+					h3 Instagram
+					p instagram.com/dmsbulk
+			a.item(href="https://t.me/dmsbulk" target="_blank")
+				.ic-wrap: +svg(46, 46, 'ic-tg')
+				.text-wrap
+					h3 Telegram
+					p t.me/dmsbulk

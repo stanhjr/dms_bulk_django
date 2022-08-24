@@ -1,0 +1,45 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Settings'
+	- const pageClass = ''
+	- const page = 'settings'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	section.settings-main
+		h1.fz25.center Settings
+
+		form.items
+			.item.block-white
+				p.p Name
+				b Martins
+			.item.block-white
+				p.p Email
+				b martins@dms.bulk
+			.item.block-white
+				p.p Email options
+				label.block-checkbox.block-checkbox--black
+					input(type="checkbox")
+					.checkbox: +svg(12, 12, 'ic-check')
+					p Receive news and update emails
+				label.block-checkbox.block-checkbox--black
+					input(type="checkbox")
+					.checkbox: +svg(12, 12, 'ic-check')
+					p Receive activity notification emails
+			.item.block-white.w100
+				p.p Password change
+				.inputs-wrap
+					.col
+						p Your existing password:
+						.input-wrap: input(type="text" placeholder="Password" required value="qwertyuiop")
+					.col
+						p New password:
+						.input-wrap: input(type="text" placeholder="Password" required value="123qwerty")
+					.col
+						p Confirm new password:
+						.input-wrap: input(type="text" placeholder="Password" required value="123qwerty")
+
+			.item.btn-wrap.w100: .btn-wrap: button.btn Save

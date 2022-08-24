@@ -1,0 +1,33 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Order History'
+	- const pageClass = ''
+	- const page = 'order-history'
+	- const page2 = 'order'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	+cabinetNavInner()
+
+	section.order-history-main
+		h1.fz25.center Order History
+
+		.table-cabinet.block-white
+			.tr
+				.td: b Social Media
+				.td: b DMs Send
+				.td: b Date
+				.td: b Proof
+			.tr
+				.td 1. Instagram
+				.td 100k messages
+				.td 22.12.23
+				.td: a(href="#") Download
+			.tr
+				.td 2. Twitter
+				.td 100k messages
+				.td 22.12.23
+				.td: a(href="#") Download

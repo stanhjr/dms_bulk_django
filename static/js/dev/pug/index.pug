@@ -1,0 +1,250 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Home'
+	- const pageClass = 'is-home'
+	- const page = 'home'
+	- const lang = 'en'
+	- const layout = 'default'
+	- const header = 'default' // default logged cabinet
+
+block content_block
+	section.home-start
+		.img-wrap: img(src="./img/home-social.svg", alt="")
+		h1 Increase Sales, Leads, Activity, Engagement <br>most popular Social Media using <br> <img src="./img/logo.svg"> service 
+		.btn-wrap: a.btn.btn--accent.btn--small.no-gap.js-popup(href="#popup-sign-up")
+			| Start now
+			+svg(20, 20, 'ic-arrow-right')
+		
+		.separetor
+			span.long
+			span
+			span
+	
+	section.home-benefits#benefits(data-scroll-to="benefits")
+		h2.center Benefits
+		.subtitle.line We strive for our clients every day. Below you will see our benefits.
+
+		.items
+			.item
+				img(src="./img/benefits-1.png", alt="")
+				h3 Convenience
+				p Handy dashboard for ordering and monitoring process
+			.item
+				img(src="./img/benefits-2.png", alt="")
+				h3 Speed
+				p Orders completes <br>24-72h 
+			.item
+				img(src="./img/benefits-3.png", alt="")
+				h3 Support
+				p Online 24/7
+			.item
+				img(src="./img/benefits-4.png", alt="")
+				h3 Bulk
+				p Easy mass ordering <br>with discounts
+			.item
+				img(src="./img/benefits-5.png", alt="")
+				h3 DMS Token
+				p Loyality Program with our internal DMS token
+			.item
+				img(src="./img/benefits-6.png", alt="")
+				h3 Reputation
+				p Best rates in market
+	
+		.separetor
+			span
+			span.long
+			span
+	
+	section.home-calculator#pricing(data-scroll-to="pricing")
+		h2.center Price calculator
+		.subtitle.line Easily calculate the cost of your order using our internal price calculator
+
+		.grid
+			.left
+				.choose-wrap
+					h3 Choose a social network
+					p Choose a social network and get bonuses* for   bulk orders
+				p.text  * More messages in order, less price per 1k
+				.social-wrap
+					button.button-social-circle.js-swiper-to(data-index="0"): +svg(24, 24, 'ic-inst')
+					button.button-social-circle.js-swiper-to(data-index="1"): +svg(24, 24, 'ic-tw')
+					button.button-social-circle.js-swiper-to(data-index="2"): +svg(24, 24, 'ic-d')
+					button.button-social-circle.js-swiper-to(data-index="3"): +svg(24, 24, 'ic-tg')
+				.bottom-wrap
+					p Depending on the ordered message volume in Discord, Telegram Instagram or Twitter, you will receive our DM's internal Tokens that you can then use to pay for new orders, read more information about the Loyalty Program <a class="link" href="./loyalty-program.html">here</a>
+					img(src="./img/dms-coin.png", alt="")
+			.right
+				.wrapper
+					.swiper.js-swiper-calc
+						.swiper-wrapper
+							.swiper-slide
+								+calcInstagram(true)
+							.swiper-slide
+								+calcTwitter(true)
+							.swiper-slide
+								+calcDiscord(true)
+							.swiper-slide
+								+calcTelegram(true)
+						
+					.swiper-arrow.prev.js-swiper-prev: +svg(40, 40, 'ic-prev')
+					.swiper-arrow.next.js-swiper-next: +svg(40, 40, 'ic-next')
+
+		.separetor
+			span
+			span
+			span.long
+
+	section.home-chart
+		.wrapper
+			.chart-container: .js-chart-animation
+			.popups-wrap
+				.popup-item.active
+					.order-wrap.block-white
+						b Order Status
+						ul.block-check-list
+							li.done
+								.ic: +svg(13, 13, 'ic-check')
+								span Scrape
+							li
+								.ic: +svg(13, 13, 'ic-check')
+								span Filtering
+							li
+								.ic: +svg(13, 13, 'ic-check')
+								span Sending
+					.coins-wrap.block-white
+						img(src="./img/dms-coin.png", alt="")
+						b 100 DMS Tokens
+
+					.sended-wrap.block-white
+						b 900k/5m sended
+						.block-line: .line.instagram(style="width: 45%")
+				.popup-item
+					.order-wrap.block-white
+						b Order Status
+						ul.block-check-list
+							li.done
+								.ic: +svg(13, 13, 'ic-check')
+								span Scrape
+							li.done
+								.ic: +svg(13, 13, 'ic-check')
+								span Filtering
+							li
+								.ic: +svg(13, 13, 'ic-check')
+								span Sending
+					.coins-wrap.block-white
+						img(src="./img/dms-coin.png", alt="")
+						b 200 DMS Tokens
+
+					.sended-wrap.block-white
+						b 4m/5m sended
+						.block-line: .line.instagram(style="width: 80%")
+				.popup-item
+					.order-wrap.block-white
+						b Order Status
+						ul.block-check-list
+							li.done
+								.ic: +svg(13, 13, 'ic-check')
+								span Scrape
+							li.done
+								.ic: +svg(13, 13, 'ic-check')
+								span Filtering
+							li.done
+								.ic: +svg(13, 13, 'ic-check')
+								span Sending
+					.coins-wrap.block-white
+						img(src="./img/dms-coin.png", alt="")
+						b 500 DMS Tokens
+
+					.sended-wrap.block-white
+						b 5m/5m sended
+						.block-line: .line.instagram(style="width: 100%")
+
+			.imgs-wrap
+				.img: img(src="./img/chart-user-1.png", alt="")
+				.img: img(src="./img/chart-user-2.png", alt="")
+				.img: img(src="./img/chart-user-3.png", alt="")
+				.img: img(src="./img/chart-user-4.png", alt="")
+				.img: img(src="./img/chart-user-5.png", alt="")
+
+	section.home-orders#orders(data-scroll-to="orders")
+		h2.center Live orders
+		.items
+			.item
+				.ava-wrap
+					img.img(src="./img/avatar.png", alt="")
+					img.live(src="./img/ic-live.svg", alt="")
+				.text-wrap
+					h3 Benny Adrin
+					ul
+						li
+							p Order
+							b 10m Discord
+						li
+							p Progress
+							b 2.4m/10m 
+			.item
+				.ava-wrap
+					img.img(src="./img/avatar.png", alt="")
+					img.live(src="./img/ic-live.svg", alt="")
+				.text-wrap
+					h3 Andrey Morsi
+					ul
+						li
+							p Order
+							b 2m Instagram
+						li
+							p Progress
+							b 1m/2m 
+			.item
+				.ava-wrap
+					img.img(src="./img/avatar.png", alt="")
+					img.live(src="./img/ic-live.svg", alt="")
+				.text-wrap
+					h3 Peter Beck
+					ul
+						li
+							p Order
+							b 250k Telegram
+						li
+							p Progress
+							b 2.4m/10m 
+			.item
+				.ava-wrap
+					img.img(src="./img/avatar.png", alt="")
+					img.live(src="./img/ic-live.svg", alt="")
+				.text-wrap
+					h3 Andrey Morsi
+					ul
+						li
+							p Order
+							b 2m Instagram
+						li
+							p Progress
+							b 1m/2m
+
+	section.home-projects
+		h2.center Our other Projects
+		.items
+			.item
+				img(src="./img/project-1.png", alt="")
+				p Instagram scrape and filtering cloud tool
+			.item
+				img(src="./img/project-2.png", alt="")
+				p Social Media Accounts Store
+			.item
+				img(src="./img/project-3.png", alt="")
+				p SMM Panel
+
+	section.home-about
+		h2.center About us in numbers
+		.items.js-numbers-anim
+			.item
+				p Clients
+				b <span class="value">100</span>+
+			.item
+				p Years of experience
+				b <span class="value">4</span>+
+			.item
+				p Sent messages
+				b <span class="value">100</span>M+

@@ -1,0 +1,24 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Blog'
+	- const pageClass = ''
+	- const page = 'blog'
+	- const lang = 'en'
+	- const layout = 'default'
+	- const header = 'default' // default logged cabinet
+
+block content_block
+	section.blog-list
+		h1.inner.center Blog
+		.items
+			- for(i=0; i<6; i++)
+				.item
+					.img-wrap: a(href="./blog-page.html"): img(src="./img/blog-list.jpg", alt="")
+					.text-wrap
+						.date August 12, 2022
+						h3: a(href="#") Place for head text!
+						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.
+						.link-wrap: a(href="#")
+							| READ MORE
+							+svg(14, 14, 'ic-arrow-right')

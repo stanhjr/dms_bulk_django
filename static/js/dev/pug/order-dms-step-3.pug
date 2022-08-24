@@ -1,0 +1,33 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Order DMS'
+	- const pageClass = ''
+	- const page = 'order-dms'
+	- const page2 = 'order'
+	- const lang = 'en'
+	- const layout = 'cabinet'
+	- const header = 'cabinet' // default logged cabinet
+
+block content_block
+	+cabinetNavInner()
+
+	section.order-dms-main
+		.payment-wrap.block-white
+			.wrapper
+				h1.fz25.center Payment
+				.block-fund-input: input.js-input-numeric(type="text" value="2000$")
+				.coupon-wrap
+					.input-wrap: input(type="text" placeholder="Enter Discount Coupon")
+					.checkbox-wrapper
+						label.block-checkbox
+							input(type="checkbox" required)
+							.checkbox: +svg(12, 12, 'ic-check')
+							p Use existing tokens
+				
+				.btn-wrap: button.btn.w100 Order campaign
+				.checkbox-wrapper-bottom
+					label.block-checkbox
+						input(type="checkbox" required)
+						.checkbox: +svg(12, 12, 'ic-check')
+						p Before order you accept all rules

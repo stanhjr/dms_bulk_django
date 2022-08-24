@@ -1,0 +1,54 @@
+extends ./components/_layout.pug
+
+block vars
+	- const pageTitle = 'Page list'
+
+block content_block
+	-
+		const pages = [
+			'index',
+			'faq',
+			'contacts',
+			'loyalty-program',
+			'blog',
+			'blog-page',
+			'rules',
+			'privacy-policy',
+			'cookies-policy',
+			'dashboard',
+			'order-dms',
+			'order-dms-step-2',
+			'order-dms-step-3',
+			'order-active',
+			'order-history',
+			'add-funds',
+			'settings'
+		]
+
+	style.
+		.header-main, .footer-main{display: none;}
+		ol, ul{max-width: 1400px;padding: 0 15px;margin: 0 auto;margin-top: 50px;}
+		li{margin-bottom: 5px;}
+		a{color: #333;font-size: 18px;text-decoration: underline;}
+		a:visited{color: #ababab;}
+	ol
+		each page in pages
+			li: a(href=`./${page}.html`, target="_blank") #{page}
+	
+	br
+	ul
+		li: a.js-popup(href="#popup-instagram") Instagram
+		li: a.js-popup(href="#popup-discord") Discord
+		li: a.js-popup(href="#popup-telegram") Telegram
+		li: a.js-popup(href="#popup-twitter ") Twitter
+		li: br
+		li: a.js-popup(href="#popup-login") Login
+		li: a.js-popup(href="#popup-sign-up") Sign Up
+		li: br
+		li: a.js-popup(href="#popup-invoice-awaiting") Incove Awaiting
+		li: a.js-popup(href="#popup-invoice-paid") Invoce Paid
+
+	br
+	br
+	br
+	br
