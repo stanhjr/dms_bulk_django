@@ -13,7 +13,7 @@
               <div class="item"><img src="{% static '/img/ic-coin-usd.svg' %}" alt="">100$</div>
             </div>
             <div class="user-wrap">
-              <div class="name">Hi, Martins!</div>
+              <div class="name">Hi, {{ username }}!</div>
               <button class="js-user-info">
                 <div class="ava-wrap notify"><img src="{% static '/img/avatar.png' %}" alt=""></div>
               </button>
@@ -31,10 +31,17 @@
                       <svg viewBox="0 0 24 24" width="24px">
                         <use xlink:href="{% static '/img/sprite.svg#ic-notify' %}"></use>
                       </svg>Notification</a></li>
-                  <li><a href="#">
-                      <svg viewBox="0 0 24 24" width="24px">
-                        <use xlink:href="{% static '/img/sprite.svg#ic-logout' %}"></use>
-                      </svg>Logout</a></li>
+                  <li>
+                    <form method="post" action="{% url 'dashboard' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="action" value="logout_form">
+                      <button type="submit">
+                        <svg viewBox="0 0 24 24" width="24px">
+                          <use xlink:href="{% static '/img/sprite.svg#ic-logout' %}"></use>
+                        </svg>Logout
+                      </button>
+                    </form>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -493,5 +500,6 @@
       <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
     </div>
     <script src="{% static '/js/scripts.min.js' %}?2"></script>
+    <script src="{% static '/js/open-login.js' %}"></script>
   </body>
 </html>

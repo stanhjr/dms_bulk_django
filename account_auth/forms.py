@@ -1,47 +1,48 @@
-from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
 from django import forms
 
-from account.models import CustomUser
 
-
-class SignUpForm(forms.ModelForm):
-    class Meta:
-        model = CustomUser
-        fields = ['username', 'email', 'password']
-
-        widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'has-ic',
-                'placeholder': 'Name',
-            }),
-            'email': forms.EmailInput(attrs={
-                'class': 'has-ic',
-                'placeholder': 'Email',
-            }),
-            'password': forms.PasswordInput(attrs={
-                'class': 'has-ic',
-                'placeholder': 'Password',
-            }) 
-        }
-
-
-class SignInForm(AuthenticationForm):
+class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields.pop('password2')
 
-        self.fields.pop('username')
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'has-ic',
+            'placeholder': 'Name',
+        }
+    ))
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={
+            'class': 'has-ic',
+            'placeholder': 'Email',
+        }
+    ))
+    password1 = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'has-ic',
+            'placeholder': 'Password',
+        }
+    ))
 
     class Meta:
-        model = CustomUser
-        fields = ['email', 'password']
+        model = get_user_model()
+        fields = ['username', 'email', 'password1']
 
-        widgets = {
-            'email': forms.EmailInput(attrs={
-                'class': 'has-ic',
-                'placeholder': 'Email',
-            }),
-            'password': forms.PasswordInput(attrs={
-                'class': 'has-ic',
-                'placeholder': 'Password',
-            }) 
+
+class SignInForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={
+            'class': 'has-ic',
+            'id': 'id_email',
+            'placeholder': 'Email',
         }
+    ))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'has-ic',
+            'placeholder': 'Password',
+        }
+    ))

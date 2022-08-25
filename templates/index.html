@@ -517,10 +517,12 @@
     </div>
     <div class="mfp-hide popup popup--login" id="popup-login">
       <div class="popup-form-wrap">
-        <form action="">
+        <form method="post" action="{% url 'home' %}">
+          {% csrf_token %}
+          <input type='hidden' name='action' value='sign_in_form'>
           <h3 class="center">Login</h3>
           <div class="input-wrap mb">
-            <input class="has-ic" type="email" placeholder="Email" required="required"/>
+            {{ sign_in_form.email }}
             <div class="ic">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
@@ -528,7 +530,7 @@
             </div>
           </div>
           <div class="input-wrap">
-            <input class="has-ic" type="password" placeholder="Password" required="required"/>
+            {{ sign_in_form.password }}
             <div class="ic">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
@@ -556,7 +558,7 @@
             <div class="link-wrap"><a href="#">Forgot password?</a></div>
           </div>
           <div class="btn-wrap">
-            <button class="btn btn--accent">Sign In</button>
+            <button class="btn btn--accent" type="submit">Sign In</button>
           </div>
         </form>
       </div>
@@ -564,10 +566,10 @@
     <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
       <div class="grid">
         <div class="popup-form-wrap">
-          <form method="post" action="">
+          <form method="post" action="{% url 'home' %}">
             <h3 class="center">Hello, Friend!</h3>
             {% csrf_token %}
-            
+            <input type='hidden' name='action' value='sign_up_form'>
             <div class="input-wrap mb">            
               {{ sign_up_form.username }}
               <div class="ic">
@@ -585,7 +587,7 @@
               </div>
             </div>
             <div class="input-wrap">
-              {{ sign_up_form.password }}
+              {{ sign_up_form.password1 }}
               <div class="ic">
                 <svg viewBox="0 0 20 20" width="20px">
                   <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
