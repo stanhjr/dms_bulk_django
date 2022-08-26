@@ -9,11 +9,11 @@ from .forms import EmailSettingsForm, CustomPasswordChangeForm
 
 class AccountSettingsPageView(LoginRequiredMixin, TemplateView):
     template_name = 'account/settings.html'
+    login_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['title'] = 'Settings'
         context['username'] = self.request.user.username
         context['email'] = self.request.user.email
 

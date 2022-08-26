@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head_tags %}
+  <title>Home</title>
+{% endblock head_tags %}
+
 {% block content %}
   <div class="page-container is-home">
     {% include './header.html' %}
@@ -13,7 +17,9 @@
           <div class="content-wrapper">
             <section class="home-start">
               <div class="img-wrap"><img src="{% static '/img/home-social.svg' %}" alt=""></div>
-              <h1>Increase Sales, Leads, Activity, Engagement <br>most popular Social Media using <br> <img src="{% static '/img/logo.svg' %}"> service </h1>
+              <h1>Increase Sales, Leads, Activity, Engagement <br>most popular Social Media using <br> 
+                <a href="{% url 'home' %}"><img src="{% static '/img/logo.svg' %}"></a>
+                 service </h1>
               <div class="btn-wrap"><a class="btn btn--accent btn--small no-gap js-popup" href="#popup-sign-up">Start now
                   <svg viewBox="0 0 20 20" width="20px">
                     <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
@@ -546,7 +552,7 @@
         </div>
         <div class="checkbox-wrapper">
           <label class="block-checkbox">
-            <input type="checkbox" required="required"/>
+            <input type="checkbox"/>
             <div class="checkbox">
               <svg viewBox="0 0 12 12" width="12px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>

@@ -1,6 +1,8 @@
 from django.views.generic.base import TemplateView
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate, get_user_model
+from django.urls import reverse_lazy
 
 from account_auth.forms import SignUpForm, SignInForm
 
@@ -13,7 +15,6 @@ class MainPageView(TemplateView):
 
         context['sign_up_form'] = SignUpForm
         context['sign_in_form'] = SignInForm
-        context['title'] = 'Home'
 
         return context
 

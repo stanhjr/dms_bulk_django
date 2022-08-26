@@ -1,6 +1,10 @@
 {% extends '../base.html' %}
 {% load static %}
 
+{% block head_tags %}
+  <title>Dashboard</title>
+{% endblock head_tags %}
+
 {% block content %}
   <div class="page-container">
     {% include 'account/header.html' %}
@@ -265,14 +269,22 @@
       <div class="glad-wrap">
         <div class="title">Glad to see You!</div>
         <p>You are in right place for social media <br>BULK DMS service</p>
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <div class="logo-wrap">
+          <a href="{% url 'home' %}">
+            <img src="{% static '/img/logo.svg' %}" alt=""/>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
     <div class="header-wrap">
       <div class="left">
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <div class="logo-wrap">
+          <a href="{% url 'home' %}">
+            <img src="{% static '/img/logo.svg' %}" alt=""/>
+          </a>
+        </div>
         <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
       </div>
       <div class="right">
@@ -317,7 +329,11 @@
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
     <div class="header-wrap">
       <div class="left">
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <div class="logo-wrap">
+          <a href="{% url 'home' %}"
+            <img src="{% static '/img/logo.svg' %}" alt=""/>
+          </a>
+        </div>
         <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
       </div>
       <div class="right">
