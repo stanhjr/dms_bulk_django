@@ -1,11 +1,12 @@
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate, get_user_model
 
 from account_auth.forms import SignUpForm, SignInForm
+from utils import PopupCookiesContextMixin
 
 
-class MainPageView(TemplateView):
+class MainPageView(PopupCookiesContextMixin, TemplateView):
     template_name = 'home/index.html'
 
     def get_context_data(self, **kwargs):
@@ -47,5 +48,17 @@ class MainPageView(TemplateView):
         return redirect('home')
 
 
-class CookiesPolicyPageView(TemplateView):
+class AcceptCookiesPolicy(View):
+    def post(self, request):
+        request.session['cookies_policy_accepted'] = True
+
+        # its not required redirect, form redirects to hidden iframe
+        return redirect('home')
+
+
+class CookiesPolicyPageView(PopupCookiesContextMixin, TemplateView):
     template_name = 'home/cookies-policy.html'
+
+
+class FAQPageView(PopupCookiesContextMixin, TemplateView):
+    template_name = 'home/faq.html'
