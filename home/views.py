@@ -1,8 +1,6 @@
 from django.views.generic.base import TemplateView
-from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate, get_user_model
-from django.urls import reverse_lazy
 
 from account_auth.forms import SignUpForm, SignInForm
 
@@ -47,3 +45,7 @@ class MainPageView(TemplateView):
                     return redirect('dashboard')
 
         return redirect('home')
+
+
+class CookiesPolicyPageView(TemplateView):
+    template_name = 'home/cookies-policy.html'

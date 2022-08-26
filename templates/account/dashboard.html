@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends '../base/base.html' %}
 {% load static %}
 
 {% block head_tags %}
@@ -126,12 +126,7 @@
     </main>
     <div class="container">
       {% include './footer.html' %}
-      <div class="popup-cookies">
-        <div class="grid">
-          <p>By using website, you agree with our use of cookies to improve performance and enhance your experience. More information on our <a href="./cookies-policy.html">cookies policy page.</a></p>
-          <button class="js-close-cookies">OK</button>
-        </div>
-      </div>
+      {% include '../base/popup-cookies.html' %}
     </div>
   </div>
   <div class="mfp-hide popup popup--social" id="popup-instagram">
