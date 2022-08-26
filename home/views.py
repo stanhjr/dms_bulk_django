@@ -6,7 +6,7 @@ from account_auth.forms import SignUpForm, SignInForm
 
 
 class MainPageView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'home/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,7 +25,7 @@ class MainPageView(TemplateView):
             if sign_in_form.is_valid():
                 email = sign_in_form.cleaned_data.get('email')
                 password = sign_in_form.cleaned_data.get('password')
-                username = get_user_model().objects.filter(email=email).first().username
+                username = get_user_model().objects.get(email=email).username
                 login_user = authenticate(username=username, password=password)
 
                 if login_user:

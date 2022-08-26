@@ -20,6 +20,7 @@ class SignUpForm(UserCreationForm):
             'placeholder': 'Email',
         }
     ))
+
     password1 = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'class': 'has-ic',
@@ -29,7 +30,11 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'password1']
+        fields = [
+            'username',
+            'email', 
+            'password1'
+        ]
 
 
 class SignInForm(forms.Form):

@@ -2,11 +2,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'dashboard.html'
-    login_url = '/'
+class DashboardPageView(LoginRequiredMixin, TemplateView):
+    template_name = 'account/dashboard.html'
+    login_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
