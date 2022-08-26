@@ -1,0 +1,380 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block head_tags %}
+  <link rel="stylesheet" type="text/css" href="{% static '/css/account-settings.css' %}"/>
+{% endblock head_tags %}
+
+{% block content %}
+  <div class="page-container">
+    {% include 'account/header.html' %}
+    <main class="cabinet">
+      <div class="container">
+        <div class="grid-wrap">
+          <div class="aside-wrapper">
+            <nav class="nav-wrap">
+              <ul class="block-nav-items">
+                <li><a href="{% url 'dashboard' %}">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-dashboard"></use>
+                    </svg>Dashboard</a></li>
+                <li>
+                  <button class="js-toggle-inner">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-message"></use>
+                    </svg>Order DM’s
+                    <div class="arrow">
+                      <svg viewBox="0 0 20 20" width="20px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                      </svg>
+                    </div>
+                  </button>
+                  <ul class="inner">
+                    <li><a href="./order-dms.html">Order</a></li>
+                    <li><a href="./order-active.html">Active Orders</a></li>
+                    <li><a href="./order-history.html">History</a></li>
+                  </ul>
+                </li>
+                <li><a href="./add-funds.html">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-pricing"></use>
+                    </svg>Add funds</a></li>
+                <li><a href="./loyalty-program.html">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-loyalty"></use>
+                    </svg>Loyalty Program</a></li>
+                <li><a href="./faq.html">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-faq"></use>
+                    </svg>FAQ</a></li>
+                <li><a class="active" href="{% url 'settings' %}">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-settings"></use>
+                    </svg>Settings</a></li>
+              </ul>
+              <div class="social-wrap"><a class="btn btn--inst btn--small w100" href="#" target="_blank">
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-inst"></use>
+                  </svg>Instagram</a><a class="btn btn--tg-channel btn--small w100" href="#" target="_blank">
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
+                  </svg>Support Team</a><a class="btn btn--tg-chat btn--small w100" href="#" target="_blank">
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
+                  </svg>News Channel</a></div>
+            </nav>
+          </div>
+          <div class="content-wrapper">
+            <section class="settings-main">
+              <h1 class="fz25 center">Settings</h1>
+              <div class="items">
+                <div class="item block-white">
+                  <p class="p">Name</p><b>{{ username }}</b>
+                </div>
+                <div class="item block-white">
+                  <p class="p">Email</p><b>{{ email }}</b>
+                </div>
+                <form id="email_settings_form" method="post" action="{% url 'update_email_settings' %}" class="item block-white">
+                  {% csrf_token %}
+                  <p class="p">Email options</p>
+                  <label class="block-checkbox block-checkbox--black">
+                    {{ email_settings_form.receive_news }}
+                    <div class="checkbox">
+                      <svg viewBox="0 0 12 12" width="12px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                      </svg>
+                    </div>
+                    <p>Receive news and update emails</p>
+                  </label>
+                  <label class="block-checkbox block-checkbox--black">
+                    {{ email_settings_form.receive_activity }}
+                    <div class="checkbox">
+                      <svg viewBox="0 0 12 12" width="12px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                      </svg>
+                    </div>
+                    <p>Receive activity notification emails</p>
+                  </label>
+                </form>
+                <form id="password_change_form" method="post" action="{% url 'change_password' %}" class="item block-white w100">
+                  {% csrf_token %}
+                  <p class="p">Password change</p>
+                  <div class="inputs-wrap">
+                    <div class="col">
+                      <p>Your existing password:</p>
+                      <div class="input-wrap">
+                        {{ password_change_form.old_password }}
+                      </div>
+                    </div>
+                    <div class="col">
+                      <p>New password:</p>
+                      <div class="input-wrap">
+                        {{ password_change_form.new_password1 }}
+                      </div>
+                    </div>
+                    <div class="col">
+                      <p>Confirm new password:</p>
+                      <div class="input-wrap">
+                        {{ password_change_form.new_password2 }}
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="settings-button-wrap">
+                  <div class="item btn-wrap w100">
+                    <div class="btn-wrap">
+                      <button onclick="document.getElementById('email_settings_form').submit()" style="width: 400px;" class="btn">Save Settings</button>
+                    </div>
+                  </div>
+                  <div class="item btn-wrap w100">
+                    <div class="btn-wrap">
+                      <button onclick="document.getElementById('password_change_form').submit()"  style="width: 400px;" class="btn">Save Password</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="container">
+      {% include './footer.html' %}
+      <div class="popup-cookies">
+        <div class="grid">
+          <p>By using website, you agree with our use of cookies to improve performance and enhance your experience. More information on our <a href="./cookies-policy.html">cookies policy page.</a></p>
+          <button class="js-close-cookies">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mfp-hide popup popup--social" id="popup-instagram">
+    <h2>Instagram</h2>
+    <p>Organic Instagram Growth, Driving Targeted Traffic to your page or specific post in the DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.</p><br/>
+    <p>As we provide high quality service, before mass DM we use auditory filtration – means that we maximally filter out inactive and bot accounts, using filtration by avatar, followers amount, amount of posts, latest activity of account and by language used in bio or name. </p><br/>
+    <p>You do not need to use your account, all messages are sended using our HQ blank accounts.</p><br/>
+    <p>All messages goes with Notifications in general requests:</p><br/>
+    <div class="img-wrap"><img src="{% static '/img/popup-inst-1.jpg' %}" alt=""/></div><br/>
+    <p>Possibility to attach profile link, post or direct link to site:</p><br/>
+    <div class="img-wrap col-2"><img src="{% static '/img/popup-inst-2.jpg' %}" alt=""/><img src="{% static '/img/popup-inst-3.jpg' %}" alt=""/><img src="{% static '/img/popup-inst-4.jpg' %}" alt=""/></div>
+  </div>
+  <div class="mfp-hide popup popup--social" id="popup-discord">
+    <h2>Discord</h2>
+    <p>Discord mass spam is the perfect way to grow servers and communities with only organic and healthy traffic. There are a lot of users who are interested in NFT/Metawerse products and we can easily attract them to your product. </p><br/>
+    <p>We can provide mass dms to only active and online users from other servers. I want to note that in Discord there is no filtering,  but in another case there are 1000x less bots than in other social media.</p><br/>
+    <p>All our accounts will have avatars, in a message we will attach your server or if you also want an image or gif.</p><br/>
+    <p>You can use your targets/servers chosen for scrape</p><br/>
+    <div class="img-wrap"><img src="{% static '/img/popup-d-1.jpg' %}" alt=""/></div>
+  </div>
+  <div class="mfp-hide popup popup--social" id="popup-telegram">
+    <h2>Telegram</h2>
+    <p>Organic Telegram Growth, Driving Targeted Traffic to your groups, channels or directly to site using mass DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.</p><br/>
+    <p>Provide telegram mass messaging, scrape. Scrape works from any groups - public. We can send traffic to a group, channel or direct site.</p><br/>
+    <p>Each message goes with notifications & using our limits and HQ accounts, messages will be seen all time while the user does not block messages. </p><br/>
+    <div class="img-wrap"><img src="{% static '/img/popup-tg-1.jpg' %}" alt=""/></div>
+  </div>
+  <div class="mfp-hide popup popup--social" id="popup-twitter">
+    <h2>Twitter </h2>
+    <p>Organic Twitter Growth, Driving Targeted Traffic to your Twitter Profile or directly to site using mass DMs. Our clients are seeing success in lead generation, product promotions and even recruiting influencers / affiliates from our Mass DM Solution.</p><br/>
+    <p>Messages go to general requests with or without notification depending on receiver notification settings. Scrape works using your competitors their last followers. </p><br/>
+    <p>Our messages come with avatars on profiles and attached link or profile.</p><br/>
+    <div class="img-wrap"><img src="{% static '/img/popup-tw-1.jpg' %}" alt=""/></div>
+  </div>
+  <div class="mfp-hide popup popup--login" id="popup-login">
+    <div class="popup-form-wrap">
+      <form action="#">
+        <h3 class="center">Login</h3>
+        <div class="input-wrap mb">
+          <input class="has-ic" type="email" placeholder="Email" required="required"/>
+          <div class="ic">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="input-wrap">
+          <input class="has-ic" type="password" placeholder="Password" required="required"/>
+          <div class="ic">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
+            </svg>
+          </div>
+          <button class="password-hidden js-toggle-password" type="button">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
+            </svg>
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
+            </svg>
+          </button>
+        </div>
+        <div class="checkbox-wrapper">
+          <label class="block-checkbox">
+            <input type="checkbox" required="required"/>
+            <div class="checkbox">
+              <svg viewBox="0 0 12 12" width="12px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+              </svg>
+            </div>
+            <p>Remember me</p>
+          </label>
+          <div class="link-wrap"><a href="#">Forgot password?</a></div>
+        </div>
+        <div class="btn-wrap">
+          <button class="btn btn--accent">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
+    <div class="grid">
+      <div class="popup-form-wrap">
+        <form action="#">
+          <h3 class="center">Hello, Friend!</h3>
+          <div class="input-wrap mb">
+            <input class="has-ic" type="text" placeholder="Name" required="required"/>
+            <div class="ic">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-user"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="input-wrap mb">
+            <input class="has-ic" type="email" placeholder="Email" required="required"/>
+            <div class="ic">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="input-wrap">
+            <input class="has-ic" type="password" placeholder="Password" required="required"/>
+            <div class="ic">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
+              </svg>
+            </div>
+            <button class="password-hidden js-toggle-password" type="button">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
+              </svg>
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="checkbox-wrapper">
+            <label class="block-checkbox">
+              <input type="checkbox" required="required"/>
+              <div class="checkbox">
+                <svg viewBox="0 0 12 12" width="12px">
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                </svg>
+              </div>
+              <p>I’have read and ag{% static 'ee to terms and' %} condition </p>
+            </label>
+          </div>
+          <div class="btn-wrap">
+            <button class="btn btn--accent">Create account</button>
+          </div>
+          <div class="have-account"><span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a></div>
+        </form>
+      </div>
+      <div class="glad-wrap">
+        <div class="title">Glad to see You!</div>
+        <p>You are in right place for social media <br>BULK DMS service</p>
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+      </div>
+    </div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-green">PAID</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+  </div>
+{% endblock content %}
