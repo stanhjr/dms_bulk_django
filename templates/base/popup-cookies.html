@@ -1,6 +1,12 @@
-<div class="popup-cookies">
-    <div class="grid">
-      <p>By using website, you agree with our use of cookies to improve performance and enhance your experience. More information on our <a href="{% url 'cookies_policy' %}">cookies policy page.</a></p>
-      <button class="js-close-cookies">OK</button>
-    </div>
-</div>
+{% if not cookies_policy_accepted %}
+  <div>
+    <iframe name="accept_cookies_policy_redirect_iframe" id="accept_cookies_policy_redirect_iframe" style="display: none;"></iframe>
+    <form method="post" action="{% url 'accept_cookies_policy' %}" target="accept_cookies_policy_redirect_iframe" class="popup-cookies">
+      {% csrf_token %}
+      <div class="grid">
+        <p>By using website, you agree with our use of cookies to improve performance and enhance your experience. More information on our <a href="{% url 'cookies_policy' %}">cookies policy page.</a></p>
+        <button type="submit" class="js-close-cookies">OK</button>
+      </div>
+    </form>
+  </div>
+{% endif %}

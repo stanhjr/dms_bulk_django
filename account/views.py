@@ -5,9 +5,10 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 
 from .forms import EmailSettingsForm, CustomPasswordChangeForm
+from utils import PopupCookiesContextMixin
 
 
-class AccountSettingsPageView(LoginRequiredMixin, TemplateView):
+class AccountSettingsPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'account/settings.html'
     login_url = reverse_lazy('home')
 

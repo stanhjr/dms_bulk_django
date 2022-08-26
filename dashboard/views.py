@@ -4,8 +4,10 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
+from utils import PopupCookiesContextMixin
 
-class DashboardPageView(LoginRequiredMixin, TemplateView):
+
+class DashboardPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'account/dashboard.html'
     login_url = reverse_lazy('home')
 

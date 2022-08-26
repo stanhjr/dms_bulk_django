@@ -12,57 +12,7 @@
       <div class="container">
         <div class="grid-wrap">
           <div class="aside-wrapper">
-            <nav class="nav-wrap">
-              <ul class="block-nav-items">
-                <li><a class="active" href="{% url 'dashboard' %}">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-dashboard"></use>
-                    </svg>Dashboard</a></li>
-                <li>
-                  <button class="js-toggle-inner">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-message"></use>
-                    </svg>Order DM’s
-                    <div class="arrow">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                      </svg>
-                    </div>
-                  </button>
-                  <ul class="inner">
-                    <li><a href="./order-dms.html">Order</a></li>
-                    <li><a href="./order-active.html">Active Orders</a></li>
-                    <li><a href="./order-history.html">History</a></li>
-                  </ul>
-                </li>
-                <li><a href="./add-funds.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-pricing"></use>
-                    </svg>Add funds</a></li>
-                <li><a href="./loyalty-program.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-loyalty"></use>
-                    </svg>Loyalty Program</a></li>
-                <li><a href="./faq.html">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-faq"></use>
-                    </svg>FAQ</a></li>
-                <li><a href="{% url 'settings' %}">
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-settings"></use>
-                    </svg>Settings</a></li>
-              </ul>
-              <div class="social-wrap"><a class="btn btn--inst btn--small w100" href="#" target="_blank">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-inst"></use>
-                  </svg>Instagram</a><a class="btn btn--tg-channel btn--small w100" href="#" target="_blank">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
-                  </svg>Support Team</a><a class="btn btn--tg-chat btn--small w100" href="#" target="_blank">
-                  <svg viewBox="0 0 20 20" width="20px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
-                  </svg>News Channel</a></div>
-            </nav>
+            {% include './nav.html' %}
           </div>
           <div class="content-wrapper">
             <section class="dashboard-info">
