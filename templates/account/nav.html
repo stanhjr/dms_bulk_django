@@ -1,12 +1,12 @@
 {% load static %}
 <nav class="nav-wrap">
     <ul class="block-nav-items">
-      <li><a href="{% url 'dashboard' %}">
+      <li><a {% if page == 'dashboard' %} class="active" {% endif %} href="{% url 'dashboard' %}">
           <svg viewBox="0 0 20 20" width="20px">
             <use xlink:href="{% static '/img/sprite.svg' %}#ic-dashboard"></use>
           </svg>Dashboard</a></li>
       <li>
-        <button class="js-toggle-inner">
+        <button id="order_dms_button" class="js-toggle-inner">
           <svg viewBox="0 0 20 20" width="20px">
             <use xlink:href="{% static '/img/sprite.svg' %}#ic-message"></use>
           </svg>Order DM’s
@@ -17,12 +17,12 @@
           </div>
         </button>
         <ul class="inner">
-          <li><a href="./order-dms.html">Order</a></li>
-          <li><a href="./order-active.html">Active Orders</a></li>
-          <li><a href="./order-history.html">History</a></li>
+          <li><a {% if page == 'order' %} class="active" {% endif %} href="{% url 'order' %}">Order</a></li>
+          <li><a {% if page == 'order_active' %} class="active" {% endif %} href="{% url 'order_active' %}">Active Orders</a></li>
+          <li><a {% if page == 'order_history' %} class="active" {% endif %} href="{% url 'order_history' %}">History</a></li>
         </ul>
       </li>
-      <li><a href="./add-funds.html">
+      <li><a {% if page == 'add_funds' %} class="active" {% endif %} href="./add-funds.html">
           <svg viewBox="0 0 20 20" width="20px">
             <use xlink:href="{% static '/img/sprite.svg' %}#ic-pricing"></use>
           </svg>Add funds</a></li>
@@ -34,7 +34,7 @@
           <svg viewBox="0 0 20 20" width="20px">
             <use xlink:href="{% static '/img/sprite.svg' %}#ic-faq"></use>
           </svg>FAQ</a></li>
-      <li><a class="active" href="{% url 'settings' %}">
+      <li><a {% if page == 'settings' %} class="active" {% endif %} href="{% url 'settings' %}">
           <svg viewBox="0 0 20 20" width="20px">
             <use xlink:href="{% static '/img/sprite.svg' %}#ic-settings"></use>
           </svg>Settings</a></li>
@@ -49,4 +49,10 @@
         <svg viewBox="0 0 20 20" width="20px">
           <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
         </svg>News Channel</a></div>
+        {% if 'order' in page %}
+          <script type="text/javascript">
+            const onDocumentLoaded = (event) => document.getElementById('order_dms_button').click()
+            window.addEventListener('load', onDocumentLoaded, false)
+          </script>
+        {% endif %}
 </nav>

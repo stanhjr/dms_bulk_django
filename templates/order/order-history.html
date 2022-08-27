@@ -1,8 +1,8 @@
-{% extends '../base/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
 {% block head_tags %}
-  <title>Dashboard</title>
+  <title>Order History</title>
 {% endblock head_tags %}
 
 {% block content %}
@@ -12,61 +12,36 @@
       <div class="container">
         <div class="grid-wrap">
           <div class="aside-wrapper">
-            {% include './nav.html' %}
+            {% include 'account/nav.html' %}
           </div>
           <div class="content-wrapper">
-            <section class="dashboard-info">
-              <div class="social-btns">
-                <button class="inst"><img src="{% static '/img/ic-inst-gr' %}ad.svg" alt="">Instargam</button>
-                <button class="tw">
-                  <svg viewBox="0 0 30 30" width="30px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tw"></use>
-                  </svg>Twitter
-                </button>
-                <button class="d">
-                  <svg viewBox="0 0 30 30" width="30px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-d"></use>
-                  </svg>Discord
-                </button>
-                <button class="tg">
-                  <svg viewBox="0 0 30 30" width="30px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
-                  </svg>Telegram
-                </button>
-              </div>
-              <div class="stats-wrap">
-                <div class="chart-wrap block-white">
-                  <h2 class="fz25 center">DM’s Statistic</h2>
-                  <div class="chart-container">
-                    <div class="js-chart"></div>
-                  </div>
+            <section class="cabinet-nav">
+              <ul>
+                <li><a href="{% url 'order' %}">Order DMS</a></li>
+                <li><a href="{% url 'order_active' %}">Active Order</a></li>
+                <li><a class="active" href="{% url 'order_history' %}">History</a></li>
+              </ul>
+            </section>
+            <section class="order-history-main">
+              <h1 class="fz25 center">Order History</h1>
+              <div class="table-cabinet block-white">
+                <div class="tr">
+                  <div class="td"><b>Social Media</b></div>
+                  <div class="td"><b>DMs Send</b></div>
+                  <div class="td"><b>Date</b></div>
+                  <div class="td"><b>Proof</b></div>
                 </div>
-                <div class="balance-wrap block-white">
-                  <div class="title">DM’s Tokens</div>
-                  <div class="balance">
-                    <div class="img-wrap"><img src="{% static '/img/dms-coin.png' %}" alt=""></div>
-                    <p>250</p>
-                  </div>
+                <div class="tr">
+                  <div class="td">1. Instagram</div>
+                  <div class="td">100k messages</div>
+                  <div class="td">22.12.23</div>
+                  <div class="td"><a href="#">Download</a></div>
                 </div>
-              </div>
-              <div class="table-wrapper block-white">
-                <h2 class="fz25 center">Recent Orders</h2>
-                <div class="table-wrap">
-                  <div class="tr">
-                    <div class="td">Instagram</div>
-                    <div class="td">100k DMS</div>
-                    <div class="td">14.07.22</div>
-                  </div>
-                  <div class="tr">
-                    <div class="td">Discord</div>
-                    <div class="td">250k DMS</div>
-                    <div class="td">11.07.22</div>
-                  </div>
-                  <div class="tr">
-                    <div class="td">Telegram</div>
-                    <div class="td">50k DMS</div>
-                    <div class="td">02.07.22</div>
-                  </div>
+                <div class="tr">
+                  <div class="td">2. Twitter</div>
+                  <div class="td">100k messages</div>
+                  <div class="td">22.12.23</div>
+                  <div class="td"><a href="#">Download</a></div>
                 </div>
               </div>
             </section>
@@ -76,23 +51,19 @@
     </main>
     <div class="container">
       <footer class="footer-main cabinet">
-        {% include '../base/footer.html' %}
+        {% include 'base/footer.html' %}
       </footer>
-      {% include '../popup/accept-cookies.html' %}
+      {% include 'popup/accept-cookies.html' %}
     </div>
   </div>
-  {% include '../popup/instagram.html' %}
-  {% include '../popup/discord.html' %}
-  {% include '../popup/telegram.html' %}
-  {% include '../popup/twitter.html' %}
+  {% include 'popup/instagram.html' %}
+  {% include 'popup/discord.html' %}
+  {% include 'popup/telegram.html' %}
+  {% include 'popup/twitter.html' %}
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
     <div class="header-wrap">
       <div class="left">
-        <div class="logo-wrap">
-          <a href="{% url 'home' %}">
-            <img src="{% static '/img/logo.svg' %}" alt=""/>
-          </a>
-        </div>
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
         <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
       </div>
       <div class="right">
@@ -137,11 +108,7 @@
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
     <div class="header-wrap">
       <div class="left">
-        <div class="logo-wrap">
-          <a href="{% url 'home' %}"
-            <img src="{% static '/img/logo.svg' %}" alt=""/>
-          </a>
-        </div>
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
         <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
       </div>
       <div class="right">

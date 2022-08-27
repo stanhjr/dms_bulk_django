@@ -1,4 +1,4 @@
-{% extends '../base/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
 {% block head_tags %}
@@ -13,17 +13,17 @@
       <div class="container">
         <div class="grid-wrap">
           <div class="aside-wrapper">
-            {% include './nav.html' %}
+            {% include 'account/nav.html' %}
           </div>
           <div class="content-wrapper">
             <section class="settings-main">
               <h1 class="fz25 center">Settings</h1>
               <div class="items">
                 <div class="item block-white">
-                  <p class="p">Name</p><b>{{ username }}</b>
+                  <p class="p">Name</p><b>{{ request.user.username }}</b>
                 </div>
                 <div class="item block-white">
-                  <p class="p">Email</p><b>{{ email }}</b>
+                  <p class="p">Email</p><b>{{ request.user.email }}</b>
                 </div>
                 <form id="email_settings_form" method="post" action="{% url 'update_email_settings' %}" class="item block-white">
                   {% csrf_token %}
@@ -91,15 +91,15 @@
     </main>
     <div class="container">
       <footer class="footer-main cabinet">
-        {% include '../base/footer.html' %}
+        {% include 'base/footer.html' %}
       </footer>
-      {% include '../popup/accept-cookies.html' %}
+      {% include 'popup/accept-cookies.html' %}
     </div>
   </div>
-  {% include '../popup/instagram.html' %}
-  {% include '../popup/discord.html' %}
-  {% include '../popup/telegram.html' %}
-  {% include '../popup/twitter.html' %}
+  {% include 'popup/instagram.html' %}
+  {% include 'popup/discord.html' %}
+  {% include 'popup/telegram.html' %}
+  {% include 'popup/twitter.html' %}
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
     <div class="header-wrap">
       <div class="left">

@@ -8,12 +8,14 @@ from utils import PopupCookiesContextMixin
 
 
 class DashboardPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
-    template_name = 'account/dashboard.html'
+    template_name = 'dashboard/dashboard.html'
     login_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['username'] = self.request.user.username
+
+        context['page'] = 'dashboard'
+        
         return context
 
     def post(self, request):

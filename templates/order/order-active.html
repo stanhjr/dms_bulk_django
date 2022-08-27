@@ -1,0 +1,288 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block head_tags %}
+  <title>Order Active</title>
+{% endblock head_tags %}
+
+{% block content %}
+  <div class="page-container">
+    {% include 'account/header.html' %}
+    <main class="cabinet">
+      <div class="container">
+        <div class="grid-wrap">
+          <div class="aside-wrapper">
+            {% include 'account/nav.html' %}
+          </div>
+          <div class="content-wrapper">
+            <section class="cabinet-nav">
+              <ul>
+                <li><a href="{% url 'order' %}">Order DMS</a></li>
+                <li><a class="active" href="{% url 'order_active' %}">Active Order</a></li>
+                <li><a href="{% url 'order_history' %}">History</a></li>
+              </ul>
+            </section>
+            <section class="order-active-main">
+              <div class="table-cabinet block-white">
+                <div class="tr">
+                  <div class="td"><b>Social Media</b></div>
+                  <div class="td"><b>DMs Send</b></div>
+                  <div class="td"><b>Date</b></div>
+                  <div class="td"><b>Proof</b></div>
+                </div>
+                <div class="tr">
+                  <div class="td">1. Instagram</div>
+                  <div class="td">
+                    <div class="line-wrapper">
+                      <div class="block-line">
+                        <div class="line instagram" style="width: 100%"></div>
+                      </div>
+                      <p>5m/5m sended</p>
+                    </div>
+                  </div>
+                  <div class="td">
+                    <ul class="block-check-list">
+                      <li class="done">
+                        <div class="ic">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Scraping</span>
+                      </li>
+                      <li class="done">
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Filtering</span>
+                      </li>
+                      <li class="done">
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Sending</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
+                </div>
+                <div class="tr">
+                  <div class="td">2. Telegram</div>
+                  <div class="td">
+                    <div class="line-wrapper">
+                      <div class="block-line">
+                        <div class="line telegram" style="width: 0%"></div>
+                      </div>
+                      <p>Scraping process</p>
+                    </div>
+                  </div>
+                  <div class="td">
+                    <ul class="block-check-list">
+                      <li>
+                        <div class="ic">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Scraping</span>
+                      </li>
+                      <li>
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Filtering</span>
+                      </li>
+                      <li>
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Sending</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
+                </div>
+                <div class="tr">
+                  <div class="td">3. Twitter</div>
+                  <div class="td">
+                    <div class="line-wrapper">
+                      <div class="block-line">
+                        <div class="line twitter" style="width: 0%"></div>
+                      </div>
+                      <p>Filtering process</p>
+                    </div>
+                  </div>
+                  <div class="td">
+                    <ul class="block-check-list">
+                      <li class="done">
+                        <div class="ic">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Scraping</span>
+                      </li>
+                      <li>
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Filtering</span>
+                      </li>
+                      <li>
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Sending</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
+                </div>
+                <div class="tr">
+                  <div class="td">4. Discord</div>
+                  <div class="td">
+                    <div class="line-wrapper">
+                      <div class="block-line">
+                        <div class="line discord" style="width: 20%"></div>
+                      </div>
+                      <p>300k/1m sended</p>
+                    </div>
+                  </div>
+                  <div class="td">
+                    <ul class="block-check-list">
+                      <li class="done">
+                        <div class="ic">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Scraping</span>
+                      </li>
+                      <li class="done">
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Filtering</span>
+                      </li>
+                      <li>
+                        <div class="ic active">
+                          <svg viewBox="0 0 13 13" width="13px">
+                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                          </svg>
+                        </div><span>Sending</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="container">
+      <footer class="footer-main cabinet">
+        {% include 'base/footer.html' %}
+      </footer>
+      {% include 'popup/accept-cookies.html' %}
+    </div>
+  </div>
+  {% include 'popup/instagram.html' %}
+  {% include 'popup/discord.html' %}
+  {% include 'popup/telegram.html' %}
+  {% include 'popup/twitter.html' %}
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-green">PAID</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+  </div>
+{% endblock content %}

@@ -1,4 +1,4 @@
-{% extends '../base/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
 {% block head_tags %}
@@ -7,12 +7,12 @@
 
 {% block content %}
   <div class="page-container">
-    {% include './header.html' %}
+    {% include 'home/header.html' %}
     <main class="default">
       <div class="container">
         <div class="grid-wrap">
           <div class="aside-wrapper">
-            {% include './nav.html' %}
+            {% include 'home/nav.html' %}
           </div>
           <div class="content-wrapper">
             <section class="section-text">
@@ -34,9 +34,9 @@
               </ol>
             </section>
             <footer class="footer-main">
-              {% include '../base/footer.html' %}
+              {% include 'base/footer.html' %}
             </footer>
-            {% include '../popup/accept-cookies.html' %}
+            {% include 'popup/accept-cookies.html' %}
           </div>
         </div>
       </div>
@@ -44,12 +44,12 @@
     <div class="container">
     </div>
   </div>
-  {% include '../popup/instagram.html' %}
-  {% include '../popup/discord.html' %}
-  {% include '../popup/telegram.html' %}
-  {% include '../popup/twitter.html' %}
-  {% include '../popup/login.html' %}
-  {% include '../popup/signup.html' %}
+  {% include 'popup/instagram.html' %}
+  {% include 'popup/discord.html' %}
+  {% include 'popup/telegram.html' %}
+  {% include 'popup/twitter.html' %}
+  {% include 'popup/login.html' %}
+  {% include 'popup/signup.html' %}
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
     <div class="header-wrap">
       <div class="left">
