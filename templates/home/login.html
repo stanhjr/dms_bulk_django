@@ -1,0 +1,49 @@
+{% load static %}
+<div class="mfp-hide popup popup--login" id="popup-login">
+    <div class="popup-form-wrap">
+      <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input type='hidden' name='action' value='sign_in_form'>
+        <h3 class="center">Login</h3>
+        <div class="input-wrap mb">
+          {{ sign_in_form.email }}
+          <div class="ic">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="input-wrap">
+          {{ sign_in_form.password }}
+          <div class="ic">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
+            </svg>
+          </div>
+          <button class="password-hidden js-toggle-password" type="button">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
+            </svg>
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
+            </svg>
+          </button>
+        </div>
+        <div class="checkbox-wrapper">
+          <label class="block-checkbox">
+            <input type="checkbox"/>
+            <div class="checkbox">
+              <svg viewBox="0 0 12 12" width="12px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+              </svg>
+            </div>
+            <p>Remember me</p>
+          </label>
+          <div class="link-wrap"><a href="#">Forgot password?</a></div>
+        </div>
+        <div class="btn-wrap">
+          <button class="btn btn--accent" type="submit">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>

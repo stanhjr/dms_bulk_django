@@ -1,0 +1,64 @@
+{% load static %}
+<div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
+    <div class="grid">
+      <div class="popup-form-wrap">
+        <form method="post" action="{% url 'home' %}">
+          <h3 class="center">Hello, Friend!</h3>
+          {% csrf_token %}
+          <input type='hidden' name='action' value='sign_up_form'>
+          <div class="input-wrap mb">            
+            {{ sign_up_form.username }}
+            <div class="ic">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-user"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="input-wrap mb">
+            {{ sign_up_form.email }}
+            <div class="ic">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="input-wrap">
+            {{ sign_up_form.password1 }}
+            <div class="ic">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
+              </svg>
+            </div>
+            <button class="password-hidden js-toggle-password" type="submit">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
+              </svg>
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="checkbox-wrapper">
+            <label class="block-checkbox">
+              <input type="checkbox"/>
+              <div class="checkbox">
+                <svg viewBox="0 0 12 12" width="12px">
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                </svg>
+              </div>
+              <p>I’have read and agree to terms and condition </p>
+            </label>
+          </div>
+          <div class="btn-wrap">
+            <button class="btn btn--accent">Create account</button>
+          </div>
+          <div class="have-account"><span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a></div>
+        </form>
+      </div>
+      <div class="glad-wrap">
+        <div class="title">Glad to see You!</div>
+        <p>You are in right place for social media <br>BULK DMS service</p>
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+      </div>
+    </div>
+</div>

@@ -3,19 +3,11 @@ from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate, get_user_model
 
 from account_auth.forms import SignUpForm, SignInForm
-from utils import PopupCookiesContextMixin
+from utils import PopupCookiesContextMixin, PopupAuthContextMixin
 
 
-class MainPageView(PopupCookiesContextMixin, TemplateView):
+class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['sign_up_form'] = SignUpForm
-        context['sign_in_form'] = SignInForm
-
-        return context
 
     def post(self, request):
         action = self.request.POST.get('action')
@@ -56,9 +48,9 @@ class AcceptCookiesPolicy(View):
         return redirect('home')
 
 
-class CookiesPolicyPageView(PopupCookiesContextMixin, TemplateView):
+class CookiesPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/cookies-policy.html'
 
 
-class FAQPageView(PopupCookiesContextMixin, TemplateView):
+class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/faq.html'
