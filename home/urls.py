@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.MainPageView.as_view(), name='home'),
     path('accept_cookies_policy/', views.AcceptCookiesPolicy.as_view(), name='accept_cookies_policy'),
     path('cookies_policy/', views.CookiesPolicyPageView.as_view(), name='cookies_policy'),
-    path('faq/', views.FAQPageView.as_view(), name='faq')
+    path('faq/', views.FAQPageView.as_view(), name='faq'),
+    path('blog/', views.BlogPageView.as_view(), name='blog')
 ]

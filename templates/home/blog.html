@@ -1,0 +1,203 @@
+{% extends '../base/base.html' %}
+{% load static %}
+
+{% block head_tags %}
+<title>Blog</title>
+{% endblock head_tags %}
+
+{% block content %}
+  <div class="page-container">
+    {% include './header.html' %}
+    <main class="default">
+      <div class="container">
+        <div class="grid-wrap">
+          <div class="aside-wrapper">
+            {% include './nav.html' %}
+          </div>
+          <div class="content-wrapper">
+            <section class="blog-list">
+              <h1 class="inner center">Blog</h1>
+              <div class="items">
+                <div class="item">
+                  <div class="img-wrap"><a href="./blog-page.html"><img src="{% static '/img/blog-list.jpg' %}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">August 12, 2022</div>
+                    <h3><a href="#">Place for head text!</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.</p>
+                    <div class="link-wrap"><a href="#">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="img-wrap"><a href="./blog-page.html"><img src="{% static '/img/blog-list.jpg' %}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">August 12, 2022</div>
+                    <h3><a href="#">Place for head text!</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.</p>
+                    <div class="link-wrap"><a href="#">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="img-wrap"><a href="./blog-page.html"><img src="{% static '/img/blog-list.jpg' %}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">August 12, 2022</div>
+                    <h3><a href="#">Place for head text!</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.</p>
+                    <div class="link-wrap"><a href="#">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="img-wrap"><a href="./blog-page.html"><img src="{% static '/img/blog-list.jpg' %}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">August 12, 2022</div>
+                    <h3><a href="#">Place for head text!</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.</p>
+                    <div class="link-wrap"><a href="#">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="img-wrap"><a href="./blog-page.html"><img src="{% static '/img/blog-list.jpg' %}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">August 12, 2022</div>
+                    <h3><a href="#">Place for head text!</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.</p>
+                    <div class="link-wrap"><a href="#">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="img-wrap"><a href="./blog-page.html"><img src="{% static '/img/blog-list.jpg' %}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">August 12, 2022</div>
+                    <h3><a href="#">Place for head text!</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim etiam elementum suspendisse nisl duis augue sit at.</p>
+                    <div class="link-wrap"><a href="#">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <footer class="footer-main">
+              {% include '../base/footer.html' %}
+            </footer>
+            {% include '../popup/accept-cookies.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="container">
+    </div>
+  </div>
+  {% include '../popup/instagram.html' %}
+  {% include '../popup/discord.html' %}
+  {% include '../popup/telegram.html' %}
+  {% include '../popup/twitter.html' %}
+  {% include '../popup/login.html' %}
+  {% include '../popup/signup.html' %}
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-green">PAID</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+  </div>
+{% endblock content %}

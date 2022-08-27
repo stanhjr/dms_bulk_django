@@ -54,3 +54,7 @@ class CookiesPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Tem
 
 class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/faq.html'
+
+
+class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'home/blog.html'
