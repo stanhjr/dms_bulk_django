@@ -1,0 +1,186 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block head_tags %}
+  <title>Dashboard</title>
+{% endblock head_tags %}
+
+{% block content %}
+  <div class="page-container">
+    {% include 'account/header.html' %}
+    <main class="cabinet">
+      <div class="container">
+        <div class="grid-wrap">
+          <div class="aside-wrapper">
+            {% include 'account/nav.html' %}
+          </div>
+          <div class="content-wrapper">
+            <section class="dashboard-info">
+              <div class="social-btns">
+                <button class="inst"><img src="{% static '/img/ic-inst-gr' %}ad.svg" alt="">Instargam</button>
+                <button class="tw">
+                  <svg viewBox="0 0 30 30" width="30px">
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tw"></use>
+                  </svg>Twitter
+                </button>
+                <button class="d">
+                  <svg viewBox="0 0 30 30" width="30px">
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-d"></use>
+                  </svg>Discord
+                </button>
+                <button class="tg">
+                  <svg viewBox="0 0 30 30" width="30px">
+                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-tg"></use>
+                  </svg>Telegram
+                </button>
+              </div>
+              <div class="stats-wrap">
+                <div class="chart-wrap block-white">
+                  <h2 class="fz25 center">DM’s Statistic</h2>
+                  <div class="chart-container">
+                    <div class="js-chart"></div>
+                  </div>
+                </div>
+                <div class="balance-wrap block-white">
+                  <div class="title">DM’s Tokens</div>
+                  <div class="balance">
+                    <div class="img-wrap"><img src="{% static '/img/dms-coin.png' %}" alt=""></div>
+                    <p>250</p>
+                  </div>
+                </div>
+              </div>
+              <div class="table-wrapper block-white">
+                <h2 class="fz25 center">Recent Orders</h2>
+                <div class="table-wrap">
+                  <div class="tr">
+                    <div class="td">Instagram</div>
+                    <div class="td">100k DMS</div>
+                    <div class="td">14.07.22</div>
+                  </div>
+                  <div class="tr">
+                    <div class="td">Discord</div>
+                    <div class="td">250k DMS</div>
+                    <div class="td">11.07.22</div>
+                  </div>
+                  <div class="tr">
+                    <div class="td">Telegram</div>
+                    <div class="td">50k DMS</div>
+                    <div class="td">02.07.22</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="container">
+      <footer class="footer-main cabinet">
+        {% include 'base/footer.html' %}
+      </footer>
+      {% include 'popup/accept-cookies.html' %}
+    </div>
+  </div>
+  {% include 'popup/instagram.html' %}
+  {% include 'popup/discord.html' %}
+  {% include 'popup/telegram.html' %}
+  {% include 'popup/twitter.html' %}
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap">
+          <a href="{% url 'home' %}">
+            <img src="{% static '/img/logo.svg' %}" alt=""/>
+          </a>
+        </div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap">
+          <a href="{% url 'home' %}"
+            <img src="{% static '/img/logo.svg' %}" alt=""/>
+          </a>
+        </div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-green">PAID</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+  </div>
+{% endblock content %}
