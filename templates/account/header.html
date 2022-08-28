@@ -18,7 +18,7 @@
             <p>{{ request.user.username }}</p>
           </div>
           <ul class="block-nav-items">
-            <li><a href="#">
+            <li><a href="{% url 'dashboard' %}">
                 <svg viewBox="0 0 24 24" width="24px">
                   <use xlink:href="{% static '/img/sprite.svg#ic-user' %}"></use>
                 </svg>Profile</a></li>

@@ -51,3 +51,4 @@ class SignInForm(forms.Form):
             'placeholder': 'Password',
         }
     ))
+    remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput())

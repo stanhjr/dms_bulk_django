@@ -14,14 +14,21 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
 
         if action == 'sign_in_form':
             sign_in_form = SignInForm(request.POST or None)
+
             if sign_in_form.is_valid():
                 email = sign_in_form.cleaned_data.get('email')
                 password = sign_in_form.cleaned_data.get('password')
+                remember_me = sign_in_form.cleaned_data.get('remember_me')
+
                 username = get_user_model().objects.get(email=email).username
                 login_user = authenticate(username=username, password=password)
 
                 if login_user:
                     login(request, login_user)
+
+                    if not remember_me:
+                        request.session.set_expiry(0)
+
                     return redirect('dashboard')
 
         if action == 'sign_up_form':

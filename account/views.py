@@ -14,7 +14,7 @@ class AccountSettingsPageView(PopupCookiesContextMixin, LoginRequiredMixin, Temp
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+
         context['page'] = 'settings'
 
         receive_news_initial = self.request.user.receive_news
