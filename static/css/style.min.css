@@ -7035,6 +7035,58 @@ ul.block-check-list li .ic svg {
   fill: currentColor;
 }
 
+.blog-list .pagination-wrap ul {
+  padding-top: 50px;
+  display: grid;
+  grid-auto-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .blog-list .pagination-wrap ul {
+    padding-top: 30px;
+  }
+}
+
+.blog-list .pagination-wrap ul a, .blog-list .pagination-wrap ul span.current {
+  color: #fff;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  width: 26px;
+  height: 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #4A68FE;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.blog-list .pagination-wrap ul span.current {
+  background-color: #454459;
+}
+
+.blog-list .pagination-wrap ul a:hover {
+  background-color: #617BFF;
+}
+
+.blog-list .pagination-wrap ul a svg {
+  display: block;
+  fill: #fff;
+}
+
 .blog-page-text {
   background-color: #fff;
   border-radius: 30px 30px 0 0;
@@ -7671,6 +7723,16 @@ ul.block-check-list li .ic svg {
   font-weight: bold;
 }
 
+.add-funsd-main .pagination-wrap ul a {
+  color: #878787;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.add-funsd-main .pagination-wrap ul a:hover {
+  color: #454459;
+}
+
 .add-funsd-main .pagination-wrap ul a:hover svg {
   fill: #454459;
 }
@@ -7678,6 +7740,10 @@ ul.block-check-list li .ic svg {
 .add-funsd-main .pagination-wrap ul a svg {
   display: block;
   fill: #878787;
+}
+
+.add-funsd-main .pagination-wrap ul span.gray {
+  color: #878787;
 }
 
 .order-dms-main .grid {

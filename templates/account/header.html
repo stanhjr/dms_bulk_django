@@ -39,7 +39,7 @@
                 >Profile</a
               >
             </li>
-            <li class="notify">
+            {% comment %} <li class="notify">
               <a href="#">
                 <svg viewBox="0 0 24 24" width="24px">
                   <use
@@ -47,7 +47,7 @@
                   ></use></svg
                 >Notification</a
               >
-            </li>
+            </li> {% endcomment %}
             <li>
               <form method="post" action="{% url 'dashboard' %}">
                 {% csrf_token %}

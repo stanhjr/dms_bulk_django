@@ -2,144 +2,221 @@
 {% load static %}
 
 {% block head_tags %}
-  <title>Blog</title>
+<title>Blog</title>
 {% endblock head_tags %}
 
 {% block content %}
-  <div class="page-container">
-    {% include 'base/header.html' %}
-    <main class="default">
-      <div class="container">
-        <div class="grid-wrap">
-          <div class="aside-wrapper">
-            {% include 'home/nav.html' %}
-          </div>
-          <div class="content-wrapper">
-            <section class="blog-list">
-              <h1 class="inner center">Blog</h1>
-              <div class="items">
-                {% for item in articles_previews %}
-                  <div class="item">
-                    <div class="img-wrap"><a href="{% url 'article' article_pk=item.pk%}"><img style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
-                    <div class="text-wrap">
-                      <div class="date">{{ item.created_at | date:'F j, Y' }}</div>
-                      <h3><a href="#">{{ item.title }}</a></h3>
-                      <p>{{ item.preview_text }}</p>
-                      <div class="link-wrap"><a href="{% url 'article' article_pk=item.pk%}">READ MORE
-                          <svg viewBox="0 0 14 14" width="14px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                          </svg></a></div>
-                    </div>
+<div class="page-container">
+  {% include 'base/header.html' %}
+  <main class="default">
+    <div class="container">
+      <div class="grid-wrap">
+        <div class="aside-wrapper">
+          {% include 'home/nav.html' %}
+        </div>
+        <div class="content-wrapper">
+          <section class="blog-list">
+            <h1 class="inner center">Blog</h1>
+            <div class="items">
+              {% for item in articles_previews %}
+                <div class="item">
+                  <div class="img-wrap"><a href="{% url 'article' article_pk=item.pk %}"><img
+                        style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
+                  <div class="text-wrap">
+                    <div class="date">{{ item.created_at | date:'F j, Y' }}</div>
+                    <h3><a href="#">{{ item.title }}</a></h3>
+                    <p>{{ item.preview_text }}</p>
+                    <div class="link-wrap"><a href="{% url 'article' article_pk=item.pk%}">READ MORE
+                        <svg viewBox="0 0 14 14" width="14px">
+                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                        </svg></a></div>
                   </div>
-                {% endfor %}
-              </div>
-            </section>
-            <footer class="footer-main">
-              {% include 'base/footer.html' %}
-            </footer>
-            {% include 'popup/accept-cookies.html' %}
+                </div>
+              {% endfor %}
             </div>
-          </div>
+            <div class="pagination-wrap">
+              <ul>
+                {% if current_page_is_divided_into_3 %}
+                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:-1 %}">
+                      <svg viewBox="0 0 16 16" width="16px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
+                      </svg></a></li>
+                  <li><span class="current">{{ current_page_pk }}</span></li>
+                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">{{ current_page_pk|add:1}}</a></li>
+                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">{{ current_page_pk|add:2}}</a></li>
+                  <li><span>...</span></li>
+                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">{{ current_page_pk|add:9 }}</a></li>
+                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                      <svg viewBox="0 0 16 16" width="16px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                      </svg></a></li>
+                {% else %}
+                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:-1 %}">
+                    <svg viewBox="0 0 16 16" width="16px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
+                    </svg></a></li>
+                  <li>
+                    {% if current_page_pk_is_even %}
+                      <a href="{% url 'blog' page_pk=current_page_pk|add:-1 %}">
+                        {{ current_page_pk|add:-1 }}
+                      </a>
+                    {% else %}
+                      <span class="current">
+                        {{ current_page_pk }}
+                      </span>
+                    {% endif %}
+                  </li>
+                  <li>
+                    {% if current_page_pk_is_even %}
+                      <span class="current"> 
+                        {{ current_page_pk }}
+                      </span>
+                    {% else %}
+                      <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}"> 
+                        {{ current_page_pk|add:1 }}
+                      </a>
+                    {% endif %}
+                  </li>
+                  <li>
+                    {% if current_page_pk_is_even %}
+                      <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                        {{ current_page_pk|add:1 }}
+                      </a>
+                    {% else %}
+                      <a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">
+                        {{ current_page_pk|add:2 }}
+                      </a>
+                    {% endif %}
+                  </li>
+                  <li><span>...</span></li>
+                  <li>
+                    {% if current_page_pk_is_even %}
+                      <a href="{% url 'blog' page_pk=current_page_pk|add:8 %}">
+                        {{ current_page_pk|add:8 }}
+                      </a>
+                    {% else %}
+                      <a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">
+                        {{ current_page_pk|add:9 }}
+                      </a>
+                    {% endif %}
+                  </li>
+                  <li>
+                    <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                      <svg viewBox="0 0 16 16" width="16px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                      </svg>
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </section>
+          <footer class="footer-main">
+            {% include 'base/footer.html' %}
+          </footer>
+          {% include 'popup/accept-cookies.html' %}
         </div>
       </div>
-    </main>
-    <div class="container">
+    </div>
+</div>
+</main>
+<div class="container">
+</div>
+</div>
+{% include 'popup/instagram.html' %}
+{% include 'popup/discord.html' %}
+{% include 'popup/telegram.html' %}
+{% include 'popup/twitter.html' %}
+{% include 'popup/login.html' %}
+{% include 'popup/signup.html' %}
+<div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+  <div class="header-wrap">
+    <div class="left">
+      <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt="" /></div>
+      <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+    </div>
+    <div class="right">
+      <div class="title">INVOICE</div>
+      <p>ID (#DM-11111)</p>
     </div>
   </div>
-  {% include 'popup/instagram.html' %}
-  {% include 'popup/discord.html' %}
-  {% include 'popup/telegram.html' %}
-  {% include 'popup/twitter.html' %}
-  {% include 'popup/login.html' %}
-  {% include 'popup/signup.html' %}
-  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
-    <div class="header-wrap">
-      <div class="left">
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-      </div>
-      <div class="right">
-        <div class="title">INVOICE</div>
-        <p>ID (#DM-11111)</p>
-      </div>
+  <div class="info-wrap">
+    <div class="item"><b>Invoice to:</b>
+      <p>Client Email adress and Name</p>
     </div>
-    <div class="info-wrap">
-      <div class="item"><b>Invoice to:</b>
-        <p>Client Email adress and Name</p>
-      </div>
-      <div class="item"><b>Invoice data:</b>
-        <p>06.08.2022</p>
-      </div>
+    <div class="item"><b>Invoice data:</b>
+      <p>06.08.2022</p>
     </div>
-    <div class="table-info">
-      <div class="tr">
-        <div class="td"><b>Invoice ID</b></div>
-        <div class="td"><b>Payment Method</b></div>
-        <div class="td"><b>Description</b></div>
-        <div class="td"><b>Status</b></div>
-      </div>
-      <div class="tr">
-        <div class="td">DM-11111</div>
-        <div class="td">Paypal</div>
-        <div class="td">Social Media Marketing program</div>
-        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
-      </div>
-    </div>
-    <div class="table-total">
-      <div class="tr">
-        <div class="td"><b>Sub Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-      <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-    </div>
-    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
   </div>
-  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
-    <div class="header-wrap">
-      <div class="left">
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-      </div>
-      <div class="right">
-        <div class="title">INVOICE</div>
-        <p>ID (#DM-11111)</p>
-      </div>
+  <div class="table-info">
+    <div class="tr">
+      <div class="td"><b>Invoice ID</b></div>
+      <div class="td"><b>Payment Method</b></div>
+      <div class="td"><b>Description</b></div>
+      <div class="td"><b>Status</b></div>
     </div>
-    <div class="info-wrap">
-      <div class="item"><b>Invoice to:</b>
-        <p>Client Email adress and Name</p>
-      </div>
-      <div class="item"><b>Invoice data:</b>
-        <p>06.08.2022</p>
-      </div>
+    <div class="tr">
+      <div class="td">DM-11111</div>
+      <div class="td">Paypal</div>
+      <div class="td">Social Media Marketing program</div>
+      <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
     </div>
-    <div class="table-info">
-      <div class="tr">
-        <div class="td"><b>Invoice ID</b></div>
-        <div class="td"><b>Payment Method</b></div>
-        <div class="td"><b>Description</b></div>
-        <div class="td"><b>Status</b></div>
-      </div>
-      <div class="tr">
-        <div class="td">DM-11111</div>
-        <div class="td">Paypal</div>
-        <div class="td">Social Media Marketing program</div>
-        <div class="td"><span class="status c-green">PAID</span></div>
-      </div>
-    </div>
-    <div class="table-total">
-      <div class="tr">
-        <div class="td"><b>Sub Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-      <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-    </div>
-    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+  <div class="table-total">
+    <div class="tr">
+      <div class="td"><b>Sub Total</b></div>
+      <div class="td">2000$</div>
+    </div>
+    <div class="tr">
+      <div class="td"><b>Total</b></div>
+      <div class="td">2000$</div>
+    </div>
+  </div>
+  <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+</div>
+<div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+  <div class="header-wrap">
+    <div class="left">
+      <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt="" /></div>
+      <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+    </div>
+    <div class="right">
+      <div class="title">INVOICE</div>
+      <p>ID (#DM-11111)</p>
+    </div>
+  </div>
+  <div class="info-wrap">
+    <div class="item"><b>Invoice to:</b>
+      <p>Client Email adress and Name</p>
+    </div>
+    <div class="item"><b>Invoice data:</b>
+      <p>06.08.2022</p>
+    </div>
+  </div>
+  <div class="table-info">
+    <div class="tr">
+      <div class="td"><b>Invoice ID</b></div>
+      <div class="td"><b>Payment Method</b></div>
+      <div class="td"><b>Description</b></div>
+      <div class="td"><b>Status</b></div>
+    </div>
+    <div class="tr">
+      <div class="td">DM-11111</div>
+      <div class="td">Paypal</div>
+      <div class="td">Social Media Marketing program</div>
+      <div class="td"><span class="status c-green">PAID</span></div>
+    </div>
+  </div>
+  <div class="table-total">
+    <div class="tr">
+      <div class="td"><b>Sub Total</b></div>
+      <div class="td">2000$</div>
+    </div>
+    <div class="tr">
+      <div class="td"><b>Total</b></div>
+      <div class="td">2000$</div>
+    </div>
+  </div>
+  <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+</div>
 {% endblock content %}

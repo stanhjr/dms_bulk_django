@@ -12,7 +12,7 @@
             <div class="block-breadcrumbs">
               <ul>
                 <li><a href="{% url 'home' %}">Homepage</a></li>
-                <li><a href="{% url 'blog' %}"> Blog</a></li>
+                <li><a href="{% url 'blog' page_pk=1 %}"> Blog</a></li>
               </ul>
             </div>
             <div class="grid">
@@ -21,7 +21,7 @@
                 <p>{{ article.content_text }}</p>
               </div>
               <div class="img-wrap">
-                <img src="{{ article.preview_image.url }}" alt="" />
+                <img src="{{ article.content_image.url }}" alt="" />
               </div>
             </div>
           </section>
