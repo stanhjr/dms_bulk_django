@@ -18,14 +18,14 @@
             <section class="blog-list">
               <h1 class="inner center">Blog</h1>
               <div class="items">
-                {% for item in object_list %}
+                {% for item in articles_previews %}
                   <div class="item">
-                    <div class="img-wrap"><a href="{% url 'blog' %}article/{{ item.pk }}"><img style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
+                    <div class="img-wrap"><a href="{% url 'article' article_pk=item.pk%}"><img style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
                     <div class="text-wrap">
                       <div class="date">{{ item.created_at | date:'F j, Y' }}</div>
                       <h3><a href="#">{{ item.title }}</a></h3>
                       <p>{{ item.preview_text }}</p>
-                      <div class="link-wrap"><a href="#">READ MORE
+                      <div class="link-wrap"><a href="{% url 'article' article_pk=item.pk%}">READ MORE
                           <svg viewBox="0 0 14 14" width="14px">
                             <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
                           </svg></a></div>
