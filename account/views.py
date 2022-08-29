@@ -23,7 +23,8 @@ class AccountSettingsPageView(PopupCookiesContextMixin, LoginRequiredMixin, Temp
             receive_news_initial=receive_news_initial,
             receive_activity_initial=receive_activity_initial)
 
-        context['password_change_form'] = CustomPasswordChangeForm(self.request.user)
+        context['password_change_form'] = CustomPasswordChangeForm(
+            self.request.user)
 
         return context
 

@@ -30,11 +30,11 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = [
+        fields = (
             'username',
-            'email', 
+            'email',
             'password1'
-        ]
+        )
 
 
 class SignInForm(forms.Form):
@@ -51,4 +51,5 @@ class SignInForm(forms.Form):
             'placeholder': 'Password',
         }
     ))
-    remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput())
+    remember_me = forms.BooleanField(
+        required=False, widget=forms.CheckboxInput())

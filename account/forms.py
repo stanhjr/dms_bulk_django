@@ -4,8 +4,10 @@ from django import forms
 
 
 class EmailSettingsForm(forms.ModelForm):
-    receive_news = forms.BooleanField(required=False, widget=forms.CheckboxInput())
-    receive_activity = forms.BooleanField(required=False, widget=forms.CheckboxInput())
+    receive_news = forms.BooleanField(
+        required=False, widget=forms.CheckboxInput())
+    receive_activity = forms.BooleanField(
+        required=False, widget=forms.CheckboxInput())
 
     def __init__(self, *args, **kwargs):
         receive_news_initial = kwargs.pop('receive_news_initial')
@@ -16,7 +18,7 @@ class EmailSettingsForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['receive_news', 'receive_activity']
+        fields = ('receive_news', 'receive_activity')
 
 
 class CustomPasswordChangeForm(PasswordChangeForm):

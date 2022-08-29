@@ -1,147 +1,207 @@
-{% extends 'base/base.html' %}
-{% load static %}
-
-{% block head_tags %}
-  <title>{{ article.title }}</title>
-{% endblock head_tags %}
-
-{% block content %}
-  <div class="page-container">
-    {% include 'base/header.html' %}
-    <main class="default">
-      <div class="container">
-        <div class="grid-wrap">
-          <div class="aside-wrapper">
-            {% include 'home/nav.html' %}
-          </div>
-          <div class="content-wrapper">
-            <section class="blog-page-text">
-              <div class="block-breadcrumbs">
-                <ul>
-                  <li><a href="{% url 'home' %}">Homepage</a></li>
-                  <li><a href="{% url 'blog' %}"> Blog</a></li>
-                </ul>
+{% extends 'base/base.html' %} {% load static %} {% block head_tags %}
+<title>{{ article.title }}</title>
+{% endblock head_tags %} {% block content %}
+<div class="page-container">
+  {% include 'base/header.html' %}
+  <main class="default">
+    <div class="container">
+      <div class="grid-wrap">
+        <div class="aside-wrapper">{% include 'home/nav.html' %}</div>
+        <div class="content-wrapper">
+          <section class="blog-page-text">
+            <div class="block-breadcrumbs">
+              <ul>
+                <li><a href="{% url 'home' %}">Homepage</a></li>
+                <li><a href="{% url 'blog' %}"> Blog</a></li>
+              </ul>
+            </div>
+            <div class="grid">
+              <div class="text-wrap">
+                <h1 class="inner">{{ article.title }}</h1>
+                <p>{{ article.content_text }}</p>
               </div>
-              <div class="grid">
-                <div class="text-wrap">
-                  <h1 class="inner">{{ article.title }}</h1>
-                  <p>{{ article.content_text }}</p>
-                </div>
-                <div class="img-wrap"><img src="{{ article.preview_image.url }}" alt=""></div>
+              <div class="img-wrap">
+                <img src="{{ article.preview_image.url }}" alt="" />
               </div>
-            </section>
-            <footer class="footer-main">
-              {% include 'base/footer.html' %}
-            </footer>
-            {% include 'popup/accept-cookies.html' %}
-          </div>
+            </div>
+          </section>
+          <footer class="footer-main">{% include 'base/footer.html' %}</footer>
+          {% include 'popup/accept-cookies.html' %}
         </div>
       </div>
-    </main>
-    <div class="container">
+    </div>
+  </main>
+  <div class="container"></div>
+</div>
+{% include 'popup/instagram.html' %}
+{% include 'popup/discord.html' %}
+{% include 'popup/telegram.html' %}
+{% include 'popup/twitter.html' %}
+{% include 'popup/login.html' %}
+{% include 'popup/signup.html' %}
+<div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+  <div class="header-wrap">
+    <div class="left">
+      <div class="logo-wrap"><img src="./img/logo.svg" alt="" /></div>
+      <p>
+        Social Media marketing service <br />SIA ”OFFERBOOSTED”
+        <br />dmsbulkteam@gmail.com
+      </p>
+    </div>
+    <div class="right">
+      <div class="title">INVOICE</div>
+      <p>ID (#DM-11111)</p>
     </div>
   </div>
-  {% include 'popup/instagram.html' %}
-  {% include 'popup/discord.html' %}
-  {% include 'popup/telegram.html' %}
-  {% include 'popup/twitter.html' %}
-  {% include 'popup/login.html' %}
-  {% include 'popup/signup.html' %}
-  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
-    <div class="header-wrap">
-      <div class="left">
-        <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
-        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-      </div>
-      <div class="right">
-        <div class="title">INVOICE</div>
-        <p>ID (#DM-11111)</p>
-      </div>
+  <div class="info-wrap">
+    <div class="item">
+      <b>Invoice to:</b>
+      <p>Client Email adress and Name</p>
     </div>
-    <div class="info-wrap">
-      <div class="item"><b>Invoice to:</b>
-        <p>Client Email adress and Name</p>
-      </div>
-      <div class="item"><b>Invoice data:</b>
-        <p>06.08.2022</p>
-      </div>
+    <div class="item">
+      <b>Invoice data:</b>
+      <p>06.08.2022</p>
     </div>
-    <div class="table-info">
-      <div class="tr">
-        <div class="td"><b>Invoice ID</b></div>
-        <div class="td"><b>Payment Method</b></div>
-        <div class="td"><b>Description</b></div>
-        <div class="td"><b>Status</b></div>
-      </div>
-      <div class="tr">
-        <div class="td">DM-11111</div>
-        <div class="td">Paypal</div>
-        <div class="td">Social Media Marketing program</div>
-        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
-      </div>
-    </div>
-    <div class="table-total">
-      <div class="tr">
-        <div class="td"><b>Sub Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-      <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-    </div>
-    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
   </div>
-  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
-    <div class="header-wrap">
-      <div class="left">
-        <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
-        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-      </div>
-      <div class="right">
-        <div class="title">INVOICE</div>
-        <p>ID (#DM-11111)</p>
+  <div class="table-info">
+    <div class="tr">
+      <div class="td"><b>Invoice ID</b></div>
+      <div class="td"><b>Payment Method</b></div>
+      <div class="td"><b>Description</b></div>
+      <div class="td"><b>Status</b></div>
+    </div>
+    <div class="tr">
+      <div class="td">DM-11111</div>
+      <div class="td">Paypal</div>
+      <div class="td">Social Media Marketing program</div>
+      <div class="td">
+        <span class="status c-orange">AWAITING PAYMENT</span>
       </div>
     </div>
-    <div class="info-wrap">
-      <div class="item"><b>Invoice to:</b>
-        <p>Client Email adress and Name</p>
-      </div>
-      <div class="item"><b>Invoice data:</b>
-        <p>06.08.2022</p>
-      </div>
+  </div>
+  <div class="table-total">
+    <div class="tr">
+      <div class="td"><b>Sub Total</b></div>
+      <div class="td">2000$</div>
     </div>
-    <div class="table-info">
-      <div class="tr">
-        <div class="td"><b>Invoice ID</b></div>
-        <div class="td"><b>Payment Method</b></div>
-        <div class="td"><b>Description</b></div>
-        <div class="td"><b>Status</b></div>
-      </div>
-      <div class="tr">
-        <div class="td">DM-11111</div>
-        <div class="td">Paypal</div>
-        <div class="td">Social Media Marketing program</div>
-        <div class="td"><span class="status c-green">PAID</span></div>
-      </div>
+    <div class="tr">
+      <div class="td"><b>Total</b></div>
+      <div class="td">2000$</div>
     </div>
-    <div class="table-total">
-      <div class="tr">
-        <div class="td"><b>Sub Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-      <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td">2000$</div>
-      </div>
+  </div>
+  <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+</div>
+<div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+  <div class="header-wrap">
+    <div class="left">
+      <div class="logo-wrap"><img src="./img/logo.svg" alt="" /></div>
+      <p>
+        Social Media marketing service <br />SIA ”OFFERBOOSTED”
+        <br />dmsbulkteam@gmail.com
+      </p>
     </div>
-    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
-  </div><div class="mfp-hide popup popup--login" id="popup-login">
+    <div class="right">
+      <div class="title">INVOICE</div>
+      <p>ID (#DM-11111)</p>
+    </div>
+  </div>
+  <div class="info-wrap">
+    <div class="item">
+      <b>Invoice to:</b>
+      <p>Client Email adress and Name</p>
+    </div>
+    <div class="item">
+      <b>Invoice data:</b>
+      <p>06.08.2022</p>
+    </div>
+  </div>
+  <div class="table-info">
+    <div class="tr">
+      <div class="td"><b>Invoice ID</b></div>
+      <div class="td"><b>Payment Method</b></div>
+      <div class="td"><b>Description</b></div>
+      <div class="td"><b>Status</b></div>
+    </div>
+    <div class="tr">
+      <div class="td">DM-11111</div>
+      <div class="td">Paypal</div>
+      <div class="td">Social Media Marketing program</div>
+      <div class="td"><span class="status c-green">PAID</span></div>
+    </div>
+  </div>
+  <div class="table-total">
+    <div class="tr">
+      <div class="td"><b>Sub Total</b></div>
+      <div class="td">2000$</div>
+    </div>
+    <div class="tr">
+      <div class="td"><b>Total</b></div>
+      <div class="td">2000$</div>
+    </div>
+  </div>
+  <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+</div>
+<div class="mfp-hide popup popup--login" id="popup-login">
+  <div class="popup-form-wrap">
+    <form action="#">
+      <h3 class="center">Login</h3>
+      <div class="input-wrap mb">
+        <input class="has-ic" type="email" placeholder="Email" required="required" />
+        <div class="ic">
+          <svg viewBox="0 0 20 20" width="20px">
+            <use xlink:href="./img/sprite.svg#ic-email"></use>
+          </svg>
+        </div>
+      </div>
+      <div class="input-wrap">
+        <input class="has-ic" type="password" placeholder="Password" required="required" />
+        <div class="ic">
+          <svg viewBox="0 0 20 20" width="20px">
+            <use xlink:href="./img/sprite.svg#ic-password"></use>
+          </svg>
+        </div>
+        <button class="password-hidden js-toggle-password" type="button">
+          <svg viewBox="0 0 20 20" width="20px">
+            <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
+          </svg>
+          <svg viewBox="0 0 20 20" width="20px">
+            <use xlink:href="./img/sprite.svg#ic-eye-close"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="checkbox-wrapper">
+        <label class="block-checkbox">
+          <input type="checkbox" required="required" />
+          <div class="checkbox">
+            <svg viewBox="0 0 12 12" width="12px">
+              <use xlink:href="./img/sprite.svg#ic-check"></use>
+            </svg>
+          </div>
+          <p>Remember me</p>
+        </label>
+        <div class="link-wrap"><a href="#">Forgot password?</a></div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn btn--accent">Sign In</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
+  <div class="grid">
     <div class="popup-form-wrap">
       <form action="#">
-        <h3 class="center">Login</h3>
+        <h3 class="center">Hello, Friend!</h3>
         <div class="input-wrap mb">
-          <input class="has-ic" type="email" placeholder="Email" required="required"/>
+          <input class="has-ic" type="text" placeholder="Name" required="required" />
+          <div class="ic">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="./img/sprite.svg#ic-user"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="input-wrap mb">
+          <input class="has-ic" type="email" placeholder="Email" required="required" />
           <div class="ic">
             <svg viewBox="0 0 20 20" width="20px">
               <use xlink:href="./img/sprite.svg#ic-email"></use>
@@ -149,7 +209,7 @@
           </div>
         </div>
         <div class="input-wrap">
-          <input class="has-ic" type="password" placeholder="Password" required="required"/>
+          <input class="has-ic" type="password" placeholder="Password" required="required" />
           <div class="ic">
             <svg viewBox="0 0 20 20" width="20px">
               <use xlink:href="./img/sprite.svg#ic-password"></use>
@@ -166,78 +226,79 @@
         </div>
         <div class="checkbox-wrapper">
           <label class="block-checkbox">
-            <input type="checkbox" required="required"/>
+            <input type="checkbox" required="required" />
             <div class="checkbox">
               <svg viewBox="0 0 12 12" width="12px">
                 <use xlink:href="./img/sprite.svg#ic-check"></use>
               </svg>
             </div>
-            <p>Remember me</p>
+            <p>I’have read and agree to terms and condition</p>
           </label>
-          <div class="link-wrap"><a href="#">Forgot password?</a></div>
         </div>
         <div class="btn-wrap">
-          <button class="btn btn--accent">Sign In</button>
+          <button class="btn btn--accent">Create account</button>
         </div>
-      </form>
-    </div>
-  </div>
-  <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
-    <div class="grid">
-      <div class="popup-form-wrap">
-        <form action="#">
-          <h3 class="center">Hello, Friend!</h3>
-          <div class="input-wrap mb">
-            <input class="has-ic" type="text" placeholder="Name" required="required"/>
-            <div class="ic">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-user"></use>
-              </svg>
-            </div>
-          </div>
-          <div class="input-wrap mb">
-            <input class="has-ic" type="email" placeholder="Email" required="required"/>
-            <div class="ic">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-email"></use>
-              </svg>
-            </div>
-          </div>
-          <div class="input-wrap">
-            <input class="has-ic" type="password" placeholder="Password" required="required"/>
-            <div class="ic">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-password"></use>
-              </svg>
-            </div>
-            <button class="password-hidden js-toggle-password" type="button">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
-              </svg>
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="./img/sprite.svg#ic-eye-close"></use>
-              </svg>
-            </button>
-          </div>
-          <div class="checkbox-wrapper">
-            <label class="block-checkbox">
-              <input type="checkbox" required="required"/>
-              <div class="checkbox">
-                <svg viewBox="0 0 12 12" width="12px">
-                  <use xlink:href="./img/sprite.svg#ic-check"></use>
-                </svg>
+        <div class="mfp-hide popup popup--login" id="popup-login">
+          <div class="popup-form-wrap">
+            <form action="#">
+              <h3 class="center">Login</h3>
+              <div class="input-wrap mb">
+                <input class="has-ic" type="email" placeholder="Email" required="required" />
+                <div class="ic">
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="./img/sprite.svg#ic-email"></use>
+                  </svg>
+                </div>
               </div>
-              <p>I’have read and agree to terms and condition </p>
-            </label>
+              <div class="input-wrap">
+                <input class="has-ic" type="password" placeholder="Password" required="required" />
+                <div class="ic">
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="./img/sprite.svg#ic-password"></use>
+                  </svg>
+                </div>
+                <button class="password-hidden js-toggle-password" type="button">
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
+                  </svg>
+                  <svg viewBox="0 0 20 20" width="20px">
+                    <use xlink:href="./img/sprite.svg#ic-eye-close"></use>
+                  </svg>
+                </button>
+              </div>
+              <div class="checkbox-wrapper">
+                <label class="block-checkbox">
+                  <input type="checkbox" required="required" />
+                  <div class="checkbox">
+                    <svg viewBox="0 0 12 12" width="12px">
+                      <use xlink:href="./img/sprite.svg#ic-check"></use>
+                    </svg>
+                  </div>
+                  <p>Remember me</p>
+                </label>
+                <div class="link-wrap"><a href="#">Forgot password?</a></div>
+              </div>
+              <div class="btn-wrap">
+                <button class="btn btn--accent">Sign In</button>
+              </div>
+            </form>
           </div>
-          <div class="btn-wrap">
-            <button class="btn btn--accent">Create account</button>
-          </div><div class="mfp-hide popup popup--login" id="popup-login">
+        </div>
+        <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
+          <div class="grid">
             <div class="popup-form-wrap">
               <form action="#">
-                <h3 class="center">Login</h3>
+                <h3 class="center">Hello, Friend!</h3>
                 <div class="input-wrap mb">
-                  <input class="has-ic" type="email" placeholder="Email" required="required"/>
+                  <input class="has-ic" type="text" placeholder="Name" required="required" />
+                  <div class="ic">
+                    <svg viewBox="0 0 20 20" width="20px">
+                      <use xlink:href="./img/sprite.svg#ic-user"></use>
+                    </svg>
+                  </div>
+                </div>
+                <div class="input-wrap mb">
+                  <input class="has-ic" type="email" placeholder="Email" required="required" />
                   <div class="ic">
                     <svg viewBox="0 0 20 20" width="20px">
                       <use xlink:href="./img/sprite.svg#ic-email"></use>
@@ -245,7 +306,7 @@
                   </div>
                 </div>
                 <div class="input-wrap">
-                  <input class="has-ic" type="password" placeholder="Password" required="required"/>
+                  <input class="has-ic" type="password" placeholder="Password" required="required" />
                   <div class="ic">
                     <svg viewBox="0 0 20 20" width="20px">
                       <use xlink:href="./img/sprite.svg#ic-password"></use>
@@ -262,91 +323,42 @@
                 </div>
                 <div class="checkbox-wrapper">
                   <label class="block-checkbox">
-                    <input type="checkbox" required="required"/>
+                    <input type="checkbox" required="required" />
                     <div class="checkbox">
                       <svg viewBox="0 0 12 12" width="12px">
                         <use xlink:href="./img/sprite.svg#ic-check"></use>
                       </svg>
                     </div>
-                    <p>Remember me</p>
+                    <p>I’have read and agree to terms and condition</p>
                   </label>
-                  <div class="link-wrap"><a href="#">Forgot password?</a></div>
                 </div>
                 <div class="btn-wrap">
-                  <button class="btn btn--accent">Sign In</button>
+                  <button class="btn btn--accent">Create account</button>
+                </div>
+                <div class="have-account">
+                  <span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a>
                 </div>
               </form>
             </div>
-          </div>
-          <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
-            <div class="grid">
-              <div class="popup-form-wrap">
-                <form action="#">
-                  <h3 class="center">Hello, Friend!</h3>
-                  <div class="input-wrap mb">
-                    <input class="has-ic" type="text" placeholder="Name" required="required"/>
-                    <div class="ic">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-user"></use>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="input-wrap mb">
-                    <input class="has-ic" type="email" placeholder="Email" required="required"/>
-                    <div class="ic">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-email"></use>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="input-wrap">
-                    <input class="has-ic" type="password" placeholder="Password" required="required"/>
-                    <div class="ic">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-password"></use>
-                      </svg>
-                    </div>
-                    <button class="password-hidden js-toggle-password" type="button">
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-eye-open"></use>
-                      </svg>
-                      <svg viewBox="0 0 20 20" width="20px">
-                        <use xlink:href="./img/sprite.svg#ic-eye-close"></use>
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="checkbox-wrapper">
-                    <label class="block-checkbox">
-                      <input type="checkbox" required="required"/>
-                      <div class="checkbox">
-                        <svg viewBox="0 0 12 12" width="12px">
-                          <use xlink:href="./img/sprite.svg#ic-check"></use>
-                        </svg>
-                      </div>
-                      <p>I’have read and agree to terms and condition </p>
-                    </label>
-                  </div>
-                  <div class="btn-wrap">
-                    <button class="btn btn--accent">Create account</button>
-                  </div>
-                  <div class="have-account"><span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a></div>
-                </form>
-              </div>
-              <div class="glad-wrap">
-                <div class="title">Glad to see You!</div>
-                <p>You are in right place for social media <br>BULK DMS service</p>
-                <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
-              </div>
+            <div class="glad-wrap">
+              <div class="title">Glad to see You!</div>
+              <p>
+                You are in right place for social media <br />BULK DMS service
+              </p>
+              <div class="logo-wrap"><img src="./img/logo.svg" alt="" /></div>
             </div>
           </div>
-          <div class="have-account"><span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a></div>
-        </form>
-      </div>
-      <div class="glad-wrap">
-        <div class="title">Glad to see You!</div>
-        <p>You are in right place for social media <br>BULK DMS service</p>
-        <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
-      </div>
+        </div>
+        <div class="have-account">
+          <span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a>
+        </div>
+      </form>
+    </div>
+    <div class="glad-wrap">
+      <div class="title">Glad to see You!</div>
+      <p>You are in right place for social media <br />BULK DMS service</p>
+      <div class="logo-wrap"><img src="./img/logo.svg" alt="" /></div>
     </div>
   </div>
+</div>
 {% endblock content %}

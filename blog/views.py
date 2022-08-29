@@ -15,4 +15,3 @@ class ArticlePageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailVie
     template_name = 'blog/article-page.html'
     pk_url_kwarg = 'article_pk'
     context_object_name = 'article'
-    

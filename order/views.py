@@ -8,9 +8,7 @@ class OrderDMSPageView(PopupCookiesContextMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
         context['page'] = 'order'
-
         return context
 
 
@@ -19,9 +17,7 @@ class OrderActivePageView(PopupCookiesContextMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['page'] = 'order_active'
-
         return context
 
 
@@ -30,7 +26,5 @@ class OrderHistoryPageView(PopupCookiesContextMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['page'] = 'order_history'
-
         return context
