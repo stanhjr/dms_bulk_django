@@ -18,7 +18,7 @@
             <section class="blog-list">
               <h1 class="inner center">Blog</h1>
               <div class="items">
-                {% for item in article_previews %}
+                {% for item in object_list %}
                   <div class="item">
                     <div class="img-wrap"><a href="{% url 'blog' %}article/{{ item.pk }}"><img style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
                     <div class="text-wrap">
