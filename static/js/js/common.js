@@ -1,4 +1,18 @@
-;document.addEventListener('DOMContentLoaded', () => {
+// let xhr = new XMLHttpRequest();
+// xhr.open("GET", '/order/board/')
+// xhr.setRequestHeader("Accept", "application/json");
+// xhr.setRequestHeader("Content-Type", "application/json")
+// xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
+// xhr.send()
+// console.log(123)
+// xhr.onload =() => {
+// 	let data = JSON.parse(xhr.responseText)
+// 	console.log(data)
+// }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
 
 
 	// charts

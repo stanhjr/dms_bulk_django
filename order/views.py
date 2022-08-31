@@ -9,7 +9,7 @@ from utils import PopupCookiesContextMixin
 
 class BoardAPIView(APIView):
     def get(self, request):
-        board = models.Board.objects.get(pk=1)
+        board = models.Board.objects.last()
         return Response(serializers.BoardSerializer(board).data)
 
 
