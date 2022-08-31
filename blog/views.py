@@ -14,8 +14,7 @@ class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
         page_pk = self.kwargs.get('page_pk')
 
         context = super().get_context_data(**kwargs)
-        articles = ArticleModel.objects.all().order_by(
-            '-created_at')[(page_pk - 1) * 6:]
+        articles = ArticleModel.objects.all()[(page_pk - 1) * 6:]
 
         if page_pk * 6 < len(articles):
             articles = articles[:page_pk * 6]
