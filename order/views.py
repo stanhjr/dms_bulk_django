@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -13,7 +14,7 @@ class BoardAPIView(APIView):
         return Response(serializers.BoardSerializer(board).data)
 
 
-class OrderDMSPageView(PopupCookiesContextMixin, TemplateView):
+class OrderDMSPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-dms.html'
 
     def get_context_data(self, **kwargs):
@@ -22,7 +23,11 @@ class OrderDMSPageView(PopupCookiesContextMixin, TemplateView):
         return context
 
 
-class OrderActivePageView(PopupCookiesContextMixin, TemplateView):
+class OrderDMSStepTwoPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
+    template_name = "order/order-dms-step-2.html"
+
+
+class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-active.html'
 
     def get_context_data(self, **kwargs):
@@ -31,7 +36,7 @@ class OrderActivePageView(PopupCookiesContextMixin, TemplateView):
         return context
 
 
-class OrderHistoryPageView(PopupCookiesContextMixin, TemplateView):
+class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-history.html'
 
     def get_context_data(self, **kwargs):
