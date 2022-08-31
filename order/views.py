@@ -1,16 +1,20 @@
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from . import models
 from . import serializers
+from . import forms
 from utils import PopupCookiesContextMixin
 
 
 class BoardAPIView(APIView):
     def get(self, request):
-        board = models.Board.objects.get(pk=1)
+        board = models.BoardModel.objects.get(pk=1)
         return Response(serializers.BoardSerializer(board).data)
 
 
@@ -23,8 +27,11 @@ class OrderDMSPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateVie
         return context
 
 
-class OrderDMSStepTwoPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
-    template_name = "order/order-dms-step-2.html"
+class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
+    template_name = 'order/order-dms-step-2.html'
+    success_url = reverse_lazy('home')
+    model = get_user_model()
+    form_class = forms.CreateOrderForm
 
 
 class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):

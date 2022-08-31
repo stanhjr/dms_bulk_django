@@ -3,4 +3,5 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.register(models.Board)
+admin.site.register(models.BoardModel)
+admin.site.register(models.OrderModel)

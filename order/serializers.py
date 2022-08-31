@@ -5,5 +5,5 @@ from . import models
 
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Board
+        model = models.BoardModel
         fields = '__all__'
