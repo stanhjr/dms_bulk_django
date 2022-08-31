@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
 
 from .models import ArticleModel
 from utils import PopupCookiesContextMixin, PopupAuthContextMixin
