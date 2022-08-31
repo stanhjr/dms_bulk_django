@@ -1,6 +1,16 @@
 from django.views.generic.base import TemplateView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
+from . import models
+from . import serializers
 from utils import PopupCookiesContextMixin
+
+
+class BoardAPIView(APIView):
+    def get(self, request):
+        board = models.Board.objects.get(pk=1)
+        return Response(serializers.BoardSerializer(board).data)
 
 
 class OrderDMSPageView(PopupCookiesContextMixin, TemplateView):
