@@ -24,8 +24,6 @@ class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
 
         context['articles_previews'] = articles
         context['current_page_pk'] = page_pk
-        context['current_page_is_divided_into_3'] = True if not page_pk % 3 else False
-        context['current_page_pk_is_even'] = True if not page_pk % 2 else False
         return context
 
 
