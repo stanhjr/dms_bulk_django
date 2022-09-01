@@ -29,25 +29,36 @@ class BoardModel(models.Model):
         models.CharField(max_length=20), null=True)
 
 
-SOCIAL_NETWORK_CHOICES = (
-    ('1', 'instagram'),
-    ('2', 'twitter'),
-    ('3', 'discord'),
-    ('4', 'telegram')
-)
-
-
-class OrderModel(models.Model):
+class OrderCalcModel(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    SOCIAL_NETWORK_CHOICES = (
+        ('Instagram', 'Instagram'),
+        ('Twitter', 'Twitter'),
+        ('Discord', 'Discord'),
+        ('Telegram', 'Telegram')
+    )
 
     social_network = models.CharField(
         max_length=9, choices=SOCIAL_NETWORK_CHOICES)
+    amount = models.CharField(max_length=10)
+    discount = models.CharField(max_length=10)
+    total = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.social_network} by {self.user.username} {self.total}'
+
+
+class OrderModel(models.Model):
+    order_calc = models.ForeignKey(OrderCalcModel, on_delete=models.CASCADE)
 
     targets_or_competitors_submited = models.TextField(
-        blank=True, max_length=100_000)
-    use_our_default_filtering = models.BooleanField(blank=True)
-    not_use_any_filtering = models.BooleanField(blank=True)
-    message = models.TextField(blank=True, max_length=1000)
-    attach_in_message = models.TextField(blank=True, max_length=600)
-    additional_information = models.TextField(blank=True, max_length=600)
-    contact_details = models.CharField(blank=True, max_length=1000)
+        max_length=100_000)
+    use_our_default_filtering = models.BooleanField()
+    not_use_any_filtering = models.BooleanField()
+    message = models.TextField(max_length=1000)
+    attach_in_message = models.TextField(max_length=600)
+    additional_information = models.TextField(max_length=600)
+    contact_details = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return f'{self.order_calc}'
