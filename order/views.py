@@ -1,8 +1,9 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.db import transaction
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -36,7 +37,8 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, Crea
 
 class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms-step-2.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dashboard')
+    unsuccess_url = reverse_lazy('order_step_two')
     model = models.OrderModel
     form_class = forms.CreateOrderForm
 
@@ -50,7 +52,12 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
         context['total_price'] = last_order_calc.total
         return context
 
+    def form_invalid(self):
+        return redirect(self.unsuccess_url)
+
     def form_valid(self, form):
+        obj = form.save(commit=False)
+
         order_calc = models.OrderCalcModel.objects.last()
         board = models.BoardModel.objects.last()
 
@@ -62,42 +69,44 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
             total_price_index = board.instagram_board_total.index(
                 order_total_price)
             if board.instagram_board_discount[total_price_index] != order_discount:
-                return
+                return self.form_invalid()
             if board.instagram_board_amount[total_price_index] != order_amount:
-                return
+                return self.form_invalid()
 
         if order_calc.social_network == 'Twitter':
             total_price_index = board.twitter_board_total.index(
                 order_total_price)
             if board.twitter_board_discount[total_price_index] != order_discount:
-                return
+                return self.form_invalid()
             if board.twitter_board_amount[total_price_index] != order_amount:
-                return
+                return self.form_invalid()
 
         if order_calc.social_network == 'Discord':
             total_price_index = board.discord_board_total.index(
                 order_total_price)
             if board.discord_board_discount[total_price_index] != order_discount:
-                return
+                return self.form_invalid()
             if board.discord_board_amount[total_price_index] != order_amount:
-                return
+                return self.form_invalid()
 
         if order_calc.social_network == 'Telegram':
             total_price_index = board.telegram_board_total.index(
                 order_total_price)
             if board.telegram_board_discount[total_price_index] != order_discount:
-
-                return
+                return self.form_invalid()
             if board.telegram_board_amount[total_price_index] != order_amount:
-                return
+                return self.form_invalid()
 
         if float(order_total_price[:-1]) > self.request.user.cents / 100:
-            return
+            return self.form_invalid()
 
         self.request.user.cents -= float(order_total_price[:-1]) * 100
-        self.request.user.save()
-        form.instance.order_calc = order_calc
-        return super().form_valid(form)
+        obj.order_calc = order_calc
+
+        with transaction.atomic():
+            self.request.user.save()
+            obj.save()
+        return redirect(self.success_url)
 
 
 class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
