@@ -28,13 +28,13 @@
                 <div class="text-logo-wrap">
                   <div class="text-wrap">
                     <div class="item"><b>You choosed: </b>
-                      <p>Instagram 500k DMs</p>
+                      <p>{{ social_network }} {{ amount }} DMs</p>
                     </div>
                     <div class="item"><b>Total price: </b>
-                      <p class="tbl"><span>2000$</span><span class="ic">200<img src="./img/ic-coin-dm.png" alt=""></span></p>
+                      <p class="tbl"><span>{{ total_price }}</span><span class="ic">200<img src="{% static 'img/ic-coin-dm.png' %}" alt=""></span></p>
                     </div>
                   </div>
-                  <div class="logo-wrap"><img src="./img/logo.svg" alt=""></div>
+                  <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""></div>
                 </div>
               </div>
               <div class="info-wrapper block-white">

@@ -212,7 +212,30 @@
                   <div class="btn-wrap"><a class="btn w100" href="./add-funds.html"><span>Add Funds: <span class="js-price-amount">&nbsp;</span></span></a></div>
                 </div>
               </div>
-              <div class="continue-wrap"><a class="btn btn--continue w100" href="{% url 'order_step_two' %}">Continue</a></div>
+              <form id="order_calc_form" method="post">
+                {% csrf_token %}
+                {{ form.social_network.as_hidden }}
+                {{ form.amount.as_hidden }}
+                {{ form.discount.as_hidden }}
+                {{ form.total.as_hidden }}
+              </form>
+              <div class="continue-wrap"><button onclick="submitOrderCalcForm()" class="btn btn--continue w100">Continue</button></div>
+              <script>
+                const submitOrderCalcForm = () => {
+                  const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
+
+                  const amount = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(1) > div`).innerText
+                  const discount = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(2) > div`).innerText
+                  const total = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText
+                  
+                  document.getElementById('id_social_network').value = social_network
+                  document.getElementById('id_amount').value = amount
+                  document.getElementById('id_discount').value = discount
+                  document.getElementById('id_total').value = total
+
+                  document.getElementById('order_calc_form').submit()
+                }
+              </script>
             </section>
           </div>
         </div>
