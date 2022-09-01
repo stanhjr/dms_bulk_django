@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -50,7 +51,52 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
         return context
 
     def form_valid(self, form):
-        form.instance.order_calc = models.OrderCalcModel.objects.last()
+        order_calc = models.OrderCalcModel.objects.last()
+        board = models.BoardModel.objects.last()
+
+        order_discount = order_calc.discount
+        order_amount = order_calc.amount
+        order_total_price = order_calc.total
+
+        if order_calc.social_network == 'Instagram':
+            total_price_index = board.instagram_board_total.index(
+                order_total_price)
+            if board.instagram_board_discount[total_price_index] != order_discount:
+                return
+            if board.instagram_board_amount[total_price_index] != order_amount:
+                return
+
+        if order_calc.social_network == 'Twitter':
+            total_price_index = board.twitter_board_total.index(
+                order_total_price)
+            if board.twitter_board_discount[total_price_index] != order_discount:
+                return
+            if board.twitter_board_amount[total_price_index] != order_amount:
+                return
+
+        if order_calc.social_network == 'Discord':
+            total_price_index = board.discord_board_total.index(
+                order_total_price)
+            if board.discord_board_discount[total_price_index] != order_discount:
+                return
+            if board.discord_board_amount[total_price_index] != order_amount:
+                return
+
+        if order_calc.social_network == 'Telegram':
+            total_price_index = board.telegram_board_total.index(
+                order_total_price)
+            if board.telegram_board_discount[total_price_index] != order_discount:
+
+                return
+            if board.telegram_board_amount[total_price_index] != order_amount:
+                return
+
+        if float(order_total_price[:-1]) > self.request.user.cents / 100:
+            return
+
+        self.request.user.cents -= float(order_total_price[:-1]) * 100
+        self.request.user.save()
+        form.instance.order_calc = order_calc
         return super().form_valid(form)
 
 
