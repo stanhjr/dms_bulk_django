@@ -3,10 +3,22 @@ from django import forms
 from . import models
 
 
+class CreateOrderCalcForm(forms.ModelForm):
+    class Meta:
+        model = models.OrderCalcModel
+        fields = ('social_network', 'amount', 'discount', 'total')
+
+
 class CreateOrderForm(forms.ModelForm):
     class Meta:
         model = models.OrderModel
-        fields = '__all__'
+        fields = ('targets_or_competitors_submited',
+                  'use_our_default_filtering',
+                  'not_use_any_filtering',
+                  'message',
+                  'attach_in_message',
+                  'additional_information',
+                  'contact_details')
         widgets = {
             'targets_or_competitors_submited': forms.Textarea(
                 attrs={
