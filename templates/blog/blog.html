@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load mathfilters %}
 
 {% block head_tags %}
 <title>Blog</title>
@@ -19,94 +20,96 @@
             <h1 class="inner center">Blog</h1>
             <div class="items">
               {% for item in articles_previews %}
-                <div class="item">
-                  <div class="img-wrap"><a href="{% url 'article' article_pk=item.pk %}"><img
-                        style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
-                  <div class="text-wrap">
-                    <div class="date">{{ item.created_at | date:'F j, Y' }}</div>
-                    <h3><a href="#">{{ item.title }}</a></h3>
-                    <p>{{ item.preview_text }}</p>
-                    <div class="link-wrap"><a href="{% url 'article' article_pk=item.pk%}">READ MORE
-                        <svg viewBox="0 0 14 14" width="14px">
-                          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                        </svg></a></div>
-                  </div>
+              <div class="item">
+                <div class="img-wrap"><a href="{% url 'article' article_pk=item.pk %}"><img
+                      style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
+                <div class="text-wrap">
+                  <div class="date">{{ item.created_at | date:'F j, Y' }}</div>
+                  <h3><a href="#">{{ item.title }}</a></h3>
+                  <p>{{ item.preview_text }}</p>
+                  <div class="link-wrap"><a href="{% url 'article' article_pk=item.pk%}">READ MORE
+                      <svg viewBox="0 0 14 14" width="14px">
+                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                      </svg></a></div>
                 </div>
+              </div>
               {% endfor %}
             </div>
             <div class="pagination-wrap">
               <ul>
-                {% if current_page_is_divided_into_3 %}
-                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:-1 %}">
-                      <svg viewBox="0 0 16 16" width="16px">
-                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
-                      </svg></a></li>
-                  <li><span class="current">{{ current_page_pk }}</span></li>
-                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">{{ current_page_pk|add:1}}</a></li>
-                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">{{ current_page_pk|add:2}}</a></li>
-                  <li><span>...</span></li>
-                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">{{ current_page_pk|add:9 }}</a></li>
-                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
-                      <svg viewBox="0 0 16 16" width="16px">
-                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                      </svg></a></li>
-                {% else %}
-                  <li><a href="{% url 'blog' page_pk=current_page_pk|add:-1 %}">
+                {% if not current_page_pk|mod:3 %}
+                <li><a href="{% url 'blog' page_pk=current_page_pk|sub:1 %}">
                     <svg viewBox="0 0 16 16" width="16px">
                       <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
                     </svg></a></li>
-                  <li>
-                    {% if current_page_pk_is_even %}
-                      <a href="{% url 'blog' page_pk=current_page_pk|add:-1 %}">
-                        {{ current_page_pk|add:-1 }}
-                      </a>
-                    {% else %}
-                      <span class="current">
-                        {{ current_page_pk }}
-                      </span>
-                    {% endif %}
-                  </li>
-                  <li>
-                    {% if current_page_pk_is_even %}
-                      <span class="current"> 
-                        {{ current_page_pk }}
-                      </span>
-                    {% else %}
-                      <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}"> 
-                        {{ current_page_pk|add:1 }}
-                      </a>
-                    {% endif %}
-                  </li>
-                  <li>
-                    {% if current_page_pk_is_even %}
-                      <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
-                        {{ current_page_pk|add:1 }}
-                      </a>
-                    {% else %}
-                      <a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">
-                        {{ current_page_pk|add:2 }}
-                      </a>
-                    {% endif %}
-                  </li>
-                  <li><span>...</span></li>
-                  <li>
-                    {% if current_page_pk_is_even %}
-                      <a href="{% url 'blog' page_pk=current_page_pk|add:8 %}">
-                        {{ current_page_pk|add:8 }}
-                      </a>
-                    {% else %}
-                      <a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">
-                        {{ current_page_pk|add:9 }}
-                      </a>
-                    {% endif %}
-                  </li>
-                  <li>
-                    <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
-                      <svg viewBox="0 0 16 16" width="16px">
-                        <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                      </svg>
-                    </a>
-                  </li>
+                <li><span class="current">{{ current_page_pk }}</span></li>
+                <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">{{ current_page_pk|add:1}}</a></li>
+                <li><a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">{{ current_page_pk|add:2}}</a></li>
+                <li><span>...</span></li>
+                <li><a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">{{ current_page_pk|add:9 }}</a></li>
+                <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                    <svg viewBox="0 0 16 16" width="16px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                    </svg></a></li>
+                {% else %}
+                <li><a href="{% url 'blog' page_pk=current_page_pk|sub:1 %}">
+                    <svg viewBox="0 0 16 16" width="16px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
+                    </svg></a></li>
+                <li>
+                  {% if not current_page_pk|mod:2 %}
+                  <a href="{% url 'blog' page_pk=current_page_pk|sub:1 %}">
+                    {{ current_page_pk|sub:1 }}
+                  </a>
+                  {% else %}
+                  <span class="current">
+                    {{ current_page_pk }}
+                  </span>
+                  {% endif %}
+                </li>
+                <li>
+                  {% if not current_page_pk|mod:2 %}
+                  <span class="current">
+                    {{ current_page_pk }}
+                  </span>
+                  {% else %}
+                  <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                    {{ current_page_pk|add:1 }}
+                  </a>
+                  {% endif %}
+                </li>
+                <li>
+                  {% if not current_page_pk|mod:2 %}
+                  <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                    {{ current_page_pk|add:1 }}
+                  </a>
+                  {% else %}
+                  <a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">
+                    {{ current_page_pk|add:2 }}
+                  </a>
+                  {% endif %}
+                </li>
+                <li>
+                  <span>...</span>
+                </li>
+                <li>
+                  {% if not current_page_pk|mod:2 %}
+                  <a href="{% url 'blog' page_pk=current_page_pk|add:8 %}">
+                    {{ current_page_pk|add:8 }}
+                  </a>
+                  {% else %}
+                  <a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">
+                    {{ current_page_pk|add:9 }}
+                  </a>
+                  {% endif %}
+                </li>
+                <li>
+                  <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                    <svg viewBox="0 0 16 16" width="16px">
+                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                    </svg>
+                  </a>
+                </li>
                 {% endif %}
               </ul>
             </div>
