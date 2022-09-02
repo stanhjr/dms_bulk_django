@@ -30,154 +30,60 @@
                   <div class="td"><b>Date</b></div>
                   <div class="td"><b>Proof</b></div>
                 </div>
-                <div class="tr">
-                  <div class="td">1. Instagram</div>
-                  <div class="td">
-                    <div class="line-wrapper">
-                      <div class="block-line">
-                        <div class="line instagram" style="width: 100%"></div>
+                {% for order in orders %}
+                  <div class="tr">
+                    <div class="td">{{ forloop.counter }}. {{ order.order_calc.social_network }}</div>
+                    <div class="td">
+                      <div class="line-wrapper">
+                        <div class="block-line">
+                          {% if order.filtering %}
+                            <div id="{{ order.order_calc.social_network }}{{ forloop.counter }}" class="line instagram"></div>
+                          {% else %}
+                            <div class="line instagram" style="width: 0%"></div>
+                          {% endif %}
+                        </div>
+                        {% if order.sending and order.sending_count %}
+                          <p>{{ order.sending_count }}/{{ order.order_calc.amount }} sended</p>
+                        {% elif not order.scraping %}
+                          <p>Scraping process</p>
+                        {% elif not order.filtering %}
+                          <p>Filtering process</p>
+                        {% elif not order.sending %}
+                          <p>Sending process</p>
+                        {% endif %}
                       </div>
-                      <p>5m/5m sended</p>
                     </div>
-                  </div>
-                  <div class="td">
-                    <ul class="block-check-list">
-                      <li class="done">
-                        <div class="ic">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Scraping</span>
-                      </li>
-                      <li class="done">
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Filtering</span>
-                      </li>
-                      <li class="done">
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Sending</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
-                </div>
-                <div class="tr">
-                  <div class="td">2. Telegram</div>
-                  <div class="td">
-                    <div class="line-wrapper">
-                      <div class="block-line">
-                        <div class="line telegram" style="width: 0%"></div>
-                      </div>
-                      <p>Scraping process</p>
+                    <div class="td">
+                      <ul class="block-check-list">
+                        <li {% if order.scraping %} class="done" {% endif %}>
+                          <div class="ic">
+                            <svg viewBox="0 0 13 13" width="13px">
+                              <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                            </svg>
+                          </div><span>Scraping</span>
+                        </li>
+                        <li {% if order.filtering %} class="done" {% endif %}>
+                          <div class="ic active">
+                            <svg viewBox="0 0 13 13" width="13px">
+                              <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                            </svg>
+                          </div><span>Filtering</span>
+                        </li>
+                        <li {% if order.sending %} class="done" {% endif %}>
+                          <div class="ic active">
+                            <svg viewBox="0 0 13 13" width="13px">
+                              <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
+                            </svg>
+                          </div><span>Sending</span>
+                        </li>
+                      </ul>
                     </div>
+                    <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
                   </div>
-                  <div class="td">
-                    <ul class="block-check-list">
-                      <li>
-                        <div class="ic">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Scraping</span>
-                      </li>
-                      <li>
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Filtering</span>
-                      </li>
-                      <li>
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Sending</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
-                </div>
-                <div class="tr">
-                  <div class="td">3. Twitter</div>
-                  <div class="td">
-                    <div class="line-wrapper">
-                      <div class="block-line">
-                        <div class="line twitter" style="width: 0%"></div>
-                      </div>
-                      <p>Filtering process</p>
-                    </div>
-                  </div>
-                  <div class="td">
-                    <ul class="block-check-list">
-                      <li class="done">
-                        <div class="ic">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Scraping</span>
-                      </li>
-                      <li>
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Filtering</span>
-                      </li>
-                      <li>
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Sending</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
-                </div>
-                <div class="tr">
-                  <div class="td">4. Discord</div>
-                  <div class="td">
-                    <div class="line-wrapper">
-                      <div class="block-line">
-                        <div class="line discord" style="width: 20%"></div>
-                      </div>
-                      <p>300k/1m sended</p>
-                    </div>
-                  </div>
-                  <div class="td">
-                    <ul class="block-check-list">
-                      <li class="done">
-                        <div class="ic">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Scraping</span>
-                      </li>
-                      <li class="done">
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Filtering</span>
-                      </li>
-                      <li>
-                        <div class="ic active">
-                          <svg viewBox="0 0 13 13" width="13px">
-                            <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                          </svg>
-                        </div><span>Sending</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
-                </div>
+                  <script>
+                    document.getElementById('{{  }}')
+                  </script>
+                {% endfor %}
               </div>
             </section>
           </div>
