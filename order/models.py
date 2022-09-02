@@ -51,6 +51,7 @@ class OrderCalcModel(models.Model):
 class OrderModel(models.Model):
     order_calc = models.ForeignKey(OrderCalcModel, on_delete=models.CASCADE)
 
+    created_at = models.DateTimeField(auto_now_add=True)
     targets_or_competitors_submited = models.TextField(
         max_length=100_000)
     use_our_default_filtering = models.BooleanField()
@@ -59,6 +60,14 @@ class OrderModel(models.Model):
     attach_in_message = models.TextField(max_length=600)
     additional_information = models.TextField(max_length=600)
     contact_details = models.CharField(max_length=1000)
+
+    scraping = models.BooleanField(default=False)
+    filtering = models.BooleanField(default=False)
+    sending = models.BooleanField(default=False)
+    sending_count = models.BigIntegerField(default=0)
+
+    class Meta:
+        ordering = ('-created_at', )
 
     def __str__(self):
         return f'{self.order_calc}'
