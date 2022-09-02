@@ -45,7 +45,7 @@
                   <div class="title">DM’s Tokens</div>
                   <div class="balance">
                     <div class="img-wrap"><img src="{% static '/img/dms-coin.png' %}" alt=""></div>
-                    <p>250</p>
+                    <p>{{ request.user.dms_tokens }}</p>
                   </div>
                 </div>
               </div>
