@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -109,8 +110,13 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
         return redirect(self.success_url)
 
 
-class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
+class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-active.html'
+    model = models.OrderModel
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return self.model.objects.filter(order_calc__user=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
