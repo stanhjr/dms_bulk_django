@@ -66,8 +66,10 @@ class OrderModel(models.Model):
     sending = models.BooleanField(default=False)
     sending_count = models.BigIntegerField(default=0)
 
+    complete = models.BooleanField(default=False)
+
     class Meta:
         ordering = ('-created_at', )
 
     def __str__(self):
-        return f'{self.order_calc}'
+        return f'{self.order_calc} completed={self.complete}'
