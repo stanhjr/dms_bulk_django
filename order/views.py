@@ -1,4 +1,5 @@
-from django.views.generic.base import TemplateView
+from datetime import datetime, timezone
+
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -116,7 +117,7 @@ class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView
     context_object_name = 'orders'
 
     def get_queryset(self):
-        return self.model.objects.filter(order_calc__user=self.request.user).filter(complete=False)
+        return self.model.objects.filter(order_calc__user=self.request.user).filter(completed=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -130,7 +131,7 @@ class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListVie
     context_object_name = 'completed_orders'
 
     def get_queryset(self):
-        return self.model.objects.filter(order_calc__user=self.request.user).filter(complete=True)
+        return self.model.objects.filter(order_calc__user=self.request.user).filter(completed=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
