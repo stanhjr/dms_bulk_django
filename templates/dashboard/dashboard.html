@@ -52,21 +52,13 @@
               <div class="table-wrapper block-white">
                 <h2 class="fz25 center">Recent Orders</h2>
                 <div class="table-wrap">
-                  <div class="tr">
-                    <div class="td">Instagram</div>
-                    <div class="td">100k DMS</div>
-                    <div class="td">14.07.22</div>
-                  </div>
-                  <div class="tr">
-                    <div class="td">Discord</div>
-                    <div class="td">250k DMS</div>
-                    <div class="td">11.07.22</div>
-                  </div>
-                  <div class="tr">
-                    <div class="td">Telegram</div>
-                    <div class="td">50k DMS</div>
-                    <div class="td">02.07.22</div>
-                  </div>
+                  {% for order in recent_orders %}
+                    <div class="tr">
+                      <div class="td">{{ order.order_calc.social_network }}</div>
+                      <div class="td">{{ order.order_calc.amount }} DMS</div>
+                      <div class="td">{{ order.created_at|date:'d.m.y' }}</div>
+                    </div>
+                  {% endfor %}
                 </div>
               </div>
             </section>
