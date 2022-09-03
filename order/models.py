@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -51,6 +52,10 @@ class OrderCalcModel(models.Model):
 class OrderModel(models.Model):
     order_calc = models.ForeignKey(OrderCalcModel, on_delete=models.CASCADE)
 
+    sending_end_at = models.DateTimeField(blank=True, null=True)
+    sending_start_at = models.DateTimeField(blank=True, null=True)
+    send_messages_speed = models.IntegerField(blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     targets_or_competitors_submited = models.TextField(
         max_length=100_000)
@@ -64,12 +69,33 @@ class OrderModel(models.Model):
     scraping = models.BooleanField(default=False)
     filtering = models.BooleanField(default=False)
     sending = models.BooleanField(default=False)
-    sending_count = models.BigIntegerField(default=0)
 
-    complete = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.filtering:
+            self.send_messages_speed = self.__get_send_messages_speed_per_minutes()
+            self.sending_start_at = datetime.now(timezone.utc)
+        return super().save(*args, **kwargs)
+
+    @property
+    def time_from_sending_start_at(self):
+        return int((datetime.now(timezone.utc) - self.sending_start_at).total_seconds())
+
+    def __get_send_messages_speed_per_minutes(self):
+        amount = int(self.order_calc.amount[:-1])
+        seconds_ago = int((self.sending_end_at -
+                           datetime.now(timezone.utc)).total_seconds())
+
+        if self.order_calc.amount[-1] == 'k':
+            amount *= 1_000
+        else:
+            amount *= 1_000_000
+
+        return amount / seconds_ago
 
     class Meta:
         ordering = ('-created_at', )
 
     def __str__(self):
-        return f'{self.order_calc} completed={self.complete}'
+        return f'{self.order_calc} completed={self.completed}'
