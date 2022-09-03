@@ -24,6 +24,7 @@ class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
 
         context['articles_previews'] = articles
         context['current_page_pk'] = page_pk
+        context['page'] = 'blog'
         return context
 
 
@@ -32,3 +33,8 @@ class ArticlePageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailVie
     template_name = 'blog/article-page.html'
     pk_url_kwarg = 'article_pk'
     context_object_name = 'article'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'blog'
+        return context
