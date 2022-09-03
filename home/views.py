@@ -9,6 +9,11 @@ from utils import PopupCookiesContextMixin, PopupAuthContextMixin
 class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'home'
+        return context
+
     def post(self, request):
         action = self.request.POST.get('action')
 
@@ -61,3 +66,8 @@ class CookiesPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Tem
 
 class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/faq.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'faq'
+        return context
