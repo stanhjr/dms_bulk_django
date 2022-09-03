@@ -36,11 +36,7 @@
                     <div class="td">
                       <div class="line-wrapper">
                         <div class="block-line">
-                          {% if order.filtering %}
-                            <div id="{{ order.order_calc.social_network }}{{ forloop.counter }}" class="line {{ order.order_calc.social_network|lower }}"></div>
-                          {% else %}
-                            <div id="{{ order.order_calc.social_network }}{{ forloop.counter }}" class="line" style="width: 0%"></div>
-                          {% endif %}
+                          <div id="{{ order.order_calc.social_network }}{{ forloop.counter }}" class="line {{ order.order_calc.social_network|lower }}"></div>
                         </div>
                         {% if not order.scraping %}
                           <p>Scraping process</p>
