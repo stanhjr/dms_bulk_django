@@ -124,8 +124,13 @@ class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView
         return context
 
 
-class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
+class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-history.html'
+    model = models.OrderModel
+    context_object_name = 'completed_orders'
+
+    def get_queryset(self):
+        return self.model.objects.filter(order_calc__user=self.request.user).filter(complete=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
