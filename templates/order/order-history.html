@@ -31,18 +31,14 @@
                   <div class="td"><b>Date</b></div>
                   <div class="td"><b>Proof</b></div>
                 </div>
-                <div class="tr">
-                  <div class="td">1. Instagram</div>
-                  <div class="td">100k messages</div>
-                  <div class="td">22.12.23</div>
-                  <div class="td"><a href="#">Download</a></div>
-                </div>
-                <div class="tr">
-                  <div class="td">2. Twitter</div>
-                  <div class="td">100k messages</div>
-                  <div class="td">22.12.23</div>
-                  <div class="td"><a href="#">Download</a></div>
-                </div>
+                {% for completed_order in completed_orders %}
+                  <div class="tr">
+                    <div class="td">{{ forloop.counter }}. {{ completed_order.order_calc.social_network }}</div>
+                    <div class="td">{{ completed_order.order_calc.amount }} messages</div>
+                    <div class="td">{{ completed_order.created_at|date:'Y.m.d' }}</div>
+                    <div class="td"><a href="#">Download</a></div>
+                  </div>
+                {% endfor %} 
               </div>
             </section>
           </div>
