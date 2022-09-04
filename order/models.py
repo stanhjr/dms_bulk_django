@@ -32,7 +32,7 @@ class BoardModel(models.Model):
 
 
 class OrderCalcModel(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='order_calc_model')
     SOCIAL_NETWORK_CHOICES = (
         ('Instagram', 'Instagram'),
         ('Twitter', 'Twitter'),
@@ -51,7 +51,7 @@ class OrderCalcModel(models.Model):
 
 
 class OrderModel(models.Model):
-    order_calc = models.ForeignKey(OrderCalcModel, on_delete=models.CASCADE)
+    order_calc = models.ForeignKey(OrderCalcModel, on_delete=models.CASCADE, related_name='order_model')
 
     sending_end_at = models.DateTimeField(blank=True, null=True)
     sending_start_at = models.DateTimeField(blank=True, null=True)

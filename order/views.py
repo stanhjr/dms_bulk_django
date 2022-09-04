@@ -26,8 +26,8 @@ class StatisticsApiView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, slug):
-        # TODO get statistics fot user social media
-        print(request.user)
+        # TODO get statistics for user social media
+        print(request.user.is_active_order)
         print(slug)
         data_example = {'data': ['759', '250', '320', '480', '370', '450', '335'],
                         "categories": ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"]
