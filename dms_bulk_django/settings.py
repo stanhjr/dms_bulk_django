@@ -42,11 +42,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'mathfilters',
     'home',
-'order',
     'account',
     'account_auth',
     'dashboard',
-
+    'order',
     'blog',
 ]
 

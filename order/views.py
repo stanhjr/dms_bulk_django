@@ -27,6 +27,7 @@ class StatisticsApiView(APIView):
 
     def get(self, request, slug):
         # TODO get statistics for user social media
+        # TODO slugs variants  twitter, instagram, discord, telegram
         print(request.user.is_active_order)
         print(slug)
         data_example = {'data': ['759', '250', '320', '480', '370', '450', '335'],
