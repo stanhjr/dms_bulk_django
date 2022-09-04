@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 
 # C extensions
+media/content_images
+media/preview_images
 *.so
 
 # Distribution / packaging
