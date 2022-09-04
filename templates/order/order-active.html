@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% load mathfilters %}
+{% load humanize %}
 
 {% block head_tags %}
   <title>Order Active</title>
@@ -37,8 +38,8 @@
                     <div class="td">
                       <div class="line-wrapper">
                         <div class="block-line">
-                          {% if order.completed %}
-                          <div class="line {{ order.order_calc.social_network|lower }}" style="width: 100%"></div>
+                          {% if current_time >= order.sending_end_at %}
+                            <div class="line {{ order.order_calc.social_network|lower }}" style="width: 100%"></div>
                           {% else %}
                             <div id="{{ order.order_calc.social_network|lower }}{{ forloop.counter }}" class="line {{ order.order_calc.social_network|lower }}"></div>
                           {% endif %}
@@ -47,8 +48,10 @@
                           <p>Scraping process</p>
                         {% elif not order.filtering %}
                           <p>Filtering process</p>
+                        {% elif current_time >= order.sending_end_at %}
+                          <p>{{ order.order_calc.amount }}/{{ order.order_calc.amount }} send</p>
                         {% else %}
-                          <p>{{ order.time_from_sending_start_at|mul:order.send_messages_speed }}/{{ order.order_calc.amount }} send</p>
+                          <p>{{ order.time_from_sending_start_at|mul:order.send_messages_speed|intcomma }}/{{ order.order_calc.amount }} send</p>
                         {% endif %}
                       </div>
                     </div>
@@ -68,7 +71,7 @@
                             </svg>
                           </div><span>Filtering</span>
                         </li>
-                        <li {% if order.sending %} class="done" {% endif %}>
+                        <li {% if current_time >= order.sending_end_at %} class="done" {% endif %}>
                           <div class="ic active">
                             <svg viewBox="0 0 13 13" width="13px">
                               <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>

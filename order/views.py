@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -37,7 +38,7 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, Crea
 
 class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms-step-2.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('order_active')
     unsuccess_url = reverse_lazy('order_step_two')
     model = models.OrderModel
     form_class = forms.CreateOrderForm
@@ -120,6 +121,7 @@ class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'order_active'
+        context['current_time'] = datetime.now(timezone.utc)
         return context
 
 

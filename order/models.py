@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -73,7 +74,8 @@ class OrderModel(models.Model):
     completed = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        if self.filtering:
+        self.clean()
+        if self.filtering and not self.sending:
             self.send_messages_speed = self.__get_send_messages_speed_per_minutes()
             self.sending_start_at = datetime.now(timezone.utc)
         return super().save(*args, **kwargs)
@@ -93,6 +95,21 @@ class OrderModel(models.Model):
             amount *= 1_000_000
 
         return amount / seconds_ago
+
+    def clean(self):
+        if self.filtering and not self.scraping:
+            raise ValidationError(
+                'you must set scraping end status for setting filtering end status')
+        if self.filtering and not self.sending_end_at:
+            raise ValidationError(
+                'you must set sending_end_at before set filtering end status')
+        if self.sending_end_at:
+            if self.sending_end_at <= datetime.now(timezone.utc) and not self.sending:
+                raise ValidationError(
+                    'sending_end_at must be later current time')
+        if self.sending and not self.filtering:
+            raise ValidationError(
+                'you must set filtering end status for setting sending end status')
 
     class Meta:
         ordering = ('-created_at', )

@@ -7,7 +7,7 @@ def create_default_board(apps, schema_editor):
         instagram_board_quantity=['4$ per 1k', '3$ per 1k', '2.8$ per 1k', '2.8$ per 1k', '2.5$ per 1k', '2.5$ per 1k',
                                   '2$ per 1k', '2$ per 1k', '2$ per 1k', '1.9$ per 1k', '1.7$ per 1k', '1.7$ per 1k',
                                   '1.7$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.5$ per 1k'],
-        instagram_board_amount=['20000k', '50k', '100k', '150k', '200k', '300k', '400k', '500k', '600k', '700k', '800k',
+        instagram_board_amount=['20k', '50k', '100k', '150k', '200k', '300k', '400k', '500k', '600k', '700k', '800k',
                                 '1m', '1.5m', '2m', '3m', '4m', '5m'],
         instagram_board_discount=['0%', '25%', '30%', '30%', '30%', '38%', '43%', '50%', '50%', '50%', '53%', '57%',
                                   '57%', '57%', '57%', '57%', '63%'],
