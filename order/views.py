@@ -27,7 +27,6 @@ class StatisticsApiView(APIView):
 
     def get(self, request, slug):
         # TODO get statistics fot user social media
-        print(request.user)
         print(slug)
         data_example = {'data': ['759', '250', '320', '480', '370', '450', '335'],
                         "categories": ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"]
@@ -119,7 +118,8 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
             return self.form_invalid()
 
         self.request.user.cents -= float(order_total_price[:-1]) * 100
-        self.request.user.dms_tokens += int(float(order_total_price[:-1]) * 0.02)
+        self.request.user.dms_tokens += int(
+            float(order_total_price[:-1]) * 0.02)
         obj.order_calc = order_calc
 
         with transaction.atomic():
