@@ -42,7 +42,7 @@ xhr.onload =() => {
 		series: [
 			{
 				name: "DM's",
-				data: ['300', '250', '320', '480', '370', '450', '335']
+				data: ['439', '250', '320', '480', '370', '450', '335']
 			}
 		], //holder. When using our service for personal purposes, you must indicate us as the source.
 
@@ -111,6 +111,12 @@ xhr.onload =() => {
 	const chartContainer2 = document.querySelector('.js-chart-animation');
 	const chart1 = new ApexCharts(chartContainer1, options);
 	const chart2 = new ApexCharts(chartContainer2, options);
+	if (document.getElementsByClassName("tw").length > 0){
+		document.getElementsByClassName("tw")[0].onclick = () => {
+		getStatistics("Instagram", chart1)
+		}
+	}
+
 	
 	if (chartContainer1 != null) chart1.render();
 	if (chartContainer2 != null) {
@@ -462,3 +468,38 @@ xhr.onload =() => {
 
 
 }});
+
+function getStatistics(sufixUrl, chart1){
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", '/order/board/' + "")
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json")
+	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
+	xhr.send()
+	xhr.onload =() => {
+		let data = JSON.parse(xhr.responseText)
+		console.log("DATA", data)
+
+		chart1.updateOptions({
+			series: [
+				{
+					name: "DM's",
+					data: ['759', '250', '320', '480', '370', '450', '335']
+				}
+			],
+			xaxis: {
+				categories: ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"],
+				labels: {
+					// offsetX: 1,
+					style: {
+						colors: '#A2A2AC',
+						fontSize: '11px'
+					}
+				},
+				tooltip: {
+					enabled: false
+				}
+			}
+		})
+		}
+	}
