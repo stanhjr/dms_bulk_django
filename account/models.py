@@ -21,6 +21,5 @@ class CustomUser(AbstractUser):
         q1 = Q(scraping=True)
         q2 = Q(filtering=True)
         q3 = Q(sending=True)
-        if OrderModel.objects.filter(order_calc__user=self).filter(q1 | q2 | q3).exists():
-            return True
-        return False
+        return OrderModel.objects.filter(order_calc__user=self).filter(q1 | q2 | q3).exists()
+
