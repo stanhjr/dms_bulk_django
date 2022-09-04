@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.db import transaction
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -18,6 +19,20 @@ class BoardAPIView(APIView):
     def get(self, request):
         board = models.BoardModel.objects.last()
         return Response(serializers.BoardSerializer(board).data)
+
+
+class StatisticsApiView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, slug):
+        # TODO get statistics fot user social media
+        print(request.user)
+        print(slug)
+        data_example = {'data': ['759', '250', '320', '480', '370', '450', '335'],
+                        "categories": ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"]
+                        }
+        return Response(data_example)
 
 
 class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):

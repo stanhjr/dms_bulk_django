@@ -131,7 +131,6 @@ xhr.onload =() => {
 		getStatistics("telegram", chart1)
 		}
 	}
-
 	
 	if (chartContainer1 != null) chart1.render();
 	if (chartContainer2 != null) {
@@ -481,29 +480,28 @@ xhr.onload =() => {
 		  }
 	}
 
-
+document.getElementsByClassName("inst")[0].click()
 }});
 
 function getStatistics(nameSocial, chart1){
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", '/order/board/' + "")
+	xhr.open("GET", '/order/statistics/' + nameSocial)
 	xhr.setRequestHeader("Accept", "application/json");
 	xhr.setRequestHeader("Content-Type", "application/json")
 	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
 	xhr.send()
 	xhr.onload =() => {
 		let data = JSON.parse(xhr.responseText)
-		console.log("DATA", data)
 
 		chart1.updateOptions({
 			series: [
 				{
 					name: "DM's",
-					data: ['759', '250', '320', '480', '370', '450', '335']
+					data: data["data"]
 				}
 			],
 			xaxis: {
-				categories: ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"],
+				categories: data["categories"],
 				labels: {
 					// offsetX: 1,
 					style: {
