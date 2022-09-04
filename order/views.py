@@ -65,38 +65,40 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
         order_discount = order_calc.discount
         order_amount = order_calc.amount
         order_total_price = order_calc.total
+        try:
+            if order_calc.social_network == 'Instagram':
+                total_price_index = board.instagram_board_total.index(
+                    order_total_price)
+                if board.instagram_board_discount[total_price_index] != order_discount:
+                    return self.form_invalid()
+                if board.instagram_board_amount[total_price_index] != order_amount:
+                    return self.form_invalid()
 
-        if order_calc.social_network == 'Instagram':
-            total_price_index = board.instagram_board_total.index(
-                order_total_price)
-            if board.instagram_board_discount[total_price_index] != order_discount:
-                return self.form_invalid()
-            if board.instagram_board_amount[total_price_index] != order_amount:
-                return self.form_invalid()
+            if order_calc.social_network == 'Twitter':
+                total_price_index = board.twitter_board_total.index(
+                    order_total_price)
+                if board.twitter_board_discount[total_price_index] != order_discount:
+                    return self.form_invalid()
+                if board.twitter_board_amount[total_price_index] != order_amount:
+                    return self.form_invalid()
 
-        if order_calc.social_network == 'Twitter':
-            total_price_index = board.twitter_board_total.index(
-                order_total_price)
-            if board.twitter_board_discount[total_price_index] != order_discount:
-                return self.form_invalid()
-            if board.twitter_board_amount[total_price_index] != order_amount:
-                return self.form_invalid()
+            if order_calc.social_network == 'Discord':
+                total_price_index = board.discord_board_total.index(
+                    order_total_price)
+                if board.discord_board_discount[total_price_index] != order_discount:
+                    return self.form_invalid()
+                if board.discord_board_amount[total_price_index] != order_amount:
+                    return self.form_invalid()
 
-        if order_calc.social_network == 'Discord':
-            total_price_index = board.discord_board_total.index(
-                order_total_price)
-            if board.discord_board_discount[total_price_index] != order_discount:
-                return self.form_invalid()
-            if board.discord_board_amount[total_price_index] != order_amount:
-                return self.form_invalid()
-
-        if order_calc.social_network == 'Telegram':
-            total_price_index = board.telegram_board_total.index(
-                order_total_price)
-            if board.telegram_board_discount[total_price_index] != order_discount:
-                return self.form_invalid()
-            if board.telegram_board_amount[total_price_index] != order_amount:
-                return self.form_invalid()
+            if order_calc.social_network == 'Telegram':
+                total_price_index = board.telegram_board_total.index(
+                    order_total_price)
+                if board.telegram_board_discount[total_price_index] != order_discount:
+                    return self.form_invalid()
+                if board.telegram_board_amount[total_price_index] != order_amount:
+                    return self.form_invalid()
+        except ValueError:
+            return self.form_invalid()
 
         if float(order_total_price[:-1]) > self.request.user.cents / 100:
             return self.form_invalid()
