@@ -113,7 +113,22 @@ xhr.onload =() => {
 	const chart2 = new ApexCharts(chartContainer2, options);
 	if (document.getElementsByClassName("tw").length > 0){
 		document.getElementsByClassName("tw")[0].onclick = () => {
-		getStatistics("Instagram", chart1)
+		getStatistics("twitter", chart1)
+		}
+	}
+	if (document.getElementsByClassName("inst").length > 0){
+		document.getElementsByClassName("inst")[0].onclick = () => {
+		getStatistics("instagram", chart1)
+		}
+	}
+	if (document.getElementsByClassName("d").length > 0){
+		document.getElementsByClassName("d")[0].onclick = () => {
+		getStatistics("discord", chart1)
+		}
+	}
+	if (document.getElementsByClassName("tg").length > 0){
+		document.getElementsByClassName("tg")[0].onclick = () => {
+		getStatistics("telegram", chart1)
 		}
 	}
 
@@ -469,7 +484,7 @@ xhr.onload =() => {
 
 }});
 
-function getStatistics(sufixUrl, chart1){
+function getStatistics(nameSocial, chart1){
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", '/order/board/' + "")
 	xhr.setRequestHeader("Accept", "application/json");

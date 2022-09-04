@@ -104,6 +104,7 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
             return self.form_invalid()
 
         self.request.user.cents -= float(order_total_price[:-1]) * 100
+        self.request.user.dms_tokens += int(float(order_total_price[:-1]) * 0.02)
         obj.order_calc = order_calc
 
         with transaction.atomic():
