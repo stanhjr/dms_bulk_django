@@ -1,18 +1,39 @@
-// let xhr = new XMLHttpRequest();
-// xhr.open("GET", '/order/board/')
-// xhr.setRequestHeader("Accept", "application/json");
-// xhr.setRequestHeader("Content-Type", "application/json")
-// xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
-// xhr.send()
-// console.log(123)
-// xhr.onload =() => {
-// 	let data = JSON.parse(xhr.responseText)
-// 	console.log(data)
-// }
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
+let xhr = new XMLHttpRequest();
+xhr.open("GET", '/order/board/')
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Content-Type", "application/json")
+xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
+xhr.send()
+xhr.onload =() => {
+	let data = JSON.parse(xhr.responseText)
+	const rangeValues = {
+		instagram: {
+			amount: data["instagram_board_amount"],
+			pricePer1k: data["instagram_board_quantity"],
+			pricePerAmount: data["instagram_board_total"],
+			percent: data["instagram_board_discount"]
+		},
+		twitter: {
+			amount: data["twitter_board_amount"],
+			pricePer1k: data["twitter_board_quantity"],
+			pricePerAmount: data["twitter_board_total"],
+			percent: data["twitter_board_discount"]
+		},
+		discord: {
+			amount: data["discord_board_amount"],
+			pricePer1k: data["discord_board_quantity"],
+			pricePerAmount: data["discord_board_total"],
+			percent: data["discord_board_discount"]
+		},
+		telegram: {
+			amount: data["telegram_board_amount"],
+			pricePer1k: data["telegram_board_quantity"],
+			pricePerAmount: data["telegram_board_total"],
+			percent: data["telegram_board_discount"]
+		}
+	}
+
 
 
 	// charts
@@ -21,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		series: [
 			{
 				name: "DM's",
-				data: ['300', '250', '320', '480', '370', '450', '335']
+				data: ['439', '250', '320', '480', '370', '450', '335']
 			}
 		], //holder. When using our service for personal purposes, you must indicate us as the source.
 
@@ -90,6 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	const chartContainer2 = document.querySelector('.js-chart-animation');
 	const chart1 = new ApexCharts(chartContainer1, options);
 	const chart2 = new ApexCharts(chartContainer2, options);
+	if (document.getElementsByClassName("tw").length > 0){
+		document.getElementsByClassName("tw")[0].onclick = () => {
+		getStatistics("Instagram", chart1)
+		}
+	}
+
 	
 	if (chartContainer1 != null) chart1.render();
 	if (chartContainer2 != null) {
@@ -247,32 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log(range);
 	});
 
-	const rangeValues = {
-		instagram: {
-			amount: ['20k', '50k', '100k', '150k', '200k', '300k', '400k', '500k', '600k', '700k', '800k', '1m', '1.5m', '2m', '3m', '4m', '5m'],
-			pricePer1k: ['4$ per 1k', '3$ per 1k', '2.8$ per 1k', '2.8$ per 1k', '2.5$ per 1k', '2.5$ per 1k', '2$ per 1k', '2$ per 1k', '2$ per 1k', '1.9$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.7$ per 1k', '1.5$ per 1k'],
-			pricePerAmount: ['80$', '150$', '280$', '420$', '560$', '750$', '920$', '1000$', '1200$', '1400$', '1520$', '1700$', '2550$', '3400$', '5100$', '6800$', '7500$'],
-			percent: ['0%', '25%', '30%', '30%', '30%', '38%', '43%', '50%', '50%', '50%', '53%', '57%', '57%', '57%', '57%', '57%', '63%']
-		},
-		twitter: {
-			amount: ['10k', '50k', '75к', '100k', '150к', '200k', '250к', '300k', '500k', '600к', '700k', '1m'],
-			pricePer1k: ['25$ per 1k', '22$ per 1k', '22$ per 1k', '20$ per 1k', '20$ per 1k', '18$ per 1k', '18$ per 1k', '18$ per 1k', '17$ per 1k', '17$ per 1k', '17$ per 1k', '15$ per 1k'],
-			pricePerAmount: ['250$', '1100$', '1650$', '2000$', '3000$', '3600$', '4500$', '5400$', '8500$', '10200$', '11900$', '15000$'],
-			percent: ['0%', '12%', '12%', '20%', '20%', '28%', '28%', '28%', '32%', '32%', '32%', '40%']
-		},
-		discord: {
-			amount: ['10k', '50k', '75к', '100k', '150к', '200k', '250к', '300k', '500k', '600к', '700k', '1m'],
-			pricePer1k: ['25$ per 1k', '22$ per 1k', '22$ per 1k', '20$ per 1k', '20$ per 1k', '18$ per 1k', '18$ per 1k', '18$ per 1k', '17$ per 1k', '17$ per 1k', '17$ per 1k', '15$ per 1k'],
-			pricePerAmount: ['250$', '1100$', '1650$', '2000$', '3000$', '3600$', '4500$', '5400$', '8500$', '10200$', '11900$', '15000$'],
-			percent: ['0%', '12%', '12%', '20%', '20%', '28%', '28%', '28%', '32%', '32%', '32%', '40%']
-		},
-		telegram: {
-			amount: ['10k', '20к', '30k', '40k', '50k', '60к', '70k', '100k', '120к', '150k', '300k'],
-			pricePer1k: ['40$ per 1k', '39$ per 1k', '39$ per 1k', '38$ per 1k', '37$ per 1k', '37$ per 1k', '37$ per 1k', '36$ per 1k', '36$ per 1k', '36$ per 1k', '35$ per 1k'],
-			pricePerAmount: ['400$', '780$', '1170$', '1520$', '1850$', '2220$', '2590$', '3600$', '4320$', '5400$', '10500$'],
-			percent: ['0%', '3%', '3%', '5%', '8%', '8%', '8%', '10%', '10%', '10%', '13%']
-		}
-	}
+
 
 	// input range
 	initRange('instagram');
@@ -465,4 +467,39 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 
-});
+}});
+
+function getStatistics(sufixUrl, chart1){
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", '/order/board/' + "")
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json")
+	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
+	xhr.send()
+	xhr.onload =() => {
+		let data = JSON.parse(xhr.responseText)
+		console.log("DATA", data)
+
+		chart1.updateOptions({
+			series: [
+				{
+					name: "DM's",
+					data: ['759', '250', '320', '480', '370', '450', '335']
+				}
+			],
+			xaxis: {
+				categories: ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"],
+				labels: {
+					// offsetX: 1,
+					style: {
+						colors: '#A2A2AC',
+						fontSize: '11px'
+					}
+				},
+				tooltip: {
+					enabled: false
+				}
+			}
+		})
+		}
+	}
