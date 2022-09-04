@@ -79,25 +79,27 @@
                     </div>
                     <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
                   </div>
-                  <script>
-                    let amount{{ forloop.counter }} = '{{ order.order_calc.amount }}'
+                  {% if order.filtering %}
+                    <script>
+                      let amount{{ forloop.counter }} = '{{ order.order_calc.amount }}'
 
-                    if (amount{{ forloop.counter }}.at(-1) == 'k') {
-                      amount{{ forloop.counter }} = amount{{ forloop.counter }}.slice(0, amount{{ forloop.counter }}.length - 1)
-                      amount{{ forloop.counter }} += '000'
-                    } else if (amount{{ forloop.counter }}.at(-1) == 'm') {
-                      amount{{ forloop.counter }} = amount{{ forloop.counter }}.slice(0, amount{{ forloop.counter }}.length - 1)
-                      amount{{ forloop.counter }} += '000000'
-                    }
+                      if (amount{{ forloop.counter }}.at(-1) == 'k') {
+                        amount{{ forloop.counter }} = amount{{ forloop.counter }}.slice(0, amount{{ forloop.counter }}.length - 1)
+                        amount{{ forloop.counter }} += '000'
+                      } else if (amount{{ forloop.counter }}.at(-1) == 'm') {
+                        amount{{ forloop.counter }} = amount{{ forloop.counter }}.slice(0, amount{{ forloop.counter }}.length - 1)
+                        amount{{ forloop.counter }} += '000000'
+                      }
 
-                    procents = {{ order.time_from_sending_start_at|mul:order.send_messages_speed }} / (amount{{ forloop.counter }} / 100)
+                      procents = {{ order.time_from_sending_start_at|mul:order.send_messages_speed }} / (amount{{ forloop.counter }} / 100)
 
-                    if (procents >= 100) {
-                      document.getElementById('{{ order.order_calc.social_network|lower }}{{ forloop.counter }}').style.width = '100%'
-                    } else {
-                      document.getElementById('{{ order.order_calc.social_network|lower }}{{ forloop.counter }}').style.width = procents + '%'
-                    }
-                  </script>
+                      if (procents >= 100) {
+                        document.getElementById('{{ order.order_calc.social_network|lower }}{{ forloop.counter }}').style.width = '100%'
+                      } else {
+                        document.getElementById('{{ order.order_calc.social_network|lower }}{{ forloop.counter }}').style.width = procents + '%'
+                      }
+                    </script>
+                  {% endif %}
                 {% endfor %}
               </div>
             </section>
