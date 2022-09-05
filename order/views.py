@@ -31,7 +31,7 @@ class StatisticsApiView(APIView):
         amount_data = ['0', '0', '0', '0', '0', '0', '0']
 
         print(OrderModel.objects.filter().order_by(
-            'created_at__date').annotate(sum=models.Sum('order_calc__amount')))
+            'created_at__date').annotate(sum=models.Sum('order_calc__amount_integer')))
 
         user_orders = OrderModel.objects.filter(
             order_calc__user=request.user).filter(order_calc__social_network=slug.capitalize())[:7]

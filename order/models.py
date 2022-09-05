@@ -44,6 +44,7 @@ class OrderCalcModel(models.Model):
     social_network = models.CharField(
         max_length=9, choices=SOCIAL_NETWORK_CHOICES)
     amount = models.CharField(max_length=10)
+    amount_integer = models.IntegerField(default=0)
     discount = models.CharField(max_length=10)
     total = models.CharField(max_length=20)
 
@@ -56,6 +57,10 @@ class OrderCalcModel(models.Model):
 
     def __str__(self):
         return f'{self.social_network} by {self.user.username} {self.total}'
+
+    def save(self, *args, **kwargs):
+        self.amount_integer = int(self.amount)
+        super(OrderCalcModel, self).save(*args, **kwargs)
 
 
 class OrderModel(models.Model):
@@ -96,7 +101,7 @@ class OrderModel(models.Model):
     def __get_send_messages_speed_per_minutes(self):
         amount = int(self.order_calc.amount[:-1])
         seconds_ago = int((self.sending_end_at -
-                          datetime.now(timezone.utc)).total_seconds())
+                           datetime.now(timezone.utc)).total_seconds())
 
         if self.order_calc.amount[-1] == 'k':
             amount *= 1_000
@@ -121,7 +126,7 @@ class OrderModel(models.Model):
                 'you must set filtering end status for setting sending end status')
 
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
 
     def __str__(self):
         return f'{self.order_calc} completed={self.completed}'
