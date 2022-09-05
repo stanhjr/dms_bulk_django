@@ -56,7 +56,7 @@ class AcceptCookiesPolicy(View):
     def post(self, request):
         request.session['cookies_policy_accepted'] = True
 
-        # its not required redirect, form redirects to hidden iframe
+        # it's not required redirect, form redirects to hidden iframe
         return redirect('home')
 
 

@@ -3934,7 +3934,9 @@ header.header-main .grid .user-wrap .ava-wrap.notify::after {
   top: 1px;
   right: -9px;
 }
-
+header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
+  background-color: #13f513;
+}
 @media only screen and (max-width: 992px) {
   header.header-main .grid .user-wrap .ava-wrap.notify::after {
     width: 14px;
@@ -8096,3 +8098,5 @@ ul.block-check-list li .ic svg {
       -ms-flex-pack: center;
           justify-content: center;
 }
+
+

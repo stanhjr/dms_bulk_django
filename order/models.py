@@ -32,7 +32,8 @@ class BoardModel(models.Model):
 
 
 class OrderCalcModel(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name='order_calc_model')
     SOCIAL_NETWORK_CHOICES = (
         ('Instagram', 'Instagram'),
         ('Twitter', 'Twitter'),
@@ -46,12 +47,20 @@ class OrderCalcModel(models.Model):
     discount = models.CharField(max_length=10)
     total = models.CharField(max_length=20)
 
+    @property
+    def amount_without_formatting(self):
+        amount = int(self.amount[:-1])
+        if self.amount[-1] == 'm':
+            amount *= 1_000
+        return amount
+
     def __str__(self):
         return f'{self.social_network} by {self.user.username} {self.total}'
 
 
 class OrderModel(models.Model):
-    order_calc = models.ForeignKey(OrderCalcModel, on_delete=models.CASCADE)
+    order_calc = models.ForeignKey(
+        OrderCalcModel, on_delete=models.CASCADE, related_name='order_model')
 
     sending_end_at = models.DateTimeField(blank=True, null=True)
     sending_start_at = models.DateTimeField(blank=True, null=True)
@@ -87,7 +96,7 @@ class OrderModel(models.Model):
     def __get_send_messages_speed_per_minutes(self):
         amount = int(self.order_calc.amount[:-1])
         seconds_ago = int((self.sending_end_at -
-                           datetime.now(timezone.utc)).total_seconds())
+                          datetime.now(timezone.utc)).total_seconds())
 
         if self.order_calc.amount[-1] == 'k':
             amount *= 1_000

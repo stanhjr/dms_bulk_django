@@ -23,15 +23,25 @@
         </div>
       </div>
       <div class="user-wrap">
-        <div class="name">Hi, {{ request.user.username }}!</div>
+        <div class="name">Hi, {{ user.username }}!</div>
         <button class="js-user-info">
-          <div class="ava-wrap notify">
+            {% if user.is_active_order %}
+                <div class="ava-wrap notify order-active">
+            {% else %}
+                 <div class="ava-wrap notify">
+            {% endif %}
+
             <img src="{% static '/img/avatar.png' %}" alt="" />
           </div>
         </button>
         <div class="popup-wrap">
           <div class="user-info">
-            <div class="ava-wrap notify">
+               {% if user.is_active_order %}
+                <div class="ava-wrap notify order-active">
+            {% else %}
+                 <div class="ava-wrap notify">
+            {% endif %}
+
               <img src="{% static '/img/avatar.png' %}" alt="" />
             </div>
             <p>{{ request.user.username }}</p>

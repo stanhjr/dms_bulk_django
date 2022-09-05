@@ -26,11 +26,22 @@ class StatisticsApiView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, slug):
-        # TODO get statistics fot user social media
-        print(slug)
-        data_example = {'data': ['759', '250', '320', '480', '370', '450', '335'],
-                        "categories": ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"]
-                        }
+        # TODO get statistics for user social media
+
+        amount_data = ['0', '0', '0', '0', '0', '0', '0']
+
+        user_orders = models.OrderModel.objects.filter(
+            order_calc__user=request.user).filter(order_calc__social_network=slug.capitalize())[:7]
+        user_orders_amount = [
+            order.order_calc.amount_without_formatting for order in user_orders]
+
+        for order_amount_index in range(len(user_orders_amount)):
+            amount_data[order_amount_index] = user_orders_amount[order_amount_index]
+
+        data_example = {
+            'data': reversed(amount_data),
+            "categories": ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"]
+        }
         return Response(data_example)
 
 
