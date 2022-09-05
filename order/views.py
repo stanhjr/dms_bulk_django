@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.db import transaction, models
+from django.db.models import Q
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -26,24 +27,24 @@ class StatisticsApiView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, slug):
-        # TODO get statistics for user social media
 
-        amount_data = ['0', '0', '0', '0', '0', '0', '0']
+        REQUIRED_API_DATA_LENGTH = 7
 
-        print(OrderModel.objects.filter().order_by(
-            'created_at__date').annotate(sum=models.Sum('order_calc__amount_integer')))
+        q1 = Q(order_calc__social_network=slug.capitalize())
+        q2 = Q(order_calc__user=request.user)
+        q3 = Q(filtering=True)
+        user_orders = OrderModel.objects.filter(q1 & q2 & q3).values('sending_end_at__date').order_by(
+            'sending_end_at__date').annotate(sum=models.Sum('order_calc__amount_integer'))[:7]
 
-        user_orders = OrderModel.objects.filter(
-            order_calc__user=request.user).filter(order_calc__social_network=slug.capitalize())[:7]
-        user_orders_amount = [
-            order.order_calc.amount_without_formatting for order in user_orders]
-
-        for order_amount_index in range(len(user_orders_amount)):
-            amount_data[order_amount_index] = user_orders_amount[order_amount_index]
+        amount_data = [i['sum'] for i in user_orders] + [0] * \
+            (REQUIRED_API_DATA_LENGTH - len(user_orders))
+        categories_data = [datetime.now() - timedelta(days=i)
+                           for i in range(REQUIRED_API_DATA_LENGTH)]
+        categories_data = [i.strftime('%-d %B') for i in categories_data]
 
         data_example = {
             'data': reversed(amount_data),
-            "categories": ["1 June", "2 June", "3 June", "4 June", "5 June", "6 June", "7 June"]
+            'categories': reversed(categories_data)
         }
         return Response(data_example)
 
@@ -75,7 +76,7 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
         context = super().get_context_data(**kwargs)
         context['page'] = 'order'
 
-        last_order_calc = models.OrderCalcModel.objects.last()
+        last_order_calc = OrderCalcModel.objects.last()
         context['social_network'] = last_order_calc.social_network
         context['amount'] = last_order_calc.amount
         context['total_price'] = last_order_calc.total

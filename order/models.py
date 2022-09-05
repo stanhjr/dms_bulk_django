@@ -59,7 +59,10 @@ class OrderCalcModel(models.Model):
         return f'{self.social_network} by {self.user.username} {self.total}'
 
     def save(self, *args, **kwargs):
-        self.amount_integer = int(self.amount)
+        if self.amount[-1] == 'k':
+            self.amount_integer = int(self.amount[:-1])
+        if self.amount[-1] == 'm':
+            self.amount_integer = int(self.amount[:-1]) * 1_000
         super(OrderCalcModel, self).save(*args, **kwargs)
 
 
