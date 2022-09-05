@@ -4,13 +4,18 @@ __pycache__/
 *$py.class
 
 # C extensions
-media/content_images
-media/preview_images
+media/content_images/*.jpg
+media/content_images/*.png
+media/content_images/*.JPEG
+media/content_images/*.jpeg
+media/preview_images/*.jpg
+media/preview_images/*.JPEG
+media/preview_images/*.jpeg
+media/preview_images/*.png
 *.so
 
 # Distribution / packaging
 .idea
-.Python
 .Python
 build/
 develop-eggs/
