@@ -11,11 +11,15 @@ class CustomUser(AbstractUser):
     cents = models.BigIntegerField(default=0)
 
     @property
-    def is_active_order(self):
+    def is_active_order(self) -> bool:
+        """
+        Checks if the user has active orders
+
+        :return: bool
+        """
         from order.models import OrderModel
         q1 = Q(scraping=True)
         q2 = Q(filtering=True)
         q3 = Q(sending=True)
-        if OrderModel.objects.filter(order_calc__user=self).filter(q1 | q2 | q3).count():
-            return True
-        return False
+        return OrderModel.objects.filter(order_calc__user=self).filter(q1 | q2 | q3).exists()
+
