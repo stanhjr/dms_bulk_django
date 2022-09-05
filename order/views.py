@@ -1,15 +1,15 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.db import transaction
+from django.db import transaction, models
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from . import models
+from .models import OrderModel, OrderCalcModel, BoardModel
 from . import serializers
 from . import forms
 from utils import PopupCookiesContextMixin
@@ -17,7 +17,7 @@ from utils import PopupCookiesContextMixin
 
 class BoardAPIView(APIView):
     def get(self, request):
-        board = models.BoardModel.objects.last()
+        board = BoardModel.objects.last()
         return Response(serializers.BoardSerializer(board).data)
 
 
@@ -30,7 +30,10 @@ class StatisticsApiView(APIView):
 
         amount_data = ['0', '0', '0', '0', '0', '0', '0']
 
-        user_orders = models.OrderModel.objects.filter(
+        print(OrderModel.objects.filter().order_by(
+            'created_at__date').annotate(sum=models.Sum('order_calc__amount')))
+
+        user_orders = OrderModel.objects.filter(
             order_calc__user=request.user).filter(order_calc__social_network=slug.capitalize())[:7]
         user_orders_amount = [
             order.order_calc.amount_without_formatting for order in user_orders]
@@ -48,7 +51,7 @@ class StatisticsApiView(APIView):
 class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms.html'
     success_url = reverse_lazy('order_step_two')
-    model = models.OrderCalcModel
+    model = OrderCalcModel
     form_class = forms.CreateOrderCalcForm
 
     def get_context_data(self, **kwargs):
@@ -65,7 +68,7 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
     template_name = 'order/order-dms-step-2.html'
     success_url = reverse_lazy('order_active')
     unsuccess_url = reverse_lazy('order_step_two')
-    model = models.OrderModel
+    model = OrderModel
     form_class = forms.CreateOrderForm
 
     def get_context_data(self, **kwargs):
@@ -84,8 +87,8 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
     def form_valid(self, form):
         obj = form.save(commit=False)
 
-        order_calc = models.OrderCalcModel.objects.last()
-        board = models.BoardModel.objects.last()
+        order_calc = OrderCalcModel.objects.last()
+        board = BoardModel.objects.last()
 
         order_discount = order_calc.discount
         order_amount = order_calc.amount
@@ -141,7 +144,7 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
 
 class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-active.html'
-    model = models.OrderModel
+    model = OrderModel
     context_object_name = 'orders'
 
     def get_queryset(self):
@@ -156,7 +159,7 @@ class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView
 
 class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-history.html'
-    model = models.OrderModel
+    model = OrderModel
     context_object_name = 'completed_orders'
 
     def get_queryset(self):
