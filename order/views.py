@@ -32,7 +32,7 @@ class StatisticsApiView(APIView):
 
         q1 = Q(order_calc__social_network=slug.capitalize())
         q2 = Q(order_calc__user=request.user)
-        q3 = Q(filtering=True)
+        q3 = Q(sending=True)
         user_orders = OrderModel.objects.filter(q1 & q2 & q3).values('sending_end_at__date').order_by(
             'sending_end_at__date').annotate(sum=models.Sum('order_calc__amount_integer'))[:7]
 
