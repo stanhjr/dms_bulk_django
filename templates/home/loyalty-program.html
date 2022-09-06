@@ -6,239 +6,134 @@
 {% endblock head_tags %}
 
 {% block content %}
-    <div class="page-container">
-      {% include 'base/header.html' %}
-      <main class="default">
-        <div class="container">
-          <div class="grid-wrap">
-            <div class="aside-wrapper">
-              {% include 'home/nav.html' %}
-            </div>
-            <div class="content-wrapper">
-              <section class="loyalty-program-info">
-                <h1 class="inner center">Loyalty Program</h1>
-                <div class="grid">
-                  <div class="text-wrap">
-                    <p>We want to offer something new and innovative in Mass Direct message service, its loyalty program for active clients. Depending on social media (Instagram, Twitter, Discord or Telegram) and the ordered DM’s amount you will be automatically rewarded with our internal Direct Message tokens (DM’s tokens) which you can use for part of the payment in orders. Except for the discount of bulk orders and coupons you can also use DM’s tokens, isn't that cool? </p>
-                    <p>We want to offer the best quality service and best conditions for our clients.</p>
-                    <p>How Loyalty program are calculated:</p>
-                    <p>2% of spended money in orders</p><br>
-                    <p>If you order a campaign in the value of 1000$ you will get cashback 20 DM’s tokens. One DM’s token is equivalent of 1$. For resellers it’s notably profitable to gain from each client orders cashback in 2%. Its new generation mass direct message service, which you haven't seen before, so be part of us and let's make great traffic!</p>
-                    <p>Also if you are searching for more discounts, check out our Telegram news channel where we dropping frequently coupons with discounts!  </p>
-                  </div>
-                  <div class="img-wrap"><img src="{% static '/img/dms-coin.png' %}" alt=""></div>
+  <div class="page-container">
+    {% include 'base/header.html' %}
+    <main class="default">
+      <div class="container">
+        <div class="grid-wrap">
+          <div class="aside-wrapper">
+            {% include 'home/nav.html' %}
+          </div>
+          <div class="content-wrapper">
+            <section class="loyalty-program-info">
+              <h1 class="inner center">Loyalty Program</h1>
+              <div class="grid">
+                <div class="text-wrap">
+                  <p>We want to offer something new and innovative in Mass Direct message service, its loyalty program for active clients. Depending on social media (Instagram, Twitter, Discord or Telegram) and the ordered DM’s amount you will be automatically rewarded with our internal Direct Message tokens (DM’s tokens) which you can use for part of the payment in orders. Except for the discount of bulk orders and coupons you can also use DM’s tokens, isn't that cool? </p>
+                  <p>We want to offer the best quality service and best conditions for our clients.</p>
+                  <p>How Loyalty program are calculated:</p>
+                  <p>2% of spended money in orders</p><br>
+                  <p>If you order a campaign in the value of 1000$ you will get cashback 20 DM’s tokens. One DM’s token is equivalent of 1$. For resellers it’s notably profitable to gain from each client orders cashback in 2%. Its new generation mass direct message service, which you haven't seen before, so be part of us and let's make great traffic!</p>
+                  <p>Also if you are searching for more discounts, check out our Telegram news channel where we dropping frequently coupons with discounts!  </p>
                 </div>
-              </section>
-              <footer class="footer-main">
-                {% include 'base/footer.html' %}
-              </footer>
-              {% include 'popup/accept-cookies.html' %}
-            </div>
+                <div class="img-wrap"><img src="{% static '/img/dms-coin.png' %}" alt=""></div>
+              </div>
+            </section>
+            <footer class="footer-main">
+              {% include 'base/footer.html' %}
+            </footer>
+            {% include 'popup/accept-cookies.html' %}
           </div>
         </div>
-      </main>
-      <div class="container">
       </div>
+    </main>
+    <div class="container">
     </div>
-    {% include 'popup/instagram.html' %}
+  </div>
+  {% include 'popup/instagram.html' %}
   {% include 'popup/discord.html' %}
   {% include 'popup/telegram.html' %}
   {% include 'popup/twitter.html' %}
-    <div class="mfp-hide popup popup--login" id="popup-login">
-      <div class="popup-form-wrap">
-        <form action="#">
-          <h3 class="center">Login</h3>
-          <div class="input-wrap mb">
-            <input class="has-ic" type="email" placeholder="Email" required="required"/>
-            <div class="ic">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
-              </svg>
-            </div>
-          </div>
-          <div class="input-wrap">
-            <input class="has-ic" type="password" placeholder="Password" required="required"/>
-            <div class="ic">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
-              </svg>
-            </div>
-            <button class="password-hidden js-toggle-password" type="button">
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
-              </svg>
-              <svg viewBox="0 0 20 20" width="20px">
-                <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
-              </svg>
-            </button>
-          </div>
-          <div class="checkbox-wrapper">
-            <label class="block-checkbox">
-              <input type="checkbox" required="required"/>
-              <div class="checkbox">
-                <svg viewBox="0 0 12 12" width="12px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                </svg>
-              </div>
-              <p>Remember me</p>
-            </label>
-            <div class="link-wrap"><a href="#">Forgot password?</a></div>
-          </div>
-          <div class="btn-wrap">
-            <button class="btn btn--accent">Sign In</button>
-          </div>
-        </form>
+  {% include 'popup/login.html' %}
+  {% include 'popup/signup.html' %}
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
       </div>
     </div>
-    <div class="mfp-hide popup popup--login sign-up" id="popup-sign-up">
-      <div class="grid">
-        <div class="popup-form-wrap">
-          <form action="#">
-            <h3 class="center">Hello, Friend!</h3>
-            <div class="input-wrap mb">
-              <input class="has-ic" type="text" placeholder="Name" required="required"/>
-              <div class="ic">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-user"></use>
-                </svg>
-              </div>
-            </div>
-            <div class="input-wrap mb">
-              <input class="has-ic" type="email" placeholder="Email" required="required"/>
-              <div class="ic">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-email"></use>
-                </svg>
-              </div>
-            </div>
-            <div class="input-wrap">
-              <input class="has-ic" type="password" placeholder="Password" required="required"/>
-              <div class="ic">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-password"></use>
-                </svg>
-              </div>
-              <button class="password-hidden js-toggle-password" type="button">
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-open"></use>
-                </svg>
-                <svg viewBox="0 0 20 20" width="20px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-eye-close"></use>
-                </svg>
-              </button>
-            </div>
-            <div class="checkbox-wrapper">
-              <label class="block-checkbox">
-                <input type="checkbox" required="required"/>
-                <div class="checkbox">
-                  <svg viewBox="0 0 12 12" width="12px">
-                    <use xlink:href="{% static '/img/sprite.svg' %}#ic-check"></use>
-                  </svg>
-                </div>
-                <p>I’have read and agree to terms and condition </p>
-              </label>
-            </div>
-            <div class="btn-wrap">
-              <button class="btn btn--accent">Create account</button>
-            </div>
-            <div class="have-account"><span>Already have account? </span><a class="js-popup" href="#popup-login">Login</a></div>
-          </form>
-        </div>
-        <div class="glad-wrap">
-          <div class="title">Glad to see You!</div>
-          <p>You are in right place for social media <br>BULK DMS service</p>
-          <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-        </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
       </div>
     </div>
-    <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
-      <div class="header-wrap">
-        <div class="left">
-          <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-          <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-        </div>
-        <div class="right">
-          <div class="title">INVOICE</div>
-          <p>ID (#DM-11111)</p>
-        </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
       </div>
-      <div class="info-wrap">
-        <div class="item"><b>Invoice to:</b>
-          <p>Client Email adress and Name</p>
-        </div>
-        <div class="item"><b>Invoice data:</b>
-          <p>06.08.2022</p>
-        </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
       </div>
-      <div class="table-info">
-        <div class="tr">
-          <div class="td"><b>Invoice ID</b></div>
-          <div class="td"><b>Payment Method</b></div>
-          <div class="td"><b>Description</b></div>
-          <div class="td"><b>Status</b></div>
-        </div>
-        <div class="tr">
-          <div class="td">DM-11111</div>
-          <div class="td">Paypal</div>
-          <div class="td">Social Media Marketing program</div>
-          <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
-        </div>
-      </div>
-      <div class="table-total">
-        <div class="tr">
-          <div class="td"><b>Sub Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-        <div class="tr">
-          <div class="td"><b>Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-      </div>
-      <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
     </div>
-    <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
-      <div class="header-wrap">
-        <div class="left">
-          <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-          <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-        </div>
-        <div class="right">
-          <div class="title">INVOICE</div>
-          <p>ID (#DM-11111)</p>
-        </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
       </div>
-      <div class="info-wrap">
-        <div class="item"><b>Invoice to:</b>
-          <p>Client Email adress and Name</p>
-        </div>
-        <div class="item"><b>Invoice data:</b>
-          <p>06.08.2022</p>
-        </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
       </div>
-      <div class="table-info">
-        <div class="tr">
-          <div class="td"><b>Invoice ID</b></div>
-          <div class="td"><b>Payment Method</b></div>
-          <div class="td"><b>Description</b></div>
-          <div class="td"><b>Status</b></div>
-        </div>
-        <div class="tr">
-          <div class="td">DM-11111</div>
-          <div class="td">Paypal</div>
-          <div class="td">Social Media Marketing program</div>
-          <div class="td"><span class="status c-green">PAID</span></div>
-        </div>
-      </div>
-      <div class="table-total">
-        <div class="tr">
-          <div class="td"><b>Sub Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-        <div class="tr">
-          <div class="td"><b>Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-      </div>
-      <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
     </div>
+    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-green">PAID</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+  </div>
 {% endblock content %}
