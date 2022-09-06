@@ -36,14 +36,13 @@ class StatisticsApiView(APIView):
         user_orders = OrderModel.objects.filter(q1 & q2 & q3).values('sending_end_at__date').order_by(
             'sending_end_at__date').annotate(sum=models.Sum('order_calc__amount_integer'))[:7]
 
-        amount_data = [i['sum'] for i in user_orders] + [0] * \
-            (REQUIRED_API_DATA_LENGTH - len(user_orders))
+        amount_data = [i['sum'] for i in user_orders]
         categories_data = [datetime.now() - timedelta(days=i)
                            for i in range(REQUIRED_API_DATA_LENGTH)]
         categories_data = [i.strftime('%-d %B') for i in categories_data]
 
         data_example = {
-            'data': reversed(amount_data),
+            'data': [0] * (REQUIRED_API_DATA_LENGTH - len(user_orders)) + amount_data,
             'categories': reversed(categories_data)
         }
         return Response(data_example)
