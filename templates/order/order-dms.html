@@ -209,7 +209,13 @@
                     <p>After you have chosen the required amount of DMS, do not forget to replenish your balance in the <b>ADD FUNDS</b> section, after which you can continue to place an order. </p><br>
                     <p>You can replenish right now in two clicks by clicking the button below or go to the desired section <b>ADD FUNDS</b> yourself.</p>
                   </div>
-                  <div class="btn-wrap"><a class="btn w100" href="{% url 'add_funds' %}"><span>Add Funds: <span class="js-price-amount">&nbsp;</span></span></a></div>
+                  <div onclick="addFundsButtonClick()" class="btn-wrap">
+                    <a class="btn w100" href="{% url 'add_funds' %}">
+                      <span>
+                        Add Funds: <span class="js-price-amount">&nbsp;</span>
+                      </span>
+                    </a>
+                  </div>
                 </div>
               </div>
               <form id="order_calc_form" method="post">
@@ -342,4 +348,5 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+  <script src="{% static '/js/js/order/order-dms.js' %}"></script>
 {% endblock content %}

@@ -24,7 +24,7 @@
                   <button class="js-toggle-deposit"><img class="invert" src="{% static '/img/btn-coinbase.png' %}" alt=""></button>
                 </div>
                 <div class="block-fund-input">
-                  <input class="js-input-numeric" type="text" value="2000$">
+                  <input class="js-input-numeric" type="text">
                 </div>
                 <div class="btn-wrap"><a class="btn js-popup" href="#popup-invoice-awaiting">Add Funds: 2000$</a></div>
                 <div class="bottom-text">Check price calculator <a class="link" href="{% url 'order' %}">here</a></div>
@@ -193,4 +193,5 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+  <script src="{% static '/js/js/add_funds/add-funds.js' %}"></script>
 {% endblock content %}
