@@ -25,12 +25,10 @@
             <section class="order-dms-main">
               <div class="payment-wrap block-white">
                 <form method="post">
-                  {% csrf_token %}
-                  {{ accept_order_form.as_p }}
                   <div class="wrapper">
                     <h1 class="fz25 center">Payment</h1>
                     <div class="block-fund-input">
-                      <input class="js-input-numeric" type="text" value="2000$">
+                      <input class="js-input-numeric" type="text">
                     </div>
                     <div class="coupon-wrap">
                       <div class="input-wrap">
@@ -49,7 +47,17 @@
                       </div>
                     </div>
                     <div class="btn-wrap">
-                      <button type="submit" class="btn w100">Order campaign</button>
+                      <form method="post" id="order_create_form">
+                        {% csrf_token %}
+                        {{ form.targets_or_competitors_submited.as_hidden }}
+                        {{ form.use_our_default_filtering.as_hidden }}
+                        {{ form.not_use_any_filtering.as_hidden }}
+                        {{ form.message.as_hidden }}
+                        {{ form.attach_in_message.as_hidden }}
+                        {{ form.additional_information.as_hidden }}
+                        {{ form.contact_details.as_hidden }}
+                      </form>
+                      <button onclick="submitOrderDataCreateForm()" class="btn w100">Order campaign</button>
                     </div>
                     <div class="checkbox-wrapper-bottom">
                       <label class="block-checkbox">
@@ -173,4 +181,5 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+  <script src="{% static '/js/js/order-dms.js' %}"></script>
 {% endblock content %}

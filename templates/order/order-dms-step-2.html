@@ -39,13 +39,12 @@
               </div>
               <div class="info-wrapper block-white">
                 <h2 class="fz25 center">Provide Campaign Information</h2>
-                <form method="post">
-                  {% csrf_token %}
+                <form> 
                   <div class="item">
                     <h3 class="fz20">1. Targets/Competitors Submited</h3>
                     <div class="grid-wrap">
                       <div class="input-wrap">
-                        {{ form.targets_or_competitors_submited }}
+                        <textarea id="targets_or_competitors_submited" placeholder="Type here..." maxlength="2000"></textarea>
                       </div>
                       <div class="text-wrap">
                         <h3 class="fz20">Hint</h3>
@@ -58,11 +57,11 @@
                     <div class="grid-wrap col-2">
                       <div class="btn-checkbox-wrap">
                         <label class="block-checkbox-btn">
-                          {{ form.use_our_default_filtering }}
+                          <input id="use_our_default_filtering" type="checkbox">
                           <div class="button">Use our default filtering</div>
                         </label>
                         <label class="block-checkbox-btn">
-                          {{ form.not_use_any_filtering }}
+                          <input id="not_use_any_filtering" type="checkbox">
                           <div class="button">Not use any filtering</div>
                         </label>
                       </div>
@@ -77,7 +76,7 @@
                     <div class="grid-wrap">
                       <div class="input-wrap">
                         <div class="textarea-counter-wrap">
-                          {{ form.message }}
+                          <textarea id="message" placeholder="Type here..." maxlength="1000" class="js-textarea-max"></textarea>
                           <div class="counter"><span class="current">0</span><span class="max">/ 1000</span></div>
                         </div>
                       </div>
@@ -92,7 +91,7 @@
                     <div class="grid-wrap">
                       <div class="input-wrap">
                         <div class="textarea-counter-wrap">
-                          {{ form.attach_in_message }}
+                          <textarea id="attach_in_message" placeholder="Type here..." maxlength="600" class="js-textarea-max"></textarea>
                           <div class="counter"><span class="current">0</span><span class="max">/ 600</span></div>
                         </div>
                       </div>
@@ -107,7 +106,7 @@
                     <div class="grid-wrap">
                       <div class="input-wrap">
                         <div class="textarea-counter-wrap">
-                          {{ form.additional_information }}
+                          <textarea id="additional_info" type="textarea" placeholder="Type here..." maxlength="600" class="js-textarea-max"></textarea>
                           <div class="counter"><span class="current">0</span><span class="max">/ 600</span></div>
                         </div>
                       </div>
@@ -121,7 +120,7 @@
                     <h3 class="fz20">6. Your Contact details </h3>
                     <div class="grid-wrap col-2">
                       <div class="input-wrap">
-                        {{ form.contact_details }}
+                        <input id="contact_details" placeholder="Type here...">
                       </div>
                       <div class="text-wrap">
                         <h3 class="fz20">Hint</h3>
@@ -131,7 +130,9 @@
                   </div>
                   <div class="item">
                     <div class="btn-wrap">
-                      <button class="btn">Submit & Continue</button>
+                      <a href="{% url 'order_step_tree' %}">
+                        <button onclick="saveOrderCompaignInfoInLocalStorage()" type="button" class="btn">Submit & Continue</button>
+                      </a>
                     </div>
                   </div>
                 </form>
@@ -242,4 +243,5 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+  <script src="{% static '/js/js/order-dms.js' %}"></script>
 {% endblock content %}

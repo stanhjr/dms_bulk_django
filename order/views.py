@@ -1,6 +1,5 @@
 from datetime import datetime, timezone, timedelta
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic import ListView, CreateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -64,22 +63,12 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, Crea
         return super().form_valid(form)
 
 
-class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
-    template_name = 'order/order-dms-step-2.html'
-    success_url = reverse_lazy('order_active')
-    unsuccess_url = reverse_lazy('order_step_two')
+class OrderModelCreateView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
     model = OrderModel
+    template_name = 'order/order-dms-step-3.html'
     form_class = forms.CreateOrderForm
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = 'order'
-
-        last_order_calc = OrderCalcModel.objects.last()
-        context['social_network'] = last_order_calc.social_network
-        context['amount'] = last_order_calc.amount
-        context['total_price'] = last_order_calc.total
-        return context
+    unsuccess_url = reverse_lazy('order_step_two')
+    success_url = reverse_lazy('order_active')
 
     def form_invalid(self):
         return redirect(self.unsuccess_url)
@@ -140,6 +129,20 @@ class CreateOrderPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateVi
             self.request.user.save()
             obj.save()
         return redirect(self.success_url)
+
+
+class SetCompaignInfoPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
+    template_name = 'order/order-dms-step-2.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'order'
+
+        last_order_calc = OrderCalcModel.objects.last()
+        context['social_network'] = last_order_calc.social_network
+        context['amount'] = last_order_calc.amount
+        context['total_price'] = last_order_calc.total
+        return context
 
 
 class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
