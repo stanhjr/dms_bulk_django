@@ -57,7 +57,7 @@ class SignUpConfirm(RedirectView):
 
     def dispatch(self, request, *args, **kwargs):
         code = self.request.GET.get("code")
-        user = CustomUser.objects.filter(code=code).first()
+        user = CustomUser.objects.filter(verify_code=code).first()
         if user:
             user.verify_code = ''
             user.is_confirmed = True
