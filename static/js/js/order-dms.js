@@ -1,3 +1,6 @@
+window.onload = () => document.querySelector('.js-price-amount').innerText = document.querySelector('.val.js-price-per-amount').innerText
+
+
 const saveAddFundsPriceInLocalStorage = () => {
     const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
     const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText
