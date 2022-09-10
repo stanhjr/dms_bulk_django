@@ -37,7 +37,7 @@ class StatisticsApiView(APIView):
         amount_data = [i['sum'] for i in user_orders]
         categories_data = [datetime.now() - timedelta(days=i)
                            for i in range(REQUIRED_API_DATA_LENGTH)]
-        categories_data = [i.strftime('%-d %B') for i in categories_data]
+        categories_data = [i.strftime('%-d %b') for i in categories_data]
 
         data_example = {
             'data': [0] * (REQUIRED_API_DATA_LENGTH - len(user_orders)) + amount_data,

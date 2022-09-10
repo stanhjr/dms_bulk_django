@@ -11,7 +11,7 @@ media/preview_images
 # Distribution / packaging
 .idea
 .Python
-.Python
+test.py
 build/
 develop-eggs/
 dist/
