@@ -9,6 +9,10 @@ class CustomUser(AbstractUser):
 
     dms_tokens = models.BigIntegerField(default=0)
     cents = models.BigIntegerField(default=0)
+    #
+    # is_confirm = models.BooleanField(default=False)
+    # verify_code = models.CharField(default='', max_length=100)
+    # reset_password_code = models.CharField(default='', max_length=100)
 
     @property
     def is_active_order(self) -> bool:
@@ -22,4 +26,3 @@ class CustomUser(AbstractUser):
         q2 = Q(filtering=True)
         q3 = Q(sending=True)
         return OrderModel.objects.filter(order_calc__user=self).filter(q1 | q2 | q3).exists()
-

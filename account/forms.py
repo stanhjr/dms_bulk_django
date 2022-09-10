@@ -37,3 +37,16 @@ class CustomPasswordChangeForm(PasswordChangeForm):
             'placeholder': 'Password'
         }
     ))
+
+
+class RestorePasswordChangeForm(PasswordChangeForm):
+    new_password1 = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'placeholder': 'Password'
+        }
+    ))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'placeholder': 'Password'
+        }
+    ))

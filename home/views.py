@@ -1,9 +1,14 @@
 from django.views.generic.base import TemplateView, View
 from django.shortcuts import redirect
-from django.contrib.auth import login, authenticate, get_user_model
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth import get_user_model
 
-from account_auth.forms import SignUpForm, SignInForm
-from utils import PopupCookiesContextMixin, PopupAuthContextMixin
+from account_auth.forms import SignUpForm
+from account_auth.forms import SignInForm
+
+from utils import PopupCookiesContextMixin
+from utils import PopupAuthContextMixin
 
 
 class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
