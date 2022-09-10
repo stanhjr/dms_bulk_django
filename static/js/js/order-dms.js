@@ -1,8 +1,3 @@
-window.onload = () => {
-    const add_funds_price = JSON.parse(localStorage.add_funds_price).price
-    document.querySelector('.js-input-numeric').value = add_funds_price
-}
-
 const saveAddFundsPriceInLocalStorage = () => {
     const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
     const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText
@@ -28,11 +23,11 @@ const submitOrderDataCreateForm = () => {
     const compaign_info = JSON.parse(localStorage.compaign_info)
 
     document.querySelector('#id_targets_or_competitors_submited').value = compaign_info.targets_or_competitors_submited
-    document.querySelector('#id_use_our_default_filtering').checked = compaign_info.use_our_default_filtering
-    document.querySelector('#id_not_use_any_filtering').checked = compaign_info.not_use_any_filtering
+    document.querySelector('#id_use_our_default_filtering').value = compaign_info.use_our_default_filtering
+    document.querySelector('#id_not_use_any_filtering').value = compaign_info.not_use_any_filtering
     document.querySelector('#id_message').value = compaign_info.message
     document.querySelector('#id_attach_in_message').value = compaign_info.attach_in_message
-    document.querySelector('#id_additional_information').value = compaign_info.additional_information
+    document.querySelector('#id_additional_information').value = compaign_info.additional_info
     document.querySelector('#id_contact_details').value = compaign_info.contact_details
 
     document.querySelector('#order_create_form').submit()

@@ -17,9 +17,9 @@
           <div class="content-wrapper">
             <section class="cabinet-nav">
               <ul>
-                <li><a class="active" href="./order-dms.html">Order DMS</a></li>
-                <li><a href="./order-active.html">Active Order</a></li>
-                <li><a href="./order-history.html">History</a></li>
+                <li><a class="active" href="{% url 'order' %}">Order DMS</a></li>
+                <li><a href="{% url 'order_active' %}">Active Order</a></li>
+                <li><a href="{% url 'order_history' %}">History</a></li>
               </ul>
             </section>
             <section class="order-dms-main">
@@ -28,7 +28,7 @@
                   <div class="wrapper">
                     <h1 class="fz25 center">Payment</h1>
                     <div class="block-fund-input">
-                      <input class="js-input-numeric" type="text">
+                      <input class="js-input-numeric" type="text" value="{{ total_price }}">
                     </div>
                     <div class="coupon-wrap">
                       <div class="input-wrap">

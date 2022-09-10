@@ -22,7 +22,6 @@ class BoardAPIView(APIView):
 
 
 class StatisticsApiView(APIView):
-
     permission_classes = [IsAuthenticated]
 
     def get(self, request, slug):
@@ -69,6 +68,13 @@ class OrderModelCreateView(PopupCookiesContextMixin, LoginRequiredMixin, CreateV
     form_class = forms.CreateOrderForm
     unsuccess_url = reverse_lazy('order_step_two')
     success_url = reverse_lazy('order_active')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        last_order_calc = OrderCalcModel.objects.last()
+        context['total_price'] = last_order_calc.total
+        return context
 
     def form_invalid(self):
         return redirect(self.unsuccess_url)
@@ -166,7 +172,9 @@ class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListVie
     context_object_name = 'completed_orders'
 
     def get_queryset(self):
-        return self.model.objects.filter(order_calc__user=self.request.user).filter(completed=True)
+        q1 = Q(order_calc__user=self.request.user)
+        q2 = Q(completed=True)
+        return self.model.objects.filter(q1 & q2)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
