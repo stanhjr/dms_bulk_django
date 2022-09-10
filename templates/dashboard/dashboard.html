@@ -77,6 +77,7 @@
   {% include 'popup/discord.html' %}
   {% include 'popup/telegram.html' %}
   {% include 'popup/twitter.html' %}
+  {% include 'popup/notification.html' %}
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
     <div class="header-wrap">
       <div class="left">
@@ -175,4 +176,10 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+  {% if not request.user.is_confirmed %}
+    <a class="btn btn--accent js-popup" href="#popup-notification" style="display: none">
+  {% endif %}
 {% endblock content %}
+{% block scripts %}
+  <script src="{% static '/js/js/dashboard.js' %}"></script>
+{% endblock scripts %}
