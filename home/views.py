@@ -47,10 +47,12 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
 
                     return redirect('dashboard')
                 else:
-                    messages.warning(self.request, 'such email is not registered or the password does not match')
+                    messages.warning(
+                        self.request, 'such email is not registered or the password does not match')
                     return redirect('home')
             else:
-                messages.warning(self.request, 'such email is not registered or the password does not match')
+                messages.warning(
+                    self.request, 'such email is not registered or the password does not match')
                 return redirect('home')
 
         if action == 'sign_up_form':
@@ -61,24 +63,23 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                 q2 = Q(username=sign_up_form.cleaned_data.get('username'))
                 user = CustomUser.objects.filter(q1 | q2).first()
                 if user:
-                    messages.warning(self.request, 'a user with this email or username already exists')
+                    messages.warning(
+                        self.request, 'a user with this email or username already exists')
                     return redirect('home')
                 sign_up_form.save()
                 username = sign_up_form.cleaned_data.get('username')
                 password = sign_up_form.cleaned_data.get('password1')
                 new_user = authenticate(username=username, password=password)
 
-                if new_user:
-                    new_user.verify_code = generate_key()
-                    send_verify_link_to_email.delay(new_user.verify_code, sign_up_form.cleaned_data.get("email"))
-                    new_user.save()
-                    login(request, new_user)
-                    return redirect('dashboard')
-                else:
-                    messages.warning(self.request, 'the entered passwords do not match')
-                    return redirect('home')
+                new_user.verify_code = generate_key()
+                send_verify_link_to_email.delay(
+                    new_user.verify_code, sign_up_form.cleaned_data.get("email"))
+                new_user.save()
+                login(request, new_user)
+                return redirect('dashboard')
             else:
-                messages.warning(self.request, 'the entered passwords do not match')
+                messages.warning(
+                    self.request, 'a user with this email or username already exists')
                 return redirect('home')
 
         return redirect('home')
