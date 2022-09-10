@@ -24,3 +24,8 @@ forgotPasswordBtn.onclick = () => {
     loginPopup.getElementsByTagName("h3")[0].innerText = "Forgot Password"
 
 }
+if (document.getElementById("close-message")){
+    document.getElementById("close-message").onclick = () => {
+        document.getElementsByClassName("error-toast")[0].style.display = 'none'
+    }
+}

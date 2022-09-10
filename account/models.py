@@ -4,6 +4,7 @@ from django.db.models import Q
 
 
 class CustomUser(AbstractUser):
+    email = models.EmailField(blank=True, unique=True)
     receive_news = models.BooleanField(default=True)
     receive_activity = models.BooleanField(default=True)
     is_confirmed = models.BooleanField(default=False)

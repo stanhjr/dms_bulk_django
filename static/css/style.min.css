@@ -8098,3 +8098,26 @@ ul.block-check-list li .ic svg {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.error-toast{
+    position: fixed;
+    z-index: 1000;
+    right: 15px;
+    top: 15px;
+}
+.error-toast-inner{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+    padding: 40px 55px;
+    border: 1px solid #E9E9E9;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.error-toast svg {
+    width: 25px;
+    height: 25px;
+}
+#close-message{
+  cursor: pointer;
+}
