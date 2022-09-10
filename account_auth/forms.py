@@ -41,7 +41,7 @@ class SignInForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={
             'class': 'has-ic',
-            'id': 'id_email',
+            'id': 'id_login_email',
             'placeholder': 'Email',
         }
     ))
