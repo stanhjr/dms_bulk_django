@@ -1,10 +1,12 @@
 window.onload = () => {
     const add_funds_price = JSON.parse(localStorage.add_funds_price).price
-    document.querySelector('.js-input-numeric').value = add_funds_price 
+    document.querySelector('.js-input-numeric').value = add_funds_price
 }
 
 const saveAddFundsPriceInLocalStorage = () => {
-    const add_funds_price = document.querySelector('.js-price-amount').innerText
+    const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
+    const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText
+
     localStorage.add_funds_price = JSON.stringify({
         'price': add_funds_price
     })
