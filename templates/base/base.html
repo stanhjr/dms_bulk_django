@@ -20,7 +20,8 @@
     <body>
         {% block content %}{% endblock content %}
         <script src="{% static '/js/scripts.min.js' %}?2"></script>
-         <script src="{% static '/js/js/common.js' %}?2"></script>
-    <script src="{% static '/js/js/restore-password.js' %}?2"></script>
+        <script src="{% static '/js/js/common.js' %}?2"></script>
+        <script src="{% static '/js/js/restore-password.js' %}?2"></script>
+        {% block scripts %}{% endblock scripts %}
     </body>
 </html>
