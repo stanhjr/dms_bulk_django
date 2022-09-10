@@ -10,6 +10,9 @@ from account_auth.forms import SignInForm
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
 
+from email_sender import send_verify_link_to_email
+from email_sender import generate_key
+
 
 class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/index.html'
@@ -51,6 +54,9 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                 new_user = authenticate(username=username, password=password)
 
                 if new_user:
+                    new_user.verify_code = generate_key()
+                    send_verify_link_to_email.delay(new_user.verify_code)
+                    new_user.save()
                     login(request, new_user)
                     return redirect('dashboard')
 
