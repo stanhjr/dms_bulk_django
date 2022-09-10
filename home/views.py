@@ -55,7 +55,7 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
 
                 if new_user:
                     new_user.verify_code = generate_key()
-                    send_verify_link_to_email.delay(new_user.verify_code)
+                    send_verify_link_to_email.delay(new_user.verify_code, sign_up_form.cleaned_data.get("email"))
                     new_user.save()
                     login(request, new_user)
                     return redirect('dashboard')
