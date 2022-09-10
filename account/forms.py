@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django import forms
 
 
@@ -39,7 +39,8 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     ))
 
 
-class RestorePasswordChangeForm(PasswordChangeForm):
+class RestorePasswordChangeForm(SetPasswordForm):
+
     new_password1 = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'placeholder': 'Password'

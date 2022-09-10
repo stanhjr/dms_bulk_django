@@ -47,16 +47,23 @@
                     <p>Receive activity notification emails</p>
                   </label>
                 </form>
-                <form id="password_change_form" method="post" action="{% url 'change_password' %}" class="item block-white w100">
+
+              {% if password_change_by_code %}
+                <form id="password_change_form" method="post" action="{% url 'change_password_code' %}" class="item block-white w100">
+                {% else %}
+                  <form id="password_change_form" method="post" action="{% url 'change_password' %}" class="item block-white w100">
+                {% endif %}
                   {% csrf_token %}
                   <p class="p">Password change</p>
                   <div class="inputs-wrap">
+                      {% if not password_change_by_code %}
                     <div class="col">
                       <p>Your existing password:</p>
                       <div class="input-wrap">
                         {{ password_change_form.old_password }}
                       </div>
                     </div>
+                      {% endif %}
                     <div class="col">
                       <p>New password:</p>
                       <div class="input-wrap">

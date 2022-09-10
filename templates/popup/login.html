@@ -13,7 +13,7 @@
             </svg>
           </div>
         </div>
-        <div class="input-wrap">
+        <div class="input-wrap" id="form-password">
           {{ sign_in_form.password }}
           <div class="ic">
             <svg viewBox="0 0 20 20" width="20px">
@@ -29,7 +29,7 @@
             </svg>
           </button>
         </div>
-        <div class="checkbox-wrapper">
+        <div class="checkbox-wrapper" id="popup-remember-me">
           <label class="block-checkbox">
             {{ sign_in_form.remember_me }}
             <div class="checkbox">
@@ -39,9 +39,9 @@
             </div>
             <p>Remember me</p>
           </label>
-          <div class="link-wrap"><a href="#">Forgot password?</a></div>
+          <div class="link-wrap" id="forgot-password"><a href="#">Forgot password?</a></div>
         </div>
-        <div class="btn-wrap">
+        <div class="btn-wrap" id ="login-popup-btn-div">
           <button class="btn btn--accent" type="submit">Sign In</button>
         </div>
       </form>

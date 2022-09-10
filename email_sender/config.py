@@ -8,7 +8,7 @@ config = {
             'queue': 'send_emails'
         },
         'email_sender.tasks.send_reset_password_link_to_email': {
-            'queue': 'scheduled_emails'
+            'queue': 'send_emails'
         },
     },
     'accept_content': ['json', 'application/x-python-serialize'],
