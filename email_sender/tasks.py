@@ -28,19 +28,19 @@ def generate_key() -> str:
     """
     Generated and returned random code
 
-    :return: str
+    :return: str: key
     """
     return binascii.hexlify(os.urandom(20)).decode()
 
 
 @app.task
-def send_verify_link_to_email(code: str, email_to: str):
+def send_verify_link_to_email(code: str, email_to: str) -> str:
     """
     Sends an email with a link to verify user account
 
     :param code: code registration
     :param email_to: sender email
-    :return:
+    :return: task result
     """
     password = settings.EMAIL_HOST_PASSWORD
     sender_email = settings.EMAIL_HOST_USER
@@ -73,13 +73,13 @@ def send_verify_link_to_email(code: str, email_to: str):
 
 
 @app.task
-def send_reset_password_link_to_email(code: str, email_to):
+def send_reset_password_link_to_email(code: str, email_to: str) -> str:
     """
     Sends an email with a reset password link for user account
 
     :param code: code registration
     :param email_to: sender email
-    :return:
+    :return: task result
     """
     password = settings.EMAIL_HOST_PASSWORD
     sender_email = settings.EMAIL_HOST_USER
