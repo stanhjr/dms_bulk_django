@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from .models import OrderModel, OrderCalcModel, BoardModel
 from . import serializers
 from . import forms
+from .utils import ConfirmRequiredMixin
 from utils import PopupCookiesContextMixin
 
 
@@ -46,7 +47,7 @@ class StatisticsApiView(APIView):
         return Response(data_example)
 
 
-class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
+class CreateOrderCalcPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms.html'
     success_url = reverse_lazy('order_step_two')
     model = OrderCalcModel
@@ -62,7 +63,7 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, LoginRequiredMixin, Crea
         return super().form_valid(form)
 
 
-class OrderModelCreateView(PopupCookiesContextMixin, LoginRequiredMixin, CreateView):
+class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
     model = OrderModel
     template_name = 'order/order-dms-step-3.html'
     form_class = forms.CreateOrderForm
@@ -137,7 +138,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, LoginRequiredMixin, CreateV
         return redirect(self.success_url)
 
 
-class SetCompaignInfoPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
+class SetCompaignInfoPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-dms-step-2.html'
 
     def get_context_data(self, **kwargs):
@@ -151,7 +152,7 @@ class SetCompaignInfoPageView(PopupCookiesContextMixin, LoginRequiredMixin, Temp
         return context
 
 
-class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
+class OrderActivePageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-active.html'
     model = OrderModel
     context_object_name = 'orders'
@@ -166,7 +167,7 @@ class OrderActivePageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView
         return context
 
 
-class OrderHistoryPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
+class OrderHistoryPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-history.html'
     model = OrderModel
     context_object_name = 'completed_orders'
