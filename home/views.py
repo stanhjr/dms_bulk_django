@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 from account_auth.forms import SignUpForm
 from account_auth.forms import SignInForm
@@ -43,6 +44,9 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                         request.session.set_expiry(0)
 
                     return redirect('dashboard')
+            else:
+                messages.warning(self.request, 'such email is not registered or the password does not match')
+                return redirect('home')
 
         if action == 'sign_up_form':
             sign_up_form = SignUpForm(request.POST or None)
@@ -59,6 +63,9 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                     new_user.save()
                     login(request, new_user)
                     return redirect('dashboard')
+            else:
+                messages.warning(self.request, 'the entered passwords do not match')
+                return redirect('home')
 
         return redirect('home')
 
