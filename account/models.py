@@ -6,6 +6,7 @@ from django.db.models import Q
 class CustomUser(AbstractUser):
     receive_news = models.BooleanField(default=True)
     receive_activity = models.BooleanField(default=True)
+    is_confirmed = models.BooleanField(default=False)
 
     dms_tokens = models.BigIntegerField(default=0)
     cents = models.BigIntegerField(default=0)
@@ -22,4 +23,3 @@ class CustomUser(AbstractUser):
         q2 = Q(filtering=True)
         q3 = Q(sending=True)
         return OrderModel.objects.filter(order_calc__user=self).filter(q1 | q2 | q3).exists()
-
