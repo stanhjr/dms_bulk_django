@@ -7,13 +7,11 @@ class CustomUser(AbstractUser):
     receive_news = models.BooleanField(default=True)
     receive_activity = models.BooleanField(default=True)
     is_confirmed = models.BooleanField(default=False)
+    verify_code = models.CharField(default='', max_length=100)
+    reset_password_code = models.CharField(default='', max_length=100)
 
     dms_tokens = models.BigIntegerField(default=0)
     cents = models.BigIntegerField(default=0)
-    #
-    # is_confirm = models.BooleanField(default=False)
-    # verify_code = models.CharField(default='', max_length=100)
-    # reset_password_code = models.CharField(default='', max_length=100)
 
     @property
     def is_active_order(self) -> bool:

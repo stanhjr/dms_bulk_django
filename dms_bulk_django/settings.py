@@ -128,8 +128,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST_USER = "some_email"
-EMAIL_HOST_PASSWORD = "some_password"
+EMAIL_HOST_USER = "helloworldbooo@gmail.com"
+EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
 CELERY_SEND_MAIL_HOST = "http://127.0.0.1:8000/"
 
 try:

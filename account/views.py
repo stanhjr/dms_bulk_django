@@ -60,7 +60,7 @@ class SignUpConfirm(RedirectView):
         user = CustomUser.objects.filter(code=code).first()
         if user:
             user.verify_code = ''
-            user.is_confirm = True
+            user.is_confirmed = True
             user.save()
             return redirect('dashboard')
         else:
