@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.views.generic.base import TemplateView, View
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
@@ -5,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 
+from account.models import CustomUser
 from account_auth.forms import SignUpForm
 from account_auth.forms import SignInForm
 
@@ -55,6 +57,12 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
             sign_up_form = SignUpForm(request.POST or None)
 
             if sign_up_form.is_valid():
+                q1 = Q(email=sign_up_form.cleaned_data.get('email'))
+                q2 = Q(username=sign_up_form.cleaned_data.get('username'))
+                user = CustomUser.objects.filter(q1 | q2).first()
+                if user:
+                    messages.warning(self.request, 'a user with this email or username already exists')
+                    return redirect('home')
                 sign_up_form.save()
                 username = sign_up_form.cleaned_data.get('username')
                 password = sign_up_form.cleaned_data.get('password1')
