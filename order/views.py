@@ -132,8 +132,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             return self.form_invalid()
 
         order_total_price = float(order_total_price[:-1])
-        use_dms_tokens = form.cleaned_data.get('use_tokens')
-        print(order_total_price)
+        use_dms_tokens = form.cleaned_data.get('use_dms_tokens')
 
         if use_dms_tokens:
             order_total_price -= self.request.user.dms_tokens
@@ -143,7 +142,6 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             order_total_price = 0
         else:
             self.request.user.dms_tokens = 0
-        print(order_total_price)
 
         self.request.user.cents -= order_total_price * 100
         self.request.user.dms_tokens += int(
