@@ -2,7 +2,7 @@ const loginPopup = document.getElementById("popup-login")
 const forgotPasswordBtn = document.getElementById("forgot-password")
 
 
-function SendEmail(){
+const SendEmail = () => {
     const email = document.getElementById("id_email").value
     if (email){
         document.location.href = '/account/reset-password?email=' + email
