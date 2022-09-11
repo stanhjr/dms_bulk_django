@@ -26,4 +26,6 @@ urlpatterns = [
     path('order/', include('order.urls')),
     path('blog/', include('blog.urls')),
     path('add_funds/', include('add_funds.urls')),
+    path("stripe/", include('djstripe.urls', namespace='djstripe')),
+    path("payment/", include('payment.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'mathfilters',
+    'djstripe',
     'home',
     'account',
     'account_auth',
     'dashboard',
     'order',
     'blog',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +133,14 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "helloworldbooo@gmail.com"
 EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
 CELERY_SEND_MAIL_HOST = "http://127.0.0.1:8000/"
+
+STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", 'STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY')
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", 'sk_test_51Lg4MyK6rkKpcwrpBVyS7DCMIIiJxhxDwpCH5ufEg3MPS8QnZtcp3amLtQR5n5lQ1JKO4OVciqPL1K7kJguJZNUS005MqWi0jt')
+STRIPE_LIVE_MODE = False
+DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 try:
     from .local_settings import *
