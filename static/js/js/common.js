@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			colors: ['#4A72FE', '#7D9AFF', '#9C27B0'],
 			series: [{
 				name: "DM's",
-				data: ['439', '250', '320', '480', '370', '450', '335']
+				data: ['0', '0', '0', '0', '0', '0', '0']
 			}], //holder. When using our service for personal purposes, you must indicate us as the source.
 
 			//Start with us
