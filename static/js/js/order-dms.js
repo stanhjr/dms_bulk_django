@@ -1,9 +1,9 @@
-window.onload = () => {
+window.addEventListener('load', () => {
     const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
     const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText
-
+    console.log(add_funds_price)
     document.querySelector('.js-price-amount').innerText = add_funds_price
-}
+})
 
 const saveAddFundsPriceInLocalStorage = () => {
     const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
@@ -36,6 +36,8 @@ const submitOrderDataCreateForm = () => {
     document.querySelector('#id_attach_in_message').value = compaign_info.attach_in_message
     document.querySelector('#id_additional_information').value = compaign_info.additional_info
     document.querySelector('#id_contact_details').value = compaign_info.contact_details
+    document.querySelector('#id_use_tokens').value = document.querySelector('#use_existing_tokens_checkbox').checked
 
-    document.querySelector('#order_create_form').submit()
+    console.log(document.querySelector('#id_use_tokens').value)
+    // document.querySelector('#order_create_form').submit()
 }
