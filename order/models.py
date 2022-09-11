@@ -1,8 +1,10 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
+
+from celery_tasks.tasks import delete_order_from_actives
 
 
 class BoardModel(models.Model):
@@ -92,19 +94,25 @@ class OrderModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.clean()
+
+        if self.sending and not self.completed:
+            send_date = datetime.utcnow() + timedelta(days=1)
+            delete_order_from_actives.apply_async((self.pk, ), eta=send_date)
+
         if self.filtering and not self.sending:
             self.send_messages_speed = self.__get_send_messages_speed_per_minutes()
-            self.sending_start_at = datetime.now(timezone.utc)
+            self.sending_start_at = datetime.utcnow()
+
         return super().save(*args, **kwargs)
 
     @property
     def time_from_sending_start_at(self):
-        return int((datetime.now(timezone.utc) - self.sending_start_at).total_seconds())
+        return int((datetime.utcnow() - self.sending_start_at).total_seconds())
 
     def __get_send_messages_speed_per_minutes(self):
         amount = int(self.order_calc.amount[:-1])
         seconds_ago = int((self.sending_end_at -
-                           datetime.now(timezone.utc)).total_seconds())
+                           datetime.utcnow()).total_seconds())
 
         if self.order_calc.amount[-1] == 'k':
             amount *= 1_000

@@ -1,6 +1,6 @@
 """Celery start """
 
-from email_sender.tasks import app
+from celery_tasks.tasks import app
 
 if __name__ == "__main__":
     argv = [

@@ -13,8 +13,8 @@ from account_auth.forms import SignInForm
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
 
-from email_sender import send_verify_link_to_email
-from email_sender import generate_key
+from celery_tasks import send_verify_link_to_email
+from celery_tasks import generate_key
 
 
 class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
