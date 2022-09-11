@@ -82,7 +82,6 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        print(form.cleaned_data)
 
         order_calc = OrderCalcModel.objects.last()
         board = BoardModel.objects.last()
@@ -132,9 +131,23 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             print(4)
             return self.form_invalid()
 
-        self.request.user.cents -= float(order_total_price[:-1]) * 100
+        order_total_price = float(order_total_price[:-1])
+        use_dms_tokens = form.cleaned_data.get('use_tokens')
+        print(order_total_price)
+
+        if use_dms_tokens:
+            order_total_price -= self.request.user.dms_tokens
+
+        if order_total_price < 0 and use_dms_tokens:
+            self.request.user.dms_tokens = int(abs(order_total_price))
+            order_total_price = 0
+        else:
+            self.request.user.dms_tokens = 0
+        print(order_total_price)
+
+        self.request.user.cents -= order_total_price * 100
         self.request.user.dms_tokens += int(
-            float(order_total_price[:-1]) * 0.02)
+            order_total_price * 0.02)
         obj.order_calc = order_calc
 
         with transaction.atomic():
