@@ -522,3 +522,14 @@ function getStatistics(nameSocial, chart1) {
 		})
 	}
 }
+
+$(document).ready(() => {
+	if ($('#popup-notification').length) {
+		$('#notification-accept').click(() => $('#popup-notification').remove())
+		$('body').click((event) => {
+			if (event.target.id === 'notification-background') {
+				$('#popup-notification').remove()
+			}
+		})
+	}
+})
