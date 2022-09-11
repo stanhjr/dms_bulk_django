@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'mathfilters',
     'djstripe',
+    'paypal.standard.ipn',
     'home',
     'account',
     'account_auth',
@@ -142,6 +143,7 @@ STRIPE_LIVE_MODE = False
 DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
+PAYPAL_TEST = True
 try:
     from .local_settings import *
 except ImportError:
