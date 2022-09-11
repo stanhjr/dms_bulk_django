@@ -523,7 +523,7 @@ function getStatistics(nameSocial, chart1) {
 	}
 }
 
-$(document).ready(() => {
+window.addEventListener('load', () => {
 	if ($('#popup-notification').length) {
 		$('#notification-accept').click(() => $('#popup-notification').remove())
 		$('body').click((event) => {

@@ -82,6 +82,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
 
     def form_valid(self, form):
         obj = form.save(commit=False)
+        print(form.cleaned_data)
 
         order_calc = OrderCalcModel.objects.last()
         board = BoardModel.objects.last()
@@ -93,9 +94,12 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             if order_calc.social_network == 'Instagram':
                 total_price_index = board.instagram_board_total.index(
                     order_total_price)
+                print(1)
                 if board.instagram_board_discount[total_price_index] != order_discount:
+                    print(2)
                     return self.form_invalid()
                 if board.instagram_board_amount[total_price_index] != order_amount:
+                    print(3)
                     return self.form_invalid()
 
             if order_calc.social_network == 'Twitter':
@@ -125,6 +129,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             return self.form_invalid()
 
         if float(order_total_price[:-1]) > self.request.user.cents / 100:
+            print(4)
             return self.form_invalid()
 
         self.request.user.cents -= float(order_total_price[:-1]) * 100
