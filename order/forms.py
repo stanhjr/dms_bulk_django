@@ -18,7 +18,7 @@ class CreateOrderForm(forms.ModelForm):
                   'message',
                   'attach_in_message',
                   'additional_information',
-                  'contact_details')
+                  'contact_details',)
         widgets = {
             'targets_or_competitors_submited': forms.Textarea(
                 attrs={

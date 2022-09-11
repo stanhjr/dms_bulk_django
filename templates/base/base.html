@@ -1,43 +1,49 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/favicon/apple-touch-icon.png' %}"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static '/img/favicon/favicon-32x32.png' %}"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicon/favicon-16x16.png' %}"/>
-        <link rel="manifest" href="{% static '/img/favicon/site.webmanifest' %}"/>
-        <link rel="mask-icon" href="{% static '/img/favicon/safari-pinned-tab.svg' %}" color="#666F86"/>
-        <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}"/>
-        <meta name="msapplication-TileColor" content="#666F86"/>
-        <meta name="msapplication-config" content="{% static '/img/favicon/browserconfig.xml' %}"/>
-        <meta name="theme-color" content="#666F86"/>
-        <link rel="stylesheet" type="text/css" href="{% static '/css/style.min.css' %}"/>
-        {% block head_tags %}{% endblock head_tags %}
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/favicon/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/img/favicon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicon/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static '/img/favicon/site.webmanifest' %}" />
+    <link rel="mask-icon" href="{% static '/img/favicon/safari-pinned-tab.svg' %}" color="#666F86" />
+    <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon/favicon.ico' %}" />
+    <meta name="msapplication-TileColor" content="#666F86" />
+    <meta name="msapplication-config" content="{% static '/img/favicon/browserconfig.xml' %}" />
+    <meta name="theme-color" content="#666F86" />
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.min.css' %}" />
+    {% block head_tags %}{% endblock head_tags %}
+</head>
+
+<body>
+    {% include 'popup/notification.html' %}
     <div class="error-toast">
         {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <div class="error-toast-inner">
-                    <div id="close-message">
-                       <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 1024 1024" version="1.1"><path d="M512 0C229.376 0 0 229.376 0 512s229.376 512 512 512 512-229.376 512-512S794.624 0 512 0z m218.624 672.256c15.872 15.872 15.872 41.984 0 57.856-8.192 8.192-18.432 11.776-29.184 11.776s-20.992-4.096-29.184-11.776L512 569.856l-160.256 160.256c-8.192 8.192-18.432 11.776-29.184 11.776s-20.992-4.096-29.184-11.776c-15.872-15.872-15.872-41.984 0-57.856L454.144 512 293.376 351.744c-15.872-15.872-15.872-41.984 0-57.856 15.872-15.872 41.984-15.872 57.856 0L512 454.144l160.256-160.256c15.872-15.872 41.984-15.872 57.856 0 15.872 15.872 15.872 41.984 0 57.856L569.856 512l160.768 160.256z" fill="#CF3736"/></svg>
-                    </div>
-                    <span class="system-massage">{{ message }}</span>
-                    </div>
-                {% endfor %} 
-            </ul>
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="error-toast-inner">
+                <div id="close-message">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 1024 1024" version="1.1">
+                        <path
+                            d="M512 0C229.376 0 0 229.376 0 512s229.376 512 512 512 512-229.376 512-512S794.624 0 512 0z m218.624 672.256c15.872 15.872 15.872 41.984 0 57.856-8.192 8.192-18.432 11.776-29.184 11.776s-20.992-4.096-29.184-11.776L512 569.856l-160.256 160.256c-8.192 8.192-18.432 11.776-29.184 11.776s-20.992-4.096-29.184-11.776c-15.872-15.872-15.872-41.984 0-57.856L454.144 512 293.376 351.744c-15.872-15.872-15.872-41.984 0-57.856 15.872-15.872 41.984-15.872 57.856 0L512 454.144l160.256-160.256c15.872-15.872 41.984-15.872 57.856 0 15.872 15.872 15.872 41.984 0 57.856L569.856 512l160.768 160.256z"
+                            fill="#CF3736" /></svg>
+                </div>
+                <span class="system-massage">{{ message }}</span>
+            </div>
+            {% endfor %}
+        </ul>
         {% endif %}
     </div>
 
-        {% block content %}{% endblock content %}
-        <script src="{% static '/js/scripts.min.js' %}?2"></script>
-        <script src="{% static '/js/js/common.js' %}?2"></script>
-        <script src="{% static '/js/js/restore-password.js' %}?2"></script>
+    {% block content %}{% endblock content %}
+    <script src="{% static '/js/scripts.min.js' %}?2"></script>
+    <script src="{% static '/js/js/common.js' %}?2"></script>
+    <script src="{% static '/js/js/restore-password.js' %}?2"></script>
+    {% block scripts %}{% endblock scripts %}
+</body>
 
-        {% block scripts %}{% endblock scripts %}
-    </body>
 </html>

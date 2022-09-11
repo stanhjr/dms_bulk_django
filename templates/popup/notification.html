@@ -1,11 +1,29 @@
 {% load static %}
-<div class="mfp-hide popup popup--notification" id="popup-notification">
-  <div class="popup-form-wrap">
-    <div id="notification-body">
-      <h3 class="center">A confirmation email has been sent to you</h3>
-      <div class="btn-wrap">
-        <button class="btn btn--accent" id="notification-accept">Ok</button>
+{% if request.user.is_authenticated %}
+{% if not request.user.is_confirmed %}
+<div id="popup-notification">
+  <div class="mfp-bg mfp-ready"></div>
+  <div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready" tabindex="-1" style="overflow: hidden auto;">
+    <div id="notification-background" class="mfp-container mfp-s-ready mfp-inline-holder">
+      <div class="mfp-content"
+        style="position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%);">
+        <div class="popup popup--notification">
+          <div class="popup-form-wrap">
+            <div id="notification-body">
+              <h3 class="center">A confirmation email has been sent to you</h3>
+              <div class="btn-wrap">
+                <button class="btn btn--accent" id="notification-accept">Ok</button>
+              </div>
+            </div>
+          </div>
+          <button class="mfp-close"><svg viewBox="0 0 22 22" width="22px">
+              <use xlink:href="./img/sprite.svg#ic-close"></use>
+            </svg></button>
+        </div>
       </div>
+      <div class="mfp-preloader">Loading...</div>
     </div>
   </div>
 </div>
+{% endif %}
+{% endif %}
