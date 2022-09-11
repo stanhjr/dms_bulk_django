@@ -1,3 +1,4 @@
+from email.policy import default
 from django import forms
 
 from . import models
@@ -10,6 +11,8 @@ class CreateOrderCalcForm(forms.ModelForm):
 
 
 class CreateOrderForm(forms.ModelForm):
+    use_tokens = forms.BooleanField()
+
     class Meta:
         model = models.OrderModel
         fields = ('targets_or_competitors_submited',
@@ -18,7 +21,7 @@ class CreateOrderForm(forms.ModelForm):
                   'message',
                   'attach_in_message',
                   'additional_information',
-                  'contact_details',)
+                  'contact_details')
         widgets = {
             'targets_or_competitors_submited': forms.Textarea(
                 attrs={
