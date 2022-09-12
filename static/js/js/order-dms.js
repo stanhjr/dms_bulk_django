@@ -1,10 +1,3 @@
-window.addEventListener('load', () => {
-    const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
-    const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText
-    console.log('The Worudo!!!')
-    document.querySelector('.js-price-amount').innerText = add_funds_price
-})
-
 const saveAddFundsPriceInLocalStorage = () => {
     const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
     const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText

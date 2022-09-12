@@ -528,7 +528,7 @@ window.addEventListener('load', () => {
 	console.log('jotaro...')
 	if ($('#popup-notification').length) {
 		$('#notification-accept').click(() => $('#popup-notification').remove())
-		$('#notification-background').click((event) => {
+		$('#notification-background').click(event => {
 			console.log(event.target.id)
 			if (event.target.id !== 'popup-notification') {
 				$('#popup-notification').remove()
