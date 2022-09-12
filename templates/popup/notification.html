@@ -1,6 +1,5 @@
 {% load static %}
-{% if request.user.is_authenticated %}
-{% if not request.user.is_confirmed %}
+{% if not request.user.is_confirmed and request.user.is_authenticated %}
 <div id="popup-notification">
   <div class="mfp-bg mfp-ready"></div>
   <div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready" tabindex="-1" style="overflow: hidden auto;">
@@ -25,5 +24,4 @@
     </div>
   </div>
 </div>
-{% endif %}
 {% endif %}
