@@ -526,11 +526,11 @@ function getStatistics(nameSocial, chart1) {
 window.addEventListener('load', () => {
 	if ($('#popup-notification').length) {
 		$('#notification-accept').click(() => $('#popup-notification').remove())
-		$('body').click((event) => {
+		$('#notification-background').click((event) => {
 			console.log(event.target.id)
 			if (event.target.id !== 'popup-notification') {
 				$('#popup-notification').remove()
 			}
 		})
 	}
-}) 
+})

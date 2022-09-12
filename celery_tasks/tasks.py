@@ -14,7 +14,7 @@ from .config import config
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dms_bulk_django.settings")
 app = Celery(
-    "email_sender",
+    "celery_tasks",
     broker="redis://localhost:6379",
 )
 
