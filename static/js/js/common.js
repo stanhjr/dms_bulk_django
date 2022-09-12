@@ -527,9 +527,10 @@ window.addEventListener('load', () => {
 	if ($('#popup-notification').length) {
 		$('#notification-accept').click(() => $('#popup-notification').remove())
 		$('body').click((event) => {
-			if (event.target.id === 'notification-background') {
+			console.log(event.target.id)
+			if (event.target.id !== 'popup-notification') {
 				$('#popup-notification').remove()
 			}
 		})
 	}
-})
+}) 
