@@ -11,9 +11,9 @@ class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
     pk_url_kwarg = 'page_pk'
     context_object_name = 'page_pk'
 
-    def get_object(self, queryset):
+    def get_object(self, queryset=None):
         try:
-            self.object = super().get_object(queryset)
+            return super().get_object(queryset)
         except Http404:
             pass
 
