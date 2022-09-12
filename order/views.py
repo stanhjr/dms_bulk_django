@@ -174,7 +174,9 @@ class OrderActivePageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginR
     context_object_name = 'orders'
 
     def get_queryset(self):
-        return self.model.objects.filter(order_calc__user=self.request.user).filter(completed=False)
+        q1 = Q(order_calc__user=self.request.user)
+        q2 = Q(completed=False)
+        return self.model.objects.filter(q1 & q2)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
