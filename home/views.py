@@ -38,6 +38,11 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                 password = sign_in_form.cleaned_data.get('password')
                 remember_me = sign_in_form.cleaned_data.get('remember_me')
 
+                if not get_user_model().objects.filter(email=email).exists():
+                    messages.warning(
+                        self.request, 'such email is not registered or the password does not match')
+                    return redirect('home')
+
                 username = get_user_model().objects.get(email=email).username
                 login_user = authenticate(username=username, password=password)
 
