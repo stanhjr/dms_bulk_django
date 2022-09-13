@@ -115,6 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '/home/static')
 MEDIA_URL = 'media/'
 
 STATICFILES_DIRS = [
@@ -130,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "helloworldbooo@gmail.com"
 EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
-CELERY_SEND_MAIL_HOST = "http://127.0.0.1:8000/"
+CELERY_SEND_MAIL_HOST = "http://185.65.245.191/"
 
 try:
     from .local_settings import *
