@@ -3,7 +3,7 @@ const forgotPasswordBtn = document.getElementById("forgot-password")
 
 
 const SendEmail = () => {
-    const email = document.getElementById("id_email").value
+    const email = document.getElementById("id_login_email").value
     if (email){
         document.location.href = '/account/reset-password?email=' + email
     }
