@@ -1,15 +1,24 @@
-from datetime import datetime, timezone, timedelta
-from django.views.generic import ListView, CreateView, TemplateView
+from datetime import datetime
+from datetime import timezone
+from datetime import timedelta
+
+from django.views.generic import ListView
+from django.views.generic import CreateView
+from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.db import transaction, models
 from django.db.models import Q
+
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import OrderModel, OrderCalcModel, BoardModel
+from .models import BoardModel
+from .models import OrderCalcModel
+from .models import OrderModel
+
 from . import serializers
 from . import forms
 from .utils import ConfirmRequiredMixin
@@ -82,7 +91,6 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        print(form.cleaned_data)
 
         order_calc = OrderCalcModel.objects.last()
         board = BoardModel.objects.last()
@@ -94,12 +102,9 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             if order_calc.social_network == 'Instagram':
                 total_price_index = board.instagram_board_total.index(
                     order_total_price)
-                print(1)
                 if board.instagram_board_discount[total_price_index] != order_discount:
-                    print(2)
                     return self.form_invalid()
                 if board.instagram_board_amount[total_price_index] != order_amount:
-                    print(3)
                     return self.form_invalid()
 
             if order_calc.social_network == 'Twitter':
@@ -129,12 +134,23 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             return self.form_invalid()
 
         if float(order_total_price[:-1]) > self.request.user.cents / 100:
-            print(4)
             return self.form_invalid()
 
-        self.request.user.cents -= float(order_total_price[:-1]) * 100
+        order_total_price = float(order_total_price[:-1])
+        use_dms_tokens = form.cleaned_data.get('use_dms_tokens')
+
+        if use_dms_tokens:
+            order_total_price -= self.request.user.dms_tokens
+
+        if order_total_price < 0 and use_dms_tokens:
+            self.request.user.dms_tokens = int(abs(order_total_price))
+            order_total_price = 0
+        else:
+            self.request.user.dms_tokens = 0
+
+        self.request.user.cents -= order_total_price * 100
         self.request.user.dms_tokens += int(
-            float(order_total_price[:-1]) * 0.02)
+            order_total_price * 0.02)
         obj.order_calc = order_calc
 
         with transaction.atomic():
@@ -163,7 +179,9 @@ class OrderActivePageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginR
     context_object_name = 'orders'
 
     def get_queryset(self):
-        return self.model.objects.filter(order_calc__user=self.request.user).filter(completed=False)
+        q1 = Q(order_calc__user=self.request.user)
+        q2 = Q(completed=False)
+        return self.model.objects.filter(q1 & q2)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

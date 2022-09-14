@@ -2,88 +2,60 @@
 {% load static %}
 
 {% block head_tags %}
-  <title>Order DMS</title>
+  <title>FAQ</title>
 {% endblock head_tags %}
 
 {% block content %}
   <div class="page-container">
     {% include 'base/header.html' %}
-    <main class="cabinet">
+    <main class="default">
       <div class="container">
         <div class="grid-wrap">
           <div class="aside-wrapper">
-            {% include 'account/nav.html' %}
+            {% include 'home/nav.html' %}
           </div>
           <div class="content-wrapper">
-            <section class="cabinet-nav">
-              <ul>
-                <li><a class="active" href="{% url 'order' %}">Order DMS</a></li>
-                <li><a href="{% url 'order_active' %}">Active Order</a></li>
-                <li><a href="{% url 'order_history' %}">History</a></li>
-              </ul>
-            </section>
-            <section class="order-dms-main">
-              <div class="payment-wrap block-white">
-                <form method="post">
-                  <div class="wrapper">
-                    <h1 class="fz25 center">Payment</h1>
-                    <div class="block-fund-input">
-                      <input class="js-input-numeric" type="text" value="{{ total_price }}">
-                    </div>
-                    <div class="coupon-wrap">
-                      <div class="input-wrap">
-                        <input type="text" placeholder="Enter Discount Coupon">
-                      </div>
-                      <div class="checkbox-wrapper">
-                        <label class="block-checkbox">
-                          <input type="checkbox" id="use_existing_tokens_checkbox">
-                          <div class="checkbox">
-                            <svg viewBox="0 0 12 12" width="12px">
-                              <use xlink:href="./img/sprite.svg#ic-check"></use>
-                            </svg>
-                          </div>
-                          <p>Use existing tokens</p>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="btn-wrap">
-                      <form method="post" id="order_create_form">
-                        {% csrf_token %}
-                        {{ form.targets_or_competitors_submited.as_hidden }}
-                        {{ form.use_our_default_filtering.as_hidden }}
-                        {{ form.not_use_any_filtering.as_hidden }}
-                        {{ form.message.as_hidden }}
-                        {{ form.attach_in_message.as_hidden }}
-                        {{ form.additional_information.as_hidden }}
-                        {{ form.contact_details.as_hidden }}
-                        {{ form.use_dms_tokens.as_hidden }}
-                      </form>
-                      <button onclick="submitOrderDataCreateForm()" class="btn w100">Order campaign</button>
-                    </div>
-                    <div class="checkbox-wrapper-bottom">
-                      <label class="block-checkbox">
-                        <input type="checkbox" required>
-                        <div class="checkbox">
-                          <svg viewBox="0 0 12 12" width="12px">
-                            <use xlink:href="./img/sprite.svg#ic-check"></use>
-                          </svg>
-                        </div>
-                        <p>Before order you accept all rules</p>
-                      </label>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </section>
+                  <section class="contacts-links">
+      <h1 class="inner center">Contacts</h1>
+      <div class="items"><a class="item" href="mailto:dmsbulkteam@gmail.com" target="_blank">
+          <div class="ic-wrap">
+            <svg viewBox="0 0 46 46" width="46px">
+              <use xlink:href="{% static 'img/sprite.svg' %}#ic-gmail"></use>
+            </svg>
+          </div>
+          <div class="text-wrap">
+            <h3>Gmail</h3>
+            <p>dmsbulkteam@gmail.com</p>
+          </div></a><a class="item" href="https://instagram.com/dmsbulk" target="_blank">
+          <div class="ic-wrap">
+            <svg viewBox="0 0 46 46" width="46px">
+              <use xlink:href="{% static 'img/sprite.svg' %}#ic-inst"></use>
+            </svg>
+          </div>
+          <div class="text-wrap">
+            <h3>Instagram</h3>
+            <p>instagram.com/dmsbulk</p>
+          </div></a><a class="item" href="https://t.me/dmsbulk" target="_blank">
+          <div class="ic-wrap">
+            <svg viewBox="0 0 46 46" width="46px">
+              <use xlink:href="{% static 'img/sprite.svg' %}#ic-tg"></use>
+            </svg>
+          </div>
+          <div class="text-wrap">
+            <h3>Telegram</h3>
+            <p>t.me/dmsbulk</p>
+          </div></a></div>
+    </section>
+
+            <footer class="footer-main">
+              {% include 'base/footer.html' %}
+            </footer>
+            {% include 'popup/accept-cookies.html' %}
           </div>
         </div>
       </div>
     </main>
     <div class="container">
-      <footer class="footer-main cabinet">
-        {% include 'base/footer.html' %}
-      </footer>
-      {% include 'popup/accept-cookies.html' %}
     </div>
   </div>
   {% include 'popup/instagram.html' %}
@@ -95,7 +67,7 @@
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
     <div class="header-wrap">
       <div class="left">
-        <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
         <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
       </div>
       <div class="right">
@@ -140,7 +112,7 @@
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
     <div class="header-wrap">
       <div class="left">
-        <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
         <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
       </div>
       <div class="right">
@@ -182,5 +154,4 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
-  <script src="{% static '/js/js/order-dms.js' %}"></script>
 {% endblock content %}

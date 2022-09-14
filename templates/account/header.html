@@ -4,9 +4,9 @@
   <div class="container">
     <div class="grid cabinet">
       <div class="logo-wrap">
-        <a href="{% url 'home' %}"
-          ><img src="{% static '/img/logo.svg' %}" alt=""
-        /></a>
+        <a href="{% url 'home' %}">
+          <img src="{% static '/img/logo.svg' %}" alt=""/>
+        </a>
       </div>
       <div class="balance-wrap">
         <div class="item">
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="user-wrap">
-        <div class="name">Hi, {{ user.username }}!</div>
+        <div class="name">Hi, {{ request.user.username }}!</div>
         <button class="js-user-info">
             {% if user.is_active_order %}
                 <div class="ava-wrap notify order-active">
@@ -31,7 +31,7 @@
                  <div class="ava-wrap notify">
             {% endif %}
 
-            <img src="{% static '/img/avatar.png' %}" alt="" />
+            <img src="{% static '/img' %}/chart-user-{{ request.user.avatar_image_id }}.png" alt="" />
           </div>
         </button>
         <div class="popup-wrap">
@@ -42,7 +42,7 @@
                  <div class="ava-wrap notify">
             {% endif %}
 
-              <img src="{% static '/img/avatar.png' %}" alt="" />
+            <img src="{% static '/img' %}/chart-user-{{ request.user.avatar_image_id }}.png" alt="" />
             </div>
             <p>{{ request.user.username }}</p>
           </div>

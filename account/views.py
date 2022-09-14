@@ -14,8 +14,8 @@ from .forms import RestorePasswordChangeForm
 from utils import PopupCookiesContextMixin
 from .models import CustomUser
 
-from email_sender import generate_key
-from email_sender import send_reset_password_link_to_email
+from celery_tasks import generate_key
+from celery_tasks import send_reset_password_link_to_email
 
 
 class AccountSettingsPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
@@ -93,7 +93,8 @@ class ResetPassword(RedirectView):
             code = generate_key()
             user.reset_password_code = code
             user.save()
-            send_reset_password_link_to_email.delay(email_to=user_email, code=code)
+            send_reset_password_link_to_email.delay(
+                email_to=user_email, code=code)
             redirect('home')
 
         return redirect('home')

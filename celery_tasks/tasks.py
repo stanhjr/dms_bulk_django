@@ -2,20 +2,18 @@ import binascii
 import os
 import smtplib
 import ssl
-
-from django.utils import timezone
-from django.conf import settings
-
-from celery import Celery
-from email_sender.config import config
-
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+from django.conf import settings
+from celery import Celery
+
+from .config import config
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dms_bulk_django.settings")
 app = Celery(
-    "email_sender",
+    "celery_tasks",
     broker="redis://localhost:6379",
 )
 
@@ -116,3 +114,10 @@ def send_reset_password_link_to_email(code: str, email_to: str) -> str:
         return "Email sent successfully!"
     except Exception as ex:
         return f"Something went wrong…. {ex}"
+
+
+@app.task
+def delete_order_from_actives(order_pk: int) -> str:
+    from order.models import OrderModel
+    OrderModel.objects.filter(pk=order_pk).update(completed=True)
+    return f'Order<{order_pk}> deleted from actives'

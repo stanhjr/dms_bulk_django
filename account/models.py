@@ -8,8 +8,11 @@ class CustomUser(AbstractUser):
     receive_news = models.BooleanField(default=True)
     receive_activity = models.BooleanField(default=True)
     is_confirmed = models.BooleanField(default=False)
-    verify_code = models.CharField(default='', max_length=100, null=True, blank=True)
-    reset_password_code = models.CharField(default='', max_length=100, null=True, blank=True)
+    verify_code = models.CharField(
+        default='', max_length=100, null=True, blank=True)
+    reset_password_code = models.CharField(
+        default='', max_length=100, null=True, blank=True)
+    avatar_image_id = models.IntegerField(default=1)
 
     dms_tokens = models.BigIntegerField(default=0)
     cents = models.BigIntegerField(default=0)

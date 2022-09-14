@@ -1,5 +1,8 @@
+import random
+
+from django.views.generic.base import TemplateView
+from django.views.generic.base import View
 from django.db.models import Q
-from django.views.generic.base import TemplateView, View
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
@@ -13,8 +16,8 @@ from account_auth.forms import SignInForm
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
 
-from email_sender import send_verify_link_to_email
-from email_sender import generate_key
+from celery_tasks import send_verify_link_to_email
+from celery_tasks import generate_key
 
 
 class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
@@ -35,6 +38,11 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                 email = sign_in_form.cleaned_data.get('email')
                 password = sign_in_form.cleaned_data.get('password')
                 remember_me = sign_in_form.cleaned_data.get('remember_me')
+
+                if not get_user_model().objects.filter(email=email).exists():
+                    messages.warning(
+                        self.request, 'such email is not registered or the password does not match')
+                    return redirect('home')
 
                 username = get_user_model().objects.get(email=email).username
                 login_user = authenticate(username=username, password=password)
@@ -62,16 +70,19 @@ class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView
                 q1 = Q(email=sign_up_form.cleaned_data.get('email'))
                 q2 = Q(username=sign_up_form.cleaned_data.get('username'))
                 user = CustomUser.objects.filter(q1 | q2).first()
+
                 if user:
                     messages.warning(
                         self.request, 'a user with this email or username already exists')
                     return redirect('home')
+
                 sign_up_form.save()
                 username = sign_up_form.cleaned_data.get('username')
                 password = sign_up_form.cleaned_data.get('password1')
                 new_user = authenticate(username=username, password=password)
 
                 new_user.verify_code = generate_key()
+                new_user.avatar_image_id = random.choice((1, 2, 3, 4))
                 send_verify_link_to_email.delay(
                     new_user.verify_code, sign_up_form.cleaned_data.get("email"))
                 new_user.save()
@@ -112,4 +123,13 @@ class LoyaltyProgramPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Te
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'loyalty_program'
+        return context
+
+
+class ContactsPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'home/contacts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'contacts'
         return context

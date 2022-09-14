@@ -524,10 +524,13 @@ function getStatistics(nameSocial, chart1) {
 }
 
 window.addEventListener('load', () => {
+	console.log('dio!?')
+	console.log('jotaro...')
 	if ($('#popup-notification').length) {
 		$('#notification-accept').click(() => $('#popup-notification').remove())
-		$('body').click((event) => {
-			if (event.target.id === 'notification-background') {
+		$('#notification-background').click(event => {
+			console.log(event.target.id)
+			if (event.target.id !== 'popup-notification') {
 				$('#popup-notification').remove()
 			}
 		})

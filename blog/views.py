@@ -1,4 +1,5 @@
 from django.views.generic import DetailView
+from django.http import Http404
 
 from .models import ArticleModel
 from utils import PopupCookiesContextMixin, PopupAuthContextMixin
@@ -9,6 +10,12 @@ class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
     template_name = 'blog/blog.html'
     pk_url_kwarg = 'page_pk'
     context_object_name = 'page_pk'
+
+    def get_object(self, queryset=None):
+        try:
+            return super().get_object(queryset)
+        except Http404:
+            pass
 
     def get_context_data(self, **kwargs):
         page_pk = self.kwargs.get('page_pk')

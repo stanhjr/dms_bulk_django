@@ -1,6 +1,6 @@
 """Celery start """
 
-from email_sender.tasks import app
+from celery_tasks.tasks import app
 
 if __name__ == "__main__":
     argv = [
@@ -10,6 +10,6 @@ if __name__ == "__main__":
         '--without-heartbeat',
         '--without-mingle',
         '--without-gossip',
-        '--queues=send_emails'
+        '--queues=celery_tasks'
     ]
     app.worker_main(argv)

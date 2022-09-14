@@ -28,10 +28,20 @@
                 <div class="text-logo-wrap">
                   <div class="text-wrap">
                     <div class="item"><b>You choosed: </b>
-                      <p>{{ social_network }} {{ amount }} DMs</p>
+                      <p>
+                        {{ social_network }} {{ amount }} DMs
+                      </p>
                     </div>
                     <div class="item"><b>Total price: </b>
-                      <p class="tbl"><span>{{ total_price }}</span><span class="ic">200<img src="{% static 'img/ic-coin-dm.png' %}" alt=""></span></p>
+                      <p class="tbl"><span>{{ total_price }}</span>
+                        <span class="ic">
+                          {% if not request.user.dms_tokens %}
+                          Available
+                          {% endif %}
+                          {{ request.user.dms_tokens }}
+                          <img src="{% static 'img/ic-coin-dm.png' %}" alt="">
+                        </span>
+                      </p>
                     </div>
                   </div>
                   <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""></div>
