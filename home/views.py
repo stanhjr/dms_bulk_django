@@ -123,3 +123,12 @@ class LoyaltyProgramPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Te
         context = super().get_context_data(**kwargs)
         context['page'] = 'loyalty_program'
         return context
+
+
+class ContactsPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'home/contacts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'contacts'
+        return context
