@@ -1,7 +1,8 @@
 import random
 
+from django.views.generic.base import TemplateView
+from django.views.generic.base import View
 from django.db.models import Q
-from django.views.generic.base import TemplateView, View
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
