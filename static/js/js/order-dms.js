@@ -29,7 +29,7 @@ const submitOrderDataCreateForm = () => {
     document.querySelector('#id_attach_in_message').value = compaign_info.attach_in_message
     document.querySelector('#id_additional_information').value = compaign_info.additional_info
     document.querySelector('#id_contact_details').value = compaign_info.contact_details
-    document.querySelector('#id_use_tokens').value = document.querySelector('#use_existing_tokens_checkbox').checked
+    document.querySelector('#id_use_dms_tokens').value = document.querySelector('#use_existing_tokens_checkbox').checked
 
     document.querySelector('#order_create_form').submit()
 }

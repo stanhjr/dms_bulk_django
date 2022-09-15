@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.contrib import messages
 from django.db import transaction, models
 from django.db.models import Q
 
@@ -76,13 +77,14 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
     model = OrderModel
     template_name = 'order/order-dms-step-3.html'
     form_class = forms.CreateOrderForm
-    unsuccess_url = reverse_lazy('order_step_two')
+    unsuccess_url = reverse_lazy('dashboard')
     success_url = reverse_lazy('order_active')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         last_order_calc = OrderCalcModel.objects.last()
+        context['page'] = 'order'
         context['total_price'] = last_order_calc.total
         return context
 
