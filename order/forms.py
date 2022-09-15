@@ -11,7 +11,7 @@ class CreateOrderCalcForm(forms.ModelForm):
 
 
 class CreateOrderForm(forms.ModelForm):
-    use_dms_tokens = forms.BooleanField()
+    use_dms_tokens = forms.BooleanField(required=False)
 
     class Meta:
         model = models.OrderModel

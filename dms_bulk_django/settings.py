@@ -135,6 +135,10 @@ EMAIL_HOST_USER = "helloworldbooo@gmail.com"
 EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
 CELERY_SEND_MAIL_HOST = "http://185.65.245.191/"
 
+
+INVALID_DISCOUNT_MESSAGE = 'the entered discount value does not match the actual value mommy hacker'
+INVALID_ORDER_AMOUNT_MESSAGE = 'the entered order amount value does not match the actual value mommy hacker'
+
 try:
     from .local_settings import *
 except ImportError:

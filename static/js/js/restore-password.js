@@ -24,6 +24,7 @@ forgotPasswordBtn.onclick = () => {
 
 }
 
+
 if (document.getElementById("close-message")){
     document.getElementById("close-message").onclick = () => {
         document.getElementsByClassName("error-toast")[0].style.display = 'none'
