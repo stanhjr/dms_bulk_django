@@ -1,9 +1,9 @@
-from paypal.standard.forms import PayPalPaymentsForm
+from django import forms
+
+from payment.models import Invoice
 
 
-class CustomPayPalPaymentsForm(PayPalPaymentsForm):
-
-    def get_html_submit_element(self):
-
-        return """<div class="btn-wrap"><a class="btn" type="submit href="#">DEPOSIT</a></div>"""
-        # return """<button type="submit">Continue on PayPal website</button>"""
+class CreateOrderCalcForm(forms.ModelForm):
+    class Meta:
+        model = Invoice
+        fields = ('payment_method', 'cents')

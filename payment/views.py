@@ -2,7 +2,9 @@ import datetime
 from urllib.parse import urlparse
 
 import stripe
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.template.loader import render_to_string
+from django.views.generic import CreateView
 
 from djstripe.models import Customer
 from djstripe import webhooks
@@ -10,15 +12,30 @@ from djstripe import webhooks
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
+from account.models import CustomUser
+from dms_bulk_django import settings
 from dms_bulk_django.settings import STRIPE_TEST_SECRET_KEY
-from payment.forms import CustomPayPalPaymentsForm
+from payment.forms import CreateOrderCalcForm
+from payment.models import Invoice
 
 PLAN = {
     "stripe": "price_1LgklwK6rkKpcwrptBXibwai",
     "paypal": "some_code",
 }
+
+
+class InvoiceCreateView(LoginRequiredMixin, CreateView):
+    model = Invoice
+    form_class = CreateOrderCalcForm
+    success_url = reverse_lazy('add_funds')
+    login_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
 
 
 class GetSessionIdAPIView(APIView):
@@ -72,12 +89,13 @@ class GetPaypalFormPIView(APIView):
     def get(self, request):
         try:
             price = float(request.GET.get("price"))
+            client_id = settings.PAYPAL_CLIENT_ID
         except Exception as e:
             print(e)
             return Response(status=404)
-        invoice_id = "unique-invoice-id"
+        invoice_id = "ARv3ot_OU4zgMCM_vZ3Xgb0c0ovmFfL_pRRrIlLxPWuq7nZMUUvO2PHS9cCoa1eYNt9G1apgJxyUwqbr"
         paypal_dict = {
-            "business": "stanhjrpower@gmail.com",
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": price,
             "item_name": "name of the item",
             "invoice": invoice_id,
@@ -96,6 +114,7 @@ class GetPaypalFormPIView(APIView):
                 'pay_method': 'Paypal',
                 'invoice_id': invoice_id,
                 "price": price,
+                "client_id": client_id,
             }
         )
 
@@ -104,7 +123,6 @@ class GetPaypalFormPIView(APIView):
 
 class PaypalAPIView(APIView):
     def post(self, request):
-        print(self.request.data)
         url = urlparse(request.META.get("HTTP_PAYPAL_CERT_URL"))
 
         if url.hostname == 'api.paypal.com':
@@ -113,9 +131,25 @@ class PaypalAPIView(APIView):
         else:
             print("hostname paypal", False)
 
-        price = self.request.data["resource"]["paid_amount"]["paypal"]["value"]
-        currency = self.request.data["resource"]["paid_amount"]["paypal"]["currency"]
+        if self.request.data.get('event_type') != 'CHECKOUT.ORDER.APPROVED':
+            print('NOT APPROVED')
+            return Response({"status": "SUCCESSFUL"}, status=200)
+        for i, k in self.request.data.items():
+            print(i, k)
+        resource = self.request.data['resource']
+        user_id = resource['purchase_units'][0]['reference_id']
+        currency = resource['purchase_units'][0]['amount']['currency_code']
+        value = resource['purchase_units'][0]['amount']['value']
+        create_time = resource.get("create_time")
+        payer_email = resource['payer']['email_address']
+        payer_id = resource['payer']['payer_id']
+        invoice_id = resource['invoice_id']
+        print(user_id, value, currency)
+        user = CustomUser.objects.filter(pk=user_id).first()
+        if not user:
+            return Response({"status": "SUCCESSFUL"}, status=200)
 
-        print(price, currency)
+        user.cents += float(value) * 100
+        user.save()
 
         return Response({"status": "SUCCESSFUL"}, status=200)

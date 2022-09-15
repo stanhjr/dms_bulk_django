@@ -20,7 +20,8 @@ function getPaypalForm(){
 	xhr.send()
 	xhr.onload = () => {
 		if (xhr.status === 200){
-			contentPopup.innerHTML = JSON.parse(xhr.responseText)["content"]
+			console.log('pass')
+			// contentPopup.innerHTML = JSON.parse(xhr.responseText)["content"]
 
 	}}
 

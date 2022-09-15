@@ -147,6 +147,8 @@ DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "sb-ea43qt18063883@business.example.com"
+PAYPAL_CLIENT_ID = 'ARv3ot_OU4zgMCM_vZ3Xgb0c0ovmFfL_pRRrIlLxPWuq7nZMUUvO2PHS9cCoa1eYNt9G1apgJxyUwqbr'
 try:
     from .local_settings import *
 except ImportError:

@@ -6,7 +6,7 @@
 {% block head_tags %}
   <title>Order Active</title>
 {% endblock head_tags %}
-
+<script src="https://www.paypal.com/sdk/js?client-id={{ client_id }}&currency=USD"></script>
 {% block content %}
   <div class="page-container">
     {% include 'account/header.html' %}

@@ -8120,3 +8120,8 @@ ul.block-check-list li .ic svg {
 #close-message{
   cursor: pointer;
 }
+div#paypal-button-container {
+    width: 300px;
+    margin-left: auto;
+    margin-top: 20px;
+}
