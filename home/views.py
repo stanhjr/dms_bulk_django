@@ -1,7 +1,8 @@
 import random
 
+from django.views.generic.base import TemplateView
+from django.views.generic.base import View
 from django.db.models import Q
-from django.views.generic.base import TemplateView, View
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
@@ -122,4 +123,13 @@ class LoyaltyProgramPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Te
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'loyalty_program'
+        return context
+
+
+class ContactsPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'home/contacts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'contacts'
         return context

@@ -5,7 +5,6 @@ import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from django.utils import timezone
 from django.conf import settings
 from celery import Celery
 
