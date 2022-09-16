@@ -12,9 +12,10 @@ class AddFundsPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'add_funds/add-funds.html'
     model = Invoice
     context_object_name = 'invoices'
+    paginate_by = 3
 
     def get_queryset(self):
-        return self.model.objects.filter(user=self.request.user)[:3]
+        return self.model.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

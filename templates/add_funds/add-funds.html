@@ -23,7 +23,7 @@
                   <button id="Paypal" class="js-toggle-deposit"><img class="invert" src="{% static '/img/btn-paypal.png' %}" alt=""></button>
                   <button id="CreditCard" class="js-toggle-deposit active"><img src="{% static '/img/btn-card.png' %}" alt=""></button>                </div>
                 <div class="block-fund-input">
-                  <input class="js-input-numeric add-funds-price" type="text">
+                  <input class="js-input-numeric add-funds-price" type="text" value="0$">
                 </div>
                   <iframe name="create_invoice_calc_redirect_iframe"  id="create_invoice_calc_redirect_iframe" style="display: none;"></iframe>
                   <form method="post" id="create_invoice_calc_form" action="{% url 'create_invoice_calc' %}" target="create_invoice_calc_redirect_iframe">
@@ -31,7 +31,7 @@
                     {{ create_invoice_form.payment_method.as_hidden }}
                     {{ create_invoice_form.cents.as_hidden }}
                   </form>
-                <div class="btn-wrap"><a class="btn js-popup" href="#popup-invoice-awaiting">Add Funds: </a></div>
+                <div class="btn-wrap"><a class="btn js-popup" href="#popup-invoice-awaiting">Add Funds: 0$</a></div>
 
 
                 <div class="bottom-text">Check price calculator <a class="link" href="{% url 'order' %}">here</a></div>
@@ -46,7 +46,7 @@
                     <div class="td"><b>Action</b></div>
                   </div>
                   {% for invoice in invoices %}
-                  <div class="tr">
+                  <div class="tr invoice-table">
                     <div class="td">{{ invoice.invoice_id }}</div>
                     <div class="td">{{ invoice.payment_method }}</div>
                     <div class="td">{{ invoice.description }}</div>
@@ -63,7 +63,17 @@
                         <svg viewBox="0 0 16 16" width="16px">
                           <use xlink:href="./img/sprite.svg#ic-arrow-left"></use>
                         </svg></a></li>
-                    <li><span>1</span></li>
+                    {% if page_obj.number|sub:1 == 0 %}
+                      <span>{{ page_obj.number }}</span>
+                    {% elif page_obj.number|sub:1|mod:4 == 0 %}
+                      <span>{{ page_obj.number }}</span>
+                    {% elif page_obj.number|mod:2 == 0 and page_obj.number|mod:2 %}
+                      <a href="#">{{ page_obj.number|sub:1 }}</a>
+                    {% elif page_obj.number|mod:2 == 0%}
+                      <a href="#">{{ page_obj.number|sub:3 }}</a>
+                    {% else %}
+                      <a href="#">{{ page_obj.number|sub:2 }}</a>
+                    {% endif %}
                     <li><a href="#">2</a></li>
                     <li><a href="#">3</a></li>
                     <li><a href="#">4</a></li>
