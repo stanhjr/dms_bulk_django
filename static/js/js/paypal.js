@@ -1,13 +1,13 @@
 
-const AddFundsBtn = document.getElementsByClassName("btn-wrap")[0]
-if (AddFundsBtn){
-	AddFundsBtn.onclick = () =>{
+const AddFundsBtn = document.querySelector(".btn-wrap")
+if (AddFundsBtn) {
+	AddFundsBtn.onclick = () => {
 		getPaypalForm()
 	}
 }
 
 
-function getPaypalForm(){
+function getPaypalForm() {
 	const contentPopup = document.getElementById("popup-invoice-awaiting")
 	const srcBtn = document.getElementsByClassName("js-toggle-deposit active")[0].getElementsByTagName("img")[0].src
 	const price = document.getElementsByClassName("js-input-numeric add-funds-price")[0].value

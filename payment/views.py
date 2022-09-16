@@ -17,7 +17,7 @@ from django.urls import reverse, reverse_lazy
 from account.models import CustomUser
 from dms_bulk_django import settings
 from dms_bulk_django.settings import STRIPE_TEST_SECRET_KEY
-from payment.forms import CreateOrderCalcForm
+from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
 
 PLAN = {
@@ -28,7 +28,7 @@ PLAN = {
 
 class InvoiceCreateView(LoginRequiredMixin, CreateView):
     model = Invoice
-    form_class = CreateOrderCalcForm
+    form_class = CreateInvoiceCalcForm
     success_url = reverse_lazy('add_funds')
     login_url = reverse_lazy('home')
 
@@ -49,7 +49,8 @@ class GetSessionIdAPIView(APIView):
 
         try:
             product = stripe.Product.create(name="Gold Special")
-            price = stripe.Price.create(product=product.id, unit_amount=price, currency="usd")
+            price = stripe.Price.create(
+                product=product.id, unit_amount=price, currency="usd")
 
             invoice = stripe.Invoice.create(
                 customer=customer.id,
@@ -102,7 +103,8 @@ class GetPaypalFormPIView(APIView):
             "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
             "return": request.build_absolute_uri(reverse('add_funds')),
             "cancel_return": request.build_absolute_uri(reverse('add_funds')),
-            "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+            # Custom command to correlate to some function later (optional)
+            "custom": "premium_plan",
         }
         form = CustomPayPalPaymentsForm(initial=paypal_dict)
         content = render_to_string(

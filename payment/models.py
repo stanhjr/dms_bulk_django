@@ -15,15 +15,18 @@ class Invoice(models.Model):
     )
 
     invoice_id = models.CharField(max_length=255, null=True, blank=True)
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Awaiting Payment')
+    status = models.CharField(
+        max_length=50, choices=STATUS_CHOICES, default='Awaiting Payment')
     payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD)
     cents = models.BigIntegerField(null=True, blank=True)
-    description = models.CharField(max_length=255, default='Social Media Marketing')
+    description = models.CharField(
+        max_length=255, default='Social Media Marketing')
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='invoice')
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name='invoice')
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ('-created_at', )
 
     @property
     def cost(self):
@@ -38,4 +41,3 @@ class Invoice(models.Model):
     # def update_stock(sender, instance, **kwargs):
     #     instance.product.stock -= instance.amount
     #     instance.product.save()
-
