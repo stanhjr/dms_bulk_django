@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+$(() => {
 	const xhr = new XMLHttpRequest();
 	xhr.open("GET", '/order/board/')
 	xhr.setRequestHeader("Accept", "application/json");
@@ -489,7 +489,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		document.getElementsByClassName("inst")[0].click()
 	}
-});
+
+	console.log('It was me, Dio!')
+	if ($('#popup-notification').length) {
+		$('#notification-accept').click(() => $('#popup-notification').remove())
+		$('#notification-background').click(event => {
+			if (event.target.id !== 'popup-notification') {
+				$('#popup-notification').remove()
+			}
+		})
+	}
+})
 
 function getStatistics(nameSocial, chart1) {
 	const xhr = new XMLHttpRequest();
@@ -522,15 +532,3 @@ function getStatistics(nameSocial, chart1) {
 		})
 	}
 }
-
-window.addEventListener('load', () => {
-	console.log('It was me, Dio!')
-	if ($('#popup-notification').length) {
-		$('#notification-accept').click(() => $('#popup-notification').remove())
-		$('#notification-background').click(event => {
-			if (event.target.id !== 'popup-notification') {
-				$('#popup-notification').remove()
-			}
-		})
-	}
-})
