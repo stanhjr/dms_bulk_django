@@ -21,7 +21,7 @@ $('.btn.js-popup').click(() => {
 $('.open-invoice-btn').click(event => {
     const current_invoice_table = new Array()
     $(event.target).closest('.invoice-table').children().each((i, element) => current_invoice_table.push($(element).text()))
-    
+
     $('.table-info > .tr:eq(1) > .td:eq(0)').text(current_invoice_table[0])
     $('.table-info > .tr:eq(1) > .td:eq(1)').text(current_invoice_table[1])
     $('.table-info > .tr:eq(1) > .td:eq(2)').text(current_invoice_table[2])
@@ -33,11 +33,16 @@ $('.open-invoice-btn').click(event => {
 
     $('.header-wrap > .right > p').text(`ID (#${current_invoice_table[0]})`)
 
-    if (current_invoice_table[1] === 'Paypal') {
-        $('#paypal-button-container').css('display', 'block')
-        $('#deposit-credit-card-btn').css('display', 'none')
+    if (current_invoice_table[4] !== 'Paid') {
+        if (current_invoice_table[1] === 'Paypal') {
+            $('#paypal-button-container').css('display', 'block')
+            $('#deposit-credit-card-btn').css('display', 'none')
+        } else {
+            $('#paypal-button-container').css('display', 'none')
+            $('#deposit-credit-card-btn').css('display', 'block')
+        }
     } else {
         $('#paypal-button-container').css('display', 'none')
-        $('#deposit-credit-card-btn').css('display', 'block')
+        $('#deposit-credit-card-btn').css('display', 'none')
     }
 })
