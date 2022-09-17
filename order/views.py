@@ -158,8 +158,12 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
             coupon.uses += 1
 
         self.request.user.cents -= order_total_price * 100
-        self.request.user.dms_tokens += int(
-            order_total_price * 0.02)
+        if int(order_total_price * 0.02) < 1:
+            self.request.user.dms_tokens += 1
+        else:
+            self.request.user.dms_tokens += int(
+                order_total_price * 0.02)
+
         obj.order_calc = order_calc
         with transaction.atomic():
             self.request.user.save()
