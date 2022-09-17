@@ -14,3 +14,10 @@ class ConfirmRequiredMixin(AccessMixin):
         if not request.user.is_confirmed:
             return redirect(self.dashboard_url)
         return super().dispatch(request, *args, **kwargs)
+
+
+def calculate_amount_integer(amount: str) -> str:
+    if amount[-1] == 'k':
+        return int(amount[:-1])
+    if amount[-1] == 'm':
+        return int(amount[:-1]) * 1_000

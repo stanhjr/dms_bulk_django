@@ -23,7 +23,7 @@ from .models import OrderModel
 from . import serializers
 from . import forms
 from .tools import get_total_price
-from .utils import ConfirmRequiredMixin
+from .utils import ConfirmRequiredMixin, calculate_amount_integer
 from utils import PopupCookiesContextMixin
 
 
@@ -71,7 +71,15 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Lo
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        form.cleaned_data['amount_integer'] = calculate_amount_integer(
+            amount=form.cleaned_data.get('amount'))
+
+        if OrderCalcModel.objects.exists():
+            self.model.objects.filter(
+                user=self.request.user).update(**form.cleaned_data)
+            return redirect(self.success_url)
+        else:
+            return super().form_valid(form)
 
 
 class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
@@ -235,5 +243,3 @@ class GetCouponAPIView(APIView):
         except Exception as e:
             print(e)
             return Response(status=404)
-
-

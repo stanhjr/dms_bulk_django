@@ -1,6 +1,5 @@
-from datetime import datetime, timezone, timedelta
+from datetime import timedelta
 
-import django
 from datetime import timedelta
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
@@ -8,10 +7,10 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils import timezone
 from django.utils import timezone as tz
 
 from celery_tasks.tasks import delete_order_from_actives
+from .utils import calculate_amount_integer
 
 
 class BoardModel(models.Model):
@@ -73,11 +72,8 @@ class OrderCalcModel(models.Model):
         return f'{self.social_network} by {self.user.username} {self.total}'
 
     def save(self, *args, **kwargs):
-        if self.amount[-1] == 'k':
-            self.amount_integer = int(self.amount[:-1])
-        if self.amount[-1] == 'm':
-            self.amount_integer = int(self.amount[:-1]) * 1_000
-        super(OrderCalcModel, self).save(*args, **kwargs)
+        self.amount_integer = calculate_amount_integer(amount=self.amount)
+        super().save(*args, **kwargs)
 
 
 class OrderModel(models.Model):
@@ -108,23 +104,23 @@ class OrderModel(models.Model):
         self.clean()
 
         if self.sending and not self.completed:
-            send_date = timezone.now() + timedelta(days=1)
+            send_date = tz.now() + timedelta(days=1)
             delete_order_from_actives.apply_async((self.pk, ), eta=send_date)
 
         if self.filtering and self.sending:
             self.send_messages_speed = self.__get_send_messages_speed_per_minutes()
-            self.sending_start_at = timezone.now()
+            self.sending_start_at = tz.now()
 
         return super().save(*args, **kwargs)
 
     @property
     def time_from_sending_start_at(self):
-        return int((timezone.now() - self.sending_start_at).total_seconds())
+        return int((tz.now() - self.sending_start_at).total_seconds())
 
     def __get_send_messages_speed_per_minutes(self):
         amount = int(self.order_calc.amount[:-1])
         seconds_ago = int((self.sending_end_at -
-                           timezone.now()).total_seconds())
+                           tz.now()).total_seconds())
 
         if self.order_calc.amount[-1] == 'k':
             amount *= 1_000
@@ -141,7 +137,7 @@ class OrderModel(models.Model):
             raise ValidationError(
                 'you must set sending_end_at before set filtering end status')
         if self.sending_end_at:
-            if self.sending_end_at <= timezone.now() and not self.sending:
+            if self.sending_end_at <= tz.now() and not self.sending:
                 raise ValidationError(
                     'sending_end_at must be later current time')
         if self.sending and not self.filtering:
@@ -158,10 +154,12 @@ class OrderModel(models.Model):
 class Coupon(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=1000)
-    discount = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)])
+    discount = models.IntegerField(
+        validators=[MaxValueValidator(100), MinValueValidator(1)])
     uses = models.IntegerField(default=0)
     number_of_uses = models.IntegerField(default=1)
-    user = models.ManyToManyField(get_user_model(), related_name='coupon', null=True, blank=True)
+    user = models.ManyToManyField(
+        get_user_model(), related_name='coupon', null=True, blank=True)
 
     @property
     def left_to_use(self):
