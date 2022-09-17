@@ -35,7 +35,9 @@ $('.open-invoice-btn').click(event => {
 
     if (current_invoice_table[1] === 'Paypal') {
         $('#paypal-button-container').css('display', 'block')
+        $('#deposit-credit-card-btn').css('display', 'none')
     } else {
         $('#paypal-button-container').css('display', 'none')
+        $('#deposit-credit-card-btn').css('display', 'block')
     }
 })
