@@ -291,7 +291,6 @@
     <script src="https://www.paypal.com/sdk/js?client-id=ARv3ot_OU4zgMCM_vZ3Xgb0c0ovmFfL_pRRrIlLxPWuq7nZMUUvO2PHS9cCoa1eYNt9G1apgJxyUwqbr&currency=USD"></script>
 
     <script>
-
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
 
@@ -329,13 +328,8 @@
 
 
         }).render('#paypal-button-container');
+        document.getElementById('paypal-button-container').style.display = 'none'
     </script>
-
-
-
-
-
-
   </div>
   <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
     <div class="header-wrap">

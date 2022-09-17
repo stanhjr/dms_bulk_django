@@ -32,5 +32,10 @@ $('.open-invoice-btn').click(event => {
     $('.table-total > .tr').each((i, element) => $(element).find('.td:eq(1)').text(current_invoice_table[3]))
 
     $('.header-wrap > .right > p').text(`ID (#${current_invoice_table[0]})`)
-    console.log(current_invoice_table)
+
+    if (current_invoice_table[1] === 'Paypal') {
+        $('#paypal-button-container').css('display', 'block')
+    } else {
+        $('#paypal-button-container').css('display', 'none')
+    }
 })
