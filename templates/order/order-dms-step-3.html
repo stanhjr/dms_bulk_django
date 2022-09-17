@@ -49,6 +49,7 @@
                     <div class="btn-wrap">
                       <form method="post" id="order_create_form">
                         {% csrf_token %}
+                          <input type="hidden" id="input-coupon-hidden" name="coupon" value="">
                         {{ form.targets_or_competitors_submited.as_hidden }}
                         {{ form.use_our_default_filtering.as_hidden }}
                         {{ form.not_use_any_filtering.as_hidden }}

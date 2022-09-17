@@ -2,7 +2,7 @@ from order.models import Coupon, OrderCalcModel
 
 
 def get_total_price(user, token=None, coupon=None):
-    coupon = Coupon.objects.filter(name=coupon).exclude(user=user).first()
+    coupon = Coupon.objects.filter(name=coupon, number_of_uses__gte=1).exclude(user=user).first()
     order_calc = OrderCalcModel.objects.last()
     if not token and not coupon:
         return order_calc.total
