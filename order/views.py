@@ -16,12 +16,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import BoardModel
+from .models import BoardModel, Coupon
 from .models import OrderCalcModel
 from .models import OrderModel
 
 from . import serializers
 from . import forms
+from .tools import get_total_price
 from .utils import ConfirmRequiredMixin
 from utils import PopupCookiesContextMixin
 
@@ -93,7 +94,6 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-
         order_calc = OrderCalcModel.objects.last()
         board = BoardModel.objects.last()
 
@@ -150,14 +150,27 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         else:
             self.request.user.dms_tokens = 0
 
-        self.request.user.cents -= order_total_price * 100
-        self.request.user.dms_tokens += int(
-            order_total_price * 0.02)
-        obj.order_calc = order_calc
+        coupon = Coupon.objects.filter(name=self.request.POST.get('coupon'), number_of_uses__gte=1) \
+            .exclude(user=self.request.user).first()
+        if coupon:
+            order_total_price *= coupon.get_discount_modifier()
+            coupon.number_of_uses -= 1
+            coupon.uses += 1
 
+        self.request.user.cents -= order_total_price * 100
+        if int(order_total_price * 0.02) < 1:
+            self.request.user.dms_tokens += 1
+        else:
+            self.request.user.dms_tokens += int(
+                order_total_price * 0.02)
+
+        obj.order_calc = order_calc
         with transaction.atomic():
             self.request.user.save()
             obj.save()
+            if coupon:
+                coupon.user.add(self.request.user)
+                coupon.save()
         return redirect(self.success_url)
 
 
@@ -206,3 +219,21 @@ class OrderHistoryPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         context = super().get_context_data(**kwargs)
         context['page'] = 'order_history'
         return context
+
+
+class GetCouponAPIView(APIView):
+    def get(self, request):
+        try:
+            token = True if request.GET.get("token") == 'true' else False
+            if not request.GET.get("token") and not request.GET.get("coupon"):
+                return Response(status=404)
+
+            total_price = get_total_price(user=self.request.user,
+                                          coupon=request.GET.get("coupon"),
+                                          token=token)
+            return Response({"total_price": total_price}, status=200)
+        except Exception as e:
+            print(e)
+            return Response(status=404)
+
+

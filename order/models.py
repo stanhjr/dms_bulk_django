@@ -1,9 +1,15 @@
+from datetime import datetime, timezone, timedelta
+
+import django
 from datetime import timedelta
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
+from django.utils import timezone as tz
 
 from celery_tasks.tasks import delete_order_from_actives
 
@@ -50,6 +56,7 @@ class OrderCalcModel(models.Model):
     amount_integer = models.IntegerField(default=0)
     discount = models.CharField(max_length=10)
     total = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def amount_without_formatting(self):
@@ -57,6 +64,10 @@ class OrderCalcModel(models.Model):
         if self.amount[-1] == 'm':
             amount *= 1_000
         return amount
+
+    @property
+    def total_price(self):
+        return int(self.total.replace("$", ""))
 
     def __str__(self):
         return f'{self.social_network} by {self.user.username} {self.total}'
@@ -142,3 +153,22 @@ class OrderModel(models.Model):
 
     def __str__(self):
         return f'{self.order_calc} completed={self.completed}'
+
+
+class Coupon(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=1000)
+    discount = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)])
+    uses = models.IntegerField(default=0)
+    number_of_uses = models.IntegerField(default=1)
+    user = models.ManyToManyField(get_user_model(), related_name='coupon', null=True, blank=True)
+
+    @property
+    def left_to_use(self):
+        return self.number_of_uses
+
+    def get_discount_modifier(self) -> float:
+        return (100 - self.discount) / 100
+
+    def __str__(self):
+        return f'{self.name}, number_of_uses = {self.number_of_uses}'

@@ -28,11 +28,11 @@
                   <div class="wrapper">
                     <h1 class="fz25 center">Payment</h1>
                     <div class="block-fund-input">
-                      <input class="js-input-numeric" type="text" value="{{ total_price }}">
+                      <input class="js-input-numeric" type="text" value="{{ total_price }}" id="total-price">
                     </div>
                     <div class="coupon-wrap">
                       <div class="input-wrap">
-                        <input type="text" placeholder="Enter Discount Coupon">
+                        <input type="text" placeholder="Enter Discount Coupon" id="discount-coupon">
                       </div>
                       <div class="checkbox-wrapper">
                         <label class="block-checkbox">
@@ -49,6 +49,7 @@
                     <div class="btn-wrap">
                       <form method="post" id="order_create_form">
                         {% csrf_token %}
+                          <input type="hidden" id="input-coupon-hidden" name="coupon" value="">
                         {{ form.targets_or_competitors_submited.as_hidden }}
                         {{ form.use_our_default_filtering.as_hidden }}
                         {{ form.not_use_any_filtering.as_hidden }}
