@@ -33,3 +33,37 @@ const submitOrderDataCreateForm = () => {
 
     document.querySelector('#order_create_form').submit()
 }
+
+function getDiscount(){
+    const xhr = new XMLHttpRequest();
+    const coupon = document.getElementById("discount-coupon").value
+    const tokenCheck = document.querySelector('#use_existing_tokens_checkbox').checked
+	xhr.open("GET", '/order/get_discount/?coupon=' + coupon +"&"+ "token=" + tokenCheck + "&")
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json")
+	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
+	xhr.send()
+	xhr.onload = () => {
+        if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText)
+        const totalPrice = document.getElementById("total-price")
+        totalPrice.value = data['total_price']
+
+            }
+        }
+    }
+
+
+function  doDiscount() {
+    clearTimeout(this.delayTimer)
+    this.delayTimer = setTimeout(function(){ getDiscount() }, 700)
+  }
+
+function  initialSearchBtn(){
+    let discountInput = document.getElementById("discount-coupon")
+    let tokensCheckbox = document.getElementById("use_existing_tokens_checkbox")
+        discountInput.oninput = () => {doDiscount()}
+        tokensCheckbox.onchange = () => {getDiscount()}
+  }
+
+initialSearchBtn()

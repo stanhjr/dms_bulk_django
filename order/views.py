@@ -16,12 +16,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import BoardModel
+from .models import BoardModel, Coupon
 from .models import OrderCalcModel
 from .models import OrderModel
 
 from . import serializers
 from . import forms
+from .tools import get_total_price
 from .utils import ConfirmRequiredMixin
 from utils import PopupCookiesContextMixin
 
@@ -206,3 +207,21 @@ class OrderHistoryPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         context = super().get_context_data(**kwargs)
         context['page'] = 'order_history'
         return context
+
+
+class GetCouponAPIView(APIView):
+    def get(self, request):
+        try:
+            token = True if request.GET.get("token") == 'true' else False
+            if not request.GET.get("token") and not request.GET.get("coupon"):
+                return Response(status=404)
+
+            total_price = get_total_price(user=self.request.user,
+                                          coupon=request.GET.get("coupon"),
+                                          token=token)
+            return Response({"total_price": total_price}, status=200)
+        except Exception as e:
+            print(e)
+            return Response(status=404)
+
+
