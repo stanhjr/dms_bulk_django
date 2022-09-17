@@ -25,13 +25,12 @@
                 <div class="block-fund-input">
                   <input class="js-input-numeric add-funds-price" type="text" value="0$">
                 </div>
-                  <iframe name="create_invoice_calc_redirect_iframe"  id="create_invoice_calc_redirect_iframe" style="display: none;"></iframe>
-                  <form method="post" id="create_invoice_calc_form" action="{% url 'create_invoice_calc' %}" target="create_invoice_calc_redirect_iframe">
+                  <form method="post" id="create_invoice_calc_form" action="{% url 'create_invoice_calc' %}">
                     {% csrf_token %}
                     {{ create_invoice_form.payment_method.as_hidden }}
                     {{ create_invoice_form.cents.as_hidden }}
                   </form>
-                <div class="btn-wrap"><a class="btn js-popup" href="#popup-invoice-awaiting">Add Funds: 0$</a></div>
+                <div class="btn-wrap"><a class="btn js-popup">Add Funds: 0$</a></div>
 
 
                 <div class="bottom-text">Check price calculator <a class="link" href="{% url 'order' %}">here</a></div>

@@ -502,33 +502,34 @@ $(() => {
 })
 
 function getStatistics(nameSocial, chart1) {
-	const xhr = new XMLHttpRequest();
-	xhr.open("GET", '/order/statistics/' + nameSocial)
-	xhr.setRequestHeader("Accept", "application/json");
-	xhr.setRequestHeader("Content-Type", "application/json")
-	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)
-	xhr.send()
-	xhr.onload = () => {
-		const data = JSON.parse(xhr.responseText)
-
-		chart1.updateOptions({
-			series: [{
-				name: "DM's",
-				data: data["data"]
-			}],
-			xaxis: {
-				categories: data["categories"],
-				labels: {
-					// offsetX: 1,
-					style: {
-						colors: '#A2A2AC',
-						fontSize: '11px'
+	$.ajax({
+		type: "GET",
+		url: "/order/statistics/" + nameSocial,
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": window.location.host
+		},
+		success: (response) => {
+			chart1.updateOptions({
+				series: [{
+					name: "DM's",
+					data: response["data"]
+				}],
+				xaxis: {
+					categories: response["categories"],
+					labels: {
+						// offsetX: 1,
+						style: {
+							colors: '#A2A2AC',
+							fontSize: '11px'
+						}
+					},
+					tooltip: {
+						enabled: false
 					}
-				},
-				tooltip: {
-					enabled: false
 				}
-			}
-		})
-	}
+			})
+		}
+	})
 }

@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
-from django.db.models import Q
+from django.contrib import messages
+from django.shortcuts import redirect
 
 from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
@@ -26,10 +27,14 @@ class AddFundsPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
 
 class InvoiceCreateView(LoginRequiredMixin, CreateView):
     model = Invoice
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('add_funds')
     form_class = CreateInvoiceCalcForm
 
     def form_valid(self, form):
+        if not form.cleaned_data.get('cents'):
+            messages.warning(
+                self.request, 'you cannot add funds for a zero amount')
+            return redirect('add_funds')
         form.instance.user = self.request.user
         form.save()
         return super().form_valid(form)
