@@ -157,8 +157,13 @@ class Coupon(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=1000)
     discount = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(1)])
+    uses = models.IntegerField(default=0)
     number_of_uses = models.IntegerField(default=1)
     user = models.ManyToManyField(get_user_model(), related_name='coupon', null=True, blank=True)
+
+    @property
+    def left_to_use(self):
+        return self.number_of_uses
 
     def get_discount_modifier(self) -> float:
         return (100 - self.discount) / 100

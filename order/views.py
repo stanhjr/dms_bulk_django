@@ -155,6 +155,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         if coupon:
             order_total_price *= coupon.get_discount_modifier()
             coupon.number_of_uses -= 1
+            coupon.uses += 1
 
         self.request.user.cents -= order_total_price * 100
         self.request.user.dms_tokens += int(
@@ -163,8 +164,9 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         with transaction.atomic():
             self.request.user.save()
             obj.save()
-            coupon.user.add(self.request.user)
-            coupon.save()
+            if coupon:
+                coupon.user.add(self.request.user)
+                coupon.save()
         return redirect(self.success_url)
 
 

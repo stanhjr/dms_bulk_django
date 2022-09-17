@@ -18,6 +18,10 @@ class CustomUser(AbstractUser):
     cents = models.BigIntegerField(default=0)
 
     @property
+    def dollars(self):
+        return self.cents / 100
+
+    @property
     def is_active_order(self) -> bool:
         """
         Checks if the user has active orders
