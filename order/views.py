@@ -91,7 +91,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         context['total_price'] = last_order_calc.total
         return context
 
-    def form_invalid(self):
+    def form_invalid(self, form):
         return redirect(self.unsuccess_url)
 
     def form_valid(self, form):
