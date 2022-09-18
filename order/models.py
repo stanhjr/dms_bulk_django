@@ -1,6 +1,4 @@
 from datetime import timedelta
-
-from datetime import timedelta
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -37,6 +35,13 @@ class BoardModel(models.Model):
     telegram_board_discount = ArrayField(models.CharField(max_length=20))
     telegram_board_total = ArrayField(
         models.CharField(max_length=20), null=True)
+
+    def __str__(self):
+        return "Board Settings"
+
+    class Meta:
+        verbose_name = 'Board Settings'
+        verbose_name_plural = 'Board Settings'
 
 
 class OrderCalcModel(models.Model):
