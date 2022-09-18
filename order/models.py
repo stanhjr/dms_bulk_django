@@ -1,6 +1,4 @@
 from datetime import timedelta
-
-from datetime import timedelta
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -37,6 +35,87 @@ class BoardModel(models.Model):
     telegram_board_discount = ArrayField(models.CharField(max_length=20))
     telegram_board_total = ArrayField(
         models.CharField(max_length=20), null=True)
+
+    def __str__(self):
+        return "Board Settings"
+
+    class Meta:
+        verbose_name = 'Board Settings'
+        verbose_name_plural = 'Board Settings'
+
+    def __len_telegram(self):
+        quantity = len(self.telegram_board_quantity)
+        amount = len(self.telegram_board_amount)
+        discount = len(self.telegram_board_discount)
+        total = len(self.telegram_board_total)
+        if quantity != amount:
+            return False
+        if quantity != discount:
+            return False
+        if quantity != amount:
+            return False
+        if quantity != total:
+            return False
+        return True
+
+    def __len_twitter(self):
+        quantity = len(self.twitter_board_quantity)
+        amount = len(self.twitter_board_amount)
+        discount = len(self.twitter_board_discount)
+        total = len(self.twitter_board_total)
+        if quantity != amount:
+            return False
+        if quantity != discount:
+            return False
+        if quantity != amount:
+            return False
+        if quantity != total:
+            return False
+        return True
+
+    def __len_discord(self):
+        quantity = len(self.discord_board_quantity)
+        amount = len(self.discord_board_amount)
+        discount = len(self.discord_board_discount)
+        total = len(self.discord_board_total)
+        if quantity != amount:
+            return False
+        if quantity != discount:
+            return False
+        if quantity != amount:
+            return False
+        if quantity != total:
+            return False
+        return True
+
+    def __len_instagram(self):
+        quantity = len(self.instagram_board_quantity)
+        amount = len(self.instagram_board_amount)
+        discount = len(self.instagram_board_discount)
+        total = len(self.instagram_board_total)
+        if quantity != amount:
+            return False
+        if quantity != discount:
+            return False
+        if quantity != amount:
+            return False
+        if quantity != total:
+            return False
+        return True
+
+    def clean(self):
+        if not self.__len_instagram():
+            raise ValidationError(
+                'the length of instagram arrays must be the same')
+        if not self.__len_telegram():
+            raise ValidationError(
+                'the length of telegram arrays must be the same')
+        if not self.__len_twitter():
+            raise ValidationError(
+                'the length of twitter arrays must be the same')
+        if not self.__len_discord():
+            raise ValidationError(
+                'the length of discord arrays must be the same')
 
 
 class OrderCalcModel(models.Model):

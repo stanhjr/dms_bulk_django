@@ -50,7 +50,11 @@
                     <div class="td">{{ invoice.payment_method }}</div>
                     <div class="td">{{ invoice.description }}</div>
                     <div class="td">{{ invoice.cents|div:100 }}$</div>
-                    <div class="td"><span class="c-orange">{{ invoice.status }}</span></div>
+                      {% if invoice.status == 'Paid' %}
+                          <div class="td"><span class="c-green">{{ invoice.status }}</span></div>
+                      {% else %}
+                          <div class="td"><span class="c-orange">{{ invoice.status }}</span></div>
+                      {% endif %}
                     <div class="td">{{ invoice.created_at|date:'d.m.Y' }}</div>
                     <div class="td"><a class="js-popup open-invoice-btn" href="#popup-invoice-awaiting">View</a></div>
                   </div>

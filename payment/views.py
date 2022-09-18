@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 
 import stripe
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
 from django.template.loader import render_to_string
 from django.views.generic import CreateView
 
@@ -90,8 +91,15 @@ class GetSessionIdAPIView(APIView):
 def my_handler(event, **kwargs):
     user = event.customer.subscriber
     paid = event.data["object"]["amount_paid"]
-    user.cents += int(paid)
-    user.save()
+    invoice = Invoice.objects.filter(stripe_invoice_id=event.data["object"]["id"]).first()
+    if not invoice:
+        return Response(status=404)
+    with transaction.atomic():
+        invoice.status = 'Paid'
+        user.cents += int(paid)
+        user.save()
+        invoice.save()
+    return Response(status=200)
 
 
 class PaypalAPIView(APIView):
@@ -121,8 +129,11 @@ class PaypalAPIView(APIView):
         user = CustomUser.objects.filter(pk=user_id).first()
         if not user:
             return Response({"status": "SUCCESSFUL"}, status=200)
-
-        user.cents += float(value) * 100
-        user.save()
+        invoice = Invoice.objects.filter(invoice_id=invoice_id).first()
+        with transaction.atomic():
+            invoice.status = 'Paid'
+            user.cents += float(value) * 100
+            user.save()
+            invoice.save()
 
         return Response({"status": "SUCCESSFUL"}, status=200)
