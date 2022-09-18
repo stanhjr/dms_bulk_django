@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.staticfiles',
     'rest_framework',
-    # 'admin_reorder',
+    'admin_reorder',
     'mathfilters',
     'djstripe',
     'paypal.standard.ipn',
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'admin_reorder.middleware.ModelAdminReorder',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'dms_bulk_django.urls'
@@ -131,6 +131,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+
+ADMIN_REORDER = (
+    'sites',
+    {'app': 'account', 'models': ('account.CustomUser', )},
+    {'app': 'blog', 'models': ('blog.ArticleModel', )},
+    {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel', )},
+    {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
+    {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon', )},
+    {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice', )},
+
+)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = "smtp.gmail.com"
