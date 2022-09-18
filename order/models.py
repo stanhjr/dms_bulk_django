@@ -71,8 +71,13 @@ class OrderCalcModel(models.Model):
     def __str__(self):
         return f'{self.social_network} by {self.user.username} {self.total}'
 
+    @classmethod
+    def __delete_unused_models(cls, user):
+        cls.objects.filter(user=user, order_model=None).delete()
+
     def save(self, *args, **kwargs):
         self.amount_integer = calculate_amount_integer(amount=self.amount)
+        self.__delete_unused_models(self.user)
         super().save(*args, **kwargs)
 
 
@@ -105,7 +110,7 @@ class OrderModel(models.Model):
 
         if self.sending and not self.completed:
             send_date = tz.now() + timedelta(days=1)
-            delete_order_from_actives.apply_async((self.pk, ), eta=send_date)
+            delete_order_from_actives.apply_async((self.pk,), eta=send_date)
 
         if self.filtering and self.sending:
             self.send_messages_speed = self.__get_send_messages_speed_per_minutes()

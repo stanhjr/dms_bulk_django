@@ -73,13 +73,7 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Lo
         form.instance.user = self.request.user
         form.cleaned_data['amount_integer'] = calculate_amount_integer(
             amount=form.cleaned_data.get('amount'))
-
-        if OrderCalcModel.objects.exists():
-            self.model.objects.filter(
-                user=self.request.user).update(**form.cleaned_data)
-            return redirect(self.success_url)
-        else:
-            return super().form_valid(form)
+        return super().form_valid(form)
 
 
 class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
@@ -102,7 +96,7 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        order_calc = OrderCalcModel.objects.last()
+        order_calc = OrderCalcModel.objects.filter(user=self.request.user).last()
         board = BoardModel.objects.last()
 
         order_discount = order_calc.discount
