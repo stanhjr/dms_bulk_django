@@ -48,13 +48,7 @@ class BoardModel(models.Model):
         amount = len(self.telegram_board_amount)
         discount = len(self.telegram_board_discount)
         total = len(self.telegram_board_total)
-        if quantity != amount:
-            return False
-        if quantity != discount:
-            return False
-        if quantity != amount:
-            return False
-        if quantity != total:
+        if (amount, discount, total).count(quantity) == 3:
             return False
         return True
 
@@ -63,13 +57,7 @@ class BoardModel(models.Model):
         amount = len(self.twitter_board_amount)
         discount = len(self.twitter_board_discount)
         total = len(self.twitter_board_total)
-        if quantity != amount:
-            return False
-        if quantity != discount:
-            return False
-        if quantity != amount:
-            return False
-        if quantity != total:
+        if (amount, discount, total).count(quantity) == 3:
             return False
         return True
 
@@ -78,13 +66,7 @@ class BoardModel(models.Model):
         amount = len(self.discord_board_amount)
         discount = len(self.discord_board_discount)
         total = len(self.discord_board_total)
-        if quantity != amount:
-            return False
-        if quantity != discount:
-            return False
-        if quantity != amount:
-            return False
-        if quantity != total:
+        if (amount, discount, total).count(quantity) == 3:
             return False
         return True
 
@@ -93,13 +75,7 @@ class BoardModel(models.Model):
         amount = len(self.instagram_board_amount)
         discount = len(self.instagram_board_discount)
         total = len(self.instagram_board_total)
-        if quantity != amount:
-            return False
-        if quantity != discount:
-            return False
-        if quantity != amount:
-            return False
-        if quantity != total:
+        if (amount, discount, total).count(quantity) == 3:
             return False
         return True
 

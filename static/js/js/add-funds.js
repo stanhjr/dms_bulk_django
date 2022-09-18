@@ -34,6 +34,7 @@ $('.open-invoice-btn').click(event => {
     $('.header-wrap > .right > p').text(`ID (#${current_invoice_table[0]})`)
 
     if (current_invoice_table[4] !== 'Paid') {
+        $('.table-info > .tr:eq(1) > .td:eq(3) > span').attr('class', 'status c-orange')
         if (current_invoice_table[1] === 'Paypal') {
             $('#paypal-button-container').css('display', 'block')
             $('#deposit-credit-card-btn').css('display', 'none')
@@ -42,6 +43,7 @@ $('.open-invoice-btn').click(event => {
             $('#deposit-credit-card-btn').css('display', 'block')
         }
     } else {
+        $('.table-info > .tr:eq(1) > .td:eq(3) > span').attr('class', 'status c-green')
         $('#paypal-button-container').css('display', 'none')
         $('#deposit-credit-card-btn').css('display', 'none')
     }
