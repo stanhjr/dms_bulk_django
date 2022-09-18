@@ -37,4 +37,6 @@ class Invoice(models.Model):
         self.invoice_id = f'DM-{self.user_id}-{self.id}'
         super(Invoice, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return f'{self.invoice_id} by {self.user} {self.payment_method}'
 
