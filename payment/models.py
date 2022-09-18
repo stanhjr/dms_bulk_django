@@ -22,6 +22,7 @@ class Invoice(models.Model):
     description = models.CharField(
         max_length=255, default='Social Media Marketing')
     created_at = models.DateTimeField(auto_now_add=True)
+    stripe_invoice_id = models.CharField(max_length=1000, null=True, blank=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, related_name='invoice')
 
@@ -30,14 +31,10 @@ class Invoice(models.Model):
 
     @property
     def cost(self):
-        return self.cost * 100
+        return self.cents / 100
 
     def save(self, *args, **kwargs):
         self.invoice_id = f'DM-{self.user_id}-{self.id}'
-
         super(Invoice, self).save(*args, **kwargs)
 
-    # @receiver(post_save, sender=Invoice, dispatch_uid="update_stock_count")
-    # def update_stock(sender, instance, **kwargs):
-    #     instance.product.stock -= instance.amount
-    #     instance.product.save()
+

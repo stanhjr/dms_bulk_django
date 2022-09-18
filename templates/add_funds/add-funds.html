@@ -264,7 +264,7 @@
         <div class="td"><b>Status</b></div>
       </div>
       <div class="tr">
-        <div class="td">DM-222</div>
+        <div class="td" id="invoice-id">DM-222</div>
         <div class="td">Paypal</div>
         <div class="td">Social Media Marketing program</div>
         <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
@@ -276,8 +276,8 @@
         <div class="td"></div>
       </div>
       <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td"></div>
+        <div class="td" ><b>Total</b></div>
+        <div class="td" id="total-invoice"></div>
       </div>
     </div>
 
@@ -288,16 +288,19 @@
 
     <script>
         // Render the PayPal button into #paypal-button-container
+
         paypal.Buttons({
             // Set up the transaction
             createOrder: (data, actions) => {
+                var totalPrice = document.getElementById("total-invoice").innerText.slice(0, -1)
+                var invoiceId = document.getElementById("invoice_id").innerText
                 return actions.order.create({
                     purchase_units: [{
-                        invoice_id: 'DM + "-" + randString',
+                        invoice_id: invoiceId,
                         reference_id: {{ user.pk }},
                         description: "Social Media Marketing program",
                         amount: {
-                            value: '88.44'
+                            value: totalPrice
                         }
                     }]
                 });

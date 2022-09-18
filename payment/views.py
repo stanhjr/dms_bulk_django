@@ -8,6 +8,7 @@ from django.views.generic import CreateView
 
 from djstripe.models import Customer
 from djstripe import webhooks
+from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -39,16 +40,21 @@ class InvoiceCreateView(LoginRequiredMixin, CreateView):
 
 
 class GetSessionIdAPIView(APIView):
-    def get(self, request):
+    permission_classes = (IsAuthenticated, )
 
-        customer = Customer.objects.get(subscriber=request.user)
-        price = int(request.GET.get("price"))
-        if not price:
+    def get(self, request):
+        customer = Customer.objects.get(subscriber=self.request.user)
+        try:
+            price = int(float(request.GET.get("price"))) * 100
+            invoice_model = Invoice.objects.filter(invoice_id=request.GET.get("invoice_id")).first()
+        except ValueError:
+            return Response(status=404)
+        if not price or not invoice_model:
             return Response(status=404)
         stripe.api_key = STRIPE_TEST_SECRET_KEY
 
         try:
-            product = stripe.Product.create(name="Gold Special")
+            product = stripe.Product.create(name="Social Media Marketing")
             price = stripe.Price.create(
                 product=product.id, unit_amount=price, currency="usd")
 
@@ -71,6 +77,8 @@ class GetSessionIdAPIView(APIView):
                 "session_id": invoice.id,
                 "invoice_url": invoice.hosted_invoice_url,
             }
+            invoice_model.stripe_invoice_id = invoice.id
+            invoice_model.save()
         except stripe.error.InvalidRequestError as e:
             print(e)
             return Response(status=404)
@@ -84,43 +92,6 @@ def my_handler(event, **kwargs):
     paid = event.data["object"]["amount_paid"]
     user.cents += int(paid)
     user.save()
-
-
-class GetPaypalFormPIView(APIView):
-    def get(self, request):
-        try:
-            price = float(request.GET.get("price"))
-            client_id = settings.PAYPAL_CLIENT_ID
-        except Exception as e:
-            print(e)
-            return Response(status=404)
-        invoice_id = "ARv3ot_OU4zgMCM_vZ3Xgb0c0ovmFfL_pRRrIlLxPWuq7nZMUUvO2PHS9cCoa1eYNt9G1apgJxyUwqbr"
-        paypal_dict = {
-            "business": settings.PAYPAL_RECEIVER_EMAIL,
-            "amount": price,
-            "item_name": "name of the item",
-            "invoice": invoice_id,
-            "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-            "return": request.build_absolute_uri(reverse('add_funds')),
-            "cancel_return": request.build_absolute_uri(reverse('add_funds')),
-            # Custom command to correlate to some function later (optional)
-            "custom": "premium_plan",
-        }
-        form = CustomPayPalPaymentsForm(initial=paypal_dict)
-        content = render_to_string(
-            "popup/paypal_invoice.html",
-            request=request,
-            context={
-                'form': form,
-                'date_now': datetime.datetime.now().strftime("%d.%m.%Y"),
-                'pay_method': 'Paypal',
-                'invoice_id': invoice_id,
-                "price": price,
-                "client_id": client_id,
-            }
-        )
-
-        return Response({"content": content}, status=200)
 
 
 class PaypalAPIView(APIView):
