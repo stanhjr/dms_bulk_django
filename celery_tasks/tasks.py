@@ -2,9 +2,11 @@ import binascii
 import os
 import smtplib
 import ssl
+from datetime import date
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from celery.schedules import crontab
 from django.conf import settings
 from celery import Celery
 
@@ -20,6 +22,14 @@ app = Celery(
 app.config_from_object(config)
 
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+
+@app.on_after_configure.connect
+def setup_periodic_tasks(sender, **kwargs):
+    sender.add_periodic_task(
+        crontab(hour=23, minute=0),
+        update_analytics.s(),
+    )
 
 
 def generate_key() -> str:
@@ -121,3 +131,21 @@ def delete_order_from_actives(order_pk: int) -> str:
     from order.models import OrderModel
     OrderModel.objects.filter(pk=order_pk).update(completed=True)
     return f'Order<{order_pk}> deleted from actives'
+
+
+@app.task
+def update_analytics():
+    try:
+        from analytics.models import UserStatistics
+        from analytics.tools import get_unique_users_today
+        number_users_today = get_unique_users_today()
+        today = date.today()
+        user_statistics = UserStatistics.objects.filter(created_at=today).first()
+        if user_statistics:
+            user_statistics.visitors_number = number_users_today
+        else:
+            user_statistics = UserStatistics.objects.create(visitors_number=number_users_today, created_at=today)
+        user_statistics.save()
+        return f'analytics update, number of users today = {number_users_today}'
+    except Exception as e:
+        print(e)

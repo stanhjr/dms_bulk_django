@@ -5,9 +5,10 @@ from django.contrib.admin import ModelAdmin
 from django.db.models import Sum
 from online_users.models import OnlineUserActivity
 
-from analytics.models import GoogleAnalytics, UserStatistics
+from analytics.models import GoogleAnalytics
+from analytics.models import UserStatistics
 from analytics.tools import get_unique_users_today
-from payment.models import Invoice
+from order.models import OrderModel
 
 
 class GoogleAnalyticsAdmin(ModelAdmin):
@@ -29,9 +30,15 @@ class GoogleAnalyticsAdmin(ModelAdmin):
             user_statistics.save()
 
             seven_day_before = today - timedelta(days=7)
-            orders_today_sum = Invoice.objects.filter(complete_at=today).aggregate(Sum('cents'))['cents__sum']
-            orders_last_week_sum = Invoice.objects.filter(complete_at__gte=seven_day_before).aggregate(Sum('cents'))['cents__sum']
-            orders_all_sum = Invoice.objects.filter(status='Paid').aggregate(Sum('cents'))['cents__sum']
+            orders_today_sum = OrderModel.objects.filter(created_at=today).aggregate(Sum('order_calc__amount_integer'))[
+                'order_calc__amount_integer__sum']
+            orders_last_week_sum = \
+                OrderModel.objects.filter(created_at__gte=seven_day_before).aggregate(
+                    Sum('order_calc__amount_integer'))[
+                    'order_calc__amount_integer__sum']
+            orders_all_sum = OrderModel.objects.aggregate(Sum('order_calc__amount_integer'))[
+                'order_calc__amount_integer__sum']
+
             if not orders_all_sum:
                 orders_all_sum = 0
             if not orders_last_week_sum:
@@ -53,9 +60,9 @@ class GoogleAnalyticsAdmin(ModelAdmin):
                 users_number_today = 0
             context = {
                 'user_activity_count': OnlineUserActivity.get_user_activities(timedelta(minutes=15)).count(),
-                'orders_today_count': Invoice.objects.filter(complete_at=today).count(),
-                'orders_last_week_count': Invoice.objects.filter(complete_at__gte=seven_day_before).count(),
-                'orders_complete_count': Invoice.objects.filter(status='Paid').count(),
+                'orders_today_count': OrderModel.objects.filter(created_at=today).count(),
+                'orders_last_week_count': OrderModel.objects.filter(created_at__gte=seven_day_before).count(),
+                'orders_complete_count': OrderModel.objects.count(),
                 'orders_today_sum': orders_all_sum / 100,
                 'orders_last_week_sum': orders_last_week_sum / 100,
                 'orders_all_sum': orders_today_sum / 100,
