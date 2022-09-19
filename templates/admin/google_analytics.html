@@ -6,39 +6,55 @@
 
 {% block result_list %}
     <div class="analytics-wrapper">
-        <div class="analytics-item-blue">
-            {{ orders_today_count }}
-        </div>
-         <div class="analytics-item-yellow">
-            {{ orders_today_sum }} $
-        </div>
-         <div class="analytics-item-red">
-             {{ users_number_today }}
-        </div>
+            <div class="analytics-today">
+                 <div class="analytics-item-blue">
+                <div class="analytics-title">New Orders</div>
+                {{ orders_today_count }}
+                </div>
+             <div class="analytics-item-yellow">
+                 <div class="analytics-title">Total Amount</div>
+                {{ orders_today_sum }} $
+                </div>
+             <div class="analytics-item-red">
+                 <div class="analytics-title">Unique Visitors</div>
+                 {{ users_number_today }}
+                </div>
 
+              </div>
+
+    <div class="analytics-week">
          <div class="analytics-item-blue">
+             <div class="analytics-title">New Orders</div>
             {{ orders_last_week_count }}
         </div>
          <div class="analytics-item-yellow">
+             <div class="analytics-title">Total Amount</div>
             {{ orders_last_week_sum }} $
         </div>
          <div class="analytics-item-red">
+              <div class="analytics-title">Unique Visitors</div>
              {{ users_number_last_week }}
         </div>
+    </div>
 
+    <div class="analytics-all">
          <div class="analytics-item-blue">
+             <div class="analytics-title">New Orders</div>
             {{ orders_complete_count }}
         </div>
          <div class="analytics-item-yellow">
+             <div class="analytics-title">Total Amount</div>
             {{ orders_all_sum }} $
         </div>
          <div class="analytics-item-red">
-             {{ users_number_all_tim }}
+              <div class="analytics-title">Unique Visitors</div>
+             {{ users_number_all_time }}
         </div>
 
-
+    </div>
 
         <div class="analytics-item-green">
+            <div class="analytics-title">Online</div>
             {{ user_activity_count }}
         </div>
 

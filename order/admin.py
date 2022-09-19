@@ -22,6 +22,7 @@ class OrderCalcModelAdmin(admin.ModelAdmin):
     search_fields = ['user', 'social_network']
     list_display = ('social_network', 'amount', 'discount',
                     'total', 'created_at', 'user')
+    exclude = ('total_integer', )
 
 
 class BoardModelAdmin(admin.ModelAdmin):

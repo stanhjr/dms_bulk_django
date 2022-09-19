@@ -110,6 +110,7 @@ class OrderCalcModel(models.Model):
     amount_integer = models.IntegerField(default=0)
     discount = models.CharField(max_length=10)
     total = models.CharField(max_length=20)
+    total_integer = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
@@ -132,6 +133,7 @@ class OrderCalcModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.amount_integer = calculate_amount_integer(amount=self.amount)
+        self.total_integer = int(self.total[:-1])
         self.__delete_unused_models(self.user)
         super().save(*args, **kwargs)
 
