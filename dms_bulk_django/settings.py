@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'admin_reorder',
     'mathfilters',
     'djstripe',
+    'online_users',
     'paypal.standard.ipn',
     'home',
     'account',
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
+    'online_users.middleware.OnlineNowMiddleware',
 ]
 
 ROOT_URLCONF = 'dms_bulk_django.urls'

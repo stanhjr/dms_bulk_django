@@ -1,11 +1,18 @@
 
+
 from apiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
+from online_users.models import OnlineUserActivity
+
+
+
+
+
 
 SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 KEY_FILE_LOCATION = 'keys.json'
-VIEW_ID = 'ga:275662308'
-# VIEW_ID = 'ga:275676015'
+
+VIEW_ID = 'ga:275676015'
 try:
     credentials = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE_LOCATION, SCOPES)
 except FileNotFoundError as e:
@@ -17,9 +24,7 @@ try:
     response = analytics.reports().batchGet(body={
         'reportRequests': [{
             'viewId': VIEW_ID,
-            # 'dateRanges': [{'startDate': '2022-09-18', 'endDate': '2022-09-19'}],
             'dateRanges': [{'startDate': 'today', 'endDate': 'today'}],
-            # 'dateRanges': [{'startDate': '90daysAgo', 'endDate': 'today'}],
             'metrics': [
                 {"expression": "ga:users"},
                 # {"expression": "ga:1dayUsers"},
