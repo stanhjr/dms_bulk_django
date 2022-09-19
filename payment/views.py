@@ -5,6 +5,7 @@ import stripe
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.views.generic import CreateView
 
 from djstripe.models import Customer
@@ -96,6 +97,7 @@ def my_handler(event, **kwargs):
         return Response(status=404)
     with transaction.atomic():
         invoice.status = 'Paid'
+        invoice.complete_at = timezone.now()
         user.cents += int(paid)
         user.save()
         invoice.save()
@@ -132,6 +134,7 @@ class PaypalAPIView(APIView):
         invoice = Invoice.objects.filter(invoice_id=invoice_id).first()
         with transaction.atomic():
             invoice.status = 'Paid'
+            invoice.complete_at = timezone.now()
             user.cents += float(value) * 100
             user.save()
             invoice.save()
