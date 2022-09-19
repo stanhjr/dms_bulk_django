@@ -1,27 +1,72 @@
-from datetime import timedelta
+from datetime import timedelta, date
 
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
+from django.db.models import Sum
 from online_users.models import OnlineUserActivity
 
-from analytics.models import GoogleAnalytics
+from analytics.models import GoogleAnalytics, UserStatistics
+from analytics.tools import get_unique_users_today
+from payment.models import Invoice
 
 
 class GoogleAnalyticsAdmin(ModelAdmin):
     change_list_template = 'admin/google_analytics.html'
 
     def changelist_view(self, request, extra_context=None):
-        user_activity_count = OnlineUserActivity.get_user_activities(timedelta(minutes=2)).count()
-
         response = super().changelist_view(
             request,
             extra_context=extra_context,
         )
         try:
-            ...
+            users_today = get_unique_users_today()
+            today = date.today()
+            user_statistics = UserStatistics.objects.filter(created_at=today).first()
+            if user_statistics:
+                user_statistics.visitors_number = users_today
+            else:
+                user_statistics = UserStatistics.objects.create(visitors_number=users_today, created_at=today)
+            user_statistics.save()
+
+            seven_day_before = today - timedelta(days=7)
+            orders_today_sum = Invoice.objects.filter(complete_at=today).aggregate(Sum('cents'))['cents__sum']
+            orders_last_week_sum = Invoice.objects.filter(complete_at__gte=seven_day_before).aggregate(Sum('cents'))['cents__sum']
+            orders_all_sum = Invoice.objects.filter(status='Paid').aggregate(Sum('cents'))['cents__sum']
+            if not orders_all_sum:
+                orders_all_sum = 0
+            if not orders_last_week_sum:
+                orders_last_week_sum = 0
+            if not orders_today_sum:
+                orders_today_sum = 0
+
+            users_number_last_week = UserStatistics.objects.filter(created_at__gte=seven_day_before).aggregate(
+                Sum('visitors_number'))['visitors_number__sum']
+            users_number_all_time = UserStatistics.objects.aggregate(
+                Sum('visitors_number'))['visitors_number__sum']
+            users_number_today = UserStatistics.objects.filter(created_at=today).aggregate(
+                Sum('visitors_number'))['visitors_number__sum']
+            if not users_number_last_week:
+                users_number_last_week = 0
+            if not users_number_all_time:
+                users_number_all_time = 0
+            if not users_number_today:
+                users_number_today = 0
+            context = {
+                'user_activity_count': OnlineUserActivity.get_user_activities(timedelta(minutes=15)).count(),
+                'orders_today_count': Invoice.objects.filter(complete_at=today).count(),
+                'orders_last_week_count': Invoice.objects.filter(complete_at__gte=seven_day_before).count(),
+                'orders_complete_count': Invoice.objects.filter(status='Paid').count(),
+                'orders_today_sum': orders_all_sum / 100,
+                'orders_last_week_sum': orders_last_week_sum / 100,
+                'orders_all_sum': orders_today_sum / 100,
+                'users_number_today': users_number_today,
+                'users_number_last_week': users_number_last_week,
+                'users_number_all_time': users_number_all_time,
+            }
+
         except (AttributeError, KeyError):
             return response
-        response.context_data['content'] = user_activity_count
+        response.context_data.update(context)
         return response
 
 

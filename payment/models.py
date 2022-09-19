@@ -22,7 +22,7 @@ class Invoice(models.Model):
     description = models.CharField(
         max_length=255, default='Social Media Marketing')
     created_at = models.DateTimeField(auto_now_add=True)
-    complete_at = models.DateTimeField(null=True, blank=True)
+    complete_at = models.DateField(null=True, blank=True)
     stripe_invoice_id = models.CharField(max_length=1000, null=True, blank=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, related_name='invoice')
