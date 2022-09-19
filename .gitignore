@@ -9,7 +9,7 @@ media/preview_images
 *.so
 
 # Distribution / packaging
-key.json
+keys.json
 .idea
 .Python
 test.py
