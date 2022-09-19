@@ -1,18 +1,21 @@
-from datetime import timedelta, date, datetime
+from datetime import timedelta, date
 
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.db.models import Sum
 from online_users.models import OnlineUserActivity
 
-from analytics.models import GoogleAnalytics
+from analytics.models import Analytics
 from analytics.models import UserStatistics
 from analytics.tools import get_unique_users_today
 from order.models import OrderModel
 
 
-class GoogleAnalyticsAdmin(ModelAdmin):
+class AnalyticsAdmin(ModelAdmin):
     change_list_template = 'admin/google_analytics.html'
+
+    class Media:
+        css = {"all": ("css/custom_admin.css",)}
 
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(
@@ -78,4 +81,4 @@ class GoogleAnalyticsAdmin(ModelAdmin):
         return response
 
 
-admin.site.register(GoogleAnalytics, GoogleAnalyticsAdmin)
+admin.site.register(Analytics, AnalyticsAdmin)

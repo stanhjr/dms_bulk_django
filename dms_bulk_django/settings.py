@@ -144,7 +144,7 @@ ADMIN_REORDER = (
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon', )},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice', )},
-    {'app': 'analytics', 'models': ('analytics.GoogleAnalytics', )},
+    # {'app': 'analytics', 'models': ('analytics.Analytics', )},
 
 )
 
