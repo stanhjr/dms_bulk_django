@@ -36,7 +36,7 @@
                       <p class="tbl"><span>{{ total_price }}</span>
                         <span class="ic">
                           {% if not request.user.dms_tokens %}
-                          Available
+                            Available
                           {% endif %}
                           {{ request.user.dms_tokens }}
                           <img src="{% static 'img/ic-coin-dm.png' %}" alt="">

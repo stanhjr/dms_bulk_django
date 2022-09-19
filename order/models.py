@@ -165,9 +165,9 @@ class OrderModel(models.Model):
 
         if self.sending and not self.completed:
             send_date = tz.now() + timedelta(days=1)
-            delete_order_from_actives.apply_async((self.pk,), eta=send_date)
+            delete_order_from_actives.apply_async((self.pk, ), eta=send_date)
 
-        if self.filtering and self.sending:
+        if self.scraping and self.filtering and not self.sending:
             self.send_messages_speed = self.__get_send_messages_speed_per_minutes()
             self.sending_start_at = tz.now()
 

@@ -8,7 +8,6 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.contrib import messages
 from django.db import transaction, models
 from django.db.models import Q
 
@@ -96,7 +95,8 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        order_calc = OrderCalcModel.objects.filter(user=self.request.user).last()
+        order_calc = OrderCalcModel.objects.filter(
+            user=self.request.user).last()
         board = BoardModel.objects.last()
 
         order_discount = order_calc.discount

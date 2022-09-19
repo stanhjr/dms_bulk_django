@@ -10,13 +10,18 @@ from order.models import Coupon
 
 class OrderModelAdmin(admin.ModelAdmin):
     search_fields = ['order_calc__user__username', 'order_calc__user__email']
-    list_display = ('order_calc', 'scraping', 'filtering', 'sending', 'completed')
+    list_display = ('order_calc', 'scraping',
+                    'filtering', 'sending', 'completed')
     exclude = ('sending_start_at', 'send_messages_speed', 'completed')
+
+    class Media:
+        js = ('js/js/jquery-3.6.0.min.js', 'js/js/admin/order-model.js')
 
 
 class OrderCalcModelAdmin(admin.ModelAdmin):
     search_fields = ['user', 'social_network']
-    list_display = ('social_network', 'amount', 'discount', 'total', 'created_at', 'user')
+    list_display = ('social_network', 'amount', 'discount',
+                    'total', 'created_at', 'user')
 
 
 class BoardModelAdmin(admin.ModelAdmin):
