@@ -17,6 +17,15 @@
     <meta name="theme-color" content="#666F86" />
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.min.css' %}" />
     {% block head_tags %}{% endblock head_tags %}
+    <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHM3LSPHG0"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-LHM3LSPHG0');
+        </script>
 </head>
 
 <body>

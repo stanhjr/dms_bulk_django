@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'order',
     'blog',
     'payment',
+    'analytics',
 ]
 
 MIDDLEWARE = [
@@ -135,12 +136,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ADMIN_REORDER = (
     'sites',
-    {'app': 'account', 'models': ('account.CustomUser', )},
+    {'app': 'account', 'label': 'Accounts', 'models': ('account.CustomUser', )},
     {'app': 'blog', 'models': ('blog.ArticleModel', )},
     {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel', )},
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon', )},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice', )},
+    {'app': 'analytics', 'models': ('analytics.GoogleAnalytics', )},
 
 )
 
