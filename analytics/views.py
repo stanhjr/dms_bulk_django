@@ -4,7 +4,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 KEY_FILE_LOCATION = 'keys.json'
-VIEW_ID = 'ga:275676015'
+VIEW_ID = 'ga:275662308'
+# VIEW_ID = 'ga:275676015'
 try:
     credentials = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE_LOCATION, SCOPES)
 except FileNotFoundError as e:
