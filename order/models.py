@@ -142,6 +142,9 @@ class OrderModel(models.Model):
     order_calc = models.OneToOneField(
         OrderCalcModel, on_delete=models.CASCADE, related_name='order_model')
 
+    screenshot_complete = models.ImageField(
+        upload_to='screenshot_complete_images/', null=True, blank=True)
+
     sending_end_at = models.DateTimeField(blank=True, null=True)
     hours_to_sending_end = models.IntegerField(blank=True, null=True)
     sending_start_at = models.DateTimeField(blank=True, null=True)

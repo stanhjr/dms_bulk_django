@@ -80,7 +80,12 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="td"><a class="disabled" href="#">Download</a><br><span class="small c-gray">(After done)</span></div>
+                    <div class="td"><a
+                      {% if order.screenshot_complete %}
+                      href="{{ order.screenshot_complete.url }}"
+                      {% else %}
+                      class="disabled"
+                      {% endif %}>Download</a><br><span class="small c-gray">(After done)</span></div>
                   </div>
                   {% if order.filtering %}
                     <script>
