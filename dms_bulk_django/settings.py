@@ -138,15 +138,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ADMIN_REORDER = (
     'sites',
-    {'app': 'account', 'label': 'Accounts', 'models': ('account.CustomUser', )},
-    {'app': 'blog', 'models': ('blog.ArticleModel', )},
-    {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel', )},
+    {'app': 'account', 'label': 'Accounts', 'models': ('account.CustomUser',)},
+    {'app': 'blog', 'models': ('blog.ArticleModel',)},
+    {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel',)},
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
-    {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon', )},
-    {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice', )},
-    {'app': 'analytics', 'models': ('analytics.Analytics', )},
+    {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
+    {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice',)},
+    {'app': 'analytics', 'models': ('analytics.Analytics',)},
 
 )
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = "smtp.gmail.com"
@@ -154,14 +155,17 @@ EMAIL_HOST_USER = "helloworldbooo@gmail.com"
 EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
 CELERY_SEND_MAIL_HOST = "http://185.65.245.191/"
 
-
 INVALID_DISCOUNT_MESSAGE = 'the entered discount value does not match the actual value mommy hacker'
 INVALID_ORDER_AMOUNT_MESSAGE = 'the entered order amount value does not match the actual value mommy hacker'
 
-STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
-STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", 'STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY')
-STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", 'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", 'sk_test_51Lg4MyK6rkKpcwrpBVyS7DCMIIiJxhxDwpCH5ufEg3MPS8QnZtcp3amLtQR5n5lQ1JKO4OVciqPL1K7kJguJZNUS005MqWi0jt')
+STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",
+                                        'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY",
+                                        'STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY')
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY",
+                                        'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY",
+                                        'sk_test_51Lg4MyK6rkKpcwrpBVyS7DCMIIiJxhxDwpCH5ufEg3MPS8QnZtcp3amLtQR5n5lQ1JKO4OVciqPL1K7kJguJZNUS005MqWi0jt')
 STRIPE_LIVE_MODE = False
 DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"

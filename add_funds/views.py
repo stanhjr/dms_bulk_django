@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.shortcuts import redirect
 
+from dms_bulk_django.settings import PAYPAL_CLIENT_ID
 from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
 from utils import PopupCookiesContextMixin
@@ -22,6 +23,7 @@ class AddFundsPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['create_invoice_form'] = CreateInvoiceCalcForm
         context['page'] = 'add_funds'
+        context['paypal_client_id'] = PAYPAL_CLIENT_ID
         return context
 
 
