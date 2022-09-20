@@ -95,7 +95,7 @@ class BoardModel(models.Model):
 
 
 class OrderCalcModel(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE)
     SOCIAL_NETWORK_CHOICES = (
         ('Instagram', 'Instagram'),
@@ -132,7 +132,7 @@ class OrderCalcModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.amount_integer = calculate_amount_integer(amount=self.amount)
-        self.__delete_unused_models(self.user)
+        self.__delete_unused_models(self.user.pk)
         super().save(*args, **kwargs)
 
 

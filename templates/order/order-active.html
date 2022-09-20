@@ -46,7 +46,7 @@
                         </div>
                         {% if not order.scraping %}
                           <p>Scraping process</p>
-                        {% elif not order.filtering %}
+                        {% elif order.scraping and not order.filtering %}
                           <p>Filtering process</p>
                         {% elif current_time >= order.sending_end_at %}
                           <p>{{ order.order_calc.amount }}/{{ order.order_calc.amount }} send</p>
