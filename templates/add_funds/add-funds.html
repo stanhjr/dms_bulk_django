@@ -288,16 +288,20 @@
     <div class="btn-wrap" id="deposit-credit-card-btn"><a class="btn" id="add-funds-btn" href="#">DEPOSIT</a></div>
     <div id="paypal-button-container"></div>
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ARv3ot_OU4zgMCM_vZ3Xgb0c0ovmFfL_pRRrIlLxPWuq7nZMUUvO2PHS9cCoa1eYNt9G1apgJxyUwqbr&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=USD"></script>
 
     <script>
         // Render the PayPal button into #paypal-button-container
+        function getTotalPrice(){
+
+        }
 
         paypal.Buttons({
             // Set up the transaction
             createOrder: (data, actions) => {
-                var totalPrice = document.getElementById("total-invoice").innerText.slice(0, -1)
-                var invoiceId = document.getElementById("invoice_id").innerText
+
+                let totalPrice = document.getElementById("total-invoice").innerText.slice(0, -1)
+                let invoiceId = document.getElementById("invoice-id").innerText
                 return actions.order.create({
                     purchase_units: [{
                         invoice_id: invoiceId,
