@@ -197,7 +197,7 @@ class OrderModel(models.Model):
         if self.filtering and not self.scraping:
             raise ValidationError(
                 'you must set scraping end status for setting filtering end status')
-        if not self.hours_to_sending_end:
+        if not self.hours_to_sending_end and self.filtering and not self.sending:
             raise ValidationError('hours to send end mustn\'t be nullable')
         if self.sending_end_at:
             if self.sending_end_at <= tz.now() and not self.sending:
