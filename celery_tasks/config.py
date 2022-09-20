@@ -4,10 +4,16 @@ config = {
     'worker_concurrency': 2,
     'task_acks_late': True,
     'task_annotations': {
-        'email_sender.tasks.send_verify_link_to_email': {
+        'celery_tasks.tasks.send_verify_link_to_email': {
             'queue': 'celery_tasks'
         },
-        'email_sender.tasks.send_reset_password_link_to_email': {
+        'celery_tasks.tasks.send_reset_password_link_to_email': {
+            'queue': 'celery_tasks'
+        },
+        'celery_tasks.delete_order_from_actives': {
+            'queue': 'celery_tasks'
+        },
+        'celery_tasks.update_analytics': {
             'queue': 'celery_tasks'
         },
     },

@@ -2,3 +2,60 @@
     margin-bottom: 0;
     width: 1100px;
 }
+
+.analytics-main-title {
+    font-size: 21px;
+    color: green;
+    margin-bottom: 15px;
+}
+
+.analytics {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.analytics-item {
+    width: calc(25% - 30px);
+    padding: 0 15px;
+    margin-bottom: 15px;
+}
+
+.analytics-inner {
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.analytics-header {
+    color: #fff;
+    margin-bottom: 18px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.analytics-title {
+    color: #fff;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+.analytics-item-blue .analytics-inner {
+    background-color: #00a2bb;
+}
+
+.analytics-item-yellow .analytics-inner {
+    background-color: #ffcd00;
+}
+
+.analytics-item-red .analytics-inner {
+    background-color: #f10030;
+}
+
+.analytics-item-green .analytics-inner {
+    background-color: #00b84b;
+}
+
+.analytics-item-yellow .analytics-header,
+.analytics-item-yellow .analytics-title {
+    color: #000;
+}

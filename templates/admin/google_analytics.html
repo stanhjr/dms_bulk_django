@@ -1,11 +1,90 @@
 {% extends "admin/change_list.html" %}
 
 {% block content_title %}
-    <h1> Google Analytics </h1>
+    <h1>Analytics</h1>
 {% endblock %}
 
 {% block result_list %}
-    {{ content }}
+    <div class="analytics-wrapper">
+        <h3 class="analytics-main-title">Today</h3>
+        <div class="analytics analytics-today">
+            <div class="analytics-item analytics-item-blue">
+                <div class="analytics-inner">
+                    <div class="analytics-header"> {{ orders_today_count }}</div>
+                    <div class="analytics-title">New Orders</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-yellow">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ orders_today_sum }} $</div>
+                    <div class="analytics-title">Total Amount</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-red">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ users_number_today }}</div>
+                    <div class="analytics-title">Unique Visitors</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-green">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ user_activity_count }}</div>
+                    <div class="analytics-title">Online</div>
+                </div>
+            </div>
+        </div>
+
+
+        <h3 class="analytics-main-title">This Week</h3>
+        <div class="analytics analytics-today">
+            <div class="analytics-item analytics-item-blue">
+                <div class="analytics-inner">
+                    <div class="analytics-header"> {{ orders_last_week_count }}</div>
+                    <div class="analytics-title">New Orders</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-yellow">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ orders_last_week_sum }} $</div>
+                    <div class="analytics-title">Total Amount</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-red">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ users_number_last_week }}</div>
+                    <div class="analytics-title">Unique Visitors</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="analytics-main-title">All Time</h3>
+        <div class="analytics analytics-today">
+            <div class="analytics-item analytics-item-blue">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ orders_complete_count }}</div>
+                    <div class="analytics-title">New Orders</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-yellow">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ orders_all_sum }} $</div>
+                    <div class="analytics-title">Total Amount</div>
+                </div>
+            </div>
+            <div class="analytics-item analytics-item-red">
+                <div class="analytics-inner">
+                    <div class="analytics-header">{{ users_number_all_time }}</div>
+                    <div class="analytics-title">Unique Visitors</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
     <!-- Our content goes here... -->
 {% endblock %}
 

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'admin_reorder',
     'mathfilters',
     'djstripe',
+    'online_users',
     'paypal.standard.ipn',
     'home',
     'account',
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
+    'online_users.middleware.OnlineNowMiddleware',
 ]
 
 ROOT_URLCONF = 'dms_bulk_django.urls'
@@ -142,14 +144,14 @@ ADMIN_REORDER = (
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon', )},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice', )},
-    {'app': 'analytics', 'models': ('analytics.GoogleAnalytics', )},
+    {'app': 'analytics', 'models': ('analytics.Analytics', )},
 
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "helloworldbooo@gmail.com"
-EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
+EMAIL_HOST_USER = "dmsbulkteam@gmail.com"
+EMAIL_HOST_PASSWORD = "nifoyvdujlhpscvz"
 CELERY_SEND_MAIL_HOST = "http://185.65.245.191/"
 
 
