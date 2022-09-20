@@ -150,8 +150,8 @@ ADMIN_REORDER = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "helloworldbooo@gmail.com"
-EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
+EMAIL_HOST_USER = "dmsbulkteam@gmail.com"
+EMAIL_HOST_PASSWORD = "nifoyvdujlhpscvz"
 CELERY_SEND_MAIL_HOST = "http://185.65.245.191/"
 
 
