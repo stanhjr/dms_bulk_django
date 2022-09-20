@@ -143,6 +143,7 @@ class OrderModel(models.Model):
         OrderCalcModel, on_delete=models.CASCADE, related_name='order_model')
 
     sending_end_at = models.DateTimeField(blank=True, null=True)
+    hours_to_sending_end = models.IntegerField(blank=True, null=True)
     sending_start_at = models.DateTimeField(blank=True, null=True)
     send_messages_speed = models.IntegerField(blank=True, null=True)
 
@@ -170,6 +171,7 @@ class OrderModel(models.Model):
             delete_order_from_actives.apply_async((self.pk, ), eta=send_date)
 
         if self.scraping and self.filtering and not self.sending:
+            self.sending_end_at = tz.now() + timedelta(hours=self.hours_to_sending_end)
             self.send_messages_speed = self.__get_send_messages_speed_per_minutes()
             self.sending_start_at = tz.now()
 
@@ -195,9 +197,8 @@ class OrderModel(models.Model):
         if self.filtering and not self.scraping:
             raise ValidationError(
                 'you must set scraping end status for setting filtering end status')
-        if self.filtering and not self.sending_end_at:
-            raise ValidationError(
-                'you must set sending_end_at before set filtering end status')
+        if not self.hours_to_sending_end:
+            raise ValidationError('hours to send end mustn\'t be nullable')
         if self.sending_end_at:
             if self.sending_end_at <= tz.now() and not self.sending:
                 raise ValidationError(

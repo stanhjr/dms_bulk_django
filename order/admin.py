@@ -12,7 +12,8 @@ class OrderModelAdmin(admin.ModelAdmin):
     search_fields = ['order_calc__user__username', 'order_calc__user__email']
     list_display = ('order_calc', 'scraping',
                     'filtering', 'sending', 'completed')
-    exclude = ('sending_start_at', 'send_messages_speed', 'completed')
+    exclude = ('sending_end_at', 'sending_start_at',
+               'send_messages_speed', 'completed')
 
     class Media:
         js = ('js/js/jquery-3.6.0.min.js', 'js/js/admin/order-model.js')
