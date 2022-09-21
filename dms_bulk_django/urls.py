@@ -31,3 +31,9 @@ urlpatterns = [
     path('paypal/', include("paypal.standard.ipn.urls")),
     path("payment/", include('payment.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+try:
+    from not_found_page.views import NotFoundPageView
+    urlpatterns.append(path('404/', NotFoundPageView.as_view()))
+except ImportError:
+    pass
