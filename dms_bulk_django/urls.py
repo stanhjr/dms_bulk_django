@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
@@ -28,6 +29,5 @@ urlpatterns = [
     path('add_funds/', include('add_funds.urls')),
     path("stripe/", include('djstripe.urls', namespace='djstripe')),
     path('paypal/', include("paypal.standard.ipn.urls")),
-
     path("payment/", include('payment.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -123,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/home/static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/home/static/dms_bulk')
 MEDIA_URL = 'media/'
 
 STATICFILES_DIRS = [
@@ -140,7 +140,8 @@ ADMIN_REORDER = (
     'sites',
     {'app': 'account', 'label': 'Accounts', 'models': ('account.CustomUser',)},
     {'app': 'blog', 'models': ('blog.ArticleModel',)},
-    {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel',)},
+    {'app': 'order', 'label': 'Board Settings',
+        'models': ('order.BoardModel',)},
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice',)},

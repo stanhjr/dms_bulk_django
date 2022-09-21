@@ -8125,3 +8125,9 @@ div#paypal-button-container {
     margin-left: auto;
     margin-top: 20px;
 }
+
+.page-404 {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
