@@ -51,7 +51,7 @@
               <a href="{% url 'dashboard' %}">
                 <svg viewBox="0 0 24 24" width="24px">
                   <use
-                    xlink:href="{% static '/img/sprite.svg#ic-user' %}"
+                    xlink:href="{% static '/img/sprite.svg' %}#ic-user"
                   ></use></svg
                 >Profile</a
               >
@@ -72,7 +72,7 @@
                 <button type="submit">
                   <svg viewBox="0 0 24 24" width="24px">
                     <use
-                      xlink:href="{% static '/img/sprite.svg#ic-logout' %}"
+                      xlink:href="{% static '/img/sprite.svg' %}#ic-logout"
                     ></use></svg
                   >Logout
                 </button>
@@ -92,7 +92,7 @@
         </div>
         <ul class="block-nav-items">
           <li>
-            <a class="active" href="./dashboard.html">
+            <a class="active" href="{% url 'dashboard' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use
                   xlink:href="{% static '/img/sprite.svg' %}#ic-dashboard"
@@ -116,13 +116,13 @@
               </div>
             </button>
             <ul class="inner">
-              <li><a href="./order-dms.html">Order</a></li>
-              <li><a href="./order-active.html">Active Orders</a></li>
-              <li><a href="./order-history.html">History</a></li>
+              <li><a href="{% url 'order' %}">Order</a></li>
+              <li><a href="{% url 'order_active' %}">Active Orders</a></li>
+              <li><a href="{% url 'order_history' %}">History</a></li>
             </ul>
           </li>
           <li>
-            <a href="./add-funds.html">
+            <a href="{% url 'add_funds' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use
                   xlink:href="{% static '/img/sprite.svg' %}#ic-pricing"
@@ -131,7 +131,7 @@
             >
           </li>
           <li>
-            <a href="./loyalty-program.html">
+            <a href="{% url 'loyalty_program' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use
                   xlink:href="{% static '/img/sprite.svg' %}#ic-loyalty"
@@ -140,7 +140,7 @@
             >
           </li>
           <li>
-            <a href="./faq.html">
+            <a href="{% url 'faq' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use
                   xlink:href="{% static '/img/sprite.svg' %}#ic-faq"
@@ -149,7 +149,7 @@
             >
           </li>
           <li>
-            <a href="./settings.html">
+            <a href="{% url 'settings' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use
                   xlink:href="{% static '/img/sprite.svg' %}#ic-settings"
