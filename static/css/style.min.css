@@ -8126,12 +8126,3 @@ div#paypal-button-container {
     margin-top: 20px;
 }
 
-.page-404 {
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-}
-
-.page-404 img {
-  max-width: 100%;
-}

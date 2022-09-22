@@ -1,0 +1,99 @@
+.page-404 img {
+    max-width: 100%;
+}
+
+.page-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div#paypal-button-container {
+    width: 300px;
+    margin-left: auto;
+    margin-top: 20px;
+}
+
+.error-toast {
+    position: fixed;
+    z-index: 1000;
+    right: 15px;
+    top: 15px;
+}
+
+.error-toast-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+    padding: 40px 55px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.error-toast svg {
+    width: 25px;
+    height: 25px;
+}
+
+.popup--login,
+.popup--notification {
+    max-width: 460px;
+}
+
+header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
+    background-color: #13f513;
+}
+
+.blog-list .pagination-wrap ul {
+    padding-top: 50px;
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+    .blog-list .pagination-wrap ul {
+        padding-top: 30px;
+    }
+}
+
+.blog-list .pagination-wrap ul a,
+.blog-list .pagination-wrap ul span.current {
+    color: #fff;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+    width: 26px;
+    height: 26px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #4A68FE;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.blog-list .pagination-wrap ul span.current {
+    background-color: #454459;
+}
+
+.blog-list .pagination-wrap ul a:hover {
+    background-color: #617BFF;
+}
+
+.blog-list .pagination-wrap ul a svg {
+    display: block;
+    fill: #fff;
+}
