@@ -97,3 +97,19 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     display: block;
     fill: #fff;
 }
+
+.section-text > p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.section-text > h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.section-text > h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
