@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import BoardModel, Coupon, ServicesUnderMaintenance
+from .models import BoardModel, Coupon
 from .models import OrderCalcModel
 from .models import OrderModel
 
@@ -23,7 +23,7 @@ from . import serializers
 from . import forms
 from .tools import get_total_price
 from .utils import ConfirmRequiredMixin, calculate_amount_integer
-from utils import PopupCookiesContextMixin
+from utils import PopupCookiesContextMixin, ServicesUnderMaintenanceDataMixin
 
 
 class BoardAPIView(APIView):
@@ -57,7 +57,7 @@ class StatisticsApiView(APIView):
         return Response(data_example)
 
 
-class CreateOrderCalcPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
+class CreateOrderCalcPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms.html'
     success_url = reverse_lazy('order_step_two')
     model = OrderCalcModel
@@ -66,7 +66,6 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Lo
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'order'
-        context['services_under_maintenance'] = ServicesUnderMaintenance.objects.first()
         return context
 
     def form_valid(self, form):

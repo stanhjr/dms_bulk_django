@@ -15,12 +15,13 @@ from account_auth.forms import SignInForm
 
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
+from utils import ServicesUnderMaintenanceDataMixin
 
 from celery_tasks import send_verify_link_to_email
 from celery_tasks import generate_key
 
 
-class MainPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+class MainPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/index.html'
 
     def get_context_data(self, **kwargs):
