@@ -6,6 +6,7 @@ from order.models import BoardModel
 from order.models import OrderCalcModel
 from order.models import OrderModel
 from order.models import Coupon
+from order.models import ServicesUnderMaintenance
 
 
 class OrderModelAdmin(admin.ModelAdmin):
@@ -44,3 +45,4 @@ admin.site.register(BoardModel, BoardModelAdmin)
 admin.site.register(OrderModel, OrderModelAdmin)
 admin.site.register(OrderCalcModel, OrderCalcModelAdmin)
 admin.site.register(Coupon, CouponAdmin)
+admin.site.register(ServicesUnderMaintenance)

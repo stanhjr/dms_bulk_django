@@ -11,6 +11,13 @@ from celery_tasks.tasks import delete_order_from_actives
 from .utils import calculate_amount_integer
 
 
+class ServicesUnderMaintenance(models.Model):
+    instagram = models.BooleanField(default=False)
+    twitter = models.BooleanField(default=False)
+    discord = models.BooleanField(default=False)
+    telegram = models.BooleanField(default=False)
+
+
 class BoardModel(models.Model):
     instagram_board_quantity = ArrayField(models.CharField(max_length=20))
     instagram_board_amount = ArrayField(models.CharField(max_length=20))

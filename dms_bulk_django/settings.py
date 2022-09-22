@@ -141,7 +141,7 @@ ADMIN_REORDER = (
     {'app': 'account', 'label': 'Accounts', 'models': ('account.CustomUser',)},
     {'app': 'blog', 'models': ('blog.ArticleModel',)},
     {'app': 'order', 'label': 'Board Settings',
-        'models': ('order.BoardModel',)},
+        'models': ('order.BoardModel', 'order.ServicesUnderMaintenance')},
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice',)},

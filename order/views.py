@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import BoardModel, Coupon
+from .models import BoardModel, Coupon, ServicesUnderMaintenance
 from .models import OrderCalcModel
 from .models import OrderModel
 
@@ -66,6 +66,7 @@ class CreateOrderCalcPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Lo
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'order'
+        context['services_under_maintenance'] = ServicesUnderMaintenance.objects.first()
         return context
 
     def form_valid(self, form):

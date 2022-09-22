@@ -63,6 +63,7 @@ coverage.xml
 # Django stuff:
 *.log
 not_found_page/
+new_frontend/
 local_settings.py
 local_views.py
 db.sqlite3

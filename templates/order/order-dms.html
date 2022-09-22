@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block head_tags %}
+{% block head_tags %} 
   <title>Order DMS</title>
 {% endblock head_tags %}
 
@@ -49,6 +49,9 @@
                 </div>
                 <div class="tab-content active" data-tab="instagram">
                   <div class="block-social-calculator block-white">
+                    {% if services_under_maintenance.instagram %}
+                      {% include 'base/disabled-calculator.html' %}
+                    {% endif %}
                     <div class="header-wrap">
                       <div class="ic"><img src="{% static '/img/ic-inst-grad.svg' %}" alt=""/></div><b>Instagram</b>
                       <div class="ic-info js-tooltip" title="You can write the exact amount of messages you need, sample: 15000">
@@ -85,6 +88,9 @@
                 </div>
                 <div class="tab-content" data-tab="twitter">
                   <div class="block-social-calculator block-white">
+                    {% if services_under_maintenance.twitter %}
+                      {% include 'base/disabled-calculator.html' %}
+                    {% endif %}
                     <div class="header-wrap">
                       <div class="ic twitter">
                         <svg viewBox="0 0 30 30" width="30px">
@@ -125,6 +131,9 @@
                 </div>
                 <div class="tab-content" data-tab="discord">
                   <div class="block-social-calculator block-white">
+                    {% if services_under_maintenance.discord %}
+                      {% include 'base/disabled-calculator.html' %}
+                    {% endif %}
                     <div class="header-wrap">
                       <div class="ic discord">
                         <svg viewBox="0 0 30 30" width="30px">
@@ -165,6 +174,9 @@
                 </div>
                 <div class="tab-content" data-tab="telegram">
                   <div class="block-social-calculator block-white">
+                    {% if services_under_maintenance.telegram %}
+                      {% include 'base/disabled-calculator.html' %}
+                    {% endif %}
                     <div class="header-wrap">
                       <div class="ic telegram">
                         <svg viewBox="0 0 30 30" width="30px">
