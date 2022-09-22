@@ -17,6 +17,13 @@ class ServicesUnderMaintenance(models.Model):
     discord = models.BooleanField(default=False)
     telegram = models.BooleanField(default=False)
 
+    def __str__(self):
+        return "ServicesUnderMaintenance"
+
+    class Meta:
+        verbose_name = 'ServicesUnderMaintenance'
+        verbose_name_plural = 'ServicesUnderMaintenance'
+
 
 class BoardModel(models.Model):
     instagram_board_quantity = ArrayField(models.CharField(max_length=20))
@@ -178,7 +185,7 @@ class OrderModel(models.Model):
 
         if self.sending and not self.completed:
             send_date = tz.now() + timedelta(days=1)
-            delete_order_from_actives.apply_async((self.pk, ), eta=send_date)
+            delete_order_from_actives.apply_async((self.pk,), eta=send_date)
 
         if self.scraping and self.filtering and not self.sending:
             self.sending_end_at = tz.now() + timedelta(hours=self.hours_to_sending_end)
