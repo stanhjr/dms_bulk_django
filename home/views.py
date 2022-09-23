@@ -1,6 +1,6 @@
 import random
 
-from django.views.generic.base import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.views.generic.base import View
 from django.db.models import Q
 from django.shortcuts import redirect
@@ -19,6 +19,8 @@ from utils import ServicesUnderMaintenanceDataMixin
 
 from celery_tasks import send_verify_link_to_email
 from celery_tasks import generate_key
+
+from home.models import FAQModel
 
 
 class MainPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
@@ -109,8 +111,10 @@ class CookiesPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Tem
     template_name = 'home/cookies-policy.html'
 
 
-class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, ListView):
     template_name = 'home/faq.html'
+    model = FAQModel
+    context_object_name = 'questions'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

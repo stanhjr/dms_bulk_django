@@ -146,6 +146,8 @@ ADMIN_REORDER = (
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice',)},
     {'app': 'analytics', 'models': ('analytics.Analytics',)},
+    {'app': 'home', 'label': 'Frequently Asked Questions',
+        'models': ('home.FAQModel', )}
 
 )
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'

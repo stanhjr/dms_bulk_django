@@ -31,56 +31,18 @@
               <h2 class="center">FAQ</h2>
               <div class="subtitle line">You've got questions and dmsbulk.com has the answers! <br>Everything you're probably wondering in our FAQ below - and if there's still something on your mind, reach out to our support team to make sure all your questions can be answered.</div>
               <div class="items">
+                {% for question in questions %}
                 <div class="item">
-                  <h3 class="title js-accordione">How fast DMs can be sent out in Each of Social Media?
+                  <h3 class="title js-accordione">{{ question.question }}
                     <svg viewBox="0 0 20 20" width="20px">
                       <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
                     </svg>
                   </h3>
                   <div class="text-wrap">
-                    <p>dmsbulk.com guarantees that your order will be done from 24 hours maximum up to 72 hours. Its fully depends on demand and order queue. 72 hours could take only huge bulk orders. More than 1m DMs because of prepare time, but usually order is done much faster</p>
+                    <p>{{ question.answer }}</p>
                   </div>
                 </div>
-                <div class="item">
-                  <h3 class="title js-accordione">How fast leads will come?
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                    </svg>
-                  </h3>
-                  <div class="text-wrap">
-                    <p>Leads is fully depends how you convert traffic and your chosen targets quality, we guarantee that all messages will be send properly: All amount, each message with push notification. So as we cannot control when someone opens their Direct Message in: Instagram, Twitter, Telegram or Discord, we say to expect that main traffic will come in first 24h</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <h3 class="title js-accordione">Can my account be blocked after Mass DM?
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                    </svg>
-                  </h3>
-                  <div class="text-wrap">
-                    <p>No, it will not be blocked, we are using our accounts to send messages. We take care about our clients safety</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <h3 class="title js-accordione">Do you have discounts on big volumes?
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                    </svg>
-                  </h3>
-                  <div class="text-wrap">
-                    <p>If you are ordering from us more then 1-5m DMS in week (depends on social media) we can offer special price with discount code</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <h3 class="title js-accordione">How i will know that all messages are send?
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                    </svg>
-                  </h3>
-                  <div class="text-wrap">
-                    <p>Firstly you will see in your dashboard process of campaign and monitor how messages sending in live by progress tab and after messages done you will be able to download screenshot of software.</p>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
             </section>
             <footer class="footer-main">
