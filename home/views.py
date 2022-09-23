@@ -1,7 +1,6 @@
 import random
 
-from django.views.generic import TemplateView, ListView
-from django.views.generic.base import View
+from django.views.generic import TemplateView
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
@@ -19,8 +18,6 @@ from utils import ServicesUnderMaintenanceDataMixin
 
 from celery_tasks import send_verify_link_to_email
 from celery_tasks import generate_key
-
-from home.models import FAQModel
 
 
 class MainPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
@@ -97,29 +94,6 @@ class MainPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, 
                 return redirect('home')
 
         return redirect('home')
-
-
-class AcceptCookiesPolicy(View):
-    def post(self, request):
-        request.session['cookies_policy_accepted'] = True
-
-        # it's not required redirect, form redirects to hidden iframe
-        return redirect('home')
-
-
-class CookiesPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
-    template_name = 'home/cookies-policy.html'
-
-
-class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, ListView):
-    template_name = 'home/faq.html'
-    model = FAQModel
-    context_object_name = 'questions'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = 'faq'
-        return context
 
 
 class LoyaltyProgramPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):

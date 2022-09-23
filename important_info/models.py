@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class FAQModel(models.Model):
+    question = models.CharField(max_length=90)
+    answer = models.TextField(max_length=1000)

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'blog',
     'payment',
     'analytics',
+    'important_info'
 ]
 
 MIDDLEWARE = [
@@ -146,8 +147,8 @@ ADMIN_REORDER = (
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
     {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice',)},
     {'app': 'analytics', 'models': ('analytics.Analytics',)},
-    {'app': 'home', 'label': 'Frequently Asked Questions',
-        'models': ('home.FAQModel', )}
+    {'app': 'important_info', 'label': 'Frequently Asked Questions',
+        'models': ('important_info.FAQModel', )}
 
 )
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'

@@ -1,6 +1,6 @@
 from django.db import migrations
 
-from home.models import FAQModel
+from important_info.models import FAQModel
 
 
 def create_default_faq_questions(*args, **kwargs):
@@ -19,7 +19,7 @@ def create_default_faq_questions(*args, **kwargs):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('home', '0001_initial'),
+        ('important_info', '0001_initial'),
     ]
     operations = [
         migrations.RunPython(create_default_faq_questions),
