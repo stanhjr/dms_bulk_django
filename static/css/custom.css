@@ -114,6 +114,13 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     color: rgba(0, 0, 0, 0.5);
 }
 
+.section-text h3.paragraph-title {
+    font-size: medium;
+    color: rgba(0, 0, 0, 0.5);
+    margin-right: 5px;
+    display: inline;
+}
+
 .home-partner .item:nth-child(1) > img,
 .home-partner .item:nth-last-child(1) > img {
     transform: scale(0.8);

@@ -8,11 +8,11 @@ from important_info.models import FAQModel
 
 
 class CookiesPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
-    template_name = 'home/cookies-policy.html'
+    template_name = 'policy/cookies-policy.html'
 
 
 class FAQPageView(PopupCookiesContextMixin, PopupAuthContextMixin, ListView):
-    template_name = 'home/faq.html'
+    template_name = 'policy/faq.html'
     model = FAQModel
     context_object_name = 'questions'
 
@@ -28,3 +28,7 @@ class AcceptCookiesPolicy(View):
 
         # it's not required redirect, form redirects to hidden iframe
         return redirect('home')
+
+
+class PrivacyPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'policy/privacy-policy.html'
