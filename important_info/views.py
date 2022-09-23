@@ -32,3 +32,11 @@ class AcceptCookiesPolicy(View):
 
 class PrivacyPolicyPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'policy/privacy-policy.html'
+
+
+class RulesPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'policy/rules.html'
+
+
+class ForEUCitizens(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'policy/for-eu-citizens.html'

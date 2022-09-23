@@ -1,0 +1,142 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block head_tags %}
+  <title>For EU Citizens</title>
+{% endblock head_tags %}
+
+{% block content %}
+  <div class="page-container">
+    {% include 'base/header.html' %}
+    <main class="default">
+      <div class="container">
+        <div class="grid-wrap">
+          <div class="aside-wrapper">
+            {% include 'home/nav.html' %}
+          </div>
+          <div class="content-wrapper">
+            <section class="section-text">
+              <h1 class="inner center">For EU Citizens</h1>
+              <p>Last Updated: September 25, 2022</p>
+              <p>This section of the Privacy Policy applies only if you use our Website covered by the Privacy Policy from a country that is a Member State of the European Union, and it supplements the information in the Privacy Policy.</p>
+              <p>DMSBULK is the data controller for processing of information defined as personal data.</p>
+              <h2 class="inner center">LEGAL BASIS </h2>
+              <p>Our legal basis to process Personal Data includes processing that is: necessary for the use of the website; necessary to comply with legal requirements; necessary for our legitimate interests (for example, to manage our relationship with you and to improve the website); and to communicate with you about topics mentioned on our website.</p>
+              <h2 class="inner center">EU DATA SUBJECT RIGHTS</h2>
+              <p>The EU General Data Protection Regulation (GDPR) provides certain rights for EU data subjects. You may decline to share certain personal information with us, in which case we may not be able to provide some features and functionality of our website. These rights include, in accordance with applicable law, the right to object to or request the restriction of processing of your Personal Data, and to request access to, rectification, erasure and portability of your own Personal Data. Requests should be submitted by contacting us (using the contact instructions below).</p>
+              <p>DMSBULK will retain your personal information for as long as it is reasonably necessary for the purposes set out in the Privacy Policy, considering the time period reasonably necessary to comply with legal and regulatory requirements.</p>
+              <p>If you have any unresolved privacy concern that we have not addressed satisfactorily after contacting us, you have the right to contact the appropriate EU Data Protection Authority and lodge a complaint.</p>
+              <h2 class="inner center">AUTOMATED DECISION MAKING</h2>
+              <p>DMSBULK uses automated decision-making technologies, including profiling, to support our data processing activities.</p>
+              <h2 class="inner center">Where can I get further information?</h2>
+              <p>For all EU Data Subject Rights requests please contact us, using: dmsbulkteam@gmail.com</p>
+              <p>SIA “OFFER BOOSTED”</p>
+            </section>
+            <footer class="footer-main">
+              {% include 'base/footer.html' %}
+            </footer>
+            {% include 'popup/accept-cookies.html' %}
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="container">
+    </div>
+  </div>
+  {% include 'popup/instagram.html' %}
+  {% include 'popup/discord.html' %}
+  {% include 'popup/telegram.html' %}
+  {% include 'popup/twitter.html' %}
+  {% include 'popup/login.html' %}
+  {% include 'popup/signup.html' %}
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
+  </div>
+  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#DM-11111)</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>Client Email adress and Name</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>06.08.2022</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">DM-11111</div>
+        <div class="td">Paypal</div>
+        <div class="td">Social Media Marketing program</div>
+        <div class="td"><span class="status c-green">PAID</span></div>
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td">2000$</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+  </div>
+{% endblock content %}

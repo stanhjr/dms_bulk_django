@@ -9,5 +9,7 @@ urlpatterns = [
          name='cookies_policy'),
     path('privacy_policy/', views.PrivacyPolicyPageView.as_view(),
          name='privacy_policy'),
+    path('rules/', views.RulesPageView.as_view(), name='rules'),
+    path('for_eu_citizens/', views.ForEUCitizens.as_view(), name='for_eu_citizens'),
     path('faq/', views.FAQPageView.as_view(), name='faq'),
 ]

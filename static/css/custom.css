@@ -121,6 +121,14 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     display: inline;
 }
 
+.section-text h2 {
+    font-size: 25px;
+}
+
+.section-text a {
+    color: rgba(51, 104, 245, .9);
+}
+
 .home-partner .item:nth-child(1) > img,
 .home-partner .item:nth-last-child(1) > img {
     transform: scale(0.8);
