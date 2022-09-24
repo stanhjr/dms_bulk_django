@@ -1,3 +1,4 @@
+{% load static %}
 {% if not cookies_policy_accepted %}
   <div>
     <iframe name="accept_cookies_policy_redirect_iframe" id="accept_cookies_policy_redirect_iframe" style="display: none;"></iframe>
@@ -9,4 +10,9 @@
       </div>
     </form>
   </div>
+  <button class="js-scroll-up scroll-up">
+    <svg viewBox="0 0 16 16" width="16px">
+      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-up"></use>
+    </svg>
+  </button>
 {% endif %}

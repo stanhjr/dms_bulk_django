@@ -1,3 +1,23 @@
+const turnOffContinueButtonForActiveSocialCalculatorUnderMaintenance = () => {
+    if ($('.order-dms-main .tab-content.active').has('.disabled-calculator').length) {
+        $('button.btn.btn--continue').addClass('disabled')
+    } else {
+        $('button.btn.btn--continue').removeClass('disabled')
+    }
+}
+
+$(() => {
+    turnOffContinueButtonForActiveSocialCalculatorUnderMaintenance()
+    $('.order-dms-main .tab-content').attrchange({
+        trackValues: true,
+        callback: (event) => {
+            if (event.newValue === "tab-content") {
+                turnOffContinueButtonForActiveSocialCalculatorUnderMaintenance()
+            }
+        }
+    })
+})
+
 const saveAddFundsPriceInLocalStorage = () => {
     const social_network = document.querySelector('.tab-content.active > .block-social-calculator.block-white > div > b').innerText
     const add_funds_price = document.querySelector(`.result-wrap.${social_network.toLowerCase()} > div:nth-child(3) > div`).innerText

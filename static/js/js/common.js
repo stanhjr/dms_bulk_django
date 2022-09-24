@@ -533,3 +533,18 @@ function getStatistics(nameSocial, chart1) {
 		}
 	})
 }
+
+$(() => {
+	// scroll up
+	$('.js-scroll-up').click(() => {
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
+	});
+
+	$(window).scroll(() => {
+		if ( $(window).scrollTop() >= 150 ) {
+			$('.js-scroll-up').addClass('show');
+		} else {
+			$('.js-scroll-up').removeClass('show');
+		}
+	});
+})
