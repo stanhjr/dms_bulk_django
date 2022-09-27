@@ -23,7 +23,7 @@ from . import serializers
 from . import forms
 from .tools import get_total_price
 from .utils import ConfirmRequiredMixin, calculate_amount_integer
-from utils import PopupCookiesContextMixin, ServicesUnderMaintenanceDataMixin
+from utils import PopupCookiesContextMixin, ServicesUnderMaintenanceDataMixin, MetaInfoContextMixin
 
 
 class BoardAPIView(APIView):
@@ -57,11 +57,12 @@ class StatisticsApiView(APIView):
         return Response(data_example)
 
 
-class CreateOrderCalcPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
+class CreateOrderCalcPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms.html'
     success_url = reverse_lazy('order_step_two')
     model = OrderCalcModel
     form_class = forms.CreateOrderCalcForm
+    page_slug = 'order'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -75,12 +76,13 @@ class CreateOrderCalcPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesCon
         return super().form_valid(form)
 
 
-class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
+class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
     model = OrderModel
     template_name = 'order/order-dms-step-3.html'
     form_class = forms.CreateOrderForm
     unsuccess_url = reverse_lazy('dashboard')
     success_url = reverse_lazy('order_active')
+    page_slug = 'order-step-three'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -176,8 +178,9 @@ class OrderModelCreateView(PopupCookiesContextMixin, ConfirmRequiredMixin, Login
         return redirect(self.success_url)
 
 
-class SetCompaignInfoPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, TemplateView):
+class SetCompaignInfoPageView(MetaInfoContextMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-dms-step-2.html'
+    page_slug = 'order-step-two'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -190,10 +193,11 @@ class SetCompaignInfoPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, Lo
         return context
 
 
-class OrderActivePageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, ListView):
+class OrderActivePageView(MetaInfoContextMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-active.html'
     model = OrderModel
     context_object_name = 'orders'
+    page_slug = 'order-active'
 
     def get_queryset(self):
         q1 = Q(order_calc__user=self.request.user)
@@ -207,10 +211,11 @@ class OrderActivePageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginR
         return context
 
 
-class OrderHistoryPageView(PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, ListView):
+class OrderHistoryPageView(MetaInfoContextMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, ListView):
     template_name = 'order/order-history.html'
     model = OrderModel
     context_object_name = 'completed_orders'
+    page_slug = 'order-history'
 
     def get_queryset(self):
         q1 = Q(order_calc__user=self.request.user)

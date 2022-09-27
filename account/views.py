@@ -11,20 +11,22 @@ from django.contrib.auth import login
 from .forms import EmailSettingsForm
 from .forms import CustomPasswordChangeForm
 from .forms import RestorePasswordChangeForm
-from utils import PopupCookiesContextMixin
+
 from .models import CustomUser
 
 from celery_tasks import generate_key
 from celery_tasks import send_reset_password_link_to_email
 
+from utils import PopupCookiesContextMixin
+from utils import MetaInfoContextMixin
 
-class AccountSettingsPageView(PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
+class AccountSettingsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'account/settings.html'
     login_url = reverse_lazy('home')
+    page_slug = 'settings'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['page'] = 'settings'
 
         receive_news_initial = self.request.user.receive_news

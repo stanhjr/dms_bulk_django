@@ -1,6 +1,6 @@
 $(() => {
 	const xhr = new XMLHttpRequest();
-	xhr.open("GET", '/order/board/')
+	xhr.open("GET", '/order-board/')
 	xhr.setRequestHeader("Accept", "application/json");
 	xhr.setRequestHeader("Content-Type", "application/json")
 	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)

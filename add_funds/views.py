@@ -5,16 +5,20 @@ from django.contrib import messages
 from django.shortcuts import redirect
 
 from dms_bulk_django.settings import PAYPAL_CLIENT_ID
+
 from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
+
 from utils import PopupCookiesContextMixin
+from utils import MetaInfoContextMixin
 
 
-class AddFundsPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
+class AddFundsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'add_funds/add-funds.html'
     model = Invoice
     context_object_name = 'invoices'
     paginate_by = 3
+    page_slug = 'add-funds'
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)

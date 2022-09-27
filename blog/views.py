@@ -2,14 +2,18 @@ from django.views.generic import DetailView
 from django.http import Http404
 
 from .models import ArticleModel
-from utils import PopupCookiesContextMixin, PopupAuthContextMixin
+
+from utils import PopupCookiesContextMixin
+from utils import PopupAuthContextMixin
+from utils import MetaInfoContextMixin
 
 
-class BlogPageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
+class BlogPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
     model = ArticleModel
     template_name = 'blog/blog.html'
     pk_url_kwarg = 'page_pk'
     context_object_name = 'page_pk'
+    page_slug = 'blog'
 
     def get_object(self, queryset=None):
         try:

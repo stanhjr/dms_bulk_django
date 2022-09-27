@@ -141,15 +141,13 @@ ADMIN_REORDER = (
     'sites',
     {'app': 'account', 'label': 'Accounts', 'models': ('account.CustomUser',)},
     {'app': 'blog', 'models': ('blog.ArticleModel',)},
-    {'app': 'order', 'label': 'Board Settings',
-        'models': ('order.BoardModel', 'order.ServicesUnderMaintenance')},
+    {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel', 'order.ServicesUnderMaintenance')},
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
-    {'app': 'payment', 'label': 'Invoices', 'models': ('payment.Invoice',)},
+    {'app': 'order-active-activet', 'label': 'Invoices', 'models': ('payment.Invoice',)},
     {'app': 'analytics', 'models': ('analytics.Analytics',)},
-    {'app': 'important_info', 'label': 'Frequently Asked Questions',
-        'models': ('important_info.FAQModel', )}
-
+    {'app': 'important_info', 'label': 'Frequently Asked Questions', 'models': ('important_info.FAQModel',)},
+    {'app': 'home', 'label': 'Seo', 'models': ('home.PageModel',)},
 )
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 

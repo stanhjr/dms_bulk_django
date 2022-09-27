@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    path('create_invoice/', views.InvoiceCreateView.as_view(), name='create_invoice'),
+    path('create-invoice/', views.InvoiceCreateView.as_view(), name='create_invoice'),
     path('stripe/', views.GetSessionIdAPIView.as_view(), name='payment_stripe'),
     path('paypal/', views.PaypalAPIView.as_view(), name='paypal_post'),
 

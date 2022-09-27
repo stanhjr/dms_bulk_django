@@ -5,14 +5,17 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 from utils import PopupCookiesContextMixin
+from utils import MetaInfoContextMixin
+
 from order import models
 
 
-class DashboardPageView(PopupCookiesContextMixin, LoginRequiredMixin, ListView):
+class DashboardPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequiredMixin, ListView):
     template_name = 'dashboard/dashboard.html'
     login_url = reverse_lazy('home')
     model = models.OrderModel
     context_object_name = 'recent_orders'
+    page_slug = 'dashboard'
 
     def get_queryset(self):
         return self.model.objects.filter(order_calc__user=self.request.user)[:3]

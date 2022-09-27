@@ -61,7 +61,7 @@ function getDiscount(){
     const xhr = new XMLHttpRequest();
     const coupon = document.getElementById("discount-coupon").value
     const tokenCheck = document.querySelector('#use_existing_tokens_checkbox').checked
-	xhr.open("GET", '/order/get_discount/?coupon=' + coupon +"&"+ "token=" + tokenCheck + "&")
+	xhr.open("GET", '/order-get-discount/?coupon=' + coupon +"&"+ "token=" + tokenCheck + "&")
 	xhr.setRequestHeader("Accept", "application/json");
 	xhr.setRequestHeader("Content-Type", "application/json")
 	xhr.setRequestHeader("Access-Control-Allow-Origin", window.location.host)

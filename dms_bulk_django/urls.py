@@ -25,9 +25,9 @@ urlpatterns = [
     path('info/', include('important_info.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('account/', include('account.urls')),
-    path('order/', include('order.urls')),
+    path('', include('order.urls')),
     path('blog/', include('blog.urls')),
-    path('add_funds/', include('add_funds.urls')),
+    path('add-funds/', include('add_funds.urls')),
     path("stripe/", include('djstripe.urls', namespace='djstripe')),
     path('paypal/', include("paypal.standard.ipn.urls")),
     path("payment/", include('payment.urls'))

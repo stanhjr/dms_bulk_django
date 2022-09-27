@@ -23,17 +23,20 @@ from dms_bulk_django.settings import STRIPE_TEST_SECRET_KEY
 from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
 
+from utils import MetaInfoContextMixin
+
 PLAN = {
     "stripe": "price_1LgklwK6rkKpcwrptBXibwai",
     "paypal": "some_code",
 }
 
 
-class InvoiceCreateView(LoginRequiredMixin, CreateView):
+class InvoiceCreateView(MetaInfoContextMixin, LoginRequiredMixin, CreateView):
     model = Invoice
     form_class = CreateInvoiceCalcForm
     success_url = reverse_lazy('add_funds')
     login_url = reverse_lazy('home')
+    page_slug = 'create-invoice'
 
     def form_valid(self, form):
         obj = form.save(commit=False)

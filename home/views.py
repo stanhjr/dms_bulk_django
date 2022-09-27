@@ -15,13 +15,15 @@ from account_auth.forms import SignInForm
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
 from utils import ServicesUnderMaintenanceDataMixin
+from utils import MetaInfoContextMixin
 
 from celery_tasks import send_verify_link_to_email
 from celery_tasks import generate_key
 
 
-class MainPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/index.html'
+    page_slug = ''
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,8 +98,9 @@ class MainPageView(ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, 
         return redirect('home')
 
 
-class LoyaltyProgramPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+class LoyaltyProgramPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/loyalty-program.html'
+    page_slug = 'loyalty-program'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -105,8 +108,9 @@ class LoyaltyProgramPageView(PopupCookiesContextMixin, PopupAuthContextMixin, Te
         return context
 
 
-class ContactsPageView(PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+class ContactsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/contacts.html'
+    page_slug = 'contacts'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

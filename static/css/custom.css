@@ -103,7 +103,7 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     margin-bottom: 20px;
 }
 
-.section-text>h3 {
+.section-text > h3 {
     margin-top: 15px;
     margin-bottom: 15px;
     color: rgba(0, 0, 0, 0.5);
