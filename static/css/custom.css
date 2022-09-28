@@ -151,3 +151,11 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     text-align: center;
     margin-top: 15px;
 }
+
+.add-funsd-main .btns-wrap {
+    max-width: 650px;
+    margin: 30px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 52px;
+  }

@@ -7858,14 +7858,6 @@ button.scroll-up svg {
   }
 }
 
-.add-funsd-main .btns-wrap {
-  max-width: 722px;
-  margin: 30px auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 52px;
-}
-
 @media only screen and (max-width: 768px) {
   .add-funsd-main .btns-wrap {
     grid-gap: 15px;

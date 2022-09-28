@@ -1,7 +1,10 @@
 from django.views.generic.base import ContextMixin
 
-from account_auth.forms import SignUpForm, SignInForm
+from account_auth.forms import SignUpForm
+from account_auth.forms import SignInForm
+
 from order.models import ServicesUnderMaintenance
+
 from home.models import PageModel
 
 
