@@ -20,10 +20,10 @@ from celery_tasks import send_reset_password_link_to_email
 from utils import PopupCookiesContextMixin
 from utils import MetaInfoContextMixin
 
+
 class AccountSettingsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'account/settings.html'
     login_url = reverse_lazy('home')
-    page_slug = '/account/settings/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

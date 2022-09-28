@@ -18,7 +18,6 @@ class AddFundsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequ
     model = Invoice
     context_object_name = 'invoices'
     paginate_by = 3
-    page_slug = '/add-funds/'
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)

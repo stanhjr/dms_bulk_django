@@ -10,14 +10,12 @@ from important_info.models import FAQModel
 
 class CookiesPolicyPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'policy/cookies-policy.html'
-    page_slug = 'cookies-policy'
 
 
 class FAQPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, ListView):
     template_name = 'policy/faq.html'
     model = FAQModel
     context_object_name = 'questions'
-    page_slug = '/info/faq/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,7 +33,6 @@ class AcceptCookiesPolicy(View):
 
 class PrivacyPolicyPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'policy/privacy-policy.html'
-    page_slug = 'privacy-policy'
 
 
 class RulesPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):

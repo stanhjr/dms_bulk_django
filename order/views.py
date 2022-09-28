@@ -62,7 +62,6 @@ class CreateOrderCalcPageView(MetaInfoContextMixin, ServicesUnderMaintenanceData
     success_url = reverse_lazy('order_step_two')
     model = OrderCalcModel
     form_class = forms.CreateOrderCalcForm
-    page_slug = '/order/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,7 +81,6 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
     form_class = forms.CreateOrderForm
     unsuccess_url = reverse_lazy('dashboard')
     success_url = reverse_lazy('order_active')
-    page_slug = 'order-step-three'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -180,7 +178,6 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
 
 class SetCompaignInfoPageView(MetaInfoContextMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-dms-step-2.html'
-    page_slug = 'order-step-two'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -197,7 +194,6 @@ class OrderActivePageView(MetaInfoContextMixin, PopupCookiesContextMixin, Confir
     template_name = 'order/order-active.html'
     model = OrderModel
     context_object_name = 'orders'
-    page_slug = 'order-active'
 
     def get_queryset(self):
         q1 = Q(order_calc__user=self.request.user)
@@ -215,7 +211,6 @@ class OrderHistoryPageView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
     template_name = 'order/order-history.html'
     model = OrderModel
     context_object_name = 'completed_orders'
-    page_slug = 'order-history'
 
     def get_queryset(self):
         q1 = Q(order_calc__user=self.request.user)

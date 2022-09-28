@@ -36,7 +36,6 @@ class InvoiceCreateView(MetaInfoContextMixin, LoginRequiredMixin, CreateView):
     form_class = CreateInvoiceCalcForm
     success_url = reverse_lazy('add_funds')
     login_url = reverse_lazy('home')
-    page_slug = 'create-invoice'
 
     def form_valid(self, form):
         obj = form.save(commit=False)

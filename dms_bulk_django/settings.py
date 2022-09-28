@@ -144,10 +144,11 @@ ADMIN_REORDER = (
     {'app': 'order', 'label': 'Board Settings', 'models': ('order.BoardModel', 'order.ServicesUnderMaintenance')},
     {'app': 'order', 'models': ('order.OrderCalcModel', 'order.OrderModel')},
     {'app': 'order', 'label': 'Coupons', 'models': ('order.Coupon',)},
-    {'app': 'order-active-activet', 'label': 'Invoices', 'models': ('payment.Invoice',)},
+    {'app': 'order', 'label': 'Invoices', 'models': ('payment.Invoice',)},
     {'app': 'analytics', 'models': ('analytics.Analytics',)},
     {'app': 'important_info', 'label': 'Frequently Asked Questions', 'models': ('important_info.FAQModel',)},
-    {'app': 'home', 'label': 'Seo', 'models': ('home.PageModel',)},
+    {'app': 'home', 'models': ('home.PageModel',)},
+    {'app': 'important_info', 'label': 'Seo', 'models': ('important_info.PageModel',)},
 )
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 

@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, resolve
 
 from utils import PopupCookiesContextMixin
 from utils import MetaInfoContextMixin
@@ -15,7 +15,6 @@ class DashboardPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginReq
     login_url = reverse_lazy('home')
     model = models.OrderModel
     context_object_name = 'recent_orders'
-    page_slug = '/dashboard/'
 
     def get_queryset(self):
         return self.model.objects.filter(order_calc__user=self.request.user)[:3]

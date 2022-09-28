@@ -1,3 +1,4 @@
+from django.urls import resolve
 from django.views.generic.base import ContextMixin
 
 from account_auth.forms import SignUpForm
@@ -5,7 +6,7 @@ from account_auth.forms import SignInForm
 
 from order.models import ServicesUnderMaintenance
 
-from home.models import PageModel
+from important_info.models import PageModel
 
 
 class PopupCookiesContextMixin(ContextMixin):
@@ -33,5 +34,14 @@ class PopupAuthContextMixin(ContextMixin):
 class MetaInfoContextMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'], context['description'] = PageModel.get_meta_info(self.page_slug)
+        try:
+            current_url = resolve(self.request.path_info).route.split('/')
+            if len(current_url) > 1:
+                slug = current_url[0]
+            else:
+                slug = 'home'
+        except IndexError:
+            slug = 'home'
+
+        context['title'], context['description'] = PageModel.get_meta_info(slug)
         return context

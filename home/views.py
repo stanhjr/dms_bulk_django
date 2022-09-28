@@ -100,7 +100,6 @@ class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, Popu
 
 class LoyaltyProgramPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/loyalty-program.html'
-    page_slug = '/loyalty-program/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -110,7 +109,6 @@ class LoyaltyProgramPageView(MetaInfoContextMixin, PopupCookiesContextMixin, Pop
 
 class ContactsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
     template_name = 'home/contacts.html'
-    page_slug = '/contacts/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
