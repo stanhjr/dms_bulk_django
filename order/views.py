@@ -62,7 +62,7 @@ class CreateOrderCalcPageView(MetaInfoContextMixin, ServicesUnderMaintenanceData
     success_url = reverse_lazy('order_step_two')
     model = OrderCalcModel
     form_class = forms.CreateOrderCalcForm
-    page_slug = 'order'
+    page_slug = '/order/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

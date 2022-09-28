@@ -23,7 +23,7 @@ from utils import MetaInfoContextMixin
 class AccountSettingsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'account/settings.html'
     login_url = reverse_lazy('home')
-    page_slug = 'settings'
+    page_slug = '/account/settings/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

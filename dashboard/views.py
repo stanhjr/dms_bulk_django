@@ -15,7 +15,7 @@ class DashboardPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginReq
     login_url = reverse_lazy('home')
     model = models.OrderModel
     context_object_name = 'recent_orders'
-    page_slug = 'dashboard'
+    page_slug = '/dashboard/'
 
     def get_queryset(self):
         return self.model.objects.filter(order_calc__user=self.request.user)[:3]

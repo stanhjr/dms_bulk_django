@@ -17,7 +17,7 @@ class FAQPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthConte
     template_name = 'policy/faq.html'
     model = FAQModel
     context_object_name = 'questions'
-    page_slug = 'faq'
+    page_slug = '/info/faq/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

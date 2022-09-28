@@ -3,6 +3,8 @@ from django.http import Http404
 
 from .models import ArticleModel
 
+from home.models import PageModel
+
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
 from utils import MetaInfoContextMixin
@@ -13,7 +15,7 @@ class BlogPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthCont
     template_name = 'blog/blog.html'
     pk_url_kwarg = 'page_pk'
     context_object_name = 'page_pk'
-    page_slug = 'blog'
+    page_slug = '/blog/'
 
     def get_object(self, queryset=None):
         try:
@@ -46,6 +48,10 @@ class ArticlePageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailVie
     context_object_name = 'article'
 
     def get_context_data(self, **kwargs):
+        article = self.model.objects.get(pk=self.kwargs.get(self.pk_url_kwarg))
         context = super().get_context_data(**kwargs)
+
         context['page'] = 'blog'
+        context['title'] = article.meta_title
+        context['description'] = article.meta_description
         return context

@@ -1,4 +1,7 @@
-{% extends 'base/base.html' %} {% load static %} {% block head_tags %}
+{% extends 'base/base.html' %} 
+{% load static %} 
+
+{% block head_tags %}
 <title>{{ article.title }}</title>
 {% endblock head_tags %} {% block content %}
 <div class="page-container">
@@ -363,3 +366,11 @@
   </div>
 </div>
 {% endblock content %}
+
+{% comment %} {% block scripts %}
+<script type="text/javascript">
+  $(() => {
+    $('meta[name="title"]').attr('content', 'toooos')
+  })
+</script>
+{% endblock scripts %} {% endcomment %}
