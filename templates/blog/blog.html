@@ -25,7 +25,7 @@
             <div class="items">
               {% for item in articles_previews %}
               <div class="item">
-                <div class="img-wrap"><a href="{% url 'article' article_slug=item.title|slugify %}"><img
+                <div class="img-wrap"><a href="{% url 'article' article_slug=item.slug %}"><img
                       style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
                 <div class="text-wrap">
                   <div class="date">{{ item.created_at | date:'F j, Y' }}</div>

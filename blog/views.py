@@ -48,7 +48,7 @@ class ArticlePageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailVie
         return self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
 
     def get_context_data(self, **kwargs):
-        article = self.model.objects.get(title=self.kwargs.get(self.slug_url_kwarg))
+        article = self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
         context = super().get_context_data(**kwargs)
 
         context['page'] = 'blog'
