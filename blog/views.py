@@ -52,6 +52,6 @@ class ArticlePageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailVie
         context = super().get_context_data(**kwargs)
 
         context['page'] = 'blog'
-        context['title'] = article.title
+        context['title'] = article.meta_title
         context['description'] = article.meta_description
         return context
