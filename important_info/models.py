@@ -1,6 +1,5 @@
 from typing import Tuple
 
-
 from django.db import models
 
 
@@ -13,6 +12,9 @@ class PageModel(models.Model):
     slug = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.title
 
     @classmethod
     def get_meta_info(cls, slug: str = '') -> Tuple[str, str]:
