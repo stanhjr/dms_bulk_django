@@ -3,7 +3,11 @@
 
 {% block head_tags %}
 <title>{{ article.title }}</title>
-{% endblock head_tags %} {% block content %}
+<meta name="title" content="{{ article.meta_title }}" />
+<meta name="description" content="{{ article.meta_description }}" />
+{% endblock head_tags %}
+
+{% block content %}
 <div class="page-container">
   {% include 'base/header.html' %}
   <main class="default">

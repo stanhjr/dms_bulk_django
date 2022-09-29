@@ -3,7 +3,11 @@
 {% load mathfilters %}
 
 {% block head_tags %}
-  <title>Add Funds</title>
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
+<title>Add Funds</title>
+{% endif %}
 {% endblock head_tags %}
 
 {% block content %}

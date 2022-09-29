@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block head_tags %}
+{% if title %}
+  <title>{{ title }}</title>
+{% else %}
   <title>Home</title>
+{% endif %}
 {% endblock head_tags %}
 
 {% block content %}

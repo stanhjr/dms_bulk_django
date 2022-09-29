@@ -41,14 +41,17 @@ class BlogPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthCont
 class ArticlePageView(PopupCookiesContextMixin, PopupAuthContextMixin, DetailView):
     model = ArticleModel
     template_name = 'blog/article-page.html'
-    pk_url_kwarg = 'article_pk'
+    slug_url_kwarg = 'article_slug'
     context_object_name = 'article'
 
+    def get_object(self):
+        return self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
+
     def get_context_data(self, **kwargs):
-        article = self.model.objects.get(pk=self.kwargs.get(self.pk_url_kwarg))
+        article = self.model.objects.get(title=self.kwargs.get(self.slug_url_kwarg))
         context = super().get_context_data(**kwargs)
 
         context['page'] = 'blog'
-        context['title'] = article.meta_title
+        context['title'] = article.title
         context['description'] = article.meta_description
         return context

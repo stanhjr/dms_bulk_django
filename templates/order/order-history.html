@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block head_tags %}
-  <title>Order History</title>
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
+<title>Order History</title>
+{% endif %}
 {% endblock head_tags %}
 
 {% block content %}

@@ -4,7 +4,11 @@
 {% load humanize %}
 
 {% block head_tags %}
-  <title>Order Active</title>
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
+<title>Order Active</title>
+{% endif %}
 {% endblock head_tags %}
 <script src="https://www.paypal.com/sdk/js?client-id={{ client_id }}&currency=USD"></script>
 {% block content %}

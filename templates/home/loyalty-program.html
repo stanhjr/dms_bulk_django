@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block head_tags %}
-  <title>Loyalty Program</title>
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
+<title>Loyalty Program</title>
+{% endif %}
 {% endblock head_tags %}
 
 {% block content %}
