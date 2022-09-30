@@ -3,6 +3,7 @@
 {% load mathfilters %}
 
 {% block head_tags %}
+<link rel="canonical" href="{% url 'add_funds' %}" />
 {% if title %}
 <title>{{ title }}</title>
 {% else %}

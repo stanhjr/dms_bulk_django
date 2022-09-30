@@ -371,10 +371,16 @@
 </div>
 {% endblock content %}
 
-{% comment %} {% block scripts %}
-<script type="text/javascript">
-  $(() => {
-    $('meta[name="title"]').attr('content', 'toooos')
-  })
-</script>
-{% endblock scripts %} {% endcomment %}
+{% block micromarkup %}
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{  article.title }}",
+  "image": [
+    "{{ article.content_image.url }}",
+    "{{ article.preview_image.url }}"
+   ],
+  "datePublished": "{{ article.created_at|date:'c' }}",
+  "dateModified": "{{ article.updated_at|date:'c' }}",
+}
+{% endblock micromarkup %}

@@ -3,6 +3,7 @@
 {% load mathfilters %}
 
 {% block head_tags %}
+<link rel="canonical" href="{% url 'blog' page_pk=1 %}" />
 {% if title %}
 <title>{{ title }}</title>
 {% else %}
@@ -29,7 +30,7 @@
                       style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
                 <div class="text-wrap">
                   <div class="date">{{ item.created_at | date:'F j, Y' }}</div>
-                  <h3><a href="#">{{ item.title }}</a></h3>
+                  <h3><a href="{% url 'article' article_slug=item.slug %}">{{ item.title }}</a></h3>
                   <p>{{ item.preview_text }}</p>
                   <div class="link-wrap"><a href="{% url 'article' article_slug=item.slug %}">READ MORE
                       <svg viewBox="0 0 14 14" width="14px">
@@ -228,3 +229,13 @@
   <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
 </div>
 {% endblock content %}
+
+{% block micromarkup %}
+{% for item in articles_previews %}
+{
+  "@type": "ListItem",
+  "position": {{ articles_previews.count }},
+  "name": "BlogArticle"
+}
+{% endfor %}
+{% endblock micromarkup %}

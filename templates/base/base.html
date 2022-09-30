@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,6 +16,7 @@
     <meta name="theme-color" content="#666F86" />
     <meta name="title" content="{{ title }}" />
     <meta name="description" content="{{ description }}" />
+    <link rel="canonical" href="{% url 'home' %}" />
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static '/css/custom.css' %}" />
     {% block head_tags %}{% endblock head_tags %}
@@ -24,6 +24,17 @@
 </head>
 
 <body>
+    <div id="micromarkup-links" style="display: none;">
+        <a href="{% url 'home' %}"></a>
+        <a href="{% url 'for_eu_citizens' %}"></a>
+        <a href="{% url 'privacy_policy' %}"></a>
+        <a href="{% url 'cookies_policy' %}"></a>
+        <a href="{% url 'rules' %}"></a>
+        <a href="{% url 'blog' page_pk=1 %}"></a>
+        <a href="{% url 'faq' %}"></a>
+        <a href="{% url 'loyalty_program' %}"></a>
+        <a href="{% url 'contacts' %}"></a>
+    </div>
     {% include 'popup/notification.html' %}
     <div class="error-toast">
         {% if messages %}
@@ -47,6 +58,87 @@
     <script src="{% static '/js/scripts.min.js' %}?2"></script>
     <script src="{% static '/js/js/common.js' %}?2"></script>
     <script src="{% static '/js/js/restore-password.js' %}?2"></script>
+    <script type="application/ld+json">
+        [
+            {
+                "@context": "http://www.schema.org",
+                "@type": "Organization",
+                "name": "DMSBulk",
+                "url": "https://dmsbulk.com/",
+                "logo": "https://dmsbulk.com/logo.svg",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Example",
+                    "postOfficeBoxNumber": "exmple@email.com"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+7(00)111-111"
+                }
+            },          
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "DMSbulk",
+                        "item": "{% url 'home' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "For EU citizens",
+                        "item": "{% url 'for_eu_citizens' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Privacy policy",
+                        "item": "{% url 'privacy_policy' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "name": "Cookies policy",
+                        "item": "{% url 'cookies_policy' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 5,
+                        "name": "Rules",
+                        "item": "{% url 'rules' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 6,
+                        "name": "Blog",
+                        "item": "{% url 'blog' page_pk=1 %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 7,
+                        "name": "Faq",
+                        "item": "{% url 'faq' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 8,
+                        "name": "Loyalty program",
+                        "item": "{% url 'loyalty_program' %}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 9,
+                        "name": "Contacts",
+                        "item": "{% url 'contacts' %}"
+                    },
+                ]
+            },
+            {% block micromarkup %}{% endblock micromarkup %}
+        ]
+    </script>    
     {% block scripts %}{% endblock scripts %}
     <!-- 
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡀⠀⠀⠀⠀⠀⠘⠀⣷⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡀⠀⠀⠀⠙⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

@@ -3,11 +3,11 @@
 
 {% block head_tags %}
   <link rel="stylesheet" type="text/css" href="{% static '/css/account-settings.css' %}"/>
-{% if title %}
-<title>{{ title }}</title>
-{% else %}
-<title>Settings</title>
-{% endif %}
+  {% if title %}
+    <title>{{ title }}</title>
+  {% else %}
+    <title>Settings</title>
+  {% endif %}
 {% endblock head_tags %}
 
 {% block content %}
