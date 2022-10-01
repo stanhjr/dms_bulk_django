@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'online_users',
     'paypal.standard.ipn',
     'home',
+    'core',
     'account',
     'account_auth',
     'dashboard',
