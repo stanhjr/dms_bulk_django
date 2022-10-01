@@ -25,10 +25,11 @@ class ArticleModel(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy('article', kwargs={'article_slug': self.slug})
-    
 
     class Meta:
         ordering = ('-created_at',)
+        verbose_name = 'Article'
+        verbose_name_plural = 'Article'
 
     def __str__(self):
         return self.title
