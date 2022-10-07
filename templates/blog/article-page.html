@@ -384,3 +384,37 @@
   "dateModified": "{{ article.updated_at|date:'c' }}",
 }
 {% endblock micromarkup %}
+
+{% block scripts %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "DMSbulk",
+        "item": "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "DMSbulk blog",
+        "item": "{{ request.get_host }}{% url 'blog' %}"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "{{  article.title }}",
+        "image": [
+          "{{ article.content_image.url }}",
+          "{{ article.preview_image.url }}"
+        ],
+        "datePublished": "{{ article.created_at|date:'c' }}",
+        "dateModified": "{{ article.updated_at|date:'c' }}",
+      }
+    ]
+  }
+</script>
+{% endblock scripts %}

@@ -192,4 +192,24 @@
 
 {% block scripts %}
 <script src="{% static '/js/js/order-dms.js' %}"></script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "DMSbulk",
+        "item": "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Step three for creating order",
+        "item": "{{ request.get_host }}{% url 'order_step_three' %}"
+      }
+    ]
+  }
+</script>
 {% endblock scripts %}

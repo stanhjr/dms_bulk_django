@@ -230,12 +230,25 @@
 </div>
 {% endblock content %}
 
-{% block micromarkup %}
-{% for item in articles_previews %}
-{
-  "@type": "ListItem",
-  "position": {{ articles_previews.count }},
-  "name": "BlogArticle"
-}
-{% endfor %}
-{% endblock micromarkup %}
+{% block scripts %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "DMSbulk",
+        "item": "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "DMSbulk blog page",
+        "item": "{{ request.get_host }}{% url 'blog' page_pk=1 %}"
+      }
+    ]
+  }
+</script>
+{% endblock scripts %}
