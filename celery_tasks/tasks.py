@@ -8,6 +8,7 @@ from email.mime.text import MIMEText
 
 from celery.schedules import crontab
 from django.conf import settings
+from jinja2 import Template
 from celery import Celery
 
 from .config import config
@@ -54,17 +55,15 @@ def send_verify_link_to_email(code: str, email_to: str) -> str:
     sender_email = settings.EMAIL_HOST_USER
 
     receiver_email = email_to
-    text = f"""\
-    Hi,
-    How are you?
-    This is your registration link:
-    {settings.CELERY_SEND_MAIL_HOST}account/account-activate/?code={code}"""
+    with open('celery_tasks/templates/01_Verify-Email.html', 'r') as html:
+        verify_email_template = Template(html.read())
 
+    text = verify_email_template.render(verify_email_link=f"{settings.CELERY_SEND_MAIL_HOST}account/account-activate/?code={code}")
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
     message["From"] = sender_email
     message["To"] = email_to
-    part1 = MIMEText(text, "plain")
+    part1 = MIMEText(text, "html")
     message.attach(part1)
 
     try:
