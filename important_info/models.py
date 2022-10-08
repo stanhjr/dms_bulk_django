@@ -7,6 +7,10 @@ class FAQModel(models.Model):
     question = models.CharField(max_length=90)
     answer = models.TextField(max_length=1000)
 
+    class Meta:
+        verbose_name = 'Faq settings'
+        verbose_name_plural = 'Faq settings'
+
 
 class PageModel(models.Model):
     slug = models.CharField(max_length=100)
@@ -24,3 +28,7 @@ class PageModel(models.Model):
         if not last_page_meta:
             return '', ''
         return last_page_meta.title, last_page_meta.description
+
+    class Meta:
+        verbose_name = 'Page Seo Settings'
+        verbose_name_plural = 'Pages Seo Settings'

@@ -127,6 +127,10 @@ class OrderCalcModel(models.Model):
     total_integer = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = 'Order Calc'
+        verbose_name_plural = 'Order Calc'
+
     @property
     def amount_without_formatting(self):
         amount = int(self.amount[:-1])
@@ -226,6 +230,8 @@ class OrderModel(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
+        verbose_name = 'Order'
+        verbose_name_plural = 'Order'
 
     def __str__(self):
         return f'{self.order_calc} completed={self.completed}'
@@ -240,6 +246,11 @@ class Coupon(models.Model):
     number_of_uses = models.IntegerField(default=1)
     user = models.ManyToManyField(
         get_user_model(), related_name='coupon', null=True, blank=True)
+
+    class Meta:
+        ordering = ('-created_at',)
+        verbose_name = 'Coupon'
+        verbose_name_plural = 'Coupon'
 
     @property
     def left_to_use(self):

@@ -7,6 +7,7 @@ from blog.models import ArticleModel
 class ArticlesSitemap(Sitemap):
     changefreq = 'monthly'
     priority = 0.5
+    protocol = 'https'
 
     def items(self):
         return ArticleModel.objects.all()
@@ -21,6 +22,7 @@ class ArticlesSitemap(Sitemap):
 class DMSBulkStaticSitemap(Sitemap):
     changefreq = 'monthly'
     priority = 0.8
+    protocol = 'https'
 
     def items(self):
         return [
