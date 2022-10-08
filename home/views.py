@@ -86,7 +86,9 @@ class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, Popu
                 new_user.verify_code = generate_key()
                 new_user.avatar_image_id = random.choice((1, 2, 3, 4))
                 send_verify_link_to_email.delay(
-                    new_user.verify_code, sign_up_form.cleaned_data.get("email"))
+                    username,
+                    new_user.verify_code, 
+                    sign_up_form.cleaned_data.get("email"))
                 new_user.save()
                 login(request, new_user)
                 return redirect('dashboard')

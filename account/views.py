@@ -16,6 +16,7 @@ from .models import CustomUser
 
 from celery_tasks import generate_key
 from celery_tasks import send_reset_password_link_to_email
+from celery_tasks import send_welcome_to_dmsbulk_message_after_success_verifing
 
 from utils import PopupCookiesContextMixin
 from utils import MetaInfoContextMixin
@@ -68,6 +69,7 @@ class SignUpConfirm(RedirectView):
             user.verify_code = ''
             user.is_confirmed = True
             user.save()
+            send_welcome_to_dmsbulk_message_after_success_verifing.delay(user.email)
             return redirect('dashboard')
         else:
             return redirect('home')
@@ -96,7 +98,9 @@ class ResetPassword(RedirectView):
             user.reset_password_code = code
             user.save()
             send_reset_password_link_to_email.delay(
-                email_to=user_email, code=code)
+                username=user.username,
+                email_to=user_email, 
+                code=code)
             redirect('home')
 
         return redirect('home')

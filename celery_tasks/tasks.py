@@ -43,10 +43,51 @@ def generate_key() -> str:
 
 
 @app.task
-def send_verify_link_to_email(code: str, email_to: str) -> str:
+def send_welcome_to_dmsbulk_message_after_success_verifing(email_to: str) -> str:
+    '''
+    :param email_to: sender email
+    :return: task result
+    '''
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
+
+    receiver_email = email_to
+    with open('celery_tasks/templates/02_Mail-Confirmed.html', 'r') as html:
+        mail_confirmed_successfully_template = Template(html.read())
+    text = mail_confirmed_successfully_template.render()
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = email_to
+
+    # Turn these into plain/html MIMEText objects
+    part1 = MIMEText(text, "html")
+    # part2 = MIMEText(html, "html")
+
+    # Add HTML/plain-text parts to MIMEMultipart message
+    # The email client will try to render the last part first
+    message.attach(part1)
+    # message.attach(part2)
+
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(
+                sender_email, receiver_email, message.as_string()
+            )
+
+        return "Email sent successfully!"
+    except Exception as ex:
+        return f"Something went wrong…. {ex}"
+
+
+@app.task
+def send_verify_link_to_email(username: str, code: str, email_to: str) -> str:
     """
     Sends an email with a link to verify user account
 
+    :param username: DMSbulk username
     :param code: code registration
     :param email_to: sender email
     :return: task result
@@ -58,7 +99,9 @@ def send_verify_link_to_email(code: str, email_to: str) -> str:
     with open('celery_tasks/templates/01_Verify-Email.html', 'r') as html:
         verify_email_template = Template(html.read())
 
-    text = verify_email_template.render(verify_email_link=f"{settings.CELERY_SEND_MAIL_HOST}account/account-activate/?code={code}")
+    text = verify_email_template.render(
+        verify_email_link=f"{settings.CELERY_SEND_MAIL_HOST}account/account-activate/?code={code}",
+        username=username)
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
     message["From"] = sender_email
@@ -80,7 +123,7 @@ def send_verify_link_to_email(code: str, email_to: str) -> str:
 
 
 @app.task
-def send_reset_password_link_to_email(code: str, email_to: str) -> str:
+def send_reset_password_link_to_email(username: str, code: str, email_to: str) -> str:
     """
     Sends an email with a reset password link for user account
 
@@ -92,11 +135,11 @@ def send_reset_password_link_to_email(code: str, email_to: str) -> str:
     sender_email = settings.EMAIL_HOST_USER
 
     receiver_email = email_to
-    text = f"""\
-    Hi,
-    How are you?
-    This is your restore password link:
-    {settings.CELERY_SEND_MAIL_HOST}account/restore-password/?code={code}"""
+    with open('celery_tasks/templates/08_Reset-Password.html', 'r') as html:
+        reset_password_template = Template(html.read())
+    text = reset_password_template.render(
+        reset_password_link=f'{settings.CELERY_SEND_MAIL_HOST}account/restore-password/?code={code}',
+        username=username)
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "multipart test"
@@ -104,7 +147,7 @@ def send_reset_password_link_to_email(code: str, email_to: str) -> str:
     message["To"] = email_to
 
     # Turn these into plain/html MIMEText objects
-    part1 = MIMEText(text, "plain")
+    part1 = MIMEText(text, "html")
     # part2 = MIMEText(html, "html")
 
     # Add HTML/plain-text parts to MIMEMultipart message
