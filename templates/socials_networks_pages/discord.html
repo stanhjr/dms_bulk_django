@@ -1,5 +1,13 @@
 {% extends 'base/base-regular-page.html' %}
 
+{% block head_tags %}
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
+<title>Discord</title>
+{% endif %}
+{% endblock head_tags %}
+
 {% block text %}
 <section class="section-text">
   <h1 class="inner center">Discord Mass DM Service - DMSBulk</h1>
