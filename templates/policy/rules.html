@@ -1,5 +1,4 @@
-{% extends 'base/base.html' %}
-{% load static %}
+{% extends 'base/base-regular-page.html' %}
 
 {% block head_tags %}
 {% if title %}
@@ -9,150 +8,27 @@
 {% endif %}
 {% endblock head_tags %}
 
-{% block content %}
-    <div class="page-container">
-      {% include 'base/header.html' %}
-      <main class="default">
-        <div class="container">
-          <div class="grid-wrap">
-            <div class="aside-wrapper">
-              {% include 'home/nav.html' %}
-            </div>
-            <div class="content-wrapper">
-              <section class="section-text">
-                <h1 class="inner center">Rules</h1>
-                <p>By placing an order with DMSBULK, you automatically accept all the below-listed terms of services whether you read them or not.</p>
-                <ul>
-                  <li>We reserve the right to change these terms of service without notice. You are expected to read all terms of service before placing every order to ensure you are up to date with any changes or any future changes.</li>
-                  <li>By accepting these Terms Of Service, you also agree to our Refund Policy.</li>
-                  <li>You will only use the DMSBULK website in a manner which follows all agreements made with other social sites on their individual Terms of Service page.</li>
-                  <li>DMBULK rates are subject to change at any time without notice. The payment/refund policy stays in effect in the case of rate changes.</li>
-                  <li><b>Disclaimer:</b> DMSBULK will not be responsible for any damages you or your business may suffer.</li>
-                  <li><b>Liabilities:</b> DMSBULK is in no way liable for any account block, suspension or penalties of any kind.</li>
-                  <li>DMSBULK will only be used to promote your social media handles.</li>
-                  <li>DMSBULK internal token is equivalent to 1$ and it’s automatically added to your account by 2% of spended money in order.</li>
-                  <li>You can use our service to promote any illegal business/product in case your data will be forwarded to certain authorities.<li>
-                </ul>
-                <h2 class="inner center">Refund Policy</h2>
-                <p>Refund can be 	qmade only in one way if we can’t complete order, because of faced social media algorithm changing or we didn't fit in order complete time what is </p>
-                <p>We do not give any guarantee in any services, except of course if we can not execute or complete your order, that goes without saying. In that case, we will replenish your balance to reflect this.</p>
-                <p>All orders made are final and no refund or cancellation is possible. Please make order carefully. Of course, we're reasonable people and if there's a terrible type-o and you realize this minutes after placing the order, start a support ticket right away contacting us in email: dmsbulkteam@gmail.com or <a target="_blank" href="https://t.me/dmsbulk">telegram</a></p>
-              </section>
-              <footer class="footer-main">
-                {% include 'base/footer.html' %}
-              </footer>
-              {% include 'popup/accept-cookies.html' %}
-              {% include 'popup/arrow-up.html' %}
-              <button class="js-scroll-up scroll-up">
-                <svg viewBox="0 0 16 16" width="16px">
-                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-up"></use>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
-      <div class="container">
-      </div>
-    </div>
-    {% include 'popup/instagram.html' %}
-    {% include 'popup/discord.html' %}
-    {% include 'popup/telegram.html' %}
-    {% include 'popup/twitter.html' %}
-    {% include 'popup/login.html' %}
-    {% include 'popup/signup.html' %}
-    <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
-      <div class="header-wrap">
-        <div class="left">
-          <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
-          <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-        </div>
-        <div class="right">
-          <div class="title">INVOICE</div>
-          <p>ID (#DM-11111)</p>
-        </div>
-      </div>
-      <div class="info-wrap">
-        <div class="item"><b>Invoice to:</b>
-          <p>Client Email adress and Name</p>
-        </div>
-        <div class="item"><b>Invoice data:</b>
-          <p>06.08.2022</p>
-        </div>
-      </div>
-      <div class="table-info">
-        <div class="tr">
-          <div class="td"><b>Invoice ID</b></div>
-          <div class="td"><b>Payment Method</b></div>
-          <div class="td"><b>Description</b></div>
-          <div class="td"><b>Status</b></div>
-        </div>
-        <div class="tr">
-          <div class="td">DM-11111</div>
-          <div class="td">Paypal</div>
-          <div class="td">Social Media Marketing program</div>
-          <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
-        </div>
-      </div>
-      <div class="table-total">
-        <div class="tr">
-          <div class="td"><b>Sub Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-        <div class="tr">
-          <div class="td"><b>Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-      </div>
-      <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
-    </div>
-    <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
-      <div class="header-wrap">
-        <div class="left">
-          <div class="logo-wrap"><img src="./img/logo.svg" alt=""/></div>
-          <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-        </div>
-        <div class="right">
-          <div class="title">INVOICE</div>
-          <p>ID (#DM-11111)</p>
-        </div>
-      </div>
-      <div class="info-wrap">
-        <div class="item"><b>Invoice to:</b>
-          <p>Client Email adress and Name</p>
-        </div>
-        <div class="item"><b>Invoice data:</b>
-          <p>06.08.2022</p>
-        </div>
-      </div>
-      <div class="table-info">
-        <div class="tr">
-          <div class="td"><b>Invoice ID</b></div>
-          <div class="td"><b>Payment Method</b></div>
-          <div class="td"><b>Description</b></div>
-          <div class="td"><b>Status</b></div>
-        </div>
-        <div class="tr">
-          <div class="td">DM-11111</div>
-          <div class="td">Paypal</div>
-          <div class="td">Social Media Marketing program</div>
-          <div class="td"><span class="status c-green">PAID</span></div>
-        </div>
-      </div>
-      <div class="table-total">
-        <div class="tr">
-          <div class="td"><b>Sub Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-        <div class="tr">
-          <div class="td"><b>Total</b></div>
-          <div class="td">2000$</div>
-        </div>
-      </div>
-      <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
-    </div>
-    <div class="popup-alert-container"></div>
-{% endblock content %}
+{% block text %}
+<section class="section-text">
+  <h1 class="inner center">Rules</h1>
+  <p>By placing an order with DMSBULK, you automatically accept all the below-listed terms of services whether you read them or not.</p>
+  <ul>
+    <li>We reserve the right to change these terms of service without notice. You are expected to read all terms of service before placing every order to ensure you are up to date with any changes or any future changes.</li>
+    <li>By accepting these Terms Of Service, you also agree to our Refund Policy.</li>
+    <li>You will only use the DMSBULK website in a manner which follows all agreements made with other social sites on their individual Terms of Service page.</li>
+    <li>DMBULK rates are subject to change at any time without notice. The payment/refund policy stays in effect in the case of rate changes.</li>
+    <li><b>Disclaimer:</b> DMSBULK will not be responsible for any damages you or your business may suffer.</li>
+    <li><b>Liabilities:</b> DMSBULK is in no way liable for any account block, suspension or penalties of any kind.</li>
+    <li>DMSBULK will only be used to promote your social media handles.</li>
+    <li>DMSBULK internal token is equivalent to 1$ and it’s automatically added to your account by 2% of spended money in order.</li>
+    <li>You can use our service to promote any illegal business/product in case your data will be forwarded to certain authorities.</li>
+  </ul>
+  <h2 class="inner center">Refund Policy</h2>
+  <p>Refund can be 	qmade only in one way if we can’t complete order, because of faced social media algorithm changing or we didn't fit in order complete time what is </p>
+  <p>We do not give any guarantee in any services, except of course if we can not execute or complete your order, that goes without saying. In that case, we will replenish your balance to reflect this.</p>
+  <p>All orders made are final and no refund or cancellation is possible. Please make order carefully. Of course, we're reasonable people and if there's a terrible type-o and you realize this minutes after placing the order, start a support ticket right away contacting us in email: dmsbulkteam@gmail.com or <a target="_blank" href="https://t.me/dmsbulk">telegram</a></p>
+</section>
+{% endblock text %}
 
 {% block scripts %}
 <script type="application/ld+json">

@@ -116,3 +116,36 @@ class ContactsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuth
         context = super().get_context_data(**kwargs)
         context['page'] = 'contacts'
         return context
+
+
+class TelegramPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'socials_networks_pages/telegram.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'service'
+        return context
+    
+
+class InstagramPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'socials_networks_pages/instagram.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'service'
+        return context
+    
+
+class TwitterPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'socials_networks_pages/twitter.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'service'
+        return context
+    
+
+class DiscordPageView(MetaInfoContextMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
+    template_name = 'socials_networks_pages/discord.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'service'
+        return context
+    

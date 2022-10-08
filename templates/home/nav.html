@@ -1,12 +1,12 @@
 {% load static %}
 <nav class="nav-wrap">
-    <button class="js-toggle-nav">
+    <button class="toggle js-toggle-nav">
       <svg viewBox="0 0 20 20" width="20px">
         <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
       </svg>
       <svg viewBox="0 0 20 20" width="20px">
         <use xlink:href="{% static '/img/sprite.svg' %}#ic-close"></use>
-      </svg> 
+      </svg>
     </button>
     <ul class="block-nav-items">
       <li><a {% if page == 'home' %} class="active" {% endif %} href="{% url 'home' %}">
@@ -45,5 +45,30 @@
           <svg viewBox="0 0 20 20" width="20px">
             <use xlink:href="{% static '/img/sprite.svg' %}#ic-blog"></use>
           </svg>Blog</a></li>
+      <li>
+        <button id="services-show-dropdown-list-button" class="{% if 'service' in page %} active {% endif %}js-toggle-inner">
+          <svg viewBox="0 0 20 20" width="20px">
+            <use xlink:href="{% static '/img/sprite.svg' %}#ic-services"></use>
+          </svg>Services
+          <div class="arrow">
+            <svg viewBox="0 0 20 20" width="20px">
+              <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+            </svg>
+          </div>
+        </button>
+        <ul class="inner" id="services-dropdown-list">
+          <li><a href="{% url 'instagram' %}">Instagram</a></li>
+          <li><a href="{% url 'twitter' %}">Twitter</a></li>
+          <li><a href="{% url 'discord' %}">Discord</a></li>
+          <li><a href="{% url 'telegram' %}">Telegram</a></li>
+        </ul>
+      </li>
     </ul>
+    <script>
+      document.querySelector("#services-show-dropdown-list-button").onclick = () => {
+        if (document.querySelector("nav > button").classList.length !== 3) {
+          document.querySelector("nav > button").classList.add('active')
+        }
+      }
+    </script>
 </nav>

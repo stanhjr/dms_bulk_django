@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base-regular-page.html' %}
 {% load static %}
 
 {% block head_tags %}
@@ -9,155 +9,38 @@
 {% endif %}
 {% endblock head_tags %}
 
-{% block content %}
-  <div class="page-container">
-    {% include 'base/header.html' %}
-    <main class="default">
-      <div class="container">
-        <div class="grid-wrap">
-          <div class="aside-wrapper">
-            {% include 'home/nav.html' %}
-          </div>
-          <div class="content-wrapper">
-            <section class="faq-text">
-              <h1 class="inner center">How it works?</h1>
-              <p>Let's send your message to everyone with DMSBULK mass direct message service</p>
-              <p>Mass Direct Messaging is an incredibly effective way for Account Growth / Driving Targeted Traffic / Promoting Products / Generating Leads / Increase activity and engagement. DMSBULK Auto-DM software is designed by performance marketers who need to promote products at scale on Instagram, Twitter, Telegram and Discord. Mass Direct messages help you increase brand awareness and improve engagement while saving your precious time. Employ auto-dm service to level up your social media growth game and get more sales effortlessly.</p><br>
-              <p>First of all you should register an account in our site. After that you will have access to your dashboard where you will be available to order Bulk DMs in Instagram, Telegra, Twitter and Discord. For each campaign you should provide information depending on social media: Message which we will send, Targets/Competitors from which we will scrape auditory, amount of dms and filtering options what you prefer. After order you will see in dashboard progress tab of campaign: </p>
-              <p>Scraping auditory</p>
-              <p>Filtering</p>
-              <p>Starting sending</p>
-              <p>Messages send</p>
-              <p>After messages done you will be able to download proof of screen-shot</p><br>
-              <p>Mass direct message will not affect your account it will remain SAFE always, we do not use your account for mass direct message sending. We won’t even ask you for a login or password for your account! All mass direct messages in each social media will be sent by our network of accounts.</p>
-            </section>
-            <section class="faq-list">
-              <h2 class="center">FAQ</h2>
-              <div class="subtitle line">You've got questions and dmsbulk.com has the answers! <br>Everything you're probably wondering in our FAQ below - and if there's still something on your mind, reach out to our support team to make sure all your questions can be answered.</div>
-              <div class="items">
-                {% for question in questions %}
-                <div class="item">
-                  <h3 class="title js-accordione">{{ question.question }}
-                    <svg viewBox="0 0 20 20" width="20px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                    </svg>
-                  </h3>
-                  <div class="text-wrap">
-                    <p>{{ question.answer }}</p>
-                  </div>
-                </div>
-                {% endfor %}
-              </div>
-            </section>
-            <footer class="footer-main">
-              {% include 'base/footer.html' %}
-            </footer>
-            {% include 'popup/accept-cookies.html' %}
-            {% include 'popup/arrow-up.html' %}
-          </div>
-        </div>
+{% block text %}
+<section class="faq-text">
+  <h1 class="inner center">How it works?</h1>
+  <p>Let's send your message to everyone with DMSBULK mass direct message service</p>
+  <p>Mass Direct Messaging is an incredibly effective way for Account Growth / Driving Targeted Traffic / Promoting Products / Generating Leads / Increase activity and engagement. DMSBULK Auto-DM software is designed by performance marketers who need to promote products at scale on Instagram, Twitter, Telegram and Discord. Mass Direct messages help you increase brand awareness and improve engagement while saving your precious time. Employ auto-dm service to level up your social media growth game and get more sales effortlessly.</p><br>
+  <p>First of all you should register an account in our site. After that you will have access to your dashboard where you will be available to order Bulk DMs in Instagram, Telegra, Twitter and Discord. For each campaign you should provide information depending on social media: Message which we will send, Targets/Competitors from which we will scrape auditory, amount of dms and filtering options what you prefer. After order you will see in dashboard progress tab of campaign: </p>
+  <p>Scraping auditory</p>
+  <p>Filtering</p>
+  <p>Starting sending</p>
+  <p>Messages send</p>
+  <p>After messages done you will be able to download proof of screen-shot</p><br>
+  <p>Mass direct message will not affect your account it will remain SAFE always, we do not use your account for mass direct message sending. We won’t even ask you for a login or password for your account! All mass direct messages in each social media will be sent by our network of accounts.</p>
+</section>
+<section class="faq-list">
+  <h2 class="center">FAQ</h2>
+  <div class="subtitle line">You've got questions and dmsbulk.com has the answers! <br>Everything you're probably wondering in our FAQ below - and if there's still something on your mind, reach out to our support team to make sure all your questions can be answered.</div>
+  <div class="items">
+    {% for question in questions %}
+    <div class="item">
+      <h3 class="title js-accordione">{{ question.question }}
+        <svg viewBox="0 0 20 20" width="20px">
+          <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+        </svg>
+      </h3>
+      <div class="text-wrap">
+        <p>{{ question.answer }}</p>
       </div>
-    </main>
-    <div class="container">
     </div>
+    {% endfor %}
   </div>
-  {% include 'popup/instagram.html' %}
-  {% include 'popup/discord.html' %}
-  {% include 'popup/telegram.html' %}
-  {% include 'popup/twitter.html' %}
-  {% include 'popup/login.html' %}
-  {% include 'popup/signup.html' %}
-  <div class="mfp-hide popup popup--invoice" id="popup-invoice-awaiting">
-    <div class="header-wrap">
-      <div class="left">
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-      </div>
-      <div class="right">
-        <div class="title">INVOICE</div>
-        <p>ID (#DM-11111)</p>
-      </div>
-    </div>
-    <div class="info-wrap">
-      <div class="item"><b>Invoice to:</b>
-        <p>Client Email adress and Name</p>
-      </div>
-      <div class="item"><b>Invoice data:</b>
-        <p>06.08.2022</p>
-      </div>
-    </div>
-    <div class="table-info">
-      <div class="tr">
-        <div class="td"><b>Invoice ID</b></div>
-        <div class="td"><b>Payment Method</b></div>
-        <div class="td"><b>Description</b></div>
-        <div class="td"><b>Status</b></div>
-      </div>
-      <div class="tr">
-        <div class="td">DM-11111</div>
-        <div class="td">Paypal</div>
-        <div class="td">Social Media Marketing program</div>
-        <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
-      </div>
-    </div>
-    <div class="table-total">
-      <div class="tr">
-        <div class="td"><b>Sub Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-      <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-    </div>
-    <div class="btn-wrap"><a class="btn" href="#">DEPOSIT</a></div>
-  </div>
-  <div class="mfp-hide popup popup--invoice" id="popup-invoice-paid">
-    <div class="header-wrap">
-      <div class="left">
-        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
-        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
-      </div>
-      <div class="right">
-        <div class="title">INVOICE</div>
-        <p>ID (#DM-11111)</p>
-      </div>
-    </div>
-    <div class="info-wrap">
-      <div class="item"><b>Invoice to:</b>
-        <p>Client Email adress and Name</p>
-      </div>
-      <div class="item"><b>Invoice data:</b>
-        <p>06.08.2022</p>
-      </div>
-    </div>
-    <div class="table-info">
-      <div class="tr">
-        <div class="td"><b>Invoice ID</b></div>
-        <div class="td"><b>Payment Method</b></div>
-        <div class="td"><b>Description</b></div>
-        <div class="td"><b>Status</b></div>
-      </div>
-      <div class="tr">
-        <div class="td">DM-11111</div>
-        <div class="td">Paypal</div>
-        <div class="td">Social Media Marketing program</div>
-        <div class="td"><span class="status c-green">PAID</span></div>
-      </div>
-    </div>
-    <div class="table-total">
-      <div class="tr">
-        <div class="td"><b>Sub Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-      <div class="tr">
-        <div class="td"><b>Total</b></div>
-        <div class="td">2000$</div>
-      </div>
-    </div>
-    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
-  </div>
-{% endblock content %}
+</section>
+{% endblock text %}
 
 {% block scripts %}
 <script type="application/ld+json">
