@@ -66,8 +66,9 @@
     </ul>
     <script>
       document.querySelector("#services-show-dropdown-list-button").onclick = () => {
-        if (document.querySelector("nav > button").classList.length !== 3) {
-          document.querySelector("nav > button").classList.add('active')
+        if (!document.querySelector("nav > button").classList.contains("active")) {
+          document.querySelector("nav").classList.add("active")
+          document.querySelector("nav > button").classList.add("active")
         }
       }
     </script>
