@@ -15,13 +15,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 from account.models import CustomUser
 from dms_bulk_django import settings
 from dms_bulk_django.settings import STRIPE_TEST_SECRET_KEY
 from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
+from celery_tasks import send_balance_update
 
 from utils import MetaInfoContextMixin
 
@@ -103,6 +104,7 @@ def my_handler(event, **kwargs):
         user.cents += int(paid)
         user.save()
         invoice.save()
+        send_balance_update.delay(email_to=user.email, cents=user.cents)
     return Response(status=200)
 
 
@@ -140,5 +142,6 @@ class PaypalAPIView(APIView):
             user.cents += float(value) * 100
             user.save()
             invoice.save()
+            send_balance_update.delay(email_to=user.email, cents=user.cents)
 
         return Response({"status": "SUCCESSFUL"}, status=200)

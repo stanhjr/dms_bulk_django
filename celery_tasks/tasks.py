@@ -98,3 +98,39 @@ def update_analytics():
         return f'analytics update, number of users today = {number_users_today}'
     except Exception as e:
         print(e)
+
+
+@app.task
+def send_balance_update(email_to: str, cents: int) -> str:
+    '''
+    :param email_to: sender email
+    :return: task result
+    '''
+    password = settings.EMAIL_HOST_PASSWORD
+    sender_email = settings.EMAIL_HOST_USER
+
+    receiver_email = email_to
+    with open('celery_tasks/templates/03_Balance.html', 'r') as html:
+        mail_confirmed_successfully_template = Template(html.read())
+    text = mail_confirmed_successfully_template.render(dasboard_link=f"{settings.CELERY_SEND_MAIL_HOST}dashboard/",
+                                                       dollars=cents / 100)
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = email_to
+
+    part1 = MIMEText(text, "html")
+    message.attach(part1)
+
+
+    try:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(
+                sender_email, receiver_email, message.as_string()
+            )
+
+        return "Email sent successfully!"
+    except Exception as ex:
+        return f"Something went wrong…. {ex}"

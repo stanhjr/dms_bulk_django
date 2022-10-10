@@ -7,12 +7,18 @@ config = {
         'celery_tasks.tasks.delete_order_from_actives': {
             'queue': 'celery_tasks'
         },
-        'celery_tasks.tasks.update_analytics': {
-            'queue': 'celery_tasks'
-        },
         'celery_tasks.tasks.send_html_email': {
             'queue': 'celery_tasks'
-        }
+        },
+        'celery_tasks.delete_order_from_actives': {
+            'queue': 'celery_tasks'
+        },
+        'celery_tasks.update_analytics': {
+            'queue': 'celery_tasks'
+        },
+        'celery_tasks.send_balance_update': {
+            'queue': 'celery_tasks'
+        },
     },
     'accept_content': ['json', 'application/x-python-serialize'],
     'task_serializer': 'json',
