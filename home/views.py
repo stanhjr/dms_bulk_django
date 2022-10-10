@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.conf import settings
 
 from account.models import CustomUser
 from account_auth.forms import SignUpForm
@@ -17,8 +18,8 @@ from utils import PopupAuthContextMixin
 from utils import ServicesUnderMaintenanceDataMixin
 from utils import MetaInfoContextMixin
 
-from celery_tasks import send_verify_link_to_email
 from celery_tasks import generate_key
+from celery_tasks import send_html_email
 
 
 class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, PopupAuthContextMixin, TemplateView):
@@ -85,10 +86,12 @@ class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, Popu
 
                 new_user.verify_code = generate_key()
                 new_user.avatar_image_id = random.choice((1, 2, 3, 4))
-                send_verify_link_to_email.delay(
-                    username,
-                    new_user.verify_code, 
-                    sign_up_form.cleaned_data.get("email"))
+                send_html_email.delay(
+                    sign_up_form.cleaned_data.get("email"),
+                    'celery_tasks/templates/01_Verify-Email.html',
+                    username=username,
+                    verify_email_link=f"{settings.CELERY_SEND_MAIL_HOST}account/account-activate/?code={new_user.verify_code}"
+                )
                 new_user.save()
                 login(request, new_user)
                 return redirect('dashboard')

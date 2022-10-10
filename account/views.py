@@ -15,8 +15,7 @@ from .forms import RestorePasswordChangeForm
 from .models import CustomUser
 
 from celery_tasks import generate_key
-from celery_tasks import send_reset_password_link_to_email
-from celery_tasks import send_welcome_to_dmsbulk_message_after_success_verifing
+from celery_tasks import send_html_email
 
 from utils import PopupCookiesContextMixin
 from utils import MetaInfoContextMixin
@@ -69,7 +68,9 @@ class SignUpConfirm(RedirectView):
             user.verify_code = ''
             user.is_confirmed = True
             user.save()
-            send_welcome_to_dmsbulk_message_after_success_verifing.delay(user.email)
+            send_html_email.delay(
+                user.email,
+                'celery_tasks/templates/01_Verify-Email.html')
             return redirect('dashboard')
         else:
             return redirect('home')
@@ -97,16 +98,18 @@ class ResetPassword(RedirectView):
             code = generate_key()
             user.reset_password_code = code
             user.save()
-            send_reset_password_link_to_email.delay(
+            send_html_email.delay(
+                user_email,
+                'celery_tasks/templates/08_Reset-Password.html',
                 username=user.username,
-                email_to=user_email, 
-                code=code)
+                code=code
+            )
             redirect('home')
 
         return redirect('home')
 
 
-class PasswordChangeCustomView(PasswordChangeView):
+class PasswordChangeByCodeView(PasswordChangeView):
     form_class = RestorePasswordChangeForm
 
     def form_invalid(self, form):
@@ -117,3 +120,16 @@ class PasswordChangeCustomView(PasswordChangeView):
         user.reset_password_code = ''
         user.save()
         return super().form_valid(form)
+
+
+class PasswordChangeNoCodeView(PasswordChangeView):
+    success_url = reverse_lazy('settings')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        print('ohoboiinini')
+        send_html_email.delay(
+            self.request.user.email,
+            'celery_tasks/templates/04_Password-change.html'
+        )
+        return response

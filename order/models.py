@@ -4,10 +4,14 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
+from django.conf import settings
 from django.db import models
 from django.utils import timezone as tz
 
 from celery_tasks.tasks import delete_order_from_actives
+from celery_tasks import send_html_email
+from dms_bulk_django.local_settings import CELERY_SEND_MAIL_HOST
+
 from .utils import calculate_amount_integer
 
 
@@ -186,6 +190,20 @@ class OrderModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.clean()
+
+        if not self.scraping:
+            send_html_email.delay(
+                self.order_calc.user.email,
+                'celery_tasks/templates/05_Order-is-accepted.html',
+                celery_host=settings.CELERY_SEND_MAIL_HOST
+            )
+
+        if self.filtering and not self.sending:
+            send_html_email.delay(
+                self.order_calc.user.email,
+                'celery_tasks/templates/06_Starting-sending.html',
+                celery_host=settings.CELERY_SEND_MAIL_HOST
+            )
 
         if self.sending and not self.completed:
             send_date = tz.now() + timedelta(days=1)
