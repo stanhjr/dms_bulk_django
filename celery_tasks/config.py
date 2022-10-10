@@ -7,7 +7,7 @@ config = {
         'celery_tasks.tasks.send_verify_link_to_email': {
             'queue': 'celery_tasks'
         },
-        'celery_tasks.tasks.send_welcome_to_dmsbulk_message_after_success_verifing' : {
+        'celery_tasks.tasks.send_welcome_to_dmsbulk_message_after_success_verifing': {
             'queue': 'celery_tasks'
         },
         'celery_tasks.tasks.send_reset_password_link_to_email': {
@@ -17,6 +17,9 @@ config = {
             'queue': 'celery_tasks'
         },
         'celery_tasks.update_analytics': {
+            'queue': 'celery_tasks'
+        },
+        'celery_tasks.send_balance_update': {
             'queue': 'celery_tasks'
         },
     },
