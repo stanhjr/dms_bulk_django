@@ -1,4 +1,5 @@
 from datetime import timedelta
+
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -10,7 +11,6 @@ from django.utils import timezone as tz
 
 from celery_tasks.tasks import delete_order_from_actives
 from celery_tasks import send_html_email
-from dms_bulk_django.local_settings import CELERY_SEND_MAIL_HOST
 
 from .utils import calculate_amount_integer
 

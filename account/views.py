@@ -127,7 +127,6 @@ class PasswordChangeNoCodeView(PasswordChangeView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        print('ohoboiinini')
         send_html_email.delay(
             self.request.user.email,
             'celery_tasks/templates/04_Password-change.html'
