@@ -4,7 +4,7 @@ astroid==2.12.5
 async-timeout==4.0.2
 autopep8==1.7.0
 Babel==2.10.3
-backports.zoneinfo==0.2.1
+backports.zoneinfo==0.2.1;python_version<"3.9"
 billiard==3.6.4.0
 cachetools==5.2.0
 celery==5.2.7
