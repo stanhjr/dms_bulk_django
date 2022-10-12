@@ -2,7 +2,7 @@ from apiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-def get_unique_users_today():
+def get_unique_users_today_google_analytitcs():
     SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
     KEY_FILE_LOCATION = 'analytics/keys.json'
     VIEW_ID = 'ga:275676015'

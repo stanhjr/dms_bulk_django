@@ -7,7 +7,7 @@ from online_users.models import OnlineUserActivity
 
 from analytics.models import Analytics
 from analytics.models import UserStatistics
-from analytics.tools import get_unique_users_today
+# from analytics.tools import get_unique_users_today
 from order.models import OrderModel
 
 
@@ -23,15 +23,16 @@ class AnalyticsAdmin(ModelAdmin):
             extra_context=extra_context,
         )
         try:
-            users_today = get_unique_users_today()
+            # users_today = get_unique_users_today()
             today = date.today()
-            user_statistics = UserStatistics.objects.filter(created_at=today).first()
-            if user_statistics:
-                user_statistics.visitors_number = users_today
-            else:
-                user_statistics = UserStatistics.objects.create(visitors_number=users_today, created_at=today)
-            user_statistics.save()
+            # user_statistics = UserStatistics.objects.filter(created_at=today).first()
+            # if user_statistics:
+            #     user_statistics.visitors_number = users_today
+            # else:
+            #     user_statistics = UserStatistics.objects.create(visitors_number=users_today, created_at=today)
+            # user_statistics.save()
 
+            # users_today = UserStatistics.objects.filter(created_at=today).count()
             seven_day_before = today - timedelta(days=7)
             orders_today_sum = OrderModel.objects.filter(created_at__date=today).aggregate(Sum('order_calc__total_integer'))[
                 'order_calc__total_integer__sum']

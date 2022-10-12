@@ -71,6 +71,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
     'online_users.middleware.OnlineNowMiddleware',
+    'account.middleware.VisitCounterMiddleware',
 ]
 
 ROOT_URLCONF = 'dms_bulk_django.urls'
