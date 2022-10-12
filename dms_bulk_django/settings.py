@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 SITE_ID = 1
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'
@@ -21,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d!-(1nhmudak$)kxvf(9@2(%r(l2np(n_bl^!eo#yqc8e(yenp'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+SECURE_SSL_REDIRECT = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -159,29 +165,27 @@ ADMIN_REORDER = (
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "helloworldbooo@gmail.com"
-EMAIL_HOST_PASSWORD = "uruqokrnqemmfsne"
-CELERY_SEND_MAIL_HOST = "http://185.65.245.191/"
+
+EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
+EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+CELERY_SEND_MAIL_HOST = str(os.getenv('CELERY_SEND_MAIL_HOST'))
 
 INVALID_DISCOUNT_MESSAGE = 'the entered discount value does not match the actual value mommy hacker'
 INVALID_ORDER_AMOUNT_MESSAGE = 'the entered order amount value does not match the actual value mommy hacker'
 
-STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",
-                                        'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
-STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY",
-                                        'STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY')
-STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY",
-                                        'pk_test_51Lg4MyK6rkKpcwrpM9imgTsK4IupHl9BSeuzPgUQRWExpYnqHxr3Xe9juCUXGR10JXsiknlxoUeZGpTTw2lGG1UF00K0cn1Xv4')
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY",
-                                        'sk_test_51Lg4MyK6rkKpcwrpBVyS7DCMIIiJxhxDwpCH5ufEg3MPS8QnZtcp3amLtQR5n5lQ1JKO4OVciqPL1K7kJguJZNUS005MqWi0jt')
+STRIPE_LIVE_PUBLIC_KEY = str(os.getenv("STRIPE_LIVE_PUBLIC_KEY"))
+
+STRIPE_LIVE_SECRET_KEY = str(os.getenv("STRIPE_LIVE_SECRET_KEY"))
+STRIPE_TEST_PUBLIC_KEY = str(os.getenv("STRIPE_TEST_PUBLIC_KEY"))
+STRIPE_TEST_SECRET_KEY = str(os.getenv("STRIPE_TEST_SECRET_KEY"))
 STRIPE_LIVE_MODE = False
-DJSTRIPE_WEBHOOK_SECRET = "whsec_QE3hbunXD3fpyvtkc1S1AORm39FzKbEp"
+DJSTRIPE_WEBHOOK_SECRET = str(os.getenv("DJSTRIPE_WEBHOOK_SECRET"))
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 PAYPAL_TEST = True
-PAYPAL_RECEIVER_EMAIL = "sb-ea43qt18063883@business.example.com"
-PAYPAL_CLIENT_ID = 'ARv3ot_OU4zgMCM_vZ3Xgb0c0ovmFfL_pRRrIlLxPWuq7nZMUUvO2PHS9cCoa1eYNt9G1apgJxyUwqbr'
+PAYPAL_RECEIVER_EMAIL = str(os.getenv("PAYPAL_RECEIVER_EMAIL"))
+PAYPAL_CLIENT_ID = str(os.getenv("PAYPAL_CLIENT_ID"))
 try:
     from .local_settings import *
 except ImportError:
