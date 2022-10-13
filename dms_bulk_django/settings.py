@@ -80,6 +80,17 @@ MIDDLEWARE = [
     'account.middleware.VisitCounterMiddleware',
 ]
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dms',
+        'USER': 'postgres',
+        'PASSWORD': 'example',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
 ROOT_URLCONF = 'dms_bulk_django.urls'
 
 TEMPLATES = [
