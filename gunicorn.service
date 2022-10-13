@@ -1,8 +1,17 @@
 [Unit]
-Description=celery tasks queue for send emails for new user of dms_bulk site reset passwords and other
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
 
 [Service]
-ExecStart=/home/DmsBulk/venv/bin/python /home/DmsBulk/run_celery.py
+User=root
+Group=www-data
+WorkingDirectory=/home/dms_bulk_django
+ExecStart=/home/dms_bulk_django/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          dms_bulk_django.wsgi:application
 
 [Install]
 WantedBy=multi-user.target

@@ -13,9 +13,6 @@ config = {
         'celery_tasks.delete_order_from_actives': {
             'queue': 'celery_tasks'
         },
-        'celery_tasks.update_analytics': {
-            'queue': 'celery_tasks'
-        },
         'celery_tasks.send_balance_update': {
             'queue': 'celery_tasks'
         },

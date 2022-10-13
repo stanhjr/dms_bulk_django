@@ -2,7 +2,7 @@
 Description=celery tasks queue for send emails for new user of dms_bulk site reset passwords and other
 
 [Service]
-ExecStart=/home/DmsBulk/venv/bin/python /home/DmsBulk/run_celery.py
+ExecStart=/home/dms_bulk_django/venv/bin/python /home/dms_bulk_django/run_celery.py
 
 [Install]
 WantedBy=multi-user.target
