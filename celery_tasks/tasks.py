@@ -38,7 +38,7 @@ def generate_key() -> str:
 def send_html_email(receiver_email: str, path_to_template: str, **kwargs) -> str:
     password = settings.EMAIL_HOST_PASSWORD
     sender_email = settings.EMAIL_HOST_USER
-    with open(path_to_template, 'r') as html:
+    with open(os.path.join(settings.BASE_DIR, path_to_template), 'r') as html:
         template = Template(html.read())
     email_text = MIMEText(template.render(**kwargs), 'html')
 
