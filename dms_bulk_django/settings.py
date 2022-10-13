@@ -185,11 +185,9 @@ CELERY_SEND_MAIL_HOST = str(os.getenv('CELERY_SEND_MAIL_HOST'))
 INVALID_DISCOUNT_MESSAGE = 'the entered discount value does not match the actual value mommy hacker'
 INVALID_ORDER_AMOUNT_MESSAGE = 'the entered order amount value does not match the actual value mommy hacker'
 
-STRIPE_LIVE_PUBLIC_KEY = str(os.getenv("STRIPE_LIVE_PUBLIC_KEY"))
-
-STRIPE_LIVE_SECRET_KEY = str(os.getenv("STRIPE_LIVE_SECRET_KEY"))
 STRIPE_TEST_PUBLIC_KEY = str(os.getenv("STRIPE_TEST_PUBLIC_KEY"))
 STRIPE_TEST_SECRET_KEY = str(os.getenv("STRIPE_TEST_SECRET_KEY"))
+
 STRIPE_LIVE_MODE = False
 DJSTRIPE_WEBHOOK_SECRET = str(os.getenv("DJSTRIPE_WEBHOOK_SECRET"))
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
