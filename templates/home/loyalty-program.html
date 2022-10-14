@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base-regular-page.html' %}
 {% load static %}
 
 {% block head_tags %}
@@ -9,7 +9,7 @@
 {% endif %}
 {% endblock head_tags %}
 
-{% block text %}
+{% block content %}
 <section class="loyalty-program-info">
   <h1 class="inner center">Loyalty Program</h1>
   <div class="grid">
@@ -24,7 +24,7 @@
     <div class="img-wrap"><img src="{% static '/img/dms-coin.png' %}" alt=""></div>
   </div>
 </section>
-{% endblock text %}
+{% endblock content %}
 
 
 {% block scripts %}
