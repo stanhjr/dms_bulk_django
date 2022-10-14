@@ -89,6 +89,7 @@ class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, Popu
                 send_html_email.delay(
                     sign_up_form.cleaned_data.get("email"),
                     'celery_tasks/templates/01_Verify-Email.html',
+                    subject="Verify Email",
                     username=username,
                     verify_email_link=f"{settings.CELERY_SEND_MAIL_HOST}account/account-activate/?code={new_user.verify_code}"
                 )

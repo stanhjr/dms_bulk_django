@@ -195,6 +195,7 @@ class OrderModel(models.Model):
             send_html_email.delay(
                 self.order_calc.user.email,
                 'celery_tasks/templates/05_Order-is-accepted.html',
+                subject="Order Accepted",
                 celery_host=settings.CELERY_SEND_MAIL_HOST
             )
 
@@ -202,6 +203,7 @@ class OrderModel(models.Model):
             send_html_email.delay(
                 self.order_calc.user.email,
                 'celery_tasks/templates/06_Starting-sending.html',
+                subject="Sending is Started",
                 celery_host=settings.CELERY_SEND_MAIL_HOST
             )
 

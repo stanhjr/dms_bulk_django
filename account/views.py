@@ -70,7 +70,8 @@ class SignUpConfirm(RedirectView):
             user.save()
             send_html_email.delay(
                 user.email,
-                'celery_tasks/templates/01_Verify-Email.html')
+                'celery_tasks/templates/01_Verify-Email.html',
+                subject="Verify Email", )
             return redirect('dashboard')
         else:
             return redirect('home')
@@ -101,6 +102,7 @@ class ResetPassword(RedirectView):
             send_html_email.delay(
                 user_email,
                 'celery_tasks/templates/08_Reset-Password.html',
+                subject="Reset Password",
                 username=user.username,
                 code=code
             )
@@ -129,6 +131,7 @@ class PasswordChangeNoCodeView(PasswordChangeView):
         response = super().form_valid(form)
         send_html_email.delay(
             self.request.user.email,
-            'celery_tasks/templates/04_Password-change.html'
+            'celery_tasks/templates/04_Password-change.html',
+            subject="Change Password",
         )
         return response
