@@ -111,6 +111,7 @@ def my_handler(event, **kwargs):
 class PaypalAPIView(APIView):
     def post(self, request):
         url = urlparse(request.META.get("HTTP_PAYPAL_CERT_URL"))
+        print("hostname", url.hostname)
 
         if url.hostname == 'api.paypal.com':
             print('=============')
