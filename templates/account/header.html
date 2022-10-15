@@ -87,7 +87,12 @@
             <img src="{% static '/img/ic-coin-dm.png' %}" alt="" />10
           </div>
           <div class="item">
-            <img src="{% static '/img/ic-coin-usd.svg' %}" alt="" />100$
+            <img src="{% static '/img/ic-coin-usd.svg' %}" alt="" />  
+            {% if request.user.cents %}
+              {{ request.user.cents|div:100 }}$
+            {% else %}
+              0$
+            {% endif %}
           </div>
         </div>
         <ul class="block-nav-items">
@@ -156,6 +161,24 @@
                 ></use></svg
               >Settings</a
             >
+          </li>
+          <li>
+            <button id="services-show-dropdown-list-button" class="{% if 'service' in page %} active {% endif %}js-toggle-inner">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-services"></use>
+              </svg>Services
+              <div class="arrow">
+                <svg viewBox="0 0 20 20" width="20px">
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                </svg>
+              </div>
+            </button>
+            <ul class="inner" id="services-dropdown-list">
+              <li><a href="{% url 'instagram' %}">Instagram</a></li>
+              <li><a href="{% url 'twitter' %}">Twitter</a></li>
+              <li><a href="{% url 'discord' %}">Discord</a></li>
+              <li><a href="{% url 'telegram' %}">Telegram</a></li>
+            </ul>
           </li>
         </ul>
         <div class="btns-wrapper">
