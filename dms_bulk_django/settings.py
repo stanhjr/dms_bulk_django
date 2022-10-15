@@ -171,7 +171,9 @@ ADMIN_REORDER = (
     {'app': 'analytics', 'models': ('analytics.Analytics',)},
     {'app': 'important_info', 'label': 'Frequently Asked Questions', 'models': ('important_info.FAQModel',)},
     {'app': 'home', 'models': ('home.PageModel',)},
-    {'app': 'important_info', 'label': 'Seo', 'models': ('important_info.PageModel',)},
+    {'app': 'important_info', 'label': 'Seo', 'models': ('important_info.PageModel',
+                                                         'important_info.SeoTitle',
+                                                         'important_info.SeoText')},
 )
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 

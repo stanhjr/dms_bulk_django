@@ -1,5 +1,6 @@
 from typing import Tuple
 
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -32,3 +33,34 @@ class PageModel(models.Model):
     class Meta:
         verbose_name = 'Page Seo Settings'
         verbose_name_plural = 'Pages Seo Settings'
+
+
+class SeoText(models.Model):
+    name_for_admin = models.CharField(max_length=200, default='default name')
+    text = models.TextField()
+    sorted_text = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('sorted_text',)
+        verbose_name = 'Seo Text'
+        verbose_name_plural = 'Seo Text'
+
+    def __str__(self):
+        return self.name_for_admin
+
+
+class SeoTitle(models.Model):
+    title = models.CharField(max_length=2000)
+
+    class Meta:
+        verbose_name = 'Seo Title'
+        verbose_name_plural = 'Seo Title'
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.pk and SeoTitle.objects.exists():
+            raise ValidationError('There is can be only one SeoTitle instance')
+        return super(SeoTitle, self).save(*args, **kwargs)

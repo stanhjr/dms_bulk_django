@@ -12,6 +12,8 @@ from django.conf import settings
 from account.models import CustomUser
 from account_auth.forms import SignUpForm
 from account_auth.forms import SignInForm
+from important_info.models import SeoTitle
+from important_info.models import SeoText
 
 from utils import PopupCookiesContextMixin
 from utils import PopupAuthContextMixin
@@ -29,6 +31,8 @@ class MainPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, Popu
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'home'
+        context['seo_title'] = SeoTitle.objects.first()
+        context['seo_texts'] = SeoText.objects.all()
         return context
 
     def post(self, request):

@@ -472,6 +472,14 @@
                 </div>
               </div>
             </section>
+          <section class="home-seo">
+                <h2 class="center">{{ seo_title }}</h2>
+                <div class="text-wrap">
+                    {% for text in seo_texts %}
+                    <p>{{ text.text }}</p><br>
+                    {% endfor %}
+                </div>
+
             <section class="home-projects">
               <h2 class="center">Our other Projects</h2>
               <div class="items">
