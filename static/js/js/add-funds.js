@@ -11,7 +11,7 @@ $('.js-input-numeric.add-funds-price').on('keyup', () => {
 $('.btn.js-popup').click(() => {
     $('#id_payment_method').val($('.js-toggle-deposit.active').attr('id'))
     $('#id_cents').val(
-        $('.js-input-numeric.add-funds-price').val() * 100
+        Math.trunc($('.js-input-numeric.add-funds-price').val() * 100)
     )
     $('#create_invoice_calc_form').submit()
 })
