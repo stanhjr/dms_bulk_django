@@ -35,7 +35,7 @@
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-orders"></use>
               </svg>Live orders</a></li>
-          <li><a {% if page == 'faq' %} class="active" {% endif %} href="{% url 'faq' %}">
+          <li><a href="{% url 'faq' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-faq"></use>
               </svg>FAQ</a></li>
@@ -43,7 +43,7 @@
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-contacts"></use>
               </svg>Contacts</a></li>
-          <li><a {% if page == 'loyalty_program' %} class="active" {% endif %} href="{% url 'loyalty_program' %}">
+          <li><a href="{% url 'loyalty_program' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-loyalty"></use>
               </svg>Loyalty Program</a></li>
@@ -51,7 +51,7 @@
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-api"></use>
               </svg>API</a></li>
-          <li><a {% if page == 'blog' %} class="active" {% endif %} href="{% url 'blog' page_pk=1 %}">
+          <li><a href="{% url 'blog' page_pk=1 %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-blog"></use>
               </svg>Blog</a></li>
