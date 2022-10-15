@@ -111,6 +111,7 @@ def my_handler(event, **kwargs):
 class PaypalAPIView(APIView):
     def post(self, request):
         url = urlparse(request.META.get("HTTP_PAYPAL_CERT_URL"))
+        print("hostname", url.hostname)
 
         if url.hostname == 'api.paypal.com':
             print('=============')
@@ -121,8 +122,8 @@ class PaypalAPIView(APIView):
         if self.request.data.get('event_type') != 'CHECKOUT.ORDER.APPROVED':
             print('NOT APPROVED')
             return Response({"status": "SUCCESSFUL"}, status=200)
-        for i, k in self.request.data.items():
-            print(i, k)
+        # for i, k in self.request.data.items():
+        #     print(i, k)
         resource = self.request.data['resource']
         user_id = resource['purchase_units'][0]['reference_id']
         currency = resource['purchase_units'][0]['amount']['currency_code']
