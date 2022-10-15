@@ -28,7 +28,7 @@
                   <button id="Paypal" class="js-toggle-deposit"><img class="invert" src="{% static '/img/btn-paypal.png' %}" alt=""></button>
                   <button id="CreditCard" class="js-toggle-deposit active"><img src="{% static '/img/btn-card.png' %}" alt=""></button>                </div>
                 <div class="block-fund-input">
-                  <input class="js-input-numeric add-funds-price" type="text" value="0$">
+                  <input class="js-input-numeric add-funds-price" type="text" placeholder="0$">
                 </div>
                   <form method="post" id="create_invoice_calc_form" action="{% url 'create_invoice_calc' %}">
                     {% csrf_token %}

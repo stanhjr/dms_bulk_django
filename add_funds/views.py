@@ -36,6 +36,7 @@ class InvoiceCreateView(LoginRequiredMixin, CreateView):
     form_class = CreateInvoiceCalcForm
 
     def form_valid(self, form):
+        print(form.cleaned_data)
         if not form.cleaned_data.get('cents'):
             messages.warning(
                 self.request, 'you cannot add funds for a zero amount')

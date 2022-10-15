@@ -18,7 +18,7 @@ class Invoice(models.Model):
     status = models.CharField(
         max_length=50, choices=STATUS_CHOICES, default='Awaiting Payment')
     payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD)
-    cents = models.BigIntegerField(null=True, blank=True)
+    cents = models.FloatField(blank=True, null=True)
     description = models.CharField(
         max_length=255, default='Social Media Marketing')
     created_at = models.DateTimeField(auto_now_add=True)

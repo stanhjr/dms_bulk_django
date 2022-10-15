@@ -1,19 +1,17 @@
 $('.js-input-numeric.add-funds-price').on('keyup', () => {
-    const oldstr = $('.js-input-numeric.add-funds-price').val()
-    const str = oldstr.replace('$', '')
+    const total_add_funds = $('.js-input-numeric.add-funds-price').val()
 
-    $('.js-input-numeric.add-funds-price').val(str + '$')
-    if (!str) {
+    if (!total_add_funds) {
         $('.btn.js-popup').text('Add Funds: 0$')
     } else {
-        $('.btn.js-popup').text(`Add Funds: ${str}$`)
+        $('.btn.js-popup').text(`Add Funds: ${total_add_funds}$`)
     }
 })
 
 $('.btn.js-popup').click(() => {
     $('#id_payment_method').val($('.js-toggle-deposit.active').attr('id'))
     $('#id_cents').val(
-        $('.js-input-numeric.add-funds-price').val().slice(0, -1) * 100
+        $('.js-input-numeric.add-funds-price').val() * 100
     )
     $('#create_invoice_calc_form').submit()
 })
