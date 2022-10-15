@@ -35,8 +35,12 @@ class InvoiceCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('add_funds')
     form_class = CreateInvoiceCalcForm
 
+    def form_invalid(self, form):
+        messages.warning(
+            self.request, 'not form fields')
+        return redirect('add_funds')
+
     def form_valid(self, form):
-        print(form.cleaned_data)
         if not form.cleaned_data.get('cents'):
             messages.warning(
                 self.request, 'you cannot add funds for a zero amount')
