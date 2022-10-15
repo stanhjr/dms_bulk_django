@@ -19,31 +19,31 @@
           </svg>Login</a></div>
       <div class="menu-wrap">
         <ul class="block-nav-items">
-          <li><a class="active" href="./">
+          <li><a {% if page == 'home' %} class="active" {% endif %} href="{% url 'home' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-home"></use>
               </svg>Home</a></li>
-          <li><a href="./#benefits" data-scroll-from="benefits">
+          <li><a href="{% url 'home' %}#benefits" data-scroll-from="benefits">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-benefits"></use>
               </svg>Benefits</a></li>
-          <li><a href="./#pricing" data-scroll-from="pricing">
+          <li><a href="{% url 'home' %}#pricing" data-scroll-from="pricing">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-pricing"></use>
               </svg>Pricing</a></li>
-          <li><a href="./#orders" data-scroll-from="orders">
+          <li><a href="{% url 'home' %}#orders" data-scroll-from="orders">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-orders"></use>
               </svg>Live orders</a></li>
-          <li><a href="./faq.html">
+          <li><a {% if page == 'faq' %} class="active" {% endif %} href="{% url 'faq' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-faq"></use>
               </svg>FAQ</a></li>
-          <li><a href="{% url 'contacts' %}">
+          <li><a {% if page == 'contacts' %} class="active" {% endif %} href="{% url 'contacts' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-contacts"></use>
               </svg>Contacts</a></li>
-          <li><a href="./loyalty-program.html">
+          <li><a {% if page == 'loyalty_program' %} class="active" {% endif %} href="{% url 'loyalty_program' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-loyalty"></use>
               </svg>Loyalty Program</a></li>
@@ -51,10 +51,28 @@
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-api"></use>
               </svg>API</a></li>
-          <li><a href="./blog.html">
+          <li><a {% if page == 'blog' %} class="active" {% endif %} href="{% url 'blog' page_pk=1 %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-blog"></use>
               </svg>Blog</a></li>
+          <li>
+            <button id="services-show-dropdown-list-button" class="{% if 'service' in page %} active {% endif %}js-toggle-inner">
+              <svg viewBox="0 0 20 20" width="20px">
+                <use xlink:href="{% static '/img/sprite.svg' %}#ic-services"></use>
+              </svg>Services
+              <div class="arrow">
+                <svg viewBox="0 0 20 20" width="20px">
+                  <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
+                </svg>
+              </div>
+            </button>
+            <ul class="inner" id="services-dropdown-list">
+              <li><a href="{% url 'instagram' %}">Instagram</a></li>
+              <li><a href="{% url 'twitter' %}">Twitter</a></li>
+              <li><a href="{% url 'discord' %}">Discord</a></li>
+              <li><a href="{% url 'telegram' %}">Telegram</a></li>
+            </ul>
+          </li>
         </ul>
         <div class="btns-wrapper"><a class="btn btn--tg-channel" href="#" target="_blank">
             <svg viewBox="0 0 20 20" width="20px">
