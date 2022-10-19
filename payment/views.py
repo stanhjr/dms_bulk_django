@@ -111,13 +111,9 @@ def my_handler(event, **kwargs):
 class PaypalAPIView(APIView):
     def post(self, request):
         url = urlparse(request.META.get("HTTP_PAYPAL_CERT_URL"))
-        print("hostname", url.hostname)
 
-        if url.hostname == 'api.paypal.com':
-            print('=============')
-            print("hostname paypal", True)
-        else:
-            print("hostname paypal", False)
+        if url.hostname != 'api.paypal.com':
+            return Response({"status": "FORBIDDEN"}, status=403)
 
         if self.request.data.get('event_type') != 'CHECKOUT.ORDER.APPROVED':
             print('NOT APPROVED')
