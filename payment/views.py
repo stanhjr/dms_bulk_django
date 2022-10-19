@@ -123,15 +123,16 @@ class PaypalAPIView(APIView):
             print('NOT APPROVED')
             return Response({"status": "SUCCESSFUL"}, status=200)
         resource = self.request.data['resource']
-        for i in resource:
-            print(i)
-            print(resource.get(i))
+
         user_id = resource['purchase_units'][0]['reference_id']
         currency = resource['purchase_units'][0]['amount']['currency_code']
         value = resource['purchase_units'][0]['amount']['value']
         # create_time = resource.get("create_time")
         # payer_email = resource['payer']['email_address']
         # payer_id = resource['payer']['payer_id']
+
+        print(resource['purchase_units'])
+
         invoice_id = resource['purchase_units']['payee']['invoice_id']
         print(user_id, value, currency, invoice_id)
         user = CustomUser.objects.filter(pk=user_id).first()
