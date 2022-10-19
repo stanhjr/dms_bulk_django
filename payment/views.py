@@ -133,7 +133,7 @@ class PaypalAPIView(APIView):
 
         print(resource['purchase_units'])
 
-        invoice_id = resource['purchase_units'][0]['payee'].get('invoice_id')
+        invoice_id = resource['purchase_units'][0].get('invoice_id')
         if not invoice_id:
             return Response({"status": "SUCCESSFUL"}, status=200)
         print(user_id, value, currency, invoice_id)
