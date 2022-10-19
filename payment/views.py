@@ -125,6 +125,7 @@ class PaypalAPIView(APIView):
         resource = self.request.data['resource']
         for i in resource:
             print(i)
+            print(resource.get(i))
         user_id = resource['purchase_units'][0]['reference_id']
         currency = resource['purchase_units'][0]['amount']['currency_code']
         value = resource['purchase_units'][0]['amount']['value']
