@@ -133,7 +133,9 @@ class PaypalAPIView(APIView):
 
         print(resource['purchase_units'])
 
-        invoice_id = resource['purchase_units']['payee']['invoice_id']
+        invoice_id = resource['purchase_units']['payee'].get('invoice_id')
+        if not invoice_id:
+            return Response({"status": "SUCCESSFUL"}, status=200)
         print(user_id, value, currency, invoice_id)
         user = CustomUser.objects.filter(pk=user_id).first()
         print(user)
@@ -141,6 +143,7 @@ class PaypalAPIView(APIView):
             return Response({"status": "SUCCESSFUL"}, status=200)
         invoice = Invoice.objects.filter(invoice_id=invoice_id).first()
         with transaction.atomic():
+
             invoice.status = 'Paid'
             invoice.complete_at = timezone.now()
             user.cents += int(float(value) * 100)
