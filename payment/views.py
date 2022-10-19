@@ -140,7 +140,7 @@ class PaypalAPIView(APIView):
         with transaction.atomic():
             invoice.status = 'Paid'
             invoice.complete_at = timezone.now()
-            user.cents += float(value) * 100
+            user.cents += int(float(value) * 100)
             user.save()
             invoice.save()
             send_balance_update.delay(email_to=user.email, cents=user.cents)
