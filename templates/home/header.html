@@ -51,7 +51,7 @@
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-api"></use>
               </svg>API</a></li>
-          <li><a {% if page == 'blog' %} class="active" {% endif %} href="{% url 'blog' page_pk=1 %}">
+          <li><a {% if page == 'blog' %} class="active" {% endif %} href="{% url 'blog' %}">
               <svg viewBox="0 0 20 20" width="20px">
                 <use xlink:href="{% static '/img/sprite.svg' %}#ic-blog"></use>
               </svg>Blog</a></li>

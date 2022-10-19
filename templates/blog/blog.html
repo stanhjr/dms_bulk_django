@@ -3,7 +3,6 @@
 {% load mathfilters %}
 
 {% block head_tags %}
-<link rel="canonical" href="{% url 'blog' page_pk=1 %}" />
 {% if title %}
 <title>{{ title }}</title>
 {% else %}
@@ -24,7 +23,7 @@
           <section class="blog-list">
             <h1 class="inner center">Blog</h1>
             <div class="items">
-              {% for item in articles_previews %}
+              {% for item in articles %}
               <div class="item">
                 <div class="img-wrap"><a href="{% url 'article' article_slug=item.slug %}"><img
                       style="height: 195px; object-fit: cover;" src="{{ item.preview_image.url }}" alt=""></a></div>
@@ -42,74 +41,164 @@
             </div>
             <div class="pagination-wrap">
               <ul>
-                {% if not current_page_pk|mod:3 %}
-                <li><a href="{% url 'blog' page_pk=current_page_pk|sub:1 %}">
+                {% if page_obj.has_previous %}
+                <li>
+                  <a href="{% url 'blog' %}?page={{ page_obj.previous_page_number }}">
                     <svg viewBox="0 0 16 16" width="16px">
                       <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
-                    </svg></a></li>
-                <li><span class="current">{{ current_page_pk }}</span></li>
-                <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">{{ current_page_pk|add:1}}</a></li>
-                <li><a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">{{ current_page_pk|add:2}}</a></li>
-                <li><span>...</span></li>
-                <li><a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">{{ current_page_pk|add:9 }}</a></li>
-                <li><a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
-                    <svg viewBox="0 0 16 16" width="16px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                    </svg></a></li>
+                    </svg>
+                  </a>
+                </li>
+                {% endif %}
+                {% if page_obj.number|sub:1 == 0 %}
+                  {% if page_obj.number <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="current">{{ page_obj.number }}</span>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:1 }}">2</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:2 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:2 }}">3</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:3 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:3 }}">4</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:9 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="gray">...</span>
+                    </li>
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:9 }}">10</a>
+                    </li>
+                  {% endif %}
+                {% elif page_obj.number|sub:1|mod:4 == 0 %}
+                  {% if page_obj.number <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="current">{{ page_obj.number }}</span>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:2 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:2 }}">{{ page_obj.number|add:2 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:3 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:3 }}">{{ page_obj.number|add:3 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:9 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="gray">...</span>
+                    </li>
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:9 }}">{{ page_obj.number|add:9 }}</a>
+                    </li>
+                  {% endif %}
+                {% elif page_obj.number|mod:2 == 0 and page_obj.number|mod:4 %}
+                  {% if page_obj.number|sub:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="current">{{ page_obj.number }}</span>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:2 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:2 }}">{{ page_obj.number|add:2 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:8 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="gray">...</span>
+                    </li>
+                    <li>
+                      <a href="/?page={{ page_obj.number|add:8 }}">{{ page_obj.number|add:8 }}</a>
+                    </li>
+                  {% endif %}
+                {% elif page_obj.number|mod:4 == 0 %}
+                  {% if page_obj.number|sub:3 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|sub:3 }}">{{ page_obj.number|sub:3 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|sub:2 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|sub:2 }}">{{ page_obj.number|sub:2 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|sub:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="current">{{ page_obj.number }}</span>
+                    </li>
+                  {% endif %}
+                  {% if page_obj.number|add:6 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="gray">...</span>
+                    </li>
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:6 }}">{{ page_obj.number|add:6 }}</a>
+                    </li>
+                  {% endif %}
                 {% else %}
-                <li><a href="{% url 'blog' page_pk=current_page_pk|sub:1 %}">
-                    <svg viewBox="0 0 16 16" width="16px">
-                      <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
-                    </svg></a></li>
-                <li>
-                  {% if not current_page_pk|mod:2 %}
-                  <a href="{% url 'blog' page_pk=current_page_pk|sub:1 %}">
-                    {{ current_page_pk|sub:1 }}
-                  </a>
-                  {% else %}
-                  <span class="current">
-                    {{ current_page_pk }}
-                  </span>
+                  {% if page_obj.number|sub:2 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|sub:2 }}">{{ page_obj.number|sub:2 }}</a>
+                    </li>
                   {% endif %}
-                </li>
-                <li>
-                  {% if not current_page_pk|mod:2 %}
-                  <span class="current">
-                    {{ current_page_pk }}
-                  </span>
-                  {% else %}
-                  <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
-                    {{ current_page_pk|add:1 }}
-                  </a>
+                  {% if page_obj.number|sub:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
+                    </li>
                   {% endif %}
-                </li>
-                <li>
-                  {% if not current_page_pk|mod:2 %}
-                  <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
-                    {{ current_page_pk|add:1 }}
-                  </a>
-                  {% else %}
-                  <a href="{% url 'blog' page_pk=current_page_pk|add:2 %}">
-                    {{ current_page_pk|add:2 }}
-                  </a>
+                  {% if page_obj.number <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="current">{{ page_obj.number }}</span>
+                    </li>
                   {% endif %}
-                </li>
-                <li>
-                  <span>...</span>
-                </li>
-                <li>
-                  {% if not current_page_pk|mod:2 %}
-                  <a href="{% url 'blog' page_pk=current_page_pk|add:8 %}">
-                    {{ current_page_pk|add:8 }}
-                  </a>
-                  {% else %}
-                  <a href="{% url 'blog' page_pk=current_page_pk|add:9 %}">
-                    {{ current_page_pk|add:9 }}
-                  </a>
+                  {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
+                    </li>
                   {% endif %}
-                </li>
+                  {% if page_obj.number|add:7 <= page_obj.paginator.num_pages %}
+                    <li>
+                      <span class="gray">...</span>
+                    </li>
+                    <li>
+                      <a href="{% url 'blog' %}?page={{ page_obj.number|add:7 }}">{{ page_obj.number|add:7 }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+                {% if page_obj.has_next %}
                 <li>
-                  <a href="{% url 'blog' page_pk=current_page_pk|add:1 %}">
+                  <a href="{% url 'blog' %}?page={{ page_obj.next_page_number }}">
                     <svg viewBox="0 0 16 16" width="16px">
                       <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
                     </svg>
@@ -246,7 +335,7 @@
         "@type": "ListItem",
         "position": 2,
         "name": "DMSbulk blog page",
-        "item": "{{ request.get_host }}{% url 'blog' page_pk=1 %}"
+        "item": "{{ request.get_host }}{% url 'blog' %}"
       }
     ]
   }

@@ -3,7 +3,6 @@
 {% load mathfilters %}
 
 {% block head_tags %}
-<link rel="canonical" href="{% url 'add_funds' %}" />
 {% if title %}
 <title>{{ title }}</title>
 {% else %}
@@ -68,7 +67,7 @@
                 <div class="pagination-wrap">
                   <ul>
                     {% if page_obj.has_previous %}
-                      <li><a href="/add_funds/?page={{ page_obj.previous_page_number }}">
+                      <li><a href="{% url 'add_funds' %}?page={{ page_obj.previous_page_number }}">
                           <svg viewBox="0 0 16 16" width="16px">
                             <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-left"></use>
                           </svg></a></li>
@@ -81,17 +80,17 @@
                       {% endif %}
                       {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:1 }}">2</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:1 }}">2</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:2 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:2 }}">3</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:2 }}">3</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:3 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:3 }}">4</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:3 }}">4</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:9 <= page_obj.paginator.num_pages %}
@@ -99,7 +98,7 @@
                           <span class="gray">...</span>
                         </li>
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:9 }}">10</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:9 }}">10</a>
                         </li>
                       {% endif %}
                     {% elif page_obj.number|sub:1|mod:4 == 0 %}
@@ -110,17 +109,17 @@
                       {% endif %}
                       {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:2 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:2 }}">{{ page_obj.number|add:2 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:2 }}">{{ page_obj.number|add:2 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:3 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:3 }}">{{ page_obj.number|add:3 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:3 }}">{{ page_obj.number|add:3 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:9 <= page_obj.paginator.num_pages %}
@@ -128,13 +127,13 @@
                           <span class="gray">...</span>
                         </li>
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:9 }}">{{ page_obj.number|add:9 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:9 }}">{{ page_obj.number|add:9 }}</a>
                         </li>
                       {% endif %}
                     {% elif page_obj.number|mod:2 == 0 and page_obj.number|mod:4 %}
                       {% if page_obj.number|sub:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number <= page_obj.paginator.num_pages %}
@@ -144,12 +143,12 @@
                       {% endif %}
                       {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:2 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:2 }}">{{ page_obj.number|add:2 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:2 }}">{{ page_obj.number|add:2 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:8 <= page_obj.paginator.num_pages %}
@@ -163,17 +162,17 @@
                     {% elif page_obj.number|mod:4 == 0 %}
                       {% if page_obj.number|sub:3 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|sub:3 }}">{{ page_obj.number|sub:3 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|sub:3 }}">{{ page_obj.number|sub:3 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|sub:2 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|sub:2 }}">{{ page_obj.number|sub:2 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|sub:2 }}">{{ page_obj.number|sub:2 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|sub:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number <= page_obj.paginator.num_pages %}
@@ -186,18 +185,18 @@
                           <span class="gray">...</span>
                         </li>
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:6 }}">{{ page_obj.number|add:6 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:6 }}">{{ page_obj.number|add:6 }}</a>
                         </li>
                       {% endif %}
                     {% else %}
                       {% if page_obj.number|sub:2 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|sub:2 }}">{{ page_obj.number|sub:2 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|sub:2 }}">{{ page_obj.number|sub:2 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|sub:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|sub:1 }}">{{ page_obj.number|sub:1 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number <= page_obj.paginator.num_pages %}
@@ -207,7 +206,7 @@
                       {% endif %}
                       {% if page_obj.number|add:1 <= page_obj.paginator.num_pages %}
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:1 }}">{{ page_obj.number|add:1 }}</a>
                         </li>
                       {% endif %}
                       {% if page_obj.number|add:7 <= page_obj.paginator.num_pages %}
@@ -215,15 +214,18 @@
                           <span class="gray">...</span>
                         </li>
                         <li>
-                          <a href="/add_funds/?page={{ page_obj.number|add:7 }}">{{ page_obj.number|add:7 }}</a>
+                          <a href="{% url 'add_funds' %}?page={{ page_obj.number|add:7 }}">{{ page_obj.number|add:7 }}</a>
                         </li>
                       {% endif %}
                     {% endif %}
                     {% if page_obj.has_next %}
-                    <li><a href="/add_funds/?page={{ page_obj.next_page_number }}">
+                    <li>
+                      <a href="{% url 'add_funds' %}?page={{ page_obj.next_page_number }}">
                         <svg viewBox="0 0 16 16" width="16px">
                           <use xlink:href="{% static '/img/sprite.svg' %}#ic-arrow-right"></use>
-                        </svg></a></li>
+                        </svg>
+                      </a>
+                    </li>
                     {% endif %}
                   </ul>
                 </div>
