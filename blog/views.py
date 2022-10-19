@@ -1,5 +1,4 @@
 from django.views.generic import DetailView, ListView
-from django.http import Http404
 
 from .models import ArticleModel
 
