@@ -130,7 +130,7 @@ class PaypalAPIView(APIView):
         # create_time = resource.get("create_time")
         # payer_email = resource['payer']['email_address']
         # payer_id = resource['payer']['payer_id']
-        invoice_id = resource['purchase_units']['invoice_id']
+        invoice_id = resource['purchase_units'][0]['invoice_id']
         print(user_id, value, currency, invoice_id)
         user = CustomUser.objects.filter(pk=user_id).first()
         print(user)
