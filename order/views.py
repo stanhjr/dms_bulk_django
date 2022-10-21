@@ -36,9 +36,7 @@ class StatisticsApiView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, slug):
-
         REQUIRED_API_DATA_LENGTH = 7
-
         q1 = Q(order_calc__social_network=slug.capitalize())
         q2 = Q(order_calc__user=request.user)
         q3 = Q(sending=True)
@@ -60,7 +58,7 @@ class StatisticsApiView(APIView):
 class CreateOrderCalcPageView(MetaInfoContextMixin, ServicesUnderMaintenanceDataMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'order/order-dms.html'
     success_url = reverse_lazy('order_step_two')
-    model = OrderCalcModel
+    model = OrderCalcModel 
     form_class = forms.CreateOrderCalcForm
 
     def get_context_data(self, **kwargs):
@@ -94,6 +92,7 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
         return redirect(self.unsuccess_url)
 
     def form_valid(self, form):
+        print(0)
         obj = form.save(commit=False)
         order_calc = OrderCalcModel.objects.filter(
             user=self.request.user).last()
@@ -104,6 +103,7 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
         order_total_price = order_calc.total
         try:
             if order_calc.social_network == 'Instagram':
+                print(1)
                 total_price_index = board.instagram_board_total.index(
                     order_total_price)
                 if board.instagram_board_discount[total_price_index] != order_discount:
@@ -112,6 +112,7 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
                     return self.form_invalid()
 
             if order_calc.social_network == 'Twitter':
+                print(2)
                 total_price_index = board.twitter_board_total.index(
                     order_total_price)
                 if board.twitter_board_discount[total_price_index] != order_discount:
@@ -120,6 +121,7 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
                     return self.form_invalid()
 
             if order_calc.social_network == 'Discord':
+                print(3)
                 total_price_index = board.discord_board_total.index(
                     order_total_price)
                 if board.discord_board_discount[total_price_index] != order_discount:

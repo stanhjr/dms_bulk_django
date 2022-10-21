@@ -174,13 +174,13 @@ class OrderModel(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     targets_or_competitors_submited = models.TextField(
-        max_length=100_000)
-    use_our_default_filtering = models.BooleanField()
-    not_use_any_filtering = models.BooleanField()
-    message = models.TextField(max_length=1000)
-    attach_in_message = models.TextField(max_length=600)
-    additional_information = models.TextField(max_length=600)
-    contact_details = models.CharField(max_length=1000)
+        max_length=100_000, blank=True, null=True)
+    use_our_default_filtering = models.BooleanField(default=False)
+    not_use_any_filtering = models.BooleanField(default=False)
+    message = models.TextField(max_length=1000, blank=True, null=True)
+    attach_in_message = models.TextField(max_length=600, blank=True, null=True)
+    additional_information = models.TextField(max_length=600, blank=True, null=True)
+    contact_details = models.CharField(max_length=1000, blank=True, null=True)
 
     scraping = models.BooleanField(default=False)
     filtering = models.BooleanField(default=False)
