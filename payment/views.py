@@ -111,36 +111,38 @@ def my_handler(event, **kwargs):
 class PaypalAPIView(APIView):
     def post(self, request):
         url = urlparse(request.META.get("HTTP_PAYPAL_CERT_URL"))
-        print("hostname", url.hostname)
 
-        if url.hostname == 'api.paypal.com':
-            print('=============')
-            print("hostname paypal", True)
-        else:
-            print("hostname paypal", False)
+        if url.hostname != 'api.paypal.com':
+            return Response({"status": "FORBIDDEN"}, status=403)
 
         if self.request.data.get('event_type') != 'CHECKOUT.ORDER.APPROVED':
             print('NOT APPROVED')
             return Response({"status": "SUCCESSFUL"}, status=200)
-        # for i, k in self.request.data.items():
-        #     print(i, k)
         resource = self.request.data['resource']
+
         user_id = resource['purchase_units'][0]['reference_id']
         currency = resource['purchase_units'][0]['amount']['currency_code']
         value = resource['purchase_units'][0]['amount']['value']
-        create_time = resource.get("create_time")
-        payer_email = resource['payer']['email_address']
-        payer_id = resource['payer']['payer_id']
-        invoice_id = resource['invoice_id']
-        print(user_id, value, currency)
+        # create_time = resource.get("create_time")
+        # payer_email = resource['payer']['email_address']
+        # payer_id = resource['payer']['payer_id']
+
+        print(resource['purchase_units'])
+
+        invoice_id = resource['purchase_units'][0].get('invoice_id')
+        if not invoice_id:
+            return Response({"status": "SUCCESSFUL"}, status=200)
+        print(user_id, value, currency, invoice_id)
         user = CustomUser.objects.filter(pk=user_id).first()
+        print(user)
         if not user:
             return Response({"status": "SUCCESSFUL"}, status=200)
         invoice = Invoice.objects.filter(invoice_id=invoice_id).first()
         with transaction.atomic():
+
             invoice.status = 'Paid'
             invoice.complete_at = timezone.now()
-            user.cents += float(value) * 100
+            user.cents += int(float(value) * 100)
             user.save()
             invoice.save()
             send_balance_update.delay(email_to=user.email, cents=user.cents)

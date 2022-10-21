@@ -38,8 +38,10 @@ $('.open-invoice-btn').click(event => {
             $('#paypal-button-container').css('display', 'block')
             $('#deposit-credit-card-btn').css('display', 'none')
         } else {
-            $('#paypal-button-container').css('display', 'none')
-            $('#deposit-credit-card-btn').css('display', 'block')
+            $('#paypal-button-container').css('display', 'block')
+            $('#deposit-credit-card-btn').css('display', 'none')
+            // $('#paypal-button-container').css('display', 'none')
+            // $('#deposit-credit-card-btn').css('display', 'block')
         }
     } else {
         $('.table-info > .tr:eq(1) > .td:eq(3) > span').attr('class', 'status c-green')
