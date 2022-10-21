@@ -67,8 +67,8 @@ class BoardModel(models.Model):
         discount = len(self.telegram_board_discount)
         total = len(self.telegram_board_total)
         if (amount, discount, total).count(quantity) == 3:
-            return False
-        return True
+            return True
+        return False
 
     def __len_twitter(self):
         quantity = len(self.twitter_board_quantity)
@@ -76,8 +76,8 @@ class BoardModel(models.Model):
         discount = len(self.twitter_board_discount)
         total = len(self.twitter_board_total)
         if (amount, discount, total).count(quantity) == 3:
-            return False
-        return True
+            return True
+        return False
 
     def __len_discord(self):
         quantity = len(self.discord_board_quantity)
@@ -85,8 +85,8 @@ class BoardModel(models.Model):
         discount = len(self.discord_board_discount)
         total = len(self.discord_board_total)
         if (amount, discount, total).count(quantity) == 3:
-            return False
-        return True
+            return True
+        return False
 
     def __len_instagram(self):
         quantity = len(self.instagram_board_quantity)
@@ -94,8 +94,8 @@ class BoardModel(models.Model):
         discount = len(self.instagram_board_discount)
         total = len(self.instagram_board_total)
         if (amount, discount, total).count(quantity) == 3:
-            return False
-        return True
+            return True
+        return False
 
     def clean(self):
         if not self.__len_instagram():
