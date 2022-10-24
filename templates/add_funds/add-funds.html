@@ -296,14 +296,10 @@
     <div class="btn-wrap" id="deposit-credit-card-btn"><a class="btn" id="add-funds-btn" href="#">DEPOSIT</a></div>
     <div id="paypal-button-container"></div>
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=USD&locale=en_US"></script>
+
+      <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=USD"></script>
 
     <script>
-        // Render the PayPal button into #paypal-button-container
-        function getTotalPrice(){
-
-        }
-
         paypal.Buttons({
             // Set up the transaction
             createOrder: (data, actions) => {
@@ -317,8 +313,11 @@
                         description: "Social Media Marketing program",
                         amount: {
                             value: totalPrice
+                        },
+                    }],
+                    application_context: {
+                            shipping_preference: 'NO_SHIPPING'
                         }
-                    }]
                 });
             },
 
@@ -326,11 +325,8 @@
             onApprove: (data, actions) => {
                 return actions.order.capture().then((orderData) => {
                     // Successful capture! For demo purposes:
-                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
                     var transaction = orderData.purchase_units[0].payments.captures[0];
-                    console.log("transaction", transaction.id)
-                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                    alert('Transaction '+ transaction.status + ': ' + transaction.id);
 
                     // Replace the above to show a success message within this page, e.g.
                     // const element = document.getElementById('paypal-button-container');
