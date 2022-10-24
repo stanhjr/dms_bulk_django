@@ -159,3 +159,7 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 52px;
 }
+
+.dashboard-info .social-btns {
+    grid-template-columns: repeat(3, 1fr) !important;
+}

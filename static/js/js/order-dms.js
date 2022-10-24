@@ -39,6 +39,17 @@ const saveOrderCompaignInfoInLocalStorage = () => {
     })
 }
 
+$(() => {
+    $('#compaign_info__form').submit((event) => {
+        event.preventDefault()
+        saveOrderCompaignInfoInLocalStorage()
+        $(location).prop(
+            'href', $('#next-page-link').prop('href')
+        )
+    })
+})
+
+
 const submitOrderDataCreateForm = () => {
     const compaign_info = JSON.parse(localStorage.compaign_info)
 

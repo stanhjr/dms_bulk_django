@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from django.views.generic import CreateView
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.db import transaction, models
@@ -180,6 +181,14 @@ class OrderModelCreateView(MetaInfoContextMixin, PopupCookiesContextMixin, Confi
 
 class SetCompaignInfoPageView(MetaInfoContextMixin, PopupCookiesContextMixin, ConfirmRequiredMixin, LoginRequiredMixin, TemplateView):
     template_name = 'order/order-dms-step-2.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        users_latest_order_calc_price = OrderCalcModel.objects.filter(
+            user=request.user).last().total_price
+        users_money_number = request.user.dollars
+        if users_money_number - users_latest_order_calc_price < 0:
+            return redirect(reverse_lazy('order'))
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

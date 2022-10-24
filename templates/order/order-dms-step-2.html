@@ -51,12 +51,12 @@
               </div>
               <div class="info-wrapper block-white">
                 <h2 class="fz25 center">Provide Campaign Information</h2>
-                <form> 
+                <form id="compaign_info__form"> 
                   <div class="item">
                     <h3 class="fz20">1. Targets/Competitors Submited</h3>
                     <div class="grid-wrap">
                       <div class="input-wrap">
-                        <textarea id="targets_or_competitors_submited" placeholder="Type here..." maxlength="2000"></textarea>
+                        <textarea id="targets_or_competitors_submited" placeholder="Type here..." maxlength="2000" required></textarea>
                       </div>
                       <div class="text-wrap">
                         <h3 class="fz20">Hint</h3>
@@ -88,7 +88,7 @@
                     <div class="grid-wrap">
                       <div class="input-wrap">
                         <div class="textarea-counter-wrap">
-                          <textarea id="message" placeholder="Type here..." maxlength="1000" class="js-textarea-max"></textarea>
+                          <textarea id="message" placeholder="Type here..." maxlength="1000" class="js-textarea-max" required></textarea>
                           <div class="counter"><span class="current">0</span><span class="max">/ 1000</span></div>
                         </div>
                       </div>
@@ -103,7 +103,7 @@
                     <div class="grid-wrap">
                       <div class="input-wrap">
                         <div class="textarea-counter-wrap">
-                          <textarea id="attach_in_message" placeholder="Type here..." maxlength="600" class="js-textarea-max"></textarea>
+                          <textarea id="attach_in_message" placeholder="Type here..." maxlength="600" class="js-textarea-max" required></textarea>
                           <div class="counter"><span class="current">0</span><span class="max">/ 600</span></div>
                         </div>
                       </div>
@@ -132,7 +132,7 @@
                     <h3 class="fz20">6. Your Contact details </h3>
                     <div class="grid-wrap col-2">
                       <div class="input-wrap">
-                        <input id="contact_details" placeholder="Type here...">
+                        <input id="contact_details" placeholder="Type here..." required>
                       </div>
                       <div class="text-wrap">
                         <h3 class="fz20">Hint</h3>
@@ -142,8 +142,8 @@
                   </div>
                   <div class="item">
                     <div class="btn-wrap">
-                      <a href="{% url 'order_step_three' %}">
-                        <button onclick="saveOrderCompaignInfoInLocalStorage()" type="button" class="btn">Submit & Continue</button>
+                      <a id="next-page-link" href="{% url 'order_step_three' %}">
+                        <button type="submit" class="btn">Submit & Continue</button>
                       </a>
                     </div>
                   </div>
