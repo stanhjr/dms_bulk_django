@@ -163,3 +163,17 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
 .dashboard-info .social-btns {
     grid-template-columns: repeat(3, 1fr) !important;
 }
+
+div#paypal-button-container{
+    position: relative;
+    z-index: 10;
+    width: calc(100% - 260px);
+    margin: -70px 0 0;
+}
+
+@media (max-width: 768px) {
+    div#paypal-button-container {
+        width: 100%;
+        margin: 20px 0 0;
+    }
+}
