@@ -161,5 +161,5 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
 }
 
 .dashboard-info .social-btns {
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
 }
