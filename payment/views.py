@@ -139,7 +139,6 @@ class PaypalAPIView(APIView):
             return Response({"status": "SUCCESSFUL"}, status=200)
         invoice = Invoice.objects.filter(invoice_id=invoice_id).first()
         with transaction.atomic():
-
             invoice.status = 'Paid'
             invoice.complete_at = timezone.now()
             user.cents += int(float(value) * 100)

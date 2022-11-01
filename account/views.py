@@ -70,7 +70,7 @@ class SignUpConfirm(RedirectView):
             user.save()
             send_html_email.delay(
                 user.email,
-                'celery_tasks/templates/01_Verify-Email.html',
+                'celery_tasks/templates/02_Mail-Confirmed.html',
                 subject="Verify Email", )
             return redirect('dashboard')
         else:
