@@ -1,3 +1,4 @@
+
 $('.js-input-numeric.add-funds-price').on('keyup', () => {
     const total_add_funds = $('.js-input-numeric.add-funds-price').val()
 
@@ -33,15 +34,21 @@ $('.open-invoice-btn').click(event => {
 
     if (current_invoice_table[4] !== 'Paid') {
         $('.table-info > .tr:eq(1) > .td:eq(3) > span').attr('class', 'status c-orange')
-
         if (current_invoice_table[1] === 'Paypal') {
             $('#paypal-button-container').css('display', 'block')
             $('#deposit-credit-card-btn').css('display', 'none')
-        } else {
+            $('#coin-base-btn').css('display', 'none')
+
+        } else if (current_invoice_table[1] === 'CreditCard') {
             $('#paypal-button-container').css('display', 'block')
             $('#deposit-credit-card-btn').css('display', 'none')
-            // $('#paypal-button-container').css('display', 'none')
-            // $('#deposit-credit-card-btn').css('display', 'block')
+            $('#coin-base-btn').css('display', 'none')
+        } else if (current_invoice_table[1] === 'CoinBase'){
+            console.log(current_invoice_table)
+            window.location.href="?coinbase_invoice_id=" + current_invoice_table[0];
+            // $('#coin-base-container').css('display', 'block')
+            //  $('#paypal-button-container').css('display', 'none')
+            // $('#deposit-credit-card-btn').css('display', 'none')
         }
     } else {
         $('.table-info > .tr:eq(1) > .td:eq(3) > span').attr('class', 'status c-green')

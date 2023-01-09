@@ -1,12 +1,13 @@
-import datetime
 from urllib.parse import urlparse
 
 import stripe
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
-from django.template.loader import render_to_string
+from django.http import HttpResponse
+
 from django.utils import timezone
-from django.views.generic import CreateView
+
+from django.views.generic import CreateView, TemplateView
 
 from djstripe.models import Customer
 from djstripe import webhooks
@@ -23,6 +24,11 @@ from dms_bulk_django.settings import STRIPE_TEST_SECRET_KEY
 from payment.forms import CreateInvoiceCalcForm
 from payment.models import Invoice
 from celery_tasks import send_balance_update
+from django.template.loader import render_to_string
+from coinbase_commerce.client import Client
+from coinbase_commerce.error import SignatureVerificationError, WebhookInvalidPayload
+from coinbase_commerce.webhook import Webhook
+from django.shortcuts import render
 
 from utils import MetaInfoContextMixin
 
@@ -45,7 +51,7 @@ class InvoiceCreateView(MetaInfoContextMixin, LoginRequiredMixin, CreateView):
 
 
 class GetSessionIdAPIView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         customer = Customer.objects.get(subscriber=self.request.user)
@@ -147,3 +153,50 @@ class PaypalAPIView(APIView):
             send_balance_update.delay(email_to=user.email, cents=user.cents)
 
         return Response({"status": "SUCCESSFUL"}, status=200)
+
+
+class CoinBaseAPIView(APIView):
+    def post(self, request):
+        request_data = request.body.decode('utf-8')
+        request_sig = request.headers.get('X-CC-Webhook-Signature', None)
+        webhook_secret = settings.COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET
+
+        try:
+            event = Webhook.construct_event(request_data, request_sig, webhook_secret)
+            # List of all Coinbase webhook events:
+            # https://commerce.coinbase.com/docs/api/#webhooks
+
+            if event['type'] == 'charge:confirmed':
+                print("==========================================")
+                print(event)
+                print("==========================================")
+
+                payments = event['data']['payments']
+                payments = payments[0]
+                usd = payments['net']['local']['amount']
+                cents = float(usd) * 100
+                invoice_id = event['data']['metadata']['custom']
+                print(cents)
+                print(invoice_id)
+
+        except (SignatureVerificationError, WebhookInvalidPayload) as e:
+            print(e)
+            return HttpResponse(e, status=400)
+
+        return HttpResponse('ok', status=200)
+
+
+# class CoinBaseRenderButtonView(TemplateView):
+#     template_name = 'add_funds/coinbase_btn.html'
+#
+#     def get_context_data(self, **kwargs):
+#         print(self.request.GET.get('invoice_id'))
+#         context = super().get_context_data()
+#         context['invoice_id'] = 'ID-3223'
+#         return context
+#
+#     def get(self, request, *args, **kwargs):
+#         res = render_to_string(template_name='add_funds/coinbase_btn.html',
+#                                context={'invoice_id': 'ID-3223'},
+#                                request=request)
+#         return HttpResponse(res)

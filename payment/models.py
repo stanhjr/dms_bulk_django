@@ -11,7 +11,8 @@ class Invoice(models.Model):
     )
     PAYMENT_METHOD = (
         ('Paypal', 'Paypal'),
-        ('CreditCard', 'CreditCard')
+        ('CreditCard', 'CreditCard'),
+        ('CoinBase', 'CreditCard'),
     )
 
     invoice_id = models.CharField(max_length=255, null=True, blank=True)

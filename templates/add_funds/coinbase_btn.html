@@ -1,0 +1,58 @@
+{% load mathfilters %}
+{% load static %}
+<div class="mfp-hide popup popup--invoice" id="popup-invoice-paid-coinbase">
+    <div class="header-wrap">
+      <div class="left">
+        <div class="logo-wrap"><img src="{% static '/img/logo.svg' %}" alt=""/></div>
+        <p>Social Media marketing service <br>SIA ”OFFERBOOSTED” <br>dmsbulkteam@gmail.com</p>
+      </div>
+      <div class="right">
+        <div class="title">INVOICE</div>
+        <p>ID (#{{ coinbase_invoice.invoice_id }})</p>
+      </div>
+    </div>
+    <div class="info-wrap">
+      <div class="item"><b>Invoice to:</b>
+        <p>{{ request.user.email }} {{ request.user.username }}</p>
+      </div>
+      <div class="item"><b>Invoice data:</b>
+        <p>{{ coinbase_invoice.date }}</p>
+      </div>
+    </div>
+    <div class="table-info">
+      <div class="tr">
+        <div class="td"><b>Invoice ID</b></div>
+        <div class="td"><b>Payment Method</b></div>
+        <div class="td"><b>Description</b></div>
+        <div class="td"><b>Status</b></div>
+      </div>
+      <div class="tr">
+        <div class="td">{{ coinbase_invoice.invoice_id }}</div>
+        <div class="td">{{ coinbase_invoice.payment_method  }}</div>
+        <div class="td">Social Media Marketing program</div>
+          {% if  coinbase_invoice.status == 'Paid'%}
+              <div class="td"><span class="status c-green">PAID</span></div>
+          {% else %}
+              <div class="td"><span class="status c-orange">AWAITING PAYMENT</span></div>
+          {% endif %}
+
+      </div>
+    </div>
+    <div class="table-total">
+      <div class="tr">
+        <div class="td"><b>Sub Total</b></div>
+        <div class="td add-funds-price">{{ coinbase_invoice.cost }} $</div>
+      </div>
+      <div class="tr">
+        <div class="td"><b>Total</b></div>
+        <div class="td add-funds-price">{{ coinbase_invoice.cost }} $</div>
+      </div>
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
+    <div id="coin-base-container" style="display: block">
+            <div><a class="donate-with-crypto" data-custom="{{ coinbase_invoice_id }}" id="coin-base-href" href="https://commerce.coinbase.com/checkout/273d61d9-7a58-4ad0-ad57-75c65d1a3884">Payment with crypto</a>
+              <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>
+                <script></script>
+            </div>
+        </div>
+  </div>

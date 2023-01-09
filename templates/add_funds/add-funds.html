@@ -24,8 +24,10 @@
               <div class="wrapper block-white">
                 <h1 class="fz25 center">Deposit</h1>
                 <div class="btns-wrap">
-                  <button id="Paypal" class="js-toggle-deposit"><img class="invert" src="{% static '/img/btn-paypal.png' %}" alt=""></button>
-                  <button id="CreditCard" class="js-toggle-deposit active"><img src="{% static '/img/btn-card.png' %}" alt=""></button>                </div>
+                    <button id="Paypal" class="js-toggle-deposit"><img class="invert" src="{% static '/img/btn-paypal.png' %}" alt=""></button>
+                    <button id="CreditCard" class="js-toggle-deposit active"><img src="{% static '/img/btn-card.png' %}" alt=""></button>
+                    <button id="CoinBase" class="js-toggle-deposit"><img class="invert" src="{% static '/img/Coinbase.png' %}" alt=""></button>
+                 </div>
                 <div class="block-fund-input">
                   <input class="js-input-numeric add-funds-price" type="text" placeholder="0$">
                 </div>
@@ -40,7 +42,7 @@
                 <div class="bottom-text">Check price calculator <a class="link" href="{% url 'order' %}">here</a></div>
                 <div class="table">
                   <div class="tr">
-                    <div class="td"><b>Invoive ID</b></div>
+                    <div class="td"><b>Invoice ID</b></div>
                     <div class="td"><b>Payment Method</b></div>
                     <div class="td"><b>Description</b></div>
                     <div class="td"><b>Cost</b></div>
@@ -292,10 +294,14 @@
         <div class="td" id="total-invoice"></div>
       </div>
     </div>
+      {% if coinbase_invoice %}
+          <div id="coin-base-container" style="display: block">{% include 'add_funds/coinbase_btn.html' %}</div>
+
+      {% endif %}
+
 
     <div class="btn-wrap" id="deposit-credit-card-btn"><a class="btn" id="add-funds-btn" href="#">DEPOSIT</a></div>
     <div id="paypal-button-container"></div>
-    <!-- Include the PayPal JavaScript SDK -->
 
       <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=USD"></script>
 
@@ -385,6 +391,7 @@
     </div>
     <div class="btn-wrap"><a class="btn" href="#">Download</a></div>
   </div>
+
 {% endblock content %}
 
 {% block scripts %}

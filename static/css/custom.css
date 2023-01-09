@@ -93,17 +93,17 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     fill: #fff;
 }
 
-.section-text>p {
+.section-text > p {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.section-text>h2 {
+.section-text > h2 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.section-text>h3 {
+.section-text > h3 {
     margin-top: 15px;
     margin-bottom: 15px;
     color: rgba(0, 0, 0, 0.5);
@@ -124,8 +124,8 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     color: rgba(51, 104, 245, .9);
 }
 
-.home-partner .item:nth-child(1)>img,
-.home-partner .item:nth-last-child(1)>img {
+.home-partner .item:nth-child(1) > img,
+.home-partner .item:nth-last-child(1) > img {
     transform: scale(0.8);
 }
 
@@ -156,15 +156,20 @@ header.header-main .grid .user-wrap .ava-wrap.notify.order-active::after {
     max-width: 650px;
     margin: 30px auto 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 52px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.add-funsd-main .btns-wrap button img {
+    height: 60px;
+    object-fit: contain;
 }
 
 .dashboard-info .social-btns {
     grid-template-columns: repeat(4, 1fr) !important;
 }
 
-div#paypal-button-container{
+div#paypal-button-container {
     position: relative;
     z-index: 10;
     width: calc(100% - 260px);
@@ -175,5 +180,11 @@ div#paypal-button-container{
     div#paypal-button-container {
         width: 100%;
         margin: 20px 0 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .add-funsd-main .btns-wrap {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
