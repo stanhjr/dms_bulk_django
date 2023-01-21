@@ -133,21 +133,17 @@ class PaypalAPIView(APIView):
         # payer_email = resource['payer']['email_address']
         # payer_id = resource['payer']['payer_id']
 
-        print(resource['purchase_units'])
-
         invoice_id = resource['purchase_units'][0].get('invoice_id')
         if not invoice_id:
             return Response({"status": "SUCCESSFUL"}, status=200)
-        print(user_id, value, currency, invoice_id)
         user = CustomUser.objects.filter(pk=user_id).first()
-        print(user)
         if not user:
             return Response({"status": "SUCCESSFUL"}, status=200)
         invoice = Invoice.objects.filter(invoice_id=invoice_id).first()
+        invoice.status = 'Paid'
+        invoice.complete_at = timezone.now()
+        user.cents += int(float(value) * 100)
         with transaction.atomic():
-            invoice.status = 'Paid'
-            invoice.complete_at = timezone.now()
-            user.cents += int(float(value) * 100)
             user.save()
             invoice.save()
             send_balance_update.delay(email_to=user.email, cents=user.cents)
@@ -176,8 +172,18 @@ class CoinBaseAPIView(APIView):
                 usd = payments['net']['local']['amount']
                 cents = float(usd) * 100
                 invoice_id = event['data']['metadata']['custom']
-                print(cents)
-                print(invoice_id)
+                invoice = Invoice.objects.filter(id=invoice_id).first()
+                user = invoice.user
+                print("cents", cents)
+                print("invoice_id", invoice_id)
+                print("invoice", invoice)
+                invoice.status = 'Paid'
+                invoice.complete_at = timezone.now()
+                user.cents += int(cents)
+                with transaction.atomic():
+                    user.save()
+                    invoice.save()
+                    send_balance_update.delay(email_to=user.email, cents=user.cents)
 
         except (SignatureVerificationError, WebhookInvalidPayload) as e:
             print(e)
@@ -185,18 +191,3 @@ class CoinBaseAPIView(APIView):
 
         return HttpResponse('ok', status=200)
 
-
-# class CoinBaseRenderButtonView(TemplateView):
-#     template_name = 'add_funds/coinbase_btn.html'
-#
-#     def get_context_data(self, **kwargs):
-#         print(self.request.GET.get('invoice_id'))
-#         context = super().get_context_data()
-#         context['invoice_id'] = 'ID-3223'
-#         return context
-#
-#     def get(self, request, *args, **kwargs):
-#         res = render_to_string(template_name='add_funds/coinbase_btn.html',
-#                                context={'invoice_id': 'ID-3223'},
-#                                request=request)
-#         return HttpResponse(res)

@@ -27,11 +27,9 @@ class AddFundsPageView(MetaInfoContextMixin, PopupCookiesContextMixin, LoginRequ
         context['create_invoice_form'] = CreateInvoiceCalcForm
         context['page'] = 'add_funds'
         context['paypal_client_id'] = PAYPAL_CLIENT_ID
-        print(self.request.GET.get("coinbase_invoice_id"))
         if self.request.GET.get("coinbase_invoice_id"):
             invoice = Invoice.objects.filter(invoice_id=self.request.GET.get("coinbase_invoice_id")).first()
             if invoice:
-                print(1234)
                 context['coinbase_invoice_id'] = invoice.invoice_id
                 context['coinbase_invoice'] = invoice
         return context

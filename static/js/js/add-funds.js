@@ -44,11 +44,7 @@ $('.open-invoice-btn').click(event => {
             $('#deposit-credit-card-btn').css('display', 'none')
             $('#coin-base-btn').css('display', 'none')
         } else if (current_invoice_table[1] === 'CoinBase'){
-            console.log(current_invoice_table)
             window.location.href="?coinbase_invoice_id=" + current_invoice_table[0];
-            // $('#coin-base-container').css('display', 'block')
-            //  $('#paypal-button-container').css('display', 'none')
-            // $('#deposit-credit-card-btn').css('display', 'none')
         }
     } else {
         $('.table-info > .tr:eq(1) > .td:eq(3) > span').attr('class', 'status c-green')
